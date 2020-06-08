@@ -11,7 +11,7 @@ Authors@R: c(
            family = "Webb",
            role = c("ctb"),
            email = "t.j.webb@sheffield.ac.uk"))
-Description: What the package does (one paragraph).
+Description: Access and interrogate EMODnet Web Feature Service data through R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -25,6 +25,7 @@ Imports:
     usethis,
     magrittr,
     tibble,
-    rlang
+    rlang,
+    checkmate
 URL: https://github.com/annakrystalli/EMODnetWFS
 BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
