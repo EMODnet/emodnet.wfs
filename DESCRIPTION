@@ -26,3 +26,5 @@ Imports:
     magrittr,
     tibble,
     rlang
+URL: https://github.com/annakrystalli/EMODnetWFS
+BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
