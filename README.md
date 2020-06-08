@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build
+status](https://github.com/annakrystalli/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/annakrystalli/EMODnetWFS/actions)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation and access to the
@@ -37,7 +39,7 @@ Create new WFS Client. The default service is
 wfs <- emodnet_init_wfs_client()
 #> Loading ISO 19139 XML schemas...
 #> Loading ISO 19115 codelists...
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
 ```
@@ -47,7 +49,7 @@ You can access further services through the `service`.
 ``` r
 
 wfs_bath <- emodnet_init_wfs_client(service = "https://ows.emodnet-bathymetry.eu/wfs")
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
 #> ℹ Version: '2.0.0'
 
@@ -59,7 +61,7 @@ wfs_bath$getUrl()
 
 ``` r
 emodnet_get_wfs_info()
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
 #> # A tibble: 688 x 5
@@ -82,7 +84,7 @@ You can access information about a service using the `service` argument.
 
 ``` r
 emodnet_get_wfs_info(service = "https://ows.emodnet-bathymetry.eu/wfs")
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
 #> ℹ Version: '2.0.0'
 #> # A tibble: 4 x 5
@@ -111,10 +113,10 @@ emodnet_get_wfs_info(wfs_bath)
 
 ``` r
 emodnet_get_layers(layers = c("dk003069", "dk003070"))
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
-#> [[1]]
+#> $dk003069
 #> Simple feature collection with 82 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
@@ -122,17 +124,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> epsg (SRID):    3857
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
-#>                                      gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid--51a983ba_1729415095b_-47d7 39863 DK003069      80   1110
-#> 2  dk003069.fid--51a983ba_1729415095b_-47d6 39791 DK003069       8   1170
-#> 3  dk003069.fid--51a983ba_1729415095b_-47d5 39796 DK003069      13   1170
-#> 4  dk003069.fid--51a983ba_1729415095b_-47d4 39810 DK003069      27   1170
-#> 5  dk003069.fid--51a983ba_1729415095b_-47d3 39804 DK003069      21   1170
-#> 6  dk003069.fid--51a983ba_1729415095b_-47d2 39855 DK003069      72   1110
-#> 7  dk003069.fid--51a983ba_1729415095b_-47d1 39860 DK003069      77   1110
-#> 8  dk003069.fid--51a983ba_1729415095b_-47d0 39799 DK003069      16   1170
-#> 9  dk003069.fid--51a983ba_1729415095b_-47cf 39848 DK003069      65   1110
-#> 10 dk003069.fid--51a983ba_1729415095b_-47ce 39790 DK003069       7   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid--51a983ba_17295227d13_44f6 39863 DK003069      80   1110
+#> 2  dk003069.fid--51a983ba_17295227d13_44f7 39791 DK003069       8   1170
+#> 3  dk003069.fid--51a983ba_17295227d13_44f8 39796 DK003069      13   1170
+#> 4  dk003069.fid--51a983ba_17295227d13_44f9 39810 DK003069      27   1170
+#> 5  dk003069.fid--51a983ba_17295227d13_44fa 39804 DK003069      21   1170
+#> 6  dk003069.fid--51a983ba_17295227d13_44fb 39855 DK003069      72   1110
+#> 7  dk003069.fid--51a983ba_17295227d13_44fc 39860 DK003069      77   1110
+#> 8  dk003069.fid--51a983ba_17295227d13_44fd 39799 DK003069      16   1170
+#> 9  dk003069.fid--51a983ba_17295227d13_44fe 39848 DK003069      65   1110
+#> 10 dk003069.fid--51a983ba_17295227d13_44ff 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
@@ -145,7 +147,7 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((110...
 #> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
 #> 
-#> [[2]]
+#> $dk003070
 #> Simple feature collection with 30 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
@@ -153,17 +155,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> epsg (SRID):    3857
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
-#>                                      gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid--51a983ba_1729415095b_-4763 39869 DK003070       4   1170
-#> 2  dk003070.fid--51a983ba_1729415095b_-4762 39888 DK003070      23   1170
-#> 3  dk003070.fid--51a983ba_1729415095b_-4761 39866 DK003070       1   1170
-#> 4  dk003070.fid--51a983ba_1729415095b_-4760 39894 DK003070      29   1170
-#> 5  dk003070.fid--51a983ba_1729415095b_-475f 39884 DK003070      19   1170
-#> 6  dk003070.fid--51a983ba_1729415095b_-475e 39895 DK003070      30   1110
-#> 7  dk003070.fid--51a983ba_1729415095b_-475d 39877 DK003070      12   1170
-#> 8  dk003070.fid--51a983ba_1729415095b_-475c 39878 DK003070      13   1170
-#> 9  dk003070.fid--51a983ba_1729415095b_-475b 39872 DK003070       7   1170
-#> 10 dk003070.fid--51a983ba_1729415095b_-475a 39871 DK003070       6   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid--51a983ba_17295227d13_4566 39869 DK003070       4   1170
+#> 2  dk003070.fid--51a983ba_17295227d13_4567 39888 DK003070      23   1170
+#> 3  dk003070.fid--51a983ba_17295227d13_4568 39866 DK003070       1   1170
+#> 4  dk003070.fid--51a983ba_17295227d13_4569 39894 DK003070      29   1170
+#> 5  dk003070.fid--51a983ba_17295227d13_456a 39884 DK003070      19   1170
+#> 6  dk003070.fid--51a983ba_17295227d13_456b 39895 DK003070      30   1110
+#> 7  dk003070.fid--51a983ba_17295227d13_456c 39877 DK003070      12   1170
+#> 8  dk003070.fid--51a983ba_17295227d13_456d 39878 DK003070      13   1170
+#> 9  dk003070.fid--51a983ba_17295227d13_456e 39872 DK003070       7   1170
+#> 10 dk003070.fid--51a983ba_17295227d13_456f 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((127...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((129...
@@ -184,7 +186,7 @@ into a single `sf` if possible.
 ``` r
 
 emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
-#> ✔ WFS client created succesfully
+#> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
 #> Simple feature collection with 112 features and 8 fields
@@ -194,17 +196,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 #> epsg (SRID):    3857
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
-#>                                      gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid--51a983ba_1729415095b_-46ee 39863 DK003069      80   1110
-#> 2  dk003069.fid--51a983ba_1729415095b_-46ed 39791 DK003069       8   1170
-#> 3  dk003069.fid--51a983ba_1729415095b_-46ec 39796 DK003069      13   1170
-#> 4  dk003069.fid--51a983ba_1729415095b_-46eb 39810 DK003069      27   1170
-#> 5  dk003069.fid--51a983ba_1729415095b_-46ea 39804 DK003069      21   1170
-#> 6  dk003069.fid--51a983ba_1729415095b_-46e9 39855 DK003069      72   1110
-#> 7  dk003069.fid--51a983ba_1729415095b_-46e8 39860 DK003069      77   1110
-#> 8  dk003069.fid--51a983ba_1729415095b_-46e7 39799 DK003069      16   1170
-#> 9  dk003069.fid--51a983ba_1729415095b_-46e6 39848 DK003069      65   1110
-#> 10 dk003069.fid--51a983ba_1729415095b_-46e5 39790 DK003069       7   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid--51a983ba_17295227d13_45d6 39863 DK003069      80   1110
+#> 2  dk003069.fid--51a983ba_17295227d13_45d7 39791 DK003069       8   1170
+#> 3  dk003069.fid--51a983ba_17295227d13_45d8 39796 DK003069      13   1170
+#> 4  dk003069.fid--51a983ba_17295227d13_45d9 39810 DK003069      27   1170
+#> 5  dk003069.fid--51a983ba_17295227d13_45da 39804 DK003069      21   1170
+#> 6  dk003069.fid--51a983ba_17295227d13_45db 39855 DK003069      72   1110
+#> 7  dk003069.fid--51a983ba_17295227d13_45dc 39860 DK003069      77   1110
+#> 8  dk003069.fid--51a983ba_17295227d13_45dd 39799 DK003069      16   1170
+#> 9  dk003069.fid--51a983ba_17295227d13_45de 39848 DK003069      65   1110
+#> 10 dk003069.fid--51a983ba_17295227d13_45df 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
