@@ -1,0 +1,91 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# EMODnetWFS
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+The goal of EMODnetWFS is to allow interrogation and access to the EMODnet Web Feature Services data in R.
+
+## Installation
+
+You can install the released version of EMODnetWFS from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+remotes::install_github("annakrystalli/EMODnetWFS")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(EMODnetWFS)
+## basic example code
+```
+
+Create new WFS Client. The default service is `https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs`
+
+```{r}
+wfs <- emodnet_init_wfs_client()
+
+```
+
+You can access further services through the `service`. 
+
+```{r}
+
+wfs_bath <- emodnet_init_wfs_client(service = "https://ows.emodnet-bathymetry.eu/wfs")
+
+wfs_bath$getUrl()
+```
+
+## Get WFS Layer info
+
+```{r}
+emodnet_get_wfs_info()
+```
+
+You can access information about a service using the `service` argument.
+
+```{r}
+emodnet_get_wfs_info(service = "https://ows.emodnet-bathymetry.eu/wfs")
+```
+
+or you can pass a wfs client object.
+
+```{r}
+emodnet_get_wfs_info(wfs_bath)
+```
+
+## Get WFS layers
+
+```{r}
+emodnet_get_layers(layers = c("dk003069", "dk003070"))
+
+```
+
+Layers can also be returned to a single `sf` object through argument `reduce_layers`. If `TRUE` the function will try to reduce all layers into a single `sf` if possible.
+```{r}
+
+emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
+```
+
+```{r}
+#emodnet_get_layers(wfs_bath, layers = "source_references_2016")
+```
+

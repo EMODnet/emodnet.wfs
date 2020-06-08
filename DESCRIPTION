@@ -1,0 +1,28 @@
+Package: EMODnetWFS
+Title: Access EMODnet Web Feature Service data through R
+Version: 0.0.0.9000
+Authors@R: c(
+    person(given = "Anna",
+           family = "Krystalli",
+           role = c("aut", "cre"),
+           email = "annakrystalli@googlemail.com",
+           comment = c(ORCID = "0000-0002-2378-4915")),
+    person(given = "Thomas J",
+           family = "Webb",
+           role = c("ctb"),
+           email = "t.j.webb@sheffield.ac.uk"))
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 2.1.0)
+RoxygenNote: 7.1.0
+Imports: 
+    ows4R,
+    purrr,
+    tidyr,
+    usethis,
+    magrittr,
+    tibble,
+    rlang
