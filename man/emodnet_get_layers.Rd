@@ -9,7 +9,8 @@ emodnet_get_layers(
   service = "https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs",
   service_version = "2.0.0",
   layers,
-  reduce_layers = FALSE
+  reduce_layers = FALSE,
+  suppress_warnings = FALSE
 )
 }
 \arguments{
@@ -24,10 +25,16 @@ Habitats WFS.}
 `layer_name` use `emodnet_get_wfs_info()`}
 
 \item{reduce_layers}{whether to reduce output layers to a single `sf` object.}
+
+\item{suppress_warnings}{logical. Whether to suppress messages of layer
+download failures.}
 }
 \value{
-either a single `sf` containing all layers (default) or a list of `sf`
-objects, one for each layer (if `reduce_layers = TRUE`)
+If `reduce_layers = FALSE` (default), a list of `sf`
+objects, one element for each layer. Any layers for which download was
+unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
+reduced (if possible) to a single `sf` containing data for all layers.
+`NULL` layers are ignored.
 }
 \description{
 Get EMODnet WFS layers
