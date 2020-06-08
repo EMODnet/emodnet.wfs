@@ -31,7 +31,7 @@ emodnet_get_layers <- function(wfs = NULL,
         # get features
     out <- purrr::map(layers, ~ews_get_layer(.x, wfs), wfs,
                       suppress_warnings) %>%
-        setNames(layers)
+         stats::setNames(layers)
 
     # if reduce_layers = T, reduce to single sf
     if(reduce_layers){
