@@ -24,7 +24,7 @@ The goal of EMODnetWFS is to allow interrogation and access to the EMODnet Web F
 
 ## Installation
 
-You can install the released version of EMODnetWFS from [CRAN](https://CRAN.R-project.org) with:
+You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
 remotes::install_github("annakrystalli/EMODnetWFS")
@@ -39,6 +39,14 @@ library(EMODnetWFS)
 ## basic example code
 ```
 
+### Available services
+
+```{r}
+knitr::kable(emodnet_wfs)
+```
+
+### Create Service Client
+
 Create new WFS Client. The default service is `https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs`
 
 ```{r}
@@ -50,7 +58,7 @@ You can access further services through the `service`.
 
 ```{r}
 
-wfs_bath <- emodnet_init_wfs_client(service = "https://ows.emodnet-bathymetry.eu/wfs")
+wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
 
 wfs_bath$getUrl()
 ```
@@ -64,7 +72,7 @@ emodnet_get_wfs_info()
 You can access information about a service using the `service` argument.
 
 ```{r}
-emodnet_get_wfs_info(service = "https://ows.emodnet-bathymetry.eu/wfs")
+emodnet_get_wfs_info(service = "bathymetry")
 ```
 
 or you can pass a wfs client object.

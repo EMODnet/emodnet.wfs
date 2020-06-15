@@ -17,11 +17,12 @@
 #' emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #' emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 emodnet_get_layers <- function(wfs = NULL,
-                               service = "https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs",
+                               service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                                service_version = "2.0.0", layers,
                                reduce_layers = FALSE, suppress_warnings = FALSE) {
     if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service, service_version)
+        wfs <- emodnet_init_wfs_client(service,
+                                       service_version)
     }else{check_wfs(wfs)}
 
     # check layers

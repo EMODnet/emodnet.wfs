@@ -7,7 +7,7 @@ test_that("Default connection works", {
   })
 
 test_that("Specified connection works", {
-    wfs <- emodnet_init_wfs_client(service = "https://ows.emodnet-bathymetry.eu/wfs")
+    wfs <- emodnet_init_wfs_client(service = "bathymetry")
     expect_equal(class(wfs),
                  c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
     expect_equal(wfs$getUrl(),

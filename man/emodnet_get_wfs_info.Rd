@@ -6,15 +6,16 @@
 \usage{
 emodnet_get_wfs_info(
   wfs = NULL,
-  service = "https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs",
+  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   service_version = "2.0.0"
 )
 }
 \arguments{
 \item{wfs}{A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.}
 
-\item{service}{the EMODnet OGC WFS service URL. Defaults to the EMODnet Seabed
-Habitats WFS.}
+\item{service}{the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
+Habitats WFS `"seabed_habitats_individual_habitat_map_and_model_datasets"`. For
+available services, see `emodnet_wfs`.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
 }

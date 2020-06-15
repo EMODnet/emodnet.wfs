@@ -10,7 +10,7 @@
 #' emodnet_get_wfs_info()
 #'
 emodnet_get_wfs_info <- function(wfs = NULL,
-                                 service = "https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs",
+                                 service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                                  service_version = "2.0.0") {
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service, service_version)

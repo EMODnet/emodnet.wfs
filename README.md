@@ -16,8 +16,7 @@ EMODnet Web Feature Services data in R.
 
 ## Installation
 
-You can install the released version of EMODnetWFS from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
 remotes::install_github("annakrystalli/EMODnetWFS")
@@ -31,6 +30,32 @@ This is a basic example which shows you how to solve a common problem:
 library(EMODnetWFS)
 ## basic example code
 ```
+
+### Available services
+
+``` r
+knitr::kable(emodnet_wfs)
+```
+
+| service\_name                                                    | service\_url                                                        |
+| :--------------------------------------------------------------- | :------------------------------------------------------------------ |
+| bathymetry                                                       | <https://ows.emodnet-bathymetry.eu/wfs>                             |
+| biology                                                          | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
+| biology\_occurrence\_data                                        | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
+| chemistry\_marine\_litter                                        | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>            |
+| chemistry\_time\_series\_location                                | <http://emodnet02.cineca.it/geoserver/wfs>                          |
+| geology\_sea\_floor\_bedrock                                     | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                |
+| geology\_marine\_minerals                                        | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                |
+| geology\_seabed\_substrate\_maps                                 | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                |
+| geology\_events\_and\_probabilities                              | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>              |
+| geology\_coastal\_behavior                                       | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                |
+| geology\_submerged\_landscapes                                   | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                |
+| human\_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                        |
+| physics                                                          | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>        |
+| seabed\_habitats\_general\_datasets\_and\_products               | <https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs>            |
+| seabed\_habitats\_individual\_habitat\_map\_and\_model\_datasets | <https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs> |
+
+### Create Service Client
 
 Create new WFS Client. The default service is
 `https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs`
@@ -48,7 +73,7 @@ You can access further services through the `service`.
 
 ``` r
 
-wfs_bath <- emodnet_init_wfs_client(service = "https://ows.emodnet-bathymetry.eu/wfs")
+wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
 #> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
 #> ℹ Version: '2.0.0'
@@ -83,7 +108,7 @@ emodnet_get_wfs_info()
 You can access information about a service using the `service` argument.
 
 ``` r
-emodnet_get_wfs_info(service = "https://ows.emodnet-bathymetry.eu/wfs")
+emodnet_get_wfs_info(service = "bathymetry")
 #> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
 #> ℹ Version: '2.0.0'
@@ -125,16 +150,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid--51a983ba_17295227d13_44f6 39863 DK003069      80   1110
-#> 2  dk003069.fid--51a983ba_17295227d13_44f7 39791 DK003069       8   1170
-#> 3  dk003069.fid--51a983ba_17295227d13_44f8 39796 DK003069      13   1170
-#> 4  dk003069.fid--51a983ba_17295227d13_44f9 39810 DK003069      27   1170
-#> 5  dk003069.fid--51a983ba_17295227d13_44fa 39804 DK003069      21   1170
-#> 6  dk003069.fid--51a983ba_17295227d13_44fb 39855 DK003069      72   1110
-#> 7  dk003069.fid--51a983ba_17295227d13_44fc 39860 DK003069      77   1110
-#> 8  dk003069.fid--51a983ba_17295227d13_44fd 39799 DK003069      16   1170
-#> 9  dk003069.fid--51a983ba_17295227d13_44fe 39848 DK003069      65   1110
-#> 10 dk003069.fid--51a983ba_17295227d13_44ff 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172b8a61ce4_-71f5 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172b8a61ce4_-71f4 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172b8a61ce4_-71f3 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172b8a61ce4_-71e9 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172b8a61ce4_-71e8 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172b8a61ce4_-71e7 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172b8a61ce4_-71e6 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172b8a61ce4_-71e5 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172b8a61ce4_-71e4 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172b8a61ce4_-71e3 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
@@ -156,16 +181,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid--51a983ba_17295227d13_4566 39869 DK003070       4   1170
-#> 2  dk003070.fid--51a983ba_17295227d13_4567 39888 DK003070      23   1170
-#> 3  dk003070.fid--51a983ba_17295227d13_4568 39866 DK003070       1   1170
-#> 4  dk003070.fid--51a983ba_17295227d13_4569 39894 DK003070      29   1170
-#> 5  dk003070.fid--51a983ba_17295227d13_456a 39884 DK003070      19   1170
-#> 6  dk003070.fid--51a983ba_17295227d13_456b 39895 DK003070      30   1110
-#> 7  dk003070.fid--51a983ba_17295227d13_456c 39877 DK003070      12   1170
-#> 8  dk003070.fid--51a983ba_17295227d13_456d 39878 DK003070      13   1170
-#> 9  dk003070.fid--51a983ba_17295227d13_456e 39872 DK003070       7   1170
-#> 10 dk003070.fid--51a983ba_17295227d13_456f 39871 DK003070       6   1170
+#> 1  dk003070.fid-7f7ff433_172b8a61ce4_-4c70 39869 DK003070       4   1170
+#> 2  dk003070.fid-7f7ff433_172b8a61ce4_-4c4e 39888 DK003070      23   1170
+#> 3  dk003070.fid-7f7ff433_172b8a61ce4_-4c4b 39866 DK003070       1   1170
+#> 4  dk003070.fid-7f7ff433_172b8a61ce4_-4c36 39894 DK003070      29   1170
+#> 5  dk003070.fid-7f7ff433_172b8a61ce4_-4c2f 39884 DK003070      19   1170
+#> 6  dk003070.fid-7f7ff433_172b8a61ce4_-4c2b 39895 DK003070      30   1110
+#> 7  dk003070.fid-7f7ff433_172b8a61ce4_-4c28 39877 DK003070      12   1170
+#> 8  dk003070.fid-7f7ff433_172b8a61ce4_-4bea 39878 DK003070      13   1170
+#> 9  dk003070.fid-7f7ff433_172b8a61ce4_-4be9 39872 DK003070       7   1170
+#> 10 dk003070.fid-7f7ff433_172b8a61ce4_-4be8 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((127...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((129...
@@ -197,16 +222,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid--51a983ba_17295227d13_45d6 39863 DK003069      80   1110
-#> 2  dk003069.fid--51a983ba_17295227d13_45d7 39791 DK003069       8   1170
-#> 3  dk003069.fid--51a983ba_17295227d13_45d8 39796 DK003069      13   1170
-#> 4  dk003069.fid--51a983ba_17295227d13_45d9 39810 DK003069      27   1170
-#> 5  dk003069.fid--51a983ba_17295227d13_45da 39804 DK003069      21   1170
-#> 6  dk003069.fid--51a983ba_17295227d13_45db 39855 DK003069      72   1110
-#> 7  dk003069.fid--51a983ba_17295227d13_45dc 39860 DK003069      77   1110
-#> 8  dk003069.fid--51a983ba_17295227d13_45dd 39799 DK003069      16   1170
-#> 9  dk003069.fid--51a983ba_17295227d13_45de 39848 DK003069      65   1110
-#> 10 dk003069.fid--51a983ba_17295227d13_45df 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172b8a62695_-6274 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172b8a62695_-6256 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172b8a62695_-6253 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172b8a62695_-6250 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172b8a62695_-624c 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172b8a62695_-6248 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172b8a62695_-6245 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172b8a62695_-6243 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172b8a62695_-623b 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172b8a62695_-6238 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
