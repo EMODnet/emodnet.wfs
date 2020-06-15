@@ -41,13 +41,21 @@ library(EMODnetWFS)
 
 ### Available services
 
-```{r}
+All available services are contained in the `emodnet_wfs` package dataset.
+
+
+```{r, echo=FALSE}
 knitr::kable(emodnet_wfs)
+```
+
+To explore available services in Rstudio use:
+```r
+View(emodnet_wfs)
 ```
 
 ### Create Service Client
 
-Create new WFS Client. The default service is `https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs`
+Create new WFS Client. The default service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
 
 ```{r}
 wfs <- emodnet_init_wfs_client()
