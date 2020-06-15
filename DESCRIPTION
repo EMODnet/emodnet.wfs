@@ -29,3 +29,5 @@ Imports:
     checkmate
 URL: https://github.com/annakrystalli/EMODnetWFS
 BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
+Depends: 
+    R (>= 2.10)
