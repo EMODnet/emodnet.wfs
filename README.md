@@ -9,6 +9,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/annakrystalli/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/annakrystalli/EMODnetWFS/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/annakrystalli/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/annakrystalli/EMODnetWFS?branch=master)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation and access to the
@@ -155,16 +157,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172b8aad37a_1ec0 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172b8aad37a_1ec1 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172b8aad37a_1ec2 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172b8aad37a_1ec3 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172b8aad37a_1ec4 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172b8aad37a_1ec5 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172b8aad37a_1ec6 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172b8aad37a_1ec7 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172b8aad37a_1ec8 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172b8aad37a_1ec9 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172bcb1add4_3261 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172bcb1add4_3262 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172bcb1add4_3263 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172bcb1add4_3264 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172bcb1add4_3265 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172bcb1add4_3266 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172bcb1add4_3267 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172bcb1add4_3268 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172bcb1add4_3269 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172bcb1add4_326a 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
@@ -186,16 +188,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-7f7ff433_172b8aad37a_1f30 39869 DK003070       4   1170
-#> 2  dk003070.fid-7f7ff433_172b8aad37a_1f31 39888 DK003070      23   1170
-#> 3  dk003070.fid-7f7ff433_172b8aad37a_1f32 39866 DK003070       1   1170
-#> 4  dk003070.fid-7f7ff433_172b8aad37a_1f33 39894 DK003070      29   1170
-#> 5  dk003070.fid-7f7ff433_172b8aad37a_1f34 39884 DK003070      19   1170
-#> 6  dk003070.fid-7f7ff433_172b8aad37a_1f35 39895 DK003070      30   1110
-#> 7  dk003070.fid-7f7ff433_172b8aad37a_1f36 39877 DK003070      12   1170
-#> 8  dk003070.fid-7f7ff433_172b8aad37a_1f37 39878 DK003070      13   1170
-#> 9  dk003070.fid-7f7ff433_172b8aad37a_1f38 39872 DK003070       7   1170
-#> 10 dk003070.fid-7f7ff433_172b8aad37a_1f39 39871 DK003070       6   1170
+#> 1  dk003070.fid-7f7ff433_172bcb1add4_32d1 39869 DK003070       4   1170
+#> 2  dk003070.fid-7f7ff433_172bcb1add4_32d2 39888 DK003070      23   1170
+#> 3  dk003070.fid-7f7ff433_172bcb1add4_32d3 39866 DK003070       1   1170
+#> 4  dk003070.fid-7f7ff433_172bcb1add4_32d4 39894 DK003070      29   1170
+#> 5  dk003070.fid-7f7ff433_172bcb1add4_32d5 39884 DK003070      19   1170
+#> 6  dk003070.fid-7f7ff433_172bcb1add4_32d6 39895 DK003070      30   1110
+#> 7  dk003070.fid-7f7ff433_172bcb1add4_32d7 39877 DK003070      12   1170
+#> 8  dk003070.fid-7f7ff433_172bcb1add4_32d8 39878 DK003070      13   1170
+#> 9  dk003070.fid-7f7ff433_172bcb1add4_32d9 39872 DK003070       7   1170
+#> 10 dk003070.fid-7f7ff433_172bcb1add4_32da 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((127...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((129...
@@ -227,16 +229,16 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 #> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
 #> First 10 features:
 #>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172b8aad37a_1fa0 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172b8aad37a_1fa1 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172b8aad37a_1fa2 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172b8aad37a_1fa3 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172b8aad37a_1fa4 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172b8aad37a_1fa5 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172b8aad37a_1fa6 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172b8aad37a_1fa7 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172b8aad37a_1fa8 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172b8aad37a_1fa9 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172bcb1add4_3341 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172bcb1add4_3342 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172bcb1add4_3343 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172bcb1add4_3344 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172bcb1add4_3345 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172bcb1add4_3346 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172bcb1add4_3347 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172bcb1add4_3348 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172bcb1add4_3349 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172bcb1add4_334a 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
