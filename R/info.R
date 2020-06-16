@@ -21,7 +21,7 @@ emodnet_get_wfs_info <- function(wfs = NULL,
     tibble::tibble(
         layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
         title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
-        abstract = purrr::map_chr(caps$getFeatureTypes(), ~.x$getAbstract()),
+        abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
         class = purrr::map_chr(caps$getFeatureTypes(), ~.x$getClassName())
     ) %>%
         tidyr::separate(.data$layer_name, into = c("layer_namespace", "layer_name"),
@@ -29,4 +29,8 @@ emodnet_get_wfs_info <- function(wfs = NULL,
 
 }
 
+getAbstractNull <- function(x){
+    abstract <- x$getAbstract()
+    ifelse(is.null(abstract), "", abstract)
+}
 
