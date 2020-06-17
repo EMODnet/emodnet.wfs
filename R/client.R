@@ -40,3 +40,11 @@ get_service_url <- function(service) {
 
     emodnet_wfs$service_url[emodnet_wfs$service_name == service]
 }
+
+get_service_name <- function(service_url) {
+    service_url <- match.arg(service_url,
+                         choices = emodnet_wfs$service_url)
+
+    emodnet_wfs$service_name[emodnet_wfs$service_url == service_url]
+}
+
