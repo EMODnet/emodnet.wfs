@@ -2,6 +2,7 @@
 % Please edit documentation in R/info.R
 \name{emodnet_get_wfs_info}
 \alias{emodnet_get_wfs_info}
+\alias{emodnet_get_layer_info}
 \title{Get WFS available layer information}
 \usage{
 emodnet_get_wfs_info(
@@ -9,6 +10,8 @@ emodnet_get_wfs_info(
   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   service_version = "2.0.0"
 )
+
+emodnet_get_layer_info(wfs, layers)
 }
 \arguments{
 \item{wfs}{A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.}
@@ -18,6 +21,9 @@ Habitats WFS `"seabed_habitats_individual_habitat_map_and_model_datasets"`. For
 available services, see `emodnet_wfs`.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
+
+\item{layers}{a character vector of layer names. To get info on layers, including
+`layer_name` use `emodnet_get_wfs_info()`}
 }
 \value{
 a tibble summarising information on each layer available from the service
@@ -25,7 +31,22 @@ a tibble summarising information on each layer available from the service
 \description{
 Get WFS available layer information
 }
-\examples{
-emodnet_get_wfs_info()
+\section{Functions}{
+\itemize{
+\item \code{emodnet_get_layer_info}: Get info for specific layers. Requires a
+`wfs` object as input.
+}}
 
+\examples{
+# Query the default service
+emodnet_get_wfs_info()
+# Query a service
+emodnet_get_wfs_info(service = "bathymetry")
+# Query a wfs object
+wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+emodnet_get_wfs_info(wfs_cml)
+# Get info for specific layers from wfs object
+layers <- c("bl_fishing_cleaning",
+          "bl_beacheslocations_2001_2008_monitoring")
+emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 }
