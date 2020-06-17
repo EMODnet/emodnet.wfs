@@ -3,6 +3,7 @@
 \name{emodnet_get_wfs_info}
 \alias{emodnet_get_wfs_info}
 \alias{emodnet_get_layer_info}
+\alias{emodnet_get_all_wfs_info}
 \title{Get WFS available layer information}
 \usage{
 emodnet_get_wfs_info(
@@ -12,6 +13,8 @@ emodnet_get_wfs_info(
 )
 
 emodnet_get_layer_info(wfs, layers)
+
+emodnet_get_all_wfs_info()
 }
 \arguments{
 \item{wfs}{A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.}
@@ -26,15 +29,20 @@ available services, see `emodnet_wfs`.}
 `layer_name` use `emodnet_get_wfs_info()`}
 }
 \value{
-a tibble summarising information on each layer available from the service
+a tibble containg metadata on each layer available from the service.
 }
 \description{
 Get WFS available layer information
 }
 \section{Functions}{
 \itemize{
-\item \code{emodnet_get_layer_info}: Get info for specific layers. Requires a
+\item \code{emodnet_get_wfs_info}: Get info on all layers from am EMODnet WFS service.
+
+\item \code{emodnet_get_layer_info}: Get metadata for specific layers. Requires a
 `wfs` object as input.
+
+\item \code{emodnet_get_all_wfs_info}: Get metadata on all layers and all available
+services from server.
 }}
 
 \examples{

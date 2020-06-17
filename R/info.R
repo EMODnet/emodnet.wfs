@@ -3,9 +3,9 @@
 #' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
 #' @inheritParams emodnet_init_wfs_client
 #' @importFrom rlang .data
-#' @return a tibble summarising information on each layer available from the service
+#' @return a tibble containg metadata on each layer available from the service.
 #' @export
-#'
+#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
 #' @examples
 #' # Query the default service
 #' emodnet_get_wfs_info()
@@ -42,7 +42,7 @@ emodnet_get_wfs_info <- function(wfs = NULL,
 
 }
 
-#' @describeIn emodnet_get_wfs_info Get info for specific layers. Requires a
+#' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
 #' `wfs` object as input.
 #' @inheritParams emodnet_get_layers
 #' @export
@@ -70,6 +70,15 @@ emodnet_get_layer_info <- function(wfs, layers) {
                         into = c("layer_namespace", "layer_name"),
                         sep = ":")
 }
+
+#' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available
+#' services from server.
+#' @export
+emodnet_get_all_wfs_info <- function() {
+    purrr::map_df(emodnet_wfs$service_name,
+               ~suppressMessages(emodnet_get_wfs_info(service = .x)))
+}
+
 
 getAbstractNull <- function(x){
     abstract <- x$getAbstract()
