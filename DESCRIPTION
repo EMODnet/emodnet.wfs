@@ -34,7 +34,8 @@ Imports:
     magrittr,
     tibble,
     rlang,
-    checkmate
+    checkmate,
+    sf
 URL: https://github.com/annakrystalli/EMODnetWFS
 BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
 Depends: 
