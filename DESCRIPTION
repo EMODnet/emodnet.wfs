@@ -1,6 +1,6 @@
 Package: EMODnetWFS
 Title: Access EMODnet Web Feature Service data through R
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
     person(given = "Anna",
            family = "Krystalli",
@@ -10,7 +10,14 @@ Authors@R: c(
     person(given = "Thomas J",
            family = "Webb",
            role = c("ctb"),
-           email = "t.j.webb@sheffield.ac.uk"))
+           email = "t.j.webb@sheffield.ac.uk"),
+    person(given = "European Marine Observation Data Network (EMODnet) Biology project",
+           family = "European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE)",
+           role = c("cph"),
+           email = "bio@emodnet.eu"),
+    person(given = "VLIZ (VLAAMS INSTITUUT VOOR DE ZEE)",
+           role = c("fnd"),
+           email = "info@vliz.be"))
 Description: Access and interrogate EMODnet Web Feature Service data through R.
 License: MIT + file LICENSE
 Encoding: UTF-8
