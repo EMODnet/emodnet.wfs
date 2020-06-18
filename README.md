@@ -91,6 +91,10 @@ wfs_bath$getUrl()
 
 ## Get WFS Layer info
 
+You can get metadata about the layers available from a service. The
+default service is
+`seabed_habitats_individual_habitat_map_and_model_datasets`.
+
 ``` r
 emodnet_get_wfs_info()
 #> ✓ WFS client created succesfully
@@ -214,6 +218,8 @@ emodnet_get_all_wfs_info()
 ## Get WFS layers
 
 You can extract layers directly from a `wfs` object using layer names.
+All layers are downloaded as `sf` objects and the crs of outputs are
+standardised to `EPSG` code 4326 by default.
 
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers)
@@ -379,6 +385,172 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> 10 POINT (18.25035 39.83537)
 ```
 
+``` r
+emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
+#> ℹ crs transformed from 4326 to 3857
+#> ℹ crs transformed from 4326 to 3857
+#> $bl_fishing_cleaning
+#> Simple feature collection with 1904 features and 14 fields
+#> geometry type:  POINT
+#> dimension:      XY
+#> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
+#> epsg (SRID):    3857
+#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> First 10 features:
+#>    gml_id id country country_name      beachcode beachname year
+#> 1    <NA>  1      IT        Italy    0004-Poetto    Poetto 2015
+#> 2    <NA>  2      IT        Italy    0004-Poetto    Poetto 2016
+#> 3    <NA>  3      IT        Italy    0004-Poetto    Poetto 2017
+#> 4    <NA>  4      IT        Italy 0028-Costa Rei Costa Rei 2015
+#> 5    <NA>  5      IT        Italy 0028-Costa Rei Costa Rei 2016
+#> 6    <NA>  6      IT        Italy 0028-Costa Rei Costa Rei 2017
+#> 7    <NA>  7      IT        Italy  0122-La Cinta  La Cinta 2015
+#> 8    <NA>  8      IT        Italy  0122-La Cinta  La Cinta 2016
+#> 9    <NA>  9      IT        Italy  0122-La Cinta  La Cinta 2017
+#> 10   <NA> 10      IT        Italy   0192-Alghero   Alghero 2015
+#>             surveyyear nbsurvey surveylength surveytype litterreferencelist
+#> 1  2015-01-01 00:00:00        3           30 Monitoring                 ITA
+#> 2  2016-01-01 00:00:00        6        30/33 Monitoring                 ITA
+#> 3  2017-01-01 00:00:00        3           33 Monitoring                 ITA
+#> 4  2015-01-01 00:00:00        3           30 Monitoring                 ITA
+#> 5  2016-01-01 00:00:00        3           30 Monitoring                 ITA
+#> 6  2017-01-01 00:00:00        6           33 Monitoring                 ITA
+#> 7  2015-01-01 00:00:00        3           30 Monitoring                 ITA
+#> 8  2016-01-01 00:00:00        6        30/33 Monitoring                 ITA
+#> 9  2017-01-01 00:00:00        3           33 Monitoring                 ITA
+#> 10 2015-01-01 00:00:00        3           30 Monitoring                 ITA
+#>              littergroup litterabundance               msGeometry
+#> 1  Fishing related items            40.0  POINT (1021186 4751995)
+#> 2  Fishing related items            36.6  POINT (1021186 4751995)
+#> 3  Fishing related items           107.1  POINT (1021347 4752132)
+#> 4  Fishing related items            13.3  POINT (1066694 4759784)
+#> 5  Fishing related items             4.4  POINT (1066694 4759784)
+#> 6  Fishing related items            23.2  POINT (1066656 4759680)
+#> 7  Fishing related items            20.0  POINT (1076495 4981246)
+#> 8  Fishing related items            13.8  POINT (1076495 4981246)
+#> 9  Fishing related items             5.1  POINT (1076510 4981138)
+#> 10 Fishing related items            37.8 POINT (924841.4 4951202)
+#> 
+#> $bl_beacheslocations_2001_2008_monitoring
+#> Simple feature collection with 581 features and 45 fields
+#> geometry type:  POINT
+#> dimension:      XY
+#> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
+#> epsg (SRID):    3857
+#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> First 10 features:
+#>    gml_id id countryname       beachcode          beachname surveytype
+#> 1    <NA>  1       Italy     0004-Poetto             Poetto Monitoring
+#> 2    <NA>  2       Italy  0028-Costa Rei          Costa Rei Monitoring
+#> 3    <NA>  3       Italy   0122-La Cinta           La Cinta Monitoring
+#> 4    <NA>  4       Italy    0192-Alghero            Alghero Monitoring
+#> 5    <NA>  5       Italy  0221-Is Arenas          Is Arenas Monitoring
+#> 6    <NA>  6       Italy 0258-Porto Pino         Porto Pino Monitoring
+#> 7    <NA>  7       Italy         1-R_PUG          Foce Lato Monitoring
+#> 8    <NA>  8       Italy         3-F_PUG           San Vito Monitoring
+#> 9    <NA>  9       Italy         4-P_PUG   Barletta Ponente Monitoring
+#> 10   <NA> 10       Italy         6-R_PUG Bosco Isola Lesina Monitoring
+#>    nbsurvey_tot      surveylength litterreferencelist abundance_2001
+#> 1            12                30                 ITA              0
+#> 2            12                30                 ITA              0
+#> 3            12                30                 ITA              0
+#> 4            12                30                 ITA              0
+#> 5            12                30                 ITA              0
+#> 6            12                30                 ITA              0
+#> 7            12 26/29/33/34/35/37                 ITA              0
+#> 8            12             30/44                 ITA              0
+#> 9            11       31/33/35/43                 ITA              0
+#> 10           12             32/35                 ITA              0
+#>    nbsurvey_2001 abundance_2002 nbsurvey_2002 abundance_2003 nbsurvey_2003
+#> 1              0              0             0              0             0
+#> 2              0              0             0              0             0
+#> 3              0              0             0              0             0
+#> 4              0              0             0              0             0
+#> 5              0              0             0              0             0
+#> 6              0              0             0              0             0
+#> 7              0              0             0              0             0
+#> 8              0              0             0              0             0
+#> 9              0              0             0              0             0
+#> 10             0              0             0              0             0
+#>    abundance_2004 nbsurvey_2004 abundance_2005 nbsurvey_2005 abundance_2006
+#> 1               0             0              0             0              0
+#> 2               0             0              0             0              0
+#> 3               0             0              0             0              0
+#> 4               0             0              0             0              0
+#> 5               0             0              0             0              0
+#> 6               0             0              0             0              0
+#> 7               0             0              0             0              0
+#> 8               0             0              0             0              0
+#> 9               0             0              0             0              0
+#> 10              0             0              0             0              0
+#>    nbsurvey_2006 abundance_2007 nbsurvey_2007 abundance_2008 nbsurvey_2008
+#> 1              0              0             0              0             0
+#> 2              0              0             0              0             0
+#> 3              0              0             0              0             0
+#> 4              0              0             0              0             0
+#> 5              0              0             0              0             0
+#> 6              0              0             0              0             0
+#> 7              0              0             0              0             0
+#> 8              0              0             0              0             0
+#> 9              0              0             0              0             0
+#> 10             0              0             0              0             0
+#>    abundance_2009 nbsurvey_2009 abundance_2010 nbsurvey_2010 abundance_2011
+#> 1               0             0              0             0              0
+#> 2               0             0              0             0              0
+#> 3               0             0              0             0              0
+#> 4               0             0              0             0              0
+#> 5               0             0              0             0              0
+#> 6               0             0              0             0              0
+#> 7               0             0              0             0              0
+#> 8               0             0              0             0              0
+#> 9               0             0              0             0              0
+#> 10              0             0              0             0              0
+#>    nbsurvey_2011 abundance_2012 nbsurvey_2012 abundance_2013 nbsurvey_2013
+#> 1              0              0             0              0             0
+#> 2              0              0             0              0             0
+#> 3              0              0             0              0             0
+#> 4              0              0             0              0             0
+#> 5              0              0             0              0             0
+#> 6              0              0             0              0             0
+#> 7              0              0             0              0             0
+#> 8              0              0             0              0             0
+#> 9              0              0             0              0             0
+#> 10             0              0             0              0             0
+#>    abundance_2014 nbsurvey_2014 abundance_2015 nbsurvey_2015 abundance_2016
+#> 1               0             0          395.6             3          380.5
+#> 2               0             0          586.7             3          166.7
+#> 3               0             0          327.8             3          180.8
+#> 4               0             0          747.8             3         1086.7
+#> 5               0             0         1274.4             3         2620.2
+#> 6               0             0          201.1             3          149.7
+#> 7               0             0         1409.5             3         1852.4
+#> 8               0             0          481.2             3          358.0
+#> 9               0             0          315.6             3          460.4
+#> 10              0             0          489.1             3          484.2
+#>    nbsurvey_2016 abundance_2017 nbsurvey_2017 abundance_2018 nbsurvey_2018
+#> 1              6          933.3             3              0             0
+#> 2              3          316.7             6              0             0
+#> 3              6           41.4             3              0             0
+#> 4              6          933.3             3              0             0
+#> 5              6         3564.6             3              0             0
+#> 6              6          149.5             3              0             0
+#> 7              6         1464.6             3              0             0
+#> 8              6          350.5             3              0             0
+#> 9              6          399.5             2              0             0
+#> 10             6          693.1             3              0             0
+#>                  msGeometry
+#> 1   POINT (1021186 4751995)
+#> 2   POINT (1066694 4759784)
+#> 3   POINT (1076495 4981246)
+#> 4  POINT (924841.4 4951202)
+#> 5  POINT (943750.2 4875924)
+#> 6  POINT (958812.4 4715550)
+#> 7   POINT (1713198 5146094)
+#> 8   POINT (1809118 5061549)
+#> 9   POINT (2003646 4960621)
+#> 10  POINT (2031619 4842048)
+```
+
 You can also extract layers directly from a WFS service The default
 service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
 
@@ -397,17 +569,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> epsg (SRID):    4326
 #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
-#>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c67e9d1f_-3a9a 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c67e9d1f_-3a99 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c67e9d1f_-3a98 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c67e9d1f_-3a97 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c67e9d1f_-3a96 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c67e9d1f_-3a95 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c67e9d1f_-3a94 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c67e9d1f_-3a93 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c67e9d1f_-3a92 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c67e9d1f_-3a91 39790 DK003069       7   1170
+#>                                   gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-7f7ff433_172c67e9d1f_8da 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172c67e9d1f_8db 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172c67e9d1f_8dc 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172c67e9d1f_8dd 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172c67e9d1f_8de 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172c67e9d1f_8df 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172c67e9d1f_8e0 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172c67e9d1f_8e1 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172c67e9d1f_8e2 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172c67e9d1f_8e3 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
@@ -428,17 +600,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> epsg (SRID):    4326
 #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
-#>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-7f7ff433_172c67e9d1f_-3a2a 39869 DK003070       4   1170
-#> 2  dk003070.fid-7f7ff433_172c67e9d1f_-3a29 39888 DK003070      23   1170
-#> 3  dk003070.fid-7f7ff433_172c67e9d1f_-3a28 39866 DK003070       1   1170
-#> 4  dk003070.fid-7f7ff433_172c67e9d1f_-3a27 39894 DK003070      29   1170
-#> 5  dk003070.fid-7f7ff433_172c67e9d1f_-3a26 39884 DK003070      19   1170
-#> 6  dk003070.fid-7f7ff433_172c67e9d1f_-3a25 39895 DK003070      30   1110
-#> 7  dk003070.fid-7f7ff433_172c67e9d1f_-3a24 39877 DK003070      12   1170
-#> 8  dk003070.fid-7f7ff433_172c67e9d1f_-3a23 39878 DK003070      13   1170
-#> 9  dk003070.fid-7f7ff433_172c67e9d1f_-3a22 39872 DK003070       7   1170
-#> 10 dk003070.fid-7f7ff433_172c67e9d1f_-3a21 39871 DK003070       6   1170
+#>                                   gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid-7f7ff433_172c67e9d1f_94a 39869 DK003070       4   1170
+#> 2  dk003070.fid-7f7ff433_172c67e9d1f_94b 39888 DK003070      23   1170
+#> 3  dk003070.fid-7f7ff433_172c67e9d1f_94c 39866 DK003070       1   1170
+#> 4  dk003070.fid-7f7ff433_172c67e9d1f_94d 39894 DK003070      29   1170
+#> 5  dk003070.fid-7f7ff433_172c67e9d1f_94e 39884 DK003070      19   1170
+#> 6  dk003070.fid-7f7ff433_172c67e9d1f_94f 39895 DK003070      30   1110
+#> 7  dk003070.fid-7f7ff433_172c67e9d1f_950 39877 DK003070      12   1170
+#> 8  dk003070.fid-7f7ff433_172c67e9d1f_951 39878 DK003070      13   1170
+#> 9  dk003070.fid-7f7ff433_172c67e9d1f_952 39872 DK003070       7   1170
+#> 10 dk003070.fid-7f7ff433_172c67e9d1f_953 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
@@ -472,8 +644,8 @@ human_activities[["aquaculture"]]
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
 #> epsg (SRID):    4326
 #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
-#>                                     gml_id gid legalfound
-#> 1 aquaculture.fid--111087_172c5bd50fa_4487  17 2016-07-12
+#>                                      gml_id gid legalfound
+#> 1 aquaculture.fid--111087_172c6b6aab3_-458e  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -506,17 +678,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"),
 #> epsg (SRID):    4326
 #> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
-#>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c67e9d1f_-39ba 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c67e9d1f_-39b9 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c67e9d1f_-39b8 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c67e9d1f_-39b7 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c67e9d1f_-39b6 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c67e9d1f_-39b5 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c67e9d1f_-39b4 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c67e9d1f_-39b3 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c67e9d1f_-39b2 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c67e9d1f_-39b1 39790 DK003069       7   1170
+#>                                   gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-7f7ff433_172c67e9d1f_9ba 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172c67e9d1f_9bb 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172c67e9d1f_9bc 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172c67e9d1f_9bd 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172c67e9d1f_9be 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172c67e9d1f_9bf 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172c67e9d1f_9c0 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172c67e9d1f_9c1 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172c67e9d1f_9c2 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172c67e9d1f_9c3 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...

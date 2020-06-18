@@ -74,6 +74,8 @@ wfs_bath$getUrl()
 
 ## Get WFS Layer info
 
+You can get metadata about the layers available from a service. The default service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
+
 ```{r}
 emodnet_get_wfs_info()
 ```
@@ -112,10 +114,17 @@ emodnet_get_all_wfs_info()
 
 ## Get WFS layers
 
-You can extract layers directly from a `wfs` object using layer names.
+You can extract layers directly from a `wfs` object using layer names. All layers are downloaded as `sf` objects and the crs of outputs are standardised to `EPSG` code 4326 by default.
 
 ```{r}
 emodnet_get_layers(wfs = wfs_cml, layers = layers)
+```
+
+You can chage the output crs through argument `crs`.
+
+```{r}
+emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
+
 ```
 
 
