@@ -1,6 +1,6 @@
 Package: EMODnetWFS
 Title: Access EMODnet Web Feature Service data through R
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person(given = "Anna",
            family = "Krystalli",
