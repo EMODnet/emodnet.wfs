@@ -387,67 +387,69 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
+#> ℹ crs transformed from 3857 to 4326
+#> ℹ crs transformed from 3857 to 4326
 #> $dk003069
 #> Simple feature collection with 82 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
-#> bbox:           xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
-#> epsg (SRID):    3857
-#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
+#> epsg (SRID):    4326
+#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c5bfc100_-76a5 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c5bfc100_-76a4 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c5bfc100_-76a3 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c5bfc100_-76a2 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c5bfc100_-76a1 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c5bfc100_-76a0 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c5bfc100_-769f 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c5bfc100_-769e 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c5bfc100_-769d 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c5bfc100_-769c 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172c67e9d1f_-3a9a 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172c67e9d1f_-3a99 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172c67e9d1f_-3a98 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172c67e9d1f_-3a97 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172c67e9d1f_-3a96 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172c67e9d1f_-3a95 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172c67e9d1f_-3a94 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172c67e9d1f_-3a93 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172c67e9d1f_-3a92 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172c67e9d1f_-3a91 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
-#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
-#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
-#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((108...
-#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((111...
-#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
+#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
+#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
 #> 
 #> $dk003070
 #> Simple feature collection with 30 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
-#> bbox:           xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836
-#> epsg (SRID):    3857
-#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
+#> epsg (SRID):    4326
+#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-7f7ff433_172c5bfc100_-7635 39869 DK003070       4   1170
-#> 2  dk003070.fid-7f7ff433_172c5bfc100_-7634 39888 DK003070      23   1170
-#> 3  dk003070.fid-7f7ff433_172c5bfc100_-7633 39866 DK003070       1   1170
-#> 4  dk003070.fid-7f7ff433_172c5bfc100_-7632 39894 DK003070      29   1170
-#> 5  dk003070.fid-7f7ff433_172c5bfc100_-7631 39884 DK003070      19   1170
-#> 6  dk003070.fid-7f7ff433_172c5bfc100_-7630 39895 DK003070      30   1110
-#> 7  dk003070.fid-7f7ff433_172c5bfc100_-762f 39877 DK003070      12   1170
-#> 8  dk003070.fid-7f7ff433_172c5bfc100_-762e 39878 DK003070      13   1170
-#> 9  dk003070.fid-7f7ff433_172c5bfc100_-762d 39872 DK003070       7   1170
-#> 10 dk003070.fid-7f7ff433_172c5bfc100_-762c 39871 DK003070       6   1170
+#> 1  dk003070.fid-7f7ff433_172c67e9d1f_-3a2a 39869 DK003070       4   1170
+#> 2  dk003070.fid-7f7ff433_172c67e9d1f_-3a29 39888 DK003070      23   1170
+#> 3  dk003070.fid-7f7ff433_172c67e9d1f_-3a28 39866 DK003070       1   1170
+#> 4  dk003070.fid-7f7ff433_172c67e9d1f_-3a27 39894 DK003070      29   1170
+#> 5  dk003070.fid-7f7ff433_172c67e9d1f_-3a26 39884 DK003070      19   1170
+#> 6  dk003070.fid-7f7ff433_172c67e9d1f_-3a25 39895 DK003070      30   1110
+#> 7  dk003070.fid-7f7ff433_172c67e9d1f_-3a24 39877 DK003070      12   1170
+#> 8  dk003070.fid-7f7ff433_172c67e9d1f_-3a23 39878 DK003070      13   1170
+#> 9  dk003070.fid-7f7ff433_172c67e9d1f_-3a22 39872 DK003070       7   1170
+#> 10 dk003070.fid-7f7ff433_172c67e9d1f_-3a21 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
-#> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((127...
-#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((129...
-#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((127...
-#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((132...
-#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((130...
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((132...
-#> 7  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((130...
-#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((128...
-#> 9  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((130...
-#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((130...
+#> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 7  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 9  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 ```
 
 Use argument `service` to specify the required service.
@@ -459,16 +461,19 @@ human_activities <- emodnet_get_layers(service = "human_activities",
 #> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-humanactivities.eu/wfs'
 #> ℹ Version: '2.0.0'
+#> Warning: crs missing. Set to default 4326
+
+#> Warning: crs missing. Set to default 4326
 
 human_activities[["aquaculture"]]
 #> Simple feature collection with 1 feature and 10 fields
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
-#> epsg (SRID):    NA
-#> proj4string:    NA
-#>                                      gml_id gid legalfound
-#> 1 aquaculture.fid--111087_172c5bd50fa_-32be  17 2016-07-12
+#> epsg (SRID):    4326
+#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#>                                     gml_id gid legalfound
+#> 1 aquaculture.fid--111087_172c5bd50fa_4487  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -493,35 +498,36 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"),
 #> ✓ WFS client created succesfully
 #> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
 #> ℹ Version: '2.0.0'
+#> ℹ crs transformed from 3857 to 4326
 #> Simple feature collection with 112 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
-#> bbox:           xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447
-#> epsg (SRID):    3857
-#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
+#> epsg (SRID):    4326
+#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #> First 10 features:
 #>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c5bfc100_-75c5 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c5bfc100_-75c4 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c5bfc100_-75c3 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c5bfc100_-75c2 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c5bfc100_-75c1 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c5bfc100_-75c0 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c5bfc100_-75bf 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c5bfc100_-75be 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c5bfc100_-75bd 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c5bfc100_-75bc 39790 DK003069       7   1170
+#> 1  dk003069.fid-7f7ff433_172c67e9d1f_-39ba 39863 DK003069      80   1110
+#> 2  dk003069.fid-7f7ff433_172c67e9d1f_-39b9 39791 DK003069       8   1170
+#> 3  dk003069.fid-7f7ff433_172c67e9d1f_-39b8 39796 DK003069      13   1170
+#> 4  dk003069.fid-7f7ff433_172c67e9d1f_-39b7 39810 DK003069      27   1170
+#> 5  dk003069.fid-7f7ff433_172c67e9d1f_-39b6 39804 DK003069      21   1170
+#> 6  dk003069.fid-7f7ff433_172c67e9d1f_-39b5 39855 DK003069      72   1110
+#> 7  dk003069.fid-7f7ff433_172c67e9d1f_-39b4 39860 DK003069      77   1110
+#> 8  dk003069.fid-7f7ff433_172c67e9d1f_-39b3 39799 DK003069      16   1170
+#> 9  dk003069.fid-7f7ff433_172c67e9d1f_-39b2 39848 DK003069      65   1110
+#> 10 dk003069.fid-7f7ff433_172c67e9d1f_-39b1 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
-#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((107...
-#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
-#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((108...
-#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((111...
-#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((110...
-#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((109...
+#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
+#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
+#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
 ```
 
 ``` r

@@ -3,6 +3,7 @@
 #' @inheritParams emodnet_get_wfs_info
 #' @param layers a character vector of layer names. To get info on layers, including
 #' `layer_name` use `emodnet_get_wfs_info()`
+#' @param crs integer. An EPSG code for the outpur crs. Defaults to 4326, corresponsing to `"+proj=longlat +datum=WGS84 +no_defs"`
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 #' @param suppress_warnings logical. Whether to suppress messages of layer
 #' download failures.
@@ -18,8 +19,10 @@
 #' emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 emodnet_get_layers <- function(wfs = NULL,
                                service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                               service_version = "2.0.0", layers,
+                               service_version = "2.0.0", layers, crs = 4326,
                                reduce_layers = FALSE, suppress_warnings = FALSE) {
+    checkmate::assert_int(crs)
+
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service,
                                        service_version)
@@ -44,7 +47,33 @@ emodnet_get_layers <- function(wfs = NULL,
             }
         )
     }
-    out
+    standardise_crs(out, crs)
+}
+
+checkmate_crs <- function(sf, crs = 4326){
+    if(checkmate::test_null(sf)){
+        return(sf)
+    }
+    if(is.na(sf::st_crs(sf)) | is.null(sf::st_crs(sf))){
+        sf::st_crs(sf) <- crs
+        usethis::ui_warn("{usethis::ui_field('crs')} missing. Set to default {usethis::ui_value(crs)}")
+    }
+    sf_crs <- sf::st_crs(sf)$epsg
+    if(sf_crs != crs){
+        sf <- sf::st_transform(sf, crs)
+        usethis::ui_info("{usethis::ui_field('crs')} transformed from {usethis::ui_value(sf_crs)} to {usethis::ui_value(crs)}")
+    }
+    return(sf)
+}
+
+
+standardise_crs <- function(out, crs = 4326) {
+
+    if(checkmate::test_class(out, "list")){
+       purrr::map(out, ~checkmate_crs(.x, crs = crs))
+    }else{
+        checkmate_crs(out, crs = crs)
+    }
 }
 
 ews_get_layer <- function(x, wfs, suppress_warnings = FALSE){

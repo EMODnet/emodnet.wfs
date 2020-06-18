@@ -9,6 +9,7 @@ emodnet_get_layers(
   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   service_version = "2.0.0",
   layers,
+  crs = 4326,
   reduce_layers = FALSE,
   suppress_warnings = FALSE
 )
@@ -24,6 +25,8 @@ available services, see `emodnet_wfs`.}
 
 \item{layers}{a character vector of layer names. To get info on layers, including
 `layer_name` use `emodnet_get_wfs_info()`}
+
+\item{crs}{integer. An EPSG code for the outpur crs. Defaults to 4326, corresponsing to `"+proj=longlat +datum=WGS84 +no_defs"`}
 
 \item{reduce_layers}{whether to reduce output layers to a single `sf` object.}
 
