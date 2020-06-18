@@ -63,7 +63,7 @@ wfs <- emodnet_init_wfs_client()
 
 ```
 
-You can access further services through the `service`. 
+You can access further services using the `service` argument. 
 
 ```{r}
 
@@ -90,20 +90,61 @@ or you can pass a wfs client object.
 emodnet_get_wfs_info(wfs_bath)
 ```
 
+You can also get info for specific layers from wfs object:
+
+```{r}
+wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+emodnet_get_wfs_info(wfs_cml)
+
+layers <- c("bl_fishing_cleaning",
+          "bl_beacheslocations_2001_2008_monitoring")
+
+emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+```
+
+
+Finally, you can get details on all available services and layers from the server
+
+```{r}
+emodnet_get_all_wfs_info()
+```
+
+
 ## Get WFS layers
+
+You can extract layers directly from a `wfs` object using layer names.
+
+```{r}
+emodnet_get_layers(wfs = wfs_cml, layers = layers)
+```
+
+
+You can also extract layers directly from a WFS service The default service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
 
 ```{r}
 emodnet_get_layers(layers = c("dk003069", "dk003070"))
 
 ```
 
-Layers can also be returned to a single `sf` object through argument `reduce_layers`. If `TRUE` the function will try to reduce all layers into a single `sf` if possible.
+Use argument `service` to specify the required service.
 ```{r}
 
-emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
+human_activities <- emodnet_get_layers(service = "human_activities", 
+                   layers = c("aquaculture", "dredging"))
+
+human_activities[["aquaculture"]]
 ```
+
+
+Layers can also be returned to a single `sf` object through argument `reduce_layers`.  If `TRUE` the function will try to reduce all layers into a single `sf` and will fail if not.
 
 ```{r}
-#emodnet_get_layers(wfs_bath, layers = "source_references_2016")
+emodnet_get_layers(layers = c("dk003069", "dk003070"), 
+                   reduce_layers = TRUE)
 ```
 
+ 
+```{r, error=TRUE}
+emodnet_get_layers(wfs = wfs_cml, layers = layers,
+                   reduce_layers = TRUE)
+```
