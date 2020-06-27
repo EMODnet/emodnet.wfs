@@ -10,6 +10,7 @@ test_that("wfs info works from the server for a random service", {
 })
 
 test_that("wfs all info works", {
+    skip_on_ci()
     all_info <- emodnet_get_all_wfs_info()
     expect_s3_class(all_info,
                     class = c("tbl_df", "tbl", "data.frame"))
