@@ -22,6 +22,7 @@ Description: Access and interrogate EMODnet Web Feature Service data through R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.6.0)
 Suggests: 
     testthat (>= 2.1.0),
     covr
@@ -40,5 +41,3 @@ Imports:
     sf
 URL: https://github.com/annakrystalli/EMODnetWFS
 BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
-Depends: 
-    R (>= 2.10)
