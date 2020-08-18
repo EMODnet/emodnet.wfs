@@ -48,6 +48,7 @@ jobs:
       - name: Brew and macOS config
         if: runner.os == 'macOS'
         run: |
+          brew link --overwrite gcc
           brew install pkg-config
           brew install udunits
           brew install gdal
