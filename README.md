@@ -8,9 +8,9 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
-status](https://github.com/annakrystalli/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/annakrystalli/EMODnetWFS/actions)
+status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/annakrystalli/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/annakrystalli/EMODnetWFS?branch=master)
+coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=master)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation and access to the
@@ -21,7 +21,7 @@ EMODnet Web Feature Services data in R.
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-remotes::install_github("annakrystalli/EMODnetWFS")
+remotes::install_github("EMODnet/EMODnetWFS")
 ```
 
 ## Example
@@ -228,8 +228,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -53.60233 ymin: 28.39411 xmax: 41.77114 ymax: 81.68642
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            4326
 #> First 10 features:
 #>    gml_id id country country_name      beachcode beachname year
 #> 1    <NA>  1      IT        Italy    0004-Poetto    Poetto 2015
@@ -270,8 +269,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -53.60233 ymin: 28.39411 xmax: 41.77114 ymax: 81.68642
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            4326
 #> First 10 features:
 #>    gml_id id countryname       beachcode          beachname surveytype
 #> 1    <NA>  1       Italy     0004-Poetto             Poetto Monitoring
@@ -385,6 +383,8 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> 10 POINT (18.25035 39.83537)
 ```
 
+You can chage the output crs through argument `crs`.
+
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> ℹ crs transformed from 4326 to 3857
@@ -394,8 +394,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
-#> epsg (SRID):    3857
-#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> CRS:            EPSG:3857
 #> First 10 features:
 #>    gml_id id country country_name      beachcode beachname year
 #> 1    <NA>  1      IT        Italy    0004-Poetto    Poetto 2015
@@ -436,8 +435,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
-#> epsg (SRID):    3857
-#> proj4string:    +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs
+#> CRS:            EPSG:3857
 #> First 10 features:
 #>    gml_id id countryname       beachcode          beachname surveytype
 #> 1    <NA>  1       Italy     0004-Poetto             Poetto Monitoring
@@ -566,20 +564,19 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            EPSG:4326
 #> First 10 features:
-#>                                   gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c67e9d1f_8da 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c67e9d1f_8db 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c67e9d1f_8dc 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c67e9d1f_8dd 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c67e9d1f_8de 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c67e9d1f_8df 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c67e9d1f_8e0 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c67e9d1f_8e1 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c67e9d1f_8e2 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c67e9d1f_8e3 39790 DK003069       7   1170
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-f390802_174ecb59c87_-22b4 39863 DK003069      80   1110
+#> 2  dk003069.fid-f390802_174ecb59c87_-22b3 39791 DK003069       8   1170
+#> 3  dk003069.fid-f390802_174ecb59c87_-22b2 39796 DK003069      13   1170
+#> 4  dk003069.fid-f390802_174ecb59c87_-22b1 39810 DK003069      27   1170
+#> 5  dk003069.fid-f390802_174ecb59c87_-22b0 39804 DK003069      21   1170
+#> 6  dk003069.fid-f390802_174ecb59c87_-22af 39855 DK003069      72   1110
+#> 7  dk003069.fid-f390802_174ecb59c87_-22ae 39860 DK003069      77   1110
+#> 8  dk003069.fid-f390802_174ecb59c87_-22ad 39799 DK003069      16   1170
+#> 9  dk003069.fid-f390802_174ecb59c87_-22ac 39848 DK003069      65   1110
+#> 10 dk003069.fid-f390802_174ecb59c87_-22ab 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
@@ -597,20 +594,19 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            EPSG:4326
 #> First 10 features:
-#>                                   gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-7f7ff433_172c67e9d1f_94a 39869 DK003070       4   1170
-#> 2  dk003070.fid-7f7ff433_172c67e9d1f_94b 39888 DK003070      23   1170
-#> 3  dk003070.fid-7f7ff433_172c67e9d1f_94c 39866 DK003070       1   1170
-#> 4  dk003070.fid-7f7ff433_172c67e9d1f_94d 39894 DK003070      29   1170
-#> 5  dk003070.fid-7f7ff433_172c67e9d1f_94e 39884 DK003070      19   1170
-#> 6  dk003070.fid-7f7ff433_172c67e9d1f_94f 39895 DK003070      30   1110
-#> 7  dk003070.fid-7f7ff433_172c67e9d1f_950 39877 DK003070      12   1170
-#> 8  dk003070.fid-7f7ff433_172c67e9d1f_951 39878 DK003070      13   1170
-#> 9  dk003070.fid-7f7ff433_172c67e9d1f_952 39872 DK003070       7   1170
-#> 10 dk003070.fid-7f7ff433_172c67e9d1f_953 39871 DK003070       6   1170
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid-f390802_174ecb59c87_-2244 39869 DK003070       4   1170
+#> 2  dk003070.fid-f390802_174ecb59c87_-2243 39888 DK003070      23   1170
+#> 3  dk003070.fid-f390802_174ecb59c87_-2242 39866 DK003070       1   1170
+#> 4  dk003070.fid-f390802_174ecb59c87_-2241 39894 DK003070      29   1170
+#> 5  dk003070.fid-f390802_174ecb59c87_-2240 39884 DK003070      19   1170
+#> 6  dk003070.fid-f390802_174ecb59c87_-223f 39895 DK003070      30   1110
+#> 7  dk003070.fid-f390802_174ecb59c87_-223e 39877 DK003070      12   1170
+#> 8  dk003070.fid-f390802_174ecb59c87_-223d 39878 DK003070      13   1170
+#> 9  dk003070.fid-f390802_174ecb59c87_-223c 39872 DK003070       7   1170
+#> 10 dk003070.fid-f390802_174ecb59c87_-223b 39871 DK003070       6   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
@@ -642,10 +638,9 @@ human_activities[["aquaculture"]]
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            EPSG:4326
 #>                                      gml_id gid legalfound
-#> 1 aquaculture.fid--111087_172c6b6aab3_-458e  17 2016-07-12
+#> 1 aquaculture.fid-4005965b_174ef144216_2a92  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -675,20 +670,19 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"),
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
-#> epsg (SRID):    4326
-#> proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#> CRS:            EPSG:4326
 #> First 10 features:
-#>                                   gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-7f7ff433_172c67e9d1f_9ba 39863 DK003069      80   1110
-#> 2  dk003069.fid-7f7ff433_172c67e9d1f_9bb 39791 DK003069       8   1170
-#> 3  dk003069.fid-7f7ff433_172c67e9d1f_9bc 39796 DK003069      13   1170
-#> 4  dk003069.fid-7f7ff433_172c67e9d1f_9bd 39810 DK003069      27   1170
-#> 5  dk003069.fid-7f7ff433_172c67e9d1f_9be 39804 DK003069      21   1170
-#> 6  dk003069.fid-7f7ff433_172c67e9d1f_9bf 39855 DK003069      72   1110
-#> 7  dk003069.fid-7f7ff433_172c67e9d1f_9c0 39860 DK003069      77   1110
-#> 8  dk003069.fid-7f7ff433_172c67e9d1f_9c1 39799 DK003069      16   1170
-#> 9  dk003069.fid-7f7ff433_172c67e9d1f_9c2 39848 DK003069      65   1110
-#> 10 dk003069.fid-7f7ff433_172c67e9d1f_9c3 39790 DK003069       7   1170
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-f390802_174ecb59c87_-21d4 39863 DK003069      80   1110
+#> 2  dk003069.fid-f390802_174ecb59c87_-21d3 39791 DK003069       8   1170
+#> 3  dk003069.fid-f390802_174ecb59c87_-21d2 39796 DK003069      13   1170
+#> 4  dk003069.fid-f390802_174ecb59c87_-21d1 39810 DK003069      27   1170
+#> 5  dk003069.fid-f390802_174ecb59c87_-21d0 39804 DK003069      21   1170
+#> 6  dk003069.fid-f390802_174ecb59c87_-21cf 39855 DK003069      72   1110
+#> 7  dk003069.fid-f390802_174ecb59c87_-21ce 39860 DK003069      77   1110
+#> 8  dk003069.fid-f390802_174ecb59c87_-21cd 39799 DK003069      16   1170
+#> 9  dk003069.fid-f390802_174ecb59c87_-21cc 39848 DK003069      65   1110
+#> 10 dk003069.fid-f390802_174ecb59c87_-21cb 39790 DK003069       7   1170
 #>            subtype confidence val_comm                           geom
 #> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
