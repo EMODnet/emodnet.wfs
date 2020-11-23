@@ -39,5 +39,5 @@ Imports:
     rlang,
     checkmate,
     sf
-URL: https://github.com/annakrystalli/EMODnetWFS
-BugReports: https://github.com/annakrystalli/EMODnetWFS/issues
+URL: https://github.com/EMODnet/EMODnetWFS
+BugReports: https://github.com/EMODnet/EMODnetWFS/issues
