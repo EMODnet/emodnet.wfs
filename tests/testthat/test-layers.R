@@ -60,11 +60,11 @@ test_that("reduce works", {
     expect_gt(nrow(sf_data), 0)
 })
 
-test_that("Failing layers handled correctly", {
-        expect_warning(emodnet_get_layers(layers = "be000071"))
-    expect_null(suppressWarnings(emodnet_get_layers(
-        layers = "be000071"))[[1]])
-})
+#test_that("Failing layers handled correctly", {
+#        expect_warning(emodnet_get_layers(layers = "be000071"))
+#    expect_null(suppressWarnings(emodnet_get_layers(
+#        layers = "be000071"))[[1]])
+#})
 
 
 
