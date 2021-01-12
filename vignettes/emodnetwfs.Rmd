@@ -14,8 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, warning = FALSE, collapse = TRUE
 
 ## Introduction
 
-*write short introduction here: aim of the package, why it was created*
-
+The package was designed to make EMODnet vector data layers easily accessible in R. The package allows users to query information on and download data from all available [EMODnet Web Feature Service (WFS) endpoints](https://www.emodnet.eu/en/data) directly into their R working environment. Data are managed as [`sf` objects](https://r-spatial.github.io/sf/) which are currently the state-of-the-art in handling of vector spatial data in R. The package also allows user to specify the coordinate reference system of imported data.
 
 ## Data Product
 ### Installation
