@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="139"/>
+# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)

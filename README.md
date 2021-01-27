@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="139"/>
+# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
 
 <!-- badges: start -->
 
@@ -550,17 +550,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-2788feed_1774492d47b_-33c2 39844 DK003069      61   1170
-#> 2  dk003069.fid-2788feed_1774492d47b_-33c1 39855 DK003069      72   1110
-#> 3  dk003069.fid-2788feed_1774492d47b_-33c0 39860 DK003069      77   1110
-#> 4  dk003069.fid-2788feed_1774492d47b_-33bf 39861 DK003069      78   1110
-#> 5  dk003069.fid-2788feed_1774492d47b_-33be 39785 DK003069       2   1170
-#> 6  dk003069.fid-2788feed_1774492d47b_-33bd 39814 DK003069      31   1170
-#> 7  dk003069.fid-2788feed_1774492d47b_-33bc 39791 DK003069       8   1170
-#> 8  dk003069.fid-2788feed_1774492d47b_-33bb 39836 DK003069      53   1170
-#> 9  dk003069.fid-2788feed_1774492d47b_-33ba 39829 DK003069      46   1170
-#> 10 dk003069.fid-2788feed_1774492d47b_-33b9 39850 DK003069      67   1110
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-2788feed_177449f5fd8_3a97 39844 DK003069      61   1170
+#> 2  dk003069.fid-2788feed_177449f5fd8_3a98 39855 DK003069      72   1110
+#> 3  dk003069.fid-2788feed_177449f5fd8_3a99 39860 DK003069      77   1110
+#> 4  dk003069.fid-2788feed_177449f5fd8_3a9a 39861 DK003069      78   1110
+#> 5  dk003069.fid-2788feed_177449f5fd8_3a9b 39785 DK003069       2   1170
+#> 6  dk003069.fid-2788feed_177449f5fd8_3a9c 39814 DK003069      31   1170
+#> 7  dk003069.fid-2788feed_177449f5fd8_3a9d 39791 DK003069       8   1170
+#> 8  dk003069.fid-2788feed_177449f5fd8_3a9e 39836 DK003069      53   1170
+#> 9  dk003069.fid-2788feed_177449f5fd8_3a9f 39829 DK003069      46   1170
+#> 10 dk003069.fid-2788feed_177449f5fd8_3aa0 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
 #> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
@@ -580,17 +580,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                     gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-2788feed_1774492d47b_-3352 39889 DK003070      24   1170
-#> 2  dk003070.fid-2788feed_1774492d47b_-3351 39888 DK003070      23   1170
-#> 3  dk003070.fid-2788feed_1774492d47b_-3350 39883 DK003070      18   1170
-#> 4  dk003070.fid-2788feed_1774492d47b_-334f 39892 DK003070      27   1170
-#> 5  dk003070.fid-2788feed_1774492d47b_-334e 39876 DK003070      11   1170
-#> 6  dk003070.fid-2788feed_1774492d47b_-334d 39880 DK003070      15   1170
-#> 7  dk003070.fid-2788feed_1774492d47b_-334c 39869 DK003070       4   1170
-#> 8  dk003070.fid-2788feed_1774492d47b_-334b 39866 DK003070       1   1170
-#> 9  dk003070.fid-2788feed_1774492d47b_-334a 39894 DK003070      29   1170
-#> 10 dk003070.fid-2788feed_1774492d47b_-3349 39878 DK003070      13   1170
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid-2788feed_177449f5fd8_3b07 39889 DK003070      24   1170
+#> 2  dk003070.fid-2788feed_177449f5fd8_3b08 39888 DK003070      23   1170
+#> 3  dk003070.fid-2788feed_177449f5fd8_3b09 39883 DK003070      18   1170
+#> 4  dk003070.fid-2788feed_177449f5fd8_3b0a 39892 DK003070      27   1170
+#> 5  dk003070.fid-2788feed_177449f5fd8_3b0b 39876 DK003070      11   1170
+#> 6  dk003070.fid-2788feed_177449f5fd8_3b0c 39880 DK003070      15   1170
+#> 7  dk003070.fid-2788feed_177449f5fd8_3b0d 39869 DK003070       4   1170
+#> 8  dk003070.fid-2788feed_177449f5fd8_3b0e 39866 DK003070       1   1170
+#> 9  dk003070.fid-2788feed_177449f5fd8_3b0f 39894 DK003070      29   1170
+#> 10 dk003070.fid-2788feed_177449f5fd8_3b10 39878 DK003070      13   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
@@ -623,7 +623,7 @@ human_activities[["aquaculture"]]
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
 #> geographic CRS: WGS 84
 #>                                     gml_id gid legalfound
-#> 1 aquaculture.fid-ed6af79_17744793007_-ac0  17 2016-07-12
+#> 1 aquaculture.fid-ed6af79_17744793007_44aa  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -655,17 +655,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"),
 #> bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                   gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-2788feed_1774492d47b_4e8 39844 DK003069      61   1170
-#> 2  dk003069.fid-2788feed_1774492d47b_4e9 39855 DK003069      72   1110
-#> 3  dk003069.fid-2788feed_1774492d47b_4ea 39860 DK003069      77   1110
-#> 4  dk003069.fid-2788feed_1774492d47b_4eb 39861 DK003069      78   1110
-#> 5  dk003069.fid-2788feed_1774492d47b_4ec 39785 DK003069       2   1170
-#> 6  dk003069.fid-2788feed_1774492d47b_4ed 39814 DK003069      31   1170
-#> 7  dk003069.fid-2788feed_1774492d47b_4ee 39791 DK003069       8   1170
-#> 8  dk003069.fid-2788feed_1774492d47b_4ef 39836 DK003069      53   1170
-#> 9  dk003069.fid-2788feed_1774492d47b_4f0 39829 DK003069      46   1170
-#> 10 dk003069.fid-2788feed_1774492d47b_4f1 39850 DK003069      67   1110
+#>                                    gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-2788feed_177449f5fd8_3d37 39844 DK003069      61   1170
+#> 2  dk003069.fid-2788feed_177449f5fd8_3d38 39855 DK003069      72   1110
+#> 3  dk003069.fid-2788feed_177449f5fd8_3d39 39860 DK003069      77   1110
+#> 4  dk003069.fid-2788feed_177449f5fd8_3d3a 39861 DK003069      78   1110
+#> 5  dk003069.fid-2788feed_177449f5fd8_3d3b 39785 DK003069       2   1170
+#> 6  dk003069.fid-2788feed_177449f5fd8_3d3c 39814 DK003069      31   1170
+#> 7  dk003069.fid-2788feed_177449f5fd8_3d3d 39791 DK003069       8   1170
+#> 8  dk003069.fid-2788feed_177449f5fd8_3d3e 39836 DK003069      53   1170
+#> 9  dk003069.fid-2788feed_177449f5fd8_3d3f 39829 DK003069      46   1170
+#> 10 dk003069.fid-2788feed_177449f5fd8_3d40 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
 #> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
