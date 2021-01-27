@@ -48,7 +48,7 @@ jobs:
       - name: Brew and macOS config
         if: runner.os == 'macOS'
         run: |
-          rm '/usr/local/bin/gfortran'
+          rm -f '/usr/local/bin/gfortran'
           brew install pkg-config
           brew install udunits
           brew install gdal
