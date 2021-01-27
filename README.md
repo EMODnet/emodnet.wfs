@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMODnetWFS
+# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="139"/>
 
 <!-- badges: start -->
 
@@ -39,7 +39,7 @@ All available services are contained in the `emodnet_wfs` package
 dataset.
 
 | service\_name                                                    | service\_url                                                        |
-| :--------------------------------------------------------------- | :------------------------------------------------------------------ |
+|:-----------------------------------------------------------------|:--------------------------------------------------------------------|
 | bathymetry                                                       | <https://ows.emodnet-bathymetry.eu/wfs>                             |
 | biology                                                          | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
 | biology\_occurrence\_data                                        | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
@@ -71,19 +71,20 @@ Create new WFS Client. The default service is
 wfs <- emodnet_init_wfs_client()
 #> Loading ISO 19139 XML schemas...
 #> Loading ISO 19115 codelists...
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
-#> ℹ Version: '2.0.0'
+#> Warning in CPL_crs_from_input(x): GDAL Message 1: +init=epsg:XXXX syntax is
+#> deprecated. It might return a CRS with a non-EPSG compliant axis order.
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
+#> i Version: '2.0.0'
 ```
 
 You can access further services using the `service` argument.
 
 ``` r
-
 wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
-#> ℹ Version: '2.0.0'
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> i Version: '2.0.0'
 
 wfs_bath$getUrl()
 #> [1] "https://ows.emodnet-bathymetry.eu/wfs"
@@ -97,23 +98,23 @@ default service is
 
 ``` r
 emodnet_get_wfs_info()
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
-#> ℹ Version: '2.0.0'
-#> # A tibble: 688 x 9
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
+#> i Version: '2.0.0'
+#> # A tibble: 850 x 9
 #>    data_source service_name service_url layer_namespace layer_name title
 #>    <chr>       <chr>        <chr>       <chr>           <chr>      <chr>
-#>  1 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000071   BE00…
-#>  2 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000225   BE00…
-#>  3 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000226   BE00…
-#>  4 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000227   BE00…
-#>  5 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000228   BE00…
-#>  6 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000231   BE00…
-#>  7 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… gb001308   GB00…
-#>  8 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… nl000065   NL00…
-#>  9 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… nl000066   NL00…
-#> 10 emodnet_wfs seabed_habi… https://ow… emodnet_open_m… be000007   [BE0…
-#> # … with 678 more rows, and 3 more variables: abstract <chr>, class <chr>,
+#>  1 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ be000225   BE00~
+#>  2 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ be000226   BE00~
+#>  3 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ be000227   BE00~
+#>  4 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ be000228   BE00~
+#>  5 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ dk004005   DK00~
+#>  6 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ fr004015   FR00~
+#>  7 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ gb001308   GB00~
+#>  8 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ gb001517   GB00~
+#>  9 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ gb100299   GB10~
+#> 10 emodnet_wfs seabed_habi~ https://ow~ emodnet_open_m~ gb100355   GB10~
+#> # ... with 840 more rows, and 3 more variables: abstract <chr>, class <chr>,
 #> #   format <chr>
 ```
 
@@ -121,65 +122,63 @@ You can access information about a service using the `service` argument.
 
 ``` r
 emodnet_get_wfs_info(service = "bathymetry")
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
-#> ℹ Version: '2.0.0'
-#> # A tibble: 4 x 9
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> i Version: '2.0.0'
+#> # A tibble: 3 x 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…
-#> 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…
-#> 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
-#> 4 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
-#> # … with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs bathymetry   https://ow~ emodnet         contours   Dept~ "Genera~
+#> 2 emodnet_wfs bathymetry   https://ow~ emodnet         quality_i~ Qual~ "Repres~
+#> 3 emodnet_wfs bathymetry   https://ow~ emodnet         source_re~ Sour~ "Covera~
+#> # ... with 2 more variables: class <chr>, format <chr>
 ```
 
 or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bath)
-#> # A tibble: 4 x 9
+#> # A tibble: 3 x 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs seabed_habi… https://ow… emodnet         contours   Dept… "Genera…
-#> 2 emodnet_wfs seabed_habi… https://ow… emodnet         quality_i… Qual… "Repres…
-#> 3 emodnet_wfs seabed_habi… https://ow… emodnet         source_re… Sour… "Covera…
-#> 4 emodnet_wfs seabed_habi… https://ow… emodnet         source_re… Sour… "Covera…
-#> # … with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs seabed_habi~ https://ow~ emodnet         contours   Dept~ "Genera~
+#> 2 emodnet_wfs seabed_habi~ https://ow~ emodnet         quality_i~ Qual~ "Repres~
+#> 3 emodnet_wfs seabed_habi~ https://ow~ emodnet         source_re~ Sour~ "Covera~
+#> # ... with 2 more variables: class <chr>, format <chr>
 ```
 
 You can also get info for specific layers from wfs object:
 
 ``` r
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'
-#> ℹ Version: '2.0.0'
+#> √ WFS client created succesfully
+#> i Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'
+#> i Version: '2.0.0'
 emodnet_get_wfs_info(wfs_cml)
 #> # A tibble: 20 x 9
 #>    data_source service_name service_url layer_namespace layer_name title
 #>    <chr>       <chr>        <chr>       <chr>           <chr>      <chr>
-#>  1 emodnet_wfs seabed_habi… https://ow… ms              bl_beache… Beac…
-#>  2 emodnet_wfs seabed_habi… https://ow… ms              bl_tempor… Numb…
-#>  3 emodnet_wfs seabed_habi… https://ow… ms              bl_totala… Beac…
-#>  4 emodnet_wfs seabed_habi… https://ow… ms              bl_materi… Beac…
-#>  5 emodnet_wfs seabed_habi… https://ow… ms              bl_cigare… Beac…
-#>  6 emodnet_wfs seabed_habi… https://ow… ms              bl_cigare… Beac…
-#>  7 emodnet_wfs seabed_habi… https://ow… ms              bl_fishin… Beac…
-#>  8 emodnet_wfs seabed_habi… https://ow… ms              bl_plasti… Beac…
-#>  9 emodnet_wfs seabed_habi… https://ow… ms              bl_beache… Beac…
-#> 10 emodnet_wfs seabed_habi… https://ow… ms              bl_tempor… Numb…
-#> 11 emodnet_wfs seabed_habi… https://ow… ms              bl_totala… Beac…
-#> 12 emodnet_wfs seabed_habi… https://ow… ms              bl_materi… Beac…
-#> 13 emodnet_wfs seabed_habi… https://ow… ms              bl_cigare… Beac…
-#> 14 emodnet_wfs seabed_habi… https://ow… ms              bl_fishin… Beac…
-#> 15 emodnet_wfs seabed_habi… https://ow… ms              bl_plasti… Beac…
-#> 16 emodnet_wfs seabed_habi… https://ow… ms              sl_survey… Seab…
-#> 17 emodnet_wfs seabed_habi… https://ow… ms              sl_totala… Seab…
-#> 18 emodnet_wfs seabed_habi… https://ow… ms              sb_materi… Seab…
-#> 19 emodnet_wfs seabed_habi… https://ow… ms              sl_fishing Seab…
-#> 20 emodnet_wfs seabed_habi… https://ow… ms              sl_plasti… Seab…
-#> # … with 3 more variables: abstract <chr>, class <chr>, format <chr>
+#>  1 emodnet_wfs seabed_habi~ https://ow~ ms              bl_beache~ Beac~
+#>  2 emodnet_wfs seabed_habi~ https://ow~ ms              bl_tempor~ Numb~
+#>  3 emodnet_wfs seabed_habi~ https://ow~ ms              bl_totala~ Beac~
+#>  4 emodnet_wfs seabed_habi~ https://ow~ ms              bl_materi~ Beac~
+#>  5 emodnet_wfs seabed_habi~ https://ow~ ms              bl_cigare~ Beac~
+#>  6 emodnet_wfs seabed_habi~ https://ow~ ms              bl_cigare~ Beac~
+#>  7 emodnet_wfs seabed_habi~ https://ow~ ms              bl_fishin~ Beac~
+#>  8 emodnet_wfs seabed_habi~ https://ow~ ms              bl_plasti~ Beac~
+#>  9 emodnet_wfs seabed_habi~ https://ow~ ms              bl_beache~ Beac~
+#> 10 emodnet_wfs seabed_habi~ https://ow~ ms              bl_tempor~ Numb~
+#> 11 emodnet_wfs seabed_habi~ https://ow~ ms              bl_totala~ Beac~
+#> 12 emodnet_wfs seabed_habi~ https://ow~ ms              bl_materi~ Beac~
+#> 13 emodnet_wfs seabed_habi~ https://ow~ ms              bl_cigare~ Beac~
+#> 14 emodnet_wfs seabed_habi~ https://ow~ ms              bl_fishin~ Beac~
+#> 15 emodnet_wfs seabed_habi~ https://ow~ ms              bl_plasti~ Beac~
+#> 16 emodnet_wfs seabed_habi~ https://ow~ ms              sl_survey~ Seab~
+#> 17 emodnet_wfs seabed_habi~ https://ow~ ms              sl_totala~ Seab~
+#> 18 emodnet_wfs seabed_habi~ https://ow~ ms              sb_materi~ Seab~
+#> 19 emodnet_wfs seabed_habi~ https://ow~ ms              sl_fishing Seab~
+#> 20 emodnet_wfs seabed_habi~ https://ow~ ms              sl_plasti~ Seab~
+#> # ... with 3 more variables: abstract <chr>, class <chr>, format <chr>
 
 layers <- c("bl_fishing_cleaning",
           "bl_beacheslocations_2001_2008_monitoring")
@@ -188,9 +187,9 @@ emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 #> # A tibble: 2 x 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs https://www… chemistry_… ms              bl_fishin… Beac… ""      
-#> 2 emodnet_wfs https://www… chemistry_… ms              bl_beache… Beac… ""      
-#> # … with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs https://www~ chemistry_~ ms              bl_fishin~ Beac~ ""      
+#> 2 emodnet_wfs https://www~ chemistry_~ ms              bl_beache~ Beac~ ""      
+#> # ... with 2 more variables: class <chr>, format <chr>
 ```
 
 Finally, you can get details on all available services and layers from
@@ -198,21 +197,6 @@ the server
 
 ``` r
 emodnet_get_all_wfs_info()
-#> # A tibble: 1,067 x 9
-#>    data_source service_name service_url layer_namespace layer_name title
-#>    <chr>       <chr>        <chr>       <chr>           <chr>      <chr>
-#>  1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept…
-#>  2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual…
-#>  3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour…
-#>  4 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour…
-#>  5 emodnet_wfs biology      http://geo… Emodnetbio      mediseh_c… EMOD…
-#>  6 emodnet_wfs biology      http://geo… Emodnetbio      mediseh_c… EMOD…
-#>  7 emodnet_wfs biology      http://geo… Emodnetbio      mediseh_c… EMOD…
-#>  8 emodnet_wfs biology      http://geo… Emodnetbio      Species_g… EMOD…
-#>  9 emodnet_wfs biology      http://geo… Emodnetbio      Species_g… EMOD…
-#> 10 emodnet_wfs biology      http://geo… Emodnetbio      Species_g… EMOD…
-#> # … with 1,057 more rows, and 3 more variables: abstract <chr>, class <chr>,
-#> #   format <chr>
 ```
 
 ## Get WFS layers
@@ -228,7 +212,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -53.60233 ymin: 28.39411 xmax: 41.77114 ymax: 81.68642
-#> CRS:            4326
+#> geographic CRS: WGS 84
 #> First 10 features:
 #>    gml_id id country country_name      beachcode beachname year
 #> 1    <NA>  1      IT        Italy    0004-Poetto    Poetto 2015
@@ -269,7 +253,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -53.60233 ymin: 28.39411 xmax: 41.77114 ymax: 81.68642
-#> CRS:            4326
+#> geographic CRS: WGS 84
 #> First 10 features:
 #>    gml_id id countryname       beachcode          beachname surveytype
 #> 1    <NA>  1       Italy     0004-Poetto             Poetto Monitoring
@@ -387,14 +371,14 @@ You can chage the output crs through argument `crs`.
 
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
-#> ℹ crs transformed from 4326 to 3857
-#> ℹ crs transformed from 4326 to 3857
+#> i crs transformed from 4326 to 3857
+#> i crs transformed from 4326 to 3857
 #> $bl_fishing_cleaning
 #> Simple feature collection with 1904 features and 14 fields
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
-#> CRS:            EPSG:3857
+#> projected CRS:  WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>    gml_id id country country_name      beachcode beachname year
 #> 1    <NA>  1      IT        Italy    0004-Poetto    Poetto 2015
@@ -435,7 +419,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> geometry type:  POINT
 #> dimension:      XY
 #> bbox:           xmin: -5966984 ymin: 3298754 xmax: 4649942 ymax: 16721730
-#> CRS:            EPSG:3857
+#> projected CRS:  WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>    gml_id id countryname       beachcode          beachname surveytype
 #> 1    <NA>  1       Italy     0004-Poetto             Poetto Monitoring
@@ -554,66 +538,66 @@ service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
 
 ``` r
 emodnet_get_layers(layers = c("dk003069", "dk003070"))
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
-#> ℹ Version: '2.0.0'
-#> ℹ crs transformed from 3857 to 4326
-#> ℹ crs transformed from 3857 to 4326
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
+#> i Version: '2.0.0'
+#> i crs transformed from 3857 to 4326
+#> i crs transformed from 3857 to 4326
 #> $dk003069
 #> Simple feature collection with 82 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
-#> CRS:            EPSG:4326
+#> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-f390802_174ecb59c87_-22b4 39863 DK003069      80   1110
-#> 2  dk003069.fid-f390802_174ecb59c87_-22b3 39791 DK003069       8   1170
-#> 3  dk003069.fid-f390802_174ecb59c87_-22b2 39796 DK003069      13   1170
-#> 4  dk003069.fid-f390802_174ecb59c87_-22b1 39810 DK003069      27   1170
-#> 5  dk003069.fid-f390802_174ecb59c87_-22b0 39804 DK003069      21   1170
-#> 6  dk003069.fid-f390802_174ecb59c87_-22af 39855 DK003069      72   1110
-#> 7  dk003069.fid-f390802_174ecb59c87_-22ae 39860 DK003069      77   1110
-#> 8  dk003069.fid-f390802_174ecb59c87_-22ad 39799 DK003069      16   1170
-#> 9  dk003069.fid-f390802_174ecb59c87_-22ac 39848 DK003069      65   1110
-#> 10 dk003069.fid-f390802_174ecb59c87_-22ab 39790 DK003069       7   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-2788feed_1774492d47b_-33c2 39844 DK003069      61   1170
+#> 2  dk003069.fid-2788feed_1774492d47b_-33c1 39855 DK003069      72   1110
+#> 3  dk003069.fid-2788feed_1774492d47b_-33c0 39860 DK003069      77   1110
+#> 4  dk003069.fid-2788feed_1774492d47b_-33bf 39861 DK003069      78   1110
+#> 5  dk003069.fid-2788feed_1774492d47b_-33be 39785 DK003069       2   1170
+#> 6  dk003069.fid-2788feed_1774492d47b_-33bd 39814 DK003069      31   1170
+#> 7  dk003069.fid-2788feed_1774492d47b_-33bc 39791 DK003069       8   1170
+#> 8  dk003069.fid-2788feed_1774492d47b_-33bb 39836 DK003069      53   1170
+#> 9  dk003069.fid-2788feed_1774492d47b_-33ba 39829 DK003069      46   1170
+#> 10 dk003069.fid-2788feed_1774492d47b_-33b9 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
-#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
-#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
-#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
-#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
-#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 3             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 4             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 6  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 7  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 9  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 10            <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
 #> 
 #> $dk003070
 #> Simple feature collection with 30 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
-#> CRS:            EPSG:4326
+#> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-f390802_174ecb59c87_-2244 39869 DK003070       4   1170
-#> 2  dk003070.fid-f390802_174ecb59c87_-2243 39888 DK003070      23   1170
-#> 3  dk003070.fid-f390802_174ecb59c87_-2242 39866 DK003070       1   1170
-#> 4  dk003070.fid-f390802_174ecb59c87_-2241 39894 DK003070      29   1170
-#> 5  dk003070.fid-f390802_174ecb59c87_-2240 39884 DK003070      19   1170
-#> 6  dk003070.fid-f390802_174ecb59c87_-223f 39895 DK003070      30   1110
-#> 7  dk003070.fid-f390802_174ecb59c87_-223e 39877 DK003070      12   1170
-#> 8  dk003070.fid-f390802_174ecb59c87_-223d 39878 DK003070      13   1170
-#> 9  dk003070.fid-f390802_174ecb59c87_-223c 39872 DK003070       7   1170
-#> 10 dk003070.fid-f390802_174ecb59c87_-223b 39871 DK003070       6   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid-2788feed_1774492d47b_-3352 39889 DK003070      24   1170
+#> 2  dk003070.fid-2788feed_1774492d47b_-3351 39888 DK003070      23   1170
+#> 3  dk003070.fid-2788feed_1774492d47b_-3350 39883 DK003070      18   1170
+#> 4  dk003070.fid-2788feed_1774492d47b_-334f 39892 DK003070      27   1170
+#> 5  dk003070.fid-2788feed_1774492d47b_-334e 39876 DK003070      11   1170
+#> 6  dk003070.fid-2788feed_1774492d47b_-334d 39880 DK003070      15   1170
+#> 7  dk003070.fid-2788feed_1774492d47b_-334c 39869 DK003070       4   1170
+#> 8  dk003070.fid-2788feed_1774492d47b_-334b 39866 DK003070       1   1170
+#> 9  dk003070.fid-2788feed_1774492d47b_-334a 39894 DK003070      29   1170
+#> 10 dk003070.fid-2788feed_1774492d47b_-3349 39878 DK003070      13   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((11....
+#> 6  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 7  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 9  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
@@ -623,12 +607,11 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 Use argument `service` to specify the required service.
 
 ``` r
-
 human_activities <- emodnet_get_layers(service = "human_activities", 
                    layers = c("aquaculture", "dredging"))
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-humanactivities.eu/wfs'
-#> ℹ Version: '2.0.0'
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-humanactivities.eu/wfs'
+#> i Version: '2.0.0'
 #> Warning: crs missing. Set to default 4326
 
 #> Warning: crs missing. Set to default 4326
@@ -638,9 +621,9 @@ human_activities[["aquaculture"]]
 #> geometry type:  MULTIPOLYGON
 #> dimension:      XY
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
-#> CRS:            EPSG:4326
-#>                                      gml_id gid legalfound
-#> 1 aquaculture.fid-4005965b_174ef144216_2a92  17 2016-07-12
+#> geographic CRS: WGS 84
+#>                                     gml_id gid legalfound
+#> 1 aquaculture.fid-ed6af79_17744793007_-ac0  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -662,38 +645,38 @@ into a single `sf` and will fail if not.
 ``` r
 emodnet_get_layers(layers = c("dk003069", "dk003070"), 
                    reduce_layers = TRUE)
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
-#> ℹ Version: '2.0.0'
-#> ℹ crs transformed from 3857 to 4326
+#> √ WFS client created succesfully
+#> i Service: 'https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs'
+#> i Version: '2.0.0'
+#> i crs transformed from 3857 to 4326
 #> Simple feature collection with 112 features and 8 fields
 #> geometry type:  MULTISURFACE
 #> dimension:      XY
 #> bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
-#> CRS:            EPSG:4326
+#> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-f390802_174ecb59c87_-21d4 39863 DK003069      80   1110
-#> 2  dk003069.fid-f390802_174ecb59c87_-21d3 39791 DK003069       8   1170
-#> 3  dk003069.fid-f390802_174ecb59c87_-21d2 39796 DK003069      13   1170
-#> 4  dk003069.fid-f390802_174ecb59c87_-21d1 39810 DK003069      27   1170
-#> 5  dk003069.fid-f390802_174ecb59c87_-21d0 39804 DK003069      21   1170
-#> 6  dk003069.fid-f390802_174ecb59c87_-21cf 39855 DK003069      72   1110
-#> 7  dk003069.fid-f390802_174ecb59c87_-21ce 39860 DK003069      77   1110
-#> 8  dk003069.fid-f390802_174ecb59c87_-21cd 39799 DK003069      16   1170
-#> 9  dk003069.fid-f390802_174ecb59c87_-21cc 39848 DK003069      65   1110
-#> 10 dk003069.fid-f390802_174ecb59c87_-21cb 39790 DK003069       7   1170
+#>                                   gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-2788feed_1774492d47b_4e8 39844 DK003069      61   1170
+#> 2  dk003069.fid-2788feed_1774492d47b_4e9 39855 DK003069      72   1110
+#> 3  dk003069.fid-2788feed_1774492d47b_4ea 39860 DK003069      77   1110
+#> 4  dk003069.fid-2788feed_1774492d47b_4eb 39861 DK003069      78   1110
+#> 5  dk003069.fid-2788feed_1774492d47b_4ec 39785 DK003069       2   1170
+#> 6  dk003069.fid-2788feed_1774492d47b_4ed 39814 DK003069      31   1170
+#> 7  dk003069.fid-2788feed_1774492d47b_4ee 39791 DK003069       8   1170
+#> 8  dk003069.fid-2788feed_1774492d47b_4ef 39836 DK003069      53   1170
+#> 9  dk003069.fid-2788feed_1774492d47b_4f0 39829 DK003069      46   1170
+#> 10 dk003069.fid-2788feed_1774492d47b_4f1 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
-#> 1             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.6...
-#> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
-#> 3  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 4  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
-#> 6             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
-#> 7             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
-#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 9             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
-#> 10 Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 3             <NA>       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 4             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 5  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 6  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
+#> 7  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.8...
+#> 8  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 9  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((9.7...
+#> 10            <NA>       High     <NA> MULTISURFACE (POLYGON ((9.9...
 ```
 
 ``` r

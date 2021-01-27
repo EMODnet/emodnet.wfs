@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# EMODnetWFS
+# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="139"/>
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -107,7 +107,7 @@ emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 
 Finally, you can get details on all available services and layers from the server
 
-```{r}
+```{r eval=FALSE}
 emodnet_get_all_wfs_info()
 ```
 
