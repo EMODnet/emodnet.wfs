@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMODnetWFS <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
+# EMODnetWFS: Access EMODnet Web Feature Service data through R <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
 
 <!-- badges: start -->
 
@@ -14,14 +14,25 @@ coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/master/graph/badge.svg
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation and access to the
-EMODnet Web Feature Services data in R.
+[EMODnet Web Feature Services](https://www.emodnet.eu/en/data) data in
+R. This package was developed by the Sheffield University during the
+EMODnet Biology WP4 data products workshop in June 2020.
+
+You can read the product story on the EMODnet-Biology portal following
+[this
+link](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r),
+or read the vignette directly in R after installing the package.
+
+``` r
+vignette("emodnetwfs")
+```
 
 ## Installation
 
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-remotes::install_github("EMODnet/EMODnetWFS")
+remotes::install_github("EMODnet/EMODnetWFS", build_vignettes = TRUE)
 ```
 
 ## Example
@@ -550,17 +561,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-2788feed_177449f5fd8_3a97 39844 DK003069      61   1170
-#> 2  dk003069.fid-2788feed_177449f5fd8_3a98 39855 DK003069      72   1110
-#> 3  dk003069.fid-2788feed_177449f5fd8_3a99 39860 DK003069      77   1110
-#> 4  dk003069.fid-2788feed_177449f5fd8_3a9a 39861 DK003069      78   1110
-#> 5  dk003069.fid-2788feed_177449f5fd8_3a9b 39785 DK003069       2   1170
-#> 6  dk003069.fid-2788feed_177449f5fd8_3a9c 39814 DK003069      31   1170
-#> 7  dk003069.fid-2788feed_177449f5fd8_3a9d 39791 DK003069       8   1170
-#> 8  dk003069.fid-2788feed_177449f5fd8_3a9e 39836 DK003069      53   1170
-#> 9  dk003069.fid-2788feed_177449f5fd8_3a9f 39829 DK003069      46   1170
-#> 10 dk003069.fid-2788feed_177449f5fd8_3aa0 39850 DK003069      67   1110
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-27b70f98_1775d99b99e_-4351 39844 DK003069      61   1170
+#> 2  dk003069.fid-27b70f98_1775d99b99e_-4350 39855 DK003069      72   1110
+#> 3  dk003069.fid-27b70f98_1775d99b99e_-434f 39860 DK003069      77   1110
+#> 4  dk003069.fid-27b70f98_1775d99b99e_-434e 39861 DK003069      78   1110
+#> 5  dk003069.fid-27b70f98_1775d99b99e_-434d 39785 DK003069       2   1170
+#> 6  dk003069.fid-27b70f98_1775d99b99e_-434c 39814 DK003069      31   1170
+#> 7  dk003069.fid-27b70f98_1775d99b99e_-434b 39791 DK003069       8   1170
+#> 8  dk003069.fid-27b70f98_1775d99b99e_-434a 39836 DK003069      53   1170
+#> 9  dk003069.fid-27b70f98_1775d99b99e_-4349 39829 DK003069      46   1170
+#> 10 dk003069.fid-27b70f98_1775d99b99e_-4348 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
 #> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
@@ -580,17 +591,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #> bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003070.fid-2788feed_177449f5fd8_3b07 39889 DK003070      24   1170
-#> 2  dk003070.fid-2788feed_177449f5fd8_3b08 39888 DK003070      23   1170
-#> 3  dk003070.fid-2788feed_177449f5fd8_3b09 39883 DK003070      18   1170
-#> 4  dk003070.fid-2788feed_177449f5fd8_3b0a 39892 DK003070      27   1170
-#> 5  dk003070.fid-2788feed_177449f5fd8_3b0b 39876 DK003070      11   1170
-#> 6  dk003070.fid-2788feed_177449f5fd8_3b0c 39880 DK003070      15   1170
-#> 7  dk003070.fid-2788feed_177449f5fd8_3b0d 39869 DK003070       4   1170
-#> 8  dk003070.fid-2788feed_177449f5fd8_3b0e 39866 DK003070       1   1170
-#> 9  dk003070.fid-2788feed_177449f5fd8_3b0f 39894 DK003070      29   1170
-#> 10 dk003070.fid-2788feed_177449f5fd8_3b10 39878 DK003070      13   1170
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003070.fid-27b70f98_1775d99b99e_-42e1 39889 DK003070      24   1170
+#> 2  dk003070.fid-27b70f98_1775d99b99e_-42e0 39888 DK003070      23   1170
+#> 3  dk003070.fid-27b70f98_1775d99b99e_-42df 39883 DK003070      18   1170
+#> 4  dk003070.fid-27b70f98_1775d99b99e_-42de 39892 DK003070      27   1170
+#> 5  dk003070.fid-27b70f98_1775d99b99e_-42dd 39876 DK003070      11   1170
+#> 6  dk003070.fid-27b70f98_1775d99b99e_-42dc 39880 DK003070      15   1170
+#> 7  dk003070.fid-27b70f98_1775d99b99e_-42db 39869 DK003070       4   1170
+#> 8  dk003070.fid-27b70f98_1775d99b99e_-42da 39866 DK003070       1   1170
+#> 9  dk003070.fid-27b70f98_1775d99b99e_-42d9 39894 DK003070      29   1170
+#> 10 dk003070.fid-27b70f98_1775d99b99e_-42d8 39878 DK003070      13   1170
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
 #> 2  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((11....
@@ -622,8 +633,8 @@ human_activities[["aquaculture"]]
 #> dimension:      XY
 #> bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924
 #> geographic CRS: WGS 84
-#>                                     gml_id gid legalfound
-#> 1 aquaculture.fid-ed6af79_17744793007_44aa  17 2016-07-12
+#>                                        gml_id gid legalfound
+#> 1 aquaculture.fid--49a05704_1775d943c38_-6f01  17 2016-07-12
 #>                                                           legalfou_1 country
 #> 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    <NA>
 #>                      namespace   nationalle
@@ -655,17 +666,17 @@ emodnet_get_layers(layers = c("dk003069", "dk003070"),
 #> bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
 #> geographic CRS: WGS 84
 #> First 10 features:
-#>                                    gml_id   gid      gui polygon annexi
-#> 1  dk003069.fid-2788feed_177449f5fd8_3d37 39844 DK003069      61   1170
-#> 2  dk003069.fid-2788feed_177449f5fd8_3d38 39855 DK003069      72   1110
-#> 3  dk003069.fid-2788feed_177449f5fd8_3d39 39860 DK003069      77   1110
-#> 4  dk003069.fid-2788feed_177449f5fd8_3d3a 39861 DK003069      78   1110
-#> 5  dk003069.fid-2788feed_177449f5fd8_3d3b 39785 DK003069       2   1170
-#> 6  dk003069.fid-2788feed_177449f5fd8_3d3c 39814 DK003069      31   1170
-#> 7  dk003069.fid-2788feed_177449f5fd8_3d3d 39791 DK003069       8   1170
-#> 8  dk003069.fid-2788feed_177449f5fd8_3d3e 39836 DK003069      53   1170
-#> 9  dk003069.fid-2788feed_177449f5fd8_3d3f 39829 DK003069      46   1170
-#> 10 dk003069.fid-2788feed_177449f5fd8_3d40 39850 DK003069      67   1110
+#>                                     gml_id   gid      gui polygon annexi
+#> 1  dk003069.fid-27b70f98_1775d99b99e_-4271 39844 DK003069      61   1170
+#> 2  dk003069.fid-27b70f98_1775d99b99e_-4270 39855 DK003069      72   1110
+#> 3  dk003069.fid-27b70f98_1775d99b99e_-426f 39860 DK003069      77   1110
+#> 4  dk003069.fid-27b70f98_1775d99b99e_-426e 39861 DK003069      78   1110
+#> 5  dk003069.fid-27b70f98_1775d99b99e_-426d 39785 DK003069       2   1170
+#> 6  dk003069.fid-27b70f98_1775d99b99e_-426c 39814 DK003069      31   1170
+#> 7  dk003069.fid-27b70f98_1775d99b99e_-426b 39791 DK003069       8   1170
+#> 8  dk003069.fid-27b70f98_1775d99b99e_-426a 39836 DK003069      53   1170
+#> 9  dk003069.fid-27b70f98_1775d99b99e_-4269 39829 DK003069      46   1170
+#> 10 dk003069.fid-27b70f98_1775d99b99e_-4268 39850 DK003069      67   1110
 #>            subtype confidence val_comm                           geom
 #> 1  Geogenic origin       High     <NA> MULTISURFACE (POLYGON ((10....
 #> 2             <NA>       High     <NA> MULTISURFACE (POLYGON ((9.7...
@@ -685,3 +696,16 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers,
 #> Error: Cannot reduce layers.
 #> Try again with `reduce_layers = FALSE`
 ```
+
+## Citation
+
+Please cite this package as:
+
+Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service
+data through R. R package version 0.0.2.
+<https://github.com/EMODnet/EMODnetWFS>. Integrated data products
+created under the European Marine Observation Data Network (EMODnet)
+Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the
+by the European Union under Regulation (EU) No 508/2014 of the European
+Parliament and of the Council of 15 May 2014 on the European Maritime
+and Fisheries Fund.
