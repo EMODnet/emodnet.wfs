@@ -16,8 +16,8 @@ emodnet_init_wfs_client <- function(service = "seabed_habitats_individual_habita
                                     service_version = "2.0.0") {
 
 
-    wfs <- ows4R::WFSClient$new(get_service_url(service),
-                         serviceVersion = service_version)
+    wfs <- suppressWarnings(ows4R::WFSClient$new(get_service_url(service),
+                         serviceVersion = service_version))
 
     check_wfs(wfs)
     usethis::ui_done("WFS client created succesfully")
