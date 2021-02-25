@@ -49,23 +49,25 @@ library(EMODnetWFS)
 All available services are contained in the `emodnet_wfs` package
 dataset.
 
-| service\_name                                                    | service\_url                                                        |
-|:-----------------------------------------------------------------|:--------------------------------------------------------------------|
-| bathymetry                                                       | <https://ows.emodnet-bathymetry.eu/wfs>                             |
-| biology                                                          | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
-| biology\_occurrence\_data                                        | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
-| chemistry\_marine\_litter                                        | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>            |
-| chemistry\_time\_series\_location                                | <http://emodnet02.cineca.it/geoserver/wfs>                          |
-| geology\_sea\_floor\_bedrock                                     | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                |
-| geology\_marine\_minerals                                        | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                |
-| geology\_seabed\_substrate\_maps                                 | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                |
-| geology\_events\_and\_probabilities                              | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>              |
-| geology\_coastal\_behavior                                       | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                |
-| geology\_submerged\_landscapes                                   | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                |
-| human\_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                        |
-| physics                                                          | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>        |
-| seabed\_habitats\_general\_datasets\_and\_products               | <https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs>            |
-| seabed\_habitats\_individual\_habitat\_map\_and\_model\_datasets | <https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs> |
+| service\_name                                                          | service\_url                                                        |
+|:-----------------------------------------------------------------------|:--------------------------------------------------------------------|
+| bathymetry                                                             | <https://ows.emodnet-bathymetry.eu/wfs>                             |
+| biology                                                                | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
+| biology\_occurrence\_data                                              | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
+| chemistry\_cdi\_data\_discovery\_and\_access\_service                  | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                |
+| chemistry\_cdi\_distribution\_observations\_per\_category\_and\_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>            |
+| chemistry\_contaminants                                                | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>            |
+| chemistry\_marine\_litter                                              | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>            |
+| geology\_coastal\_behavior                                             | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                |
+| geology\_events\_and\_probabilities                                    | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>              |
+| geology\_marine\_minerals                                              | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                |
+| geology\_sea\_floor\_bedrock                                           | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                |
+| geology\_seabed\_substrate\_maps                                       | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                |
+| geology\_submerged\_landscapes                                         | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                |
+| human\_activities                                                      | <https://ows.emodnet-humanactivities.eu/wfs>                        |
+| physics                                                                | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>        |
+| seabed\_habitats\_general\_datasets\_and\_products                     | <https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs>            |
+| seabed\_habitats\_individual\_habitat\_map\_and\_model\_datasets       | <https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs> |
 
 To explore available services in Rstudio use:
 
