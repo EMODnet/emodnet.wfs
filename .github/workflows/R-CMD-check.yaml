@@ -98,7 +98,16 @@ jobs:
             libgeos-dev \
             libproj-dev
 
-      - name: Install dependencies
+      - name: Install dependencies macOS and Linux
+        if: runner.os != 'Windows'
+        run: |
+          remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("rcmdcheck")
+          remotes::install_cran("codecov")
+        shell: Rscript {0}
+
+      - name: Install dependencies Windows
+        if: runner.os == 'Windows'
         run: |
           remotes::install_deps(dependencies = TRUE, type = "binary")
           remotes::install_cran("rcmdcheck")
