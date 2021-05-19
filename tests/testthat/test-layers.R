@@ -23,8 +23,7 @@ test_that("crs trasform works from server", {
 
 
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-layers <- c("bl_fishing_cleaning",
-            "bl_beacheslocations_2001_2008_monitoring")
+layers <- c("sl_fishing", "sl_plasticbags")
 
 test_that("get layers works on wfs object", {
   l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers)

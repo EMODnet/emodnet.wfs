@@ -29,8 +29,7 @@ test_that("wfs info works on wfs object", {
 
 
 test_that("emodnet_get_layer_info works", {
-    layers <- c("bl_fishing_cleaning",
-               "bl_beacheslocations_2001_2008_monitoring")
+    layers <- c("sl_fishing", "sl_plasticbags")
     layer_info_cml <-emodnet_get_layer_info(
         wfs = wfs_cml,
         layers = layers
