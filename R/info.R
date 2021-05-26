@@ -15,8 +15,8 @@
 #' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
 #' emodnet_get_wfs_info(wfs_cml)
 #' # Get info for specific layers from wfs object
-#' layers <- c("bl_fishing_cleaning",
-#'           "bl_beacheslocations_2001_2008_monitoring")
+#' layers <- c("bl_fishing_monitoring",
+#'            "bl_beacheslocations_monitoring")
 #' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 emodnet_get_wfs_info <- function(wfs = NULL,
                                  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
