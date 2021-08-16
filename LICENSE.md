@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2020 Anna Krystalli & Thomas J Webb
+Copyright (c) 2021 European Marine Observation Data Network (EMODnet) Biology project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
