@@ -3,5 +3,6 @@
 .Rhistory
 .RData
 attic/*
-
+docs/*
 inst/doc
+
