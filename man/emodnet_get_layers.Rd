@@ -10,6 +10,7 @@ emodnet_get_layers(
   service_version = "2.0.0",
   layers,
   crs = 4326,
+  cql_filter = NULL,
   reduce_layers = FALSE,
   suppress_warnings = FALSE
 )
@@ -26,7 +27,17 @@ available services, see `emodnet_wfs`.}
 \item{layers}{a character vector of layer names. To get info on layers, including
 `layer_name` use `emodnet_get_wfs_info()`}
 
-\item{crs}{integer. An EPSG code for the outpur crs. Defaults to 4326, corresponsing to `"+proj=longlat +datum=WGS84 +no_defs"`}
+\item{crs}{integer. An EPSG code for the output crs. Defaults to 4326, corresponding to `"+proj=longlat +datum=WGS84 +no_defs"`,}
+
+\item{cql_filter}{character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
+filtering statements (\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}). Should be one of:
+ \itemize{
+  \item{character string or character vector of length 1. Filter will be recycled across all layers requested}
+  \item{character vector of length equal to the length of layers. Filter will be matched to layers sequentially.
+  Elements containing `NA` are ignored}
+  \item{named character vector. Each filter will be applied to the layer corresponding to the filter name.
+  Filters with names that do not correspond to any layers are ignored. Layers without corresponding filters are returned whole }
+}}
 
 \item{reduce_layers}{whether to reduce output layers to a single `sf` object.}
 
@@ -41,9 +52,12 @@ reduced (if possible) to a single `sf` containing data for all layers.
 `NULL` layers are ignored.
 }
 \description{
-Get EMODnet WFS layers
+Performs an WFS getFeature request for layers from a `wfs` object or specified EMODnet Service. Filtering
+of layer features can also be handled via ECQL language filters.
 }
 \examples{
 emodnet_get_layers(layers = c("dk003069", "dk003070"))
 emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
+emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
+    cql_filter = "sitename='Territory sea (12 nm)'" )
 }
