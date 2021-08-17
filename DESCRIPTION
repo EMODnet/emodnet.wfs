@@ -47,7 +47,8 @@ Imports:
     tibble,
     rlang,
     checkmate,
-    sf
+    sf,
+    janitor
 URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 VignetteBuilder: knitr
