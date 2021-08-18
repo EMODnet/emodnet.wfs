@@ -2,6 +2,8 @@
 #'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
+#' @param layer character sting of layer name. To get info on layers, including
+#' `layer_name` use [emodnet_get_wfs_info()].
 #'
 #' @return output of `summary()` on the attributes (variables) in a given layer for a given service.
 #' @export
@@ -26,6 +28,7 @@ layer_attributes_summarise <- function(layer, wfs = NULL,
 #'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
+#' @inheritParams layer_attributes_summarise
 #'
 #' @return character vector of layer attribute (variable) names.
 #' @export
@@ -48,13 +51,14 @@ layer_attributes_get_name <- function(layer, wfs = NULL,
 
 
 
-#' Inspect layer attributes
+#' Inspect layer attribute
 #'
-#' @param attribute character string
+#' @inheritParams layer_attributes_summarise
+#' @param attribute character string, name of layer attribute (variable).
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #'
-#' @return detailed summary of individual attributes (variable). Particularly useful for inspecting
+#' @return Detailed summary of individual attribute (variable). Particularly useful for inspecting
 #' factor or character variable levels or unique values.
 #' @export
 #'

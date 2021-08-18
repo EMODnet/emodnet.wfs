@@ -52,3 +52,4 @@ Imports:
 URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
