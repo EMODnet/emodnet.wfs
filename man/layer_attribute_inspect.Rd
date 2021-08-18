@@ -24,7 +24,8 @@ available services, see \code{emodnet_wfs}.}
 \item{layer}{character sting of layer name. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
-\item{attribute}{character string, name of layer attribute (variable).}
+\item{attribute}{character string, name of layer attribute (variable). Use
+\code{\link[=layer_attributes_get_names]{layer_attributes_get_names()}} to get layer attribute names.}
 }
 \value{
 Detailed summary of individual attribute (variable). Particularly useful for inspecting
@@ -35,6 +36,6 @@ Inspect layer attribute
 }
 \examples{
 wfs <- EMODnetWFS::emodnet_init_wfs_client(service = "human_activities")
-layer_attributes_get_name(wfs)
+layer_attributes_get_names(wfs)
 layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
 }

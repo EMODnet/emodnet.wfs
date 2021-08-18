@@ -10,9 +10,9 @@
 #'
 #' @examples
 #' layer_attributes_summarise(service = "human_activities", layer = "maritimebnds")
-layer_attributes_summarise <- function(layer, wfs = NULL,
+layer_attributes_summarise <- function(wfs = NULL,
                            service,
-                           service_version = "2.0.0"){
+                           service_version = "2.0.0", layer){
 
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service,
@@ -34,10 +34,10 @@ layer_attributes_summarise <- function(layer, wfs = NULL,
 #' @export
 #'
 #' @examples
-#' layer_attributes_get_name(service = "human_activities", layer = "maritimebnds")
-layer_attributes_get_name <- function(layer, wfs = NULL,
+#' layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+layer_attributes_get_names <- function(wfs = NULL,
                                        service,
-                                       service_version = "2.0.0"){
+                                       service_version = "2.0.0", layer){
 
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service,
@@ -54,7 +54,8 @@ layer_attributes_get_name <- function(layer, wfs = NULL,
 #' Inspect layer attribute
 #'
 #' @inheritParams layer_attributes_summarise
-#' @param attribute character string, name of layer attribute (variable).
+#' @param attribute character string, name of layer attribute (variable). Use
+#' [layer_attributes_get_names()] to get layer attribute names.
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #'
@@ -64,7 +65,7 @@ layer_attributes_get_name <- function(layer, wfs = NULL,
 #'
 #' @examples
 #' wfs <- EMODnetWFS::emodnet_init_wfs_client(service = "human_activities")
-#' layer_attributes_get_name(wfs)
+#' layer_attributes_get_names(wfs)
 #' layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
 layer_attribute_inspect <- function(wfs = NULL,
                                     service,

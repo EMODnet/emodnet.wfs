@@ -5,16 +5,13 @@
 \title{Get summaries of layer attributes (variables)}
 \usage{
 layer_attributes_summarise(
-  layer,
   wfs = NULL,
   service,
-  service_version = "2.0.0"
+  service_version = "2.0.0",
+  layer
 )
 }
 \arguments{
-\item{layer}{character sting of layer name. To get info on layers, including
-\code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
-
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
 
 \item{service}{the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
@@ -22,6 +19,9 @@ Habitats WFS \code{"seabed_habitats_individual_habitat_map_and_model_datasets"}.
 available services, see \code{emodnet_wfs}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
+
+\item{layer}{character sting of layer name. To get info on layers, including
+\code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 }
 \value{
 output of \code{summary()} on the attributes (variables) in a given layer for a given service.
