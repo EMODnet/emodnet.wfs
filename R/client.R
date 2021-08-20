@@ -36,15 +36,15 @@ check_wfs <- function(wfs) {
 
 get_service_url <- function(service) {
     service <- match.arg(service,
-                         choices = emodnet_wfs$service_name)
+                         choices = EMODnetWFS::emodnet_wfs$service_name)
 
-    emodnet_wfs$service_url[emodnet_wfs$service_name == service]
+    EMODnetWFS::emodnet_wfs$service_url[EMODnetWFS::emodnet_wfs$service_name == service]
 }
 
 get_service_name <- function(service_url) {
     service_url <- match.arg(service_url,
-                         choices = emodnet_wfs$service_url)
+                         choices = EMODnetWFS::emodnet_wfs$service_url)
 
-    emodnet_wfs$service_name[emodnet_wfs$service_url == service_url]
+    EMODnetWFS::emodnet_wfs$service_name[EMODnetWFS::emodnet_wfs$service_url == service_url]
 }
 
