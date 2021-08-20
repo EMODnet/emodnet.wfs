@@ -6,3 +6,4 @@
 ^codecov\.yml$
 ^attic$
 ^docs$
+^data-raw$
