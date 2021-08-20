@@ -29,8 +29,8 @@ emodnet_get_wfs_info <- function(wfs = NULL,
 
     tibble::tibble(
         data_source = "emodnet_wfs",
-        service_name = service,
-        service_url = get_service_url(service),
+        service_name = get_service_name(caps$getUrl()),
+        service_url = caps$getUrl(),
         layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
         title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
         abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
