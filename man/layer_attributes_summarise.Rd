@@ -6,7 +6,7 @@
 \usage{
 layer_attributes_summarise(
   wfs = NULL,
-  service,
+  service = NULL,
   service_version = "2.0.0",
   layer
 )
