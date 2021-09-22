@@ -87,7 +87,7 @@ glimpse(habitats_directive_layers)
 
 
 Run the following code to have a quick look at the layers geometries
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # Transform to Polygon geometry type from Multisurface
 if(unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE"){
   habitats_directive_layers <- habitats_directive_layers %>% 
@@ -127,9 +127,15 @@ glimpse(maritime_boundaries)
 
 
 
-Add the maritime boundaries to the previous map with this line.
-```{r, eval = FALSE}
-map + mapview(maritime_boundaries)
+Add the maritime boundaries to the previous map with this line. To do so, cats to `MULTILINESTRING` geometry type, transform to the same crs as the habitats directive `sf` (only required because of the next step), and crop using the bounding box of the habitats directive `sf`.
+```{r, eval = TRUE}
+
+maritime_boundaries <- maritime_boundaries %>% 
+  st_cast(to = "MULTILINESTRING") %>%
+  st_transform(st_crs(habitats_directive_layers)) %>%
+  st_crop(st_bbox(habitats_directive_layers))
+
+map + mapview(maritime_boundaries )
 ```
 
 
