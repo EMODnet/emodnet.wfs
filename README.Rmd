@@ -11,6 +11,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+options(timeout = 2000)
 ```
 
 # EMODnetWFS: Access EMODnet Web Feature Service data through R <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
@@ -37,22 +38,13 @@ You can install the development version of EMODnetWFS from GitHub with:
 ``` r
 remotes::install_github("EMODnet/EMODnetWFS", build_vignettes = TRUE)
 ```
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-library(EMODnetWFS)
-## basic example code
-```
-
-### Available services
+## Available services
 
 All available services are contained in the `emodnet_wfs` package dataset.
 
 
 ```{r, echo=FALSE}
+library(EMODnetWFS)
 knitr::kable(emodnet_wfs)
 ```
 
@@ -61,7 +53,7 @@ To explore available services in Rstudio use:
 View(emodnet_wfs)
 ```
 
-### Create Service Client
+## Create Service Client
 
 Create new WFS Client. The default service is `seabed_habitats_individual_habitat_map_and_model_datasets`.
 
@@ -73,7 +65,6 @@ wfs <- emodnet_init_wfs_client()
 You can access further services using the `service` argument. 
 
 ```{r}
-
 wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
 
 wfs_bath$getUrl()
@@ -105,7 +96,7 @@ You can also get info for specific layers from wfs object:
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
 emodnet_get_wfs_info(wfs_cml)
 
-layers <- c("bl_fishing_cleaning",
+layers <- c("bl_fishing_monitoring",
           "bl_beacheslocations_2001_2008_monitoring")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
