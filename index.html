@@ -99,7 +99,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the development version of EMODnetWFS from GitHub with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="available-services" class="section level2">
 <h2 class="hasAnchor">
@@ -192,20 +192,14 @@
 <div id="create-service-client" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-service-client" class="anchor"></a>Create Service Client</h2>
-<p>Create new WFS Client. The default service is <code>seabed_habitats_individual_habitat_map_and_model_datasets</code>.</p>
+<p>Create new WFS Client. Specify the service using the <code>service</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">wfs_bath</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"bathymetry"</span><span class="op">)</span>
 <span class="co">#&gt; Loading ISO 19139 XML schemas...</span>
 <span class="co">#&gt; Loading ISO 19115 codelists...</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span></code></pre></div>
-<p>You can access further services using the <code>service</code> argument.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wfs_bath</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"bathymetry"</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-bathymetry.eu/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span>
 
 <span class="va">wfs_bath</span><span class="op">$</span><span class="fu">getUrl</span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; [1] "https://ows.emodnet-bathymetry.eu/wfs"</span></code></pre></div>
@@ -213,394 +207,102 @@
 <div id="get-wfs-layer-info" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wfs-layer-info" class="anchor"></a>Get WFS Layer info</h2>
-<p>You can get metadata about the layers available from a service. The default service is <code>seabed_habitats_individual_habitat_map_and_model_datasets</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
-<span class="co">#&gt; # A tibble: 909 x 9</span>
-<span class="co">#&gt;    data_source service_name    service_url      layer_namespace layer_name title</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ be000225   BE00~</span>
-<span class="co">#&gt;  2 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ be000226   BE00~</span>
-<span class="co">#&gt;  3 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ be000227   BE00~</span>
-<span class="co">#&gt;  4 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ be000228   BE00~</span>
-<span class="co">#&gt;  5 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ fr004015   FR00~</span>
-<span class="co">#&gt;  6 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ gb001308   GB00~</span>
-<span class="co">#&gt;  7 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ gb001517   GB00~</span>
-<span class="co">#&gt;  8 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ gb100299   GB10~</span>
-<span class="co">#&gt;  9 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ gb100355   GB10~</span>
-<span class="co">#&gt; 10 emodnet_wfs seabed_habitat~ https://ows.emo~ emodnet_open_m~ gb100361   GB10~</span>
-<span class="co">#&gt; # ... with 899 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
-<span class="co">#&gt; #   format &lt;chr&gt;</span></code></pre></div>
-<p>You can access information about a service using the <code>service</code> argument.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>You can get metadata about the layers available from a service.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"bathymetry"</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-bathymetry.eu/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
-<span class="co">#&gt; # A tibble: 3 x 9</span>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span>
+<span class="co">#&gt; # A tibble: 3 × 9</span>
 <span class="co">#&gt;   data_source service_name service_url layer_namespace layer_name title abstract</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 emodnet_wfs bathymetry   https://ow~ emodnet         contours   Dept~ "Genera~</span>
-<span class="co">#&gt; 2 emodnet_wfs bathymetry   https://ow~ emodnet         quality_i~ Qual~ "Repres~</span>
-<span class="co">#&gt; 3 emodnet_wfs bathymetry   https://ow~ emodnet         source_re~ Sour~ "Covera~</span>
-<span class="co">#&gt; # ... with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…</span>
+<span class="co">#&gt; 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…</span>
+<span class="co">#&gt; 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…</span>
+<span class="co">#&gt; # … with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
 <p>or you can pass a wfs client object.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bath</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 9</span>
+<span class="co">#&gt; # A tibble: 3 × 9</span>
 <span class="co">#&gt;   data_source service_name service_url layer_namespace layer_name title abstract</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 emodnet_wfs seabed_habi~ https://ow~ emodnet         contours   Dept~ "Genera~</span>
-<span class="co">#&gt; 2 emodnet_wfs seabed_habi~ https://ow~ emodnet         quality_i~ Qual~ "Repres~</span>
-<span class="co">#&gt; 3 emodnet_wfs seabed_habi~ https://ow~ emodnet         source_re~ Sour~ "Covera~</span>
-<span class="co">#&gt; # ... with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…</span>
+<span class="co">#&gt; 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…</span>
+<span class="co">#&gt; 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…</span>
+<span class="co">#&gt; # … with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
 <p>You can also get info for specific layers from wfs object:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wfs_cml</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span><span class="st">"chemistry_marine_litter"</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span>
 <span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_cml</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 21 x 9</span>
-<span class="co">#&gt;    data_source service_name   service_url    layer_namespace layer_name  title  </span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_beaches~ Beache~</span>
-<span class="co">#&gt;  2 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_tempora~ Number~</span>
-<span class="co">#&gt;  3 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_totalab~ Beach ~</span>
-<span class="co">#&gt;  4 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_materia~ Beach ~</span>
-<span class="co">#&gt;  5 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_cigaret~ Beach ~</span>
-<span class="co">#&gt;  6 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_cigaret~ Beach ~</span>
-<span class="co">#&gt;  7 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_fishing~ Beach ~</span>
-<span class="co">#&gt;  8 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_plastic~ Beach ~</span>
-<span class="co">#&gt;  9 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_beaches~ Beache~</span>
-<span class="co">#&gt; 10 emodnet_wfs seabed_habita~ https://ows.e~ ms              bl_tempora~ Number~</span>
-<span class="co">#&gt; # ... with 11 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 21 × 9</span>
+<span class="co">#&gt;    data_source service_name  service_url    layer_namespace layer_name  title   </span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…</span>
+<span class="co">#&gt;  2 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …</span>
+<span class="co">#&gt;  3 emodnet_wfs chemistry_ma… https://www.i… ms              bl_totalab… Beach L…</span>
+<span class="co">#&gt;  4 emodnet_wfs chemistry_ma… https://www.i… ms              bl_materia… Beach L…</span>
+<span class="co">#&gt;  5 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…</span>
+<span class="co">#&gt;  6 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…</span>
+<span class="co">#&gt;  7 emodnet_wfs chemistry_ma… https://www.i… ms              bl_fishing… Beach L…</span>
+<span class="co">#&gt;  8 emodnet_wfs chemistry_ma… https://www.i… ms              bl_plastic… Beach L…</span>
+<span class="co">#&gt;  9 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…</span>
+<span class="co">#&gt; 10 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …</span>
+<span class="co">#&gt; # … with 11 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span>
 
 <span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"bl_fishing_monitoring"</span>,
           <span class="st">"bl_beacheslocations_2001_2008_monitoring"</span><span class="op">)</span>
 
 <span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_layer_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 9</span>
+<span class="co">#&gt; # A tibble: 1 × 9</span>
 <span class="co">#&gt;   data_source service_name service_url layer_namespace layer_name title abstract</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 emodnet_wfs https://www~ chemistry_~ ms              bl_fishin~ Beac~ ""      </span>
-<span class="co">#&gt; # ... with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; 1 emodnet_wfs https://www… chemistry_… ms              bl_fishin… Beac… ""      </span>
+<span class="co">#&gt; # … with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
 <p>Finally, you can get details on all available services and layers from the server</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="get-wfs-layers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wfs-layers" class="anchor"></a>Get WFS layers</h2>
 <p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and the crs of outputs are standardised to <code>EPSG</code> code 4326 by default.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Download of layer 'bl_beacheslocations_2001_2008_monitoring' failed: Error in ft[[1]]: subscript out of bounds</span>
-<span class="co">#&gt; $bl_fishing_monitoring</span>
-<span class="co">#&gt; Simple feature collection with 3490 features and 15 fields</span>
-<span class="co">#&gt; geometry type:  POINT</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;    gml_id id country country_name beachcode         beachname</span>
-<span class="co">#&gt; 1    &lt;NA&gt;  1      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 2    &lt;NA&gt;  2      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 3    &lt;NA&gt;  3      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 4    &lt;NA&gt;  4      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 5    &lt;NA&gt;  5      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 6    &lt;NA&gt;  6      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 7    &lt;NA&gt;  7      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 8    &lt;NA&gt;  8      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 9    &lt;NA&gt;  9      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 10   &lt;NA&gt; 10      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt;       surveytype_class      surveytype year          surveyyear nbsurvey</span>
-<span class="co">#&gt; 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1</span>
-<span class="co">#&gt; 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2</span>
-<span class="co">#&gt; 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3</span>
-<span class="co">#&gt; 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3</span>
-<span class="co">#&gt; 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3</span>
-<span class="co">#&gt; 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3</span>
-<span class="co">#&gt;    surveylength litterreferencelist           littergroup litterabundance</span>
-<span class="co">#&gt; 1      100/1000         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 2      100/1000         UNEP_MARLIN Fishing related items             3.0</span>
-<span class="co">#&gt; 3      100/1000         UNEP_MARLIN Fishing related items            14.0</span>
-<span class="co">#&gt; 4       100/500         UNEP_MARLIN Fishing related items            12.0</span>
-<span class="co">#&gt; 5       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 6       100/500         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 7       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 8       100/500         UNEP_MARLIN Fishing related items             3.2</span>
-<span class="co">#&gt; 9       100/500         UNEP_MARLIN Fishing related items             4.6</span>
-<span class="co">#&gt; 10      100/500         UNEP_MARLIN Fishing related items             9.2</span>
-<span class="co">#&gt;                   msGeometry</span>
-<span class="co">#&gt; 1  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 2  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 3  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 4   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 5   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 6   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 7   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 8   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 9   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 10  POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $bl_beacheslocations_2001_2008_monitoring</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p>You can chage the output crs through argument <code>crs</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></code></pre></div>
+<p>You can change the output <code>crs</code> through argument <code>crs</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Download of layer 'bl_beacheslocations_2001_2008_monitoring' failed: Error in ft[[1]]: subscript out of bounds</span>
-<span class="co">#&gt; i crs transformed from 4326 to 3857</span>
-<span class="co">#&gt; $bl_fishing_monitoring</span>
-<span class="co">#&gt; Simple feature collection with 3490 features and 15 fields</span>
-<span class="co">#&gt; geometry type:  POINT</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: -5966984 ymin: 3292219 xmax: 4649942 ymax: 16721730</span>
-<span class="co">#&gt; projected CRS:  WGS 84 / Pseudo-Mercator</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;    gml_id id country country_name beachcode         beachname</span>
-<span class="co">#&gt; 1    &lt;NA&gt;  1      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 2    &lt;NA&gt;  2      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 3    &lt;NA&gt;  3      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 4    &lt;NA&gt;  4      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 5    &lt;NA&gt;  5      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 6    &lt;NA&gt;  6      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 7    &lt;NA&gt;  7      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 8    &lt;NA&gt;  8      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 9    &lt;NA&gt;  9      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 10   &lt;NA&gt; 10      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt;       surveytype_class      surveytype year          surveyyear nbsurvey</span>
-<span class="co">#&gt; 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1</span>
-<span class="co">#&gt; 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2</span>
-<span class="co">#&gt; 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3</span>
-<span class="co">#&gt; 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3</span>
-<span class="co">#&gt; 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3</span>
-<span class="co">#&gt; 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3</span>
-<span class="co">#&gt;    surveylength litterreferencelist           littergroup litterabundance</span>
-<span class="co">#&gt; 1      100/1000         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 2      100/1000         UNEP_MARLIN Fishing related items             3.0</span>
-<span class="co">#&gt; 3      100/1000         UNEP_MARLIN Fishing related items            14.0</span>
-<span class="co">#&gt; 4       100/500         UNEP_MARLIN Fishing related items            12.0</span>
-<span class="co">#&gt; 5       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 6       100/500         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 7       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 8       100/500         UNEP_MARLIN Fishing related items             3.2</span>
-<span class="co">#&gt; 9       100/500         UNEP_MARLIN Fishing related items             4.6</span>
-<span class="co">#&gt; 10      100/500         UNEP_MARLIN Fishing related items             9.2</span>
-<span class="co">#&gt;                 msGeometry</span>
-<span class="co">#&gt; 1  POINT (1374491 7762037)</span>
-<span class="co">#&gt; 2  POINT (1374491 7762037)</span>
-<span class="co">#&gt; 3  POINT (1374491 7762037)</span>
-<span class="co">#&gt; 4  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 5  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 6  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 7  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 8  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 9  POINT (1945074 8543728)</span>
-<span class="co">#&gt; 10 POINT (1945074 8543728)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $bl_beacheslocations_2001_2008_monitoring</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p>You can also extract layers directly from a WFS service The default service is <code>seabed_habitats_individual_habitat_map_and_model_datasets</code>.</p>
+<span class="co">#&gt; ℹ crs transformed to 3857</span></code></pre></div>
+<p>You can also extract layers directly from a WFS service.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+                   layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span></code></pre></div>
+<p>Layers can also be returned to a single <code>sf</code> object through argument <code>reduce_layers</code>. If <code>TRUE</code> the function will try to reduce all layers into a single <code>sf</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+                   layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span>, 
+                   reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span></code></pre></div>
+<p>If attempting to reduce fails, it will return a list with a warning:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
-<span class="co">#&gt; i crs transformed from 3857 to 4326</span>
-<span class="co">#&gt; i crs transformed from 3857 to 4326</span>
-<span class="co">#&gt; $dk003069</span>
-<span class="co">#&gt; Simple feature collection with 82 features and 8 fields</span>
-<span class="co">#&gt; geometry type:  MULTISURFACE</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="co">#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High</span>
-<span class="co">#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High</span>
-<span class="co">#&gt;    val_comm                           geom</span>
-<span class="co">#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...</span>
-<span class="co">#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $dk003070</span>
-<span class="co">#&gt; Simple feature collection with 30 features and 8 fields</span>
-<span class="co">#&gt; geometry type:  MULTISURFACE</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="co">#&gt; 1  dk003070.39886 39886 DK003070      21   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 2  dk003070.39890 39890 DK003070      25   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 3  dk003070.39882 39882 DK003070      17   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 4  dk003070.39875 39875 DK003070      10   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 5  dk003070.39881 39881 DK003070      16   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 6  dk003070.39887 39887 DK003070      22   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 7  dk003070.39885 39885 DK003070      20   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 8  dk003070.39879 39879 DK003070      14   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 9  dk003070.39867 39867 DK003070       2   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 10 dk003070.39873 39873 DK003070       8   1170 Geogenic origin       High</span>
-<span class="co">#&gt;    val_comm                           geom</span>
-<span class="co">#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span>
-<span class="co">#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((11....</span></code></pre></div>
-<p>Use argument <code>service</code> to specify the required service.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">human_activities</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span>, 
-                   layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aquaculture"</span>, <span class="st">"dredging"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-humanactivities.eu/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
-<span class="co">#&gt; Warning: crs missing. Set to default 4326</span>
-
-<span class="co">#&gt; Warning: crs missing. Set to default 4326</span>
-
-<span class="va">human_activities</span><span class="op">[[</span><span class="st">"aquaculture"</span><span class="op">]</span><span class="op">]</span>
-<span class="co">#&gt; Simple feature collection with 1 feature and 10 fields</span>
-<span class="co">#&gt; geometry type:  MULTIPOLYGON</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: -63.08829 ymin: -21.38731 xmax: 55.83663 ymax: 70.0924</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt;                                       gml_id gid legalfound</span>
-<span class="co">#&gt; 1 aquaculture.fid--15c2f9b5_17c0ddb7fcf_682d  17 2016-07-12</span>
-<span class="co">#&gt;                                                           legalfou_1 country</span>
-<span class="co">#&gt; 1 http://ebcd.org/wp-content/uploads/2017/01/Statutes-of-the-AAC.pdf    &lt;NA&gt;</span>
-<span class="co">#&gt;                      namespace   nationalle</span>
-<span class="co">#&gt; 1 Aquaculture Advisory Council Internatonal</span>
-<span class="co">#&gt;                                                 nutscode</span>
-<span class="co">#&gt; 1 AT, BE, DK, FI, FR, DE, GR, IE, IT, NL, PL, PT, ES, UK</span>
-<span class="co">#&gt;                                                                                                                 members</span>
-<span class="co">#&gt; 1 Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Netherlands, Poland, Portugal, Spain, UK</span>
-<span class="co">#&gt;                                                                            url</span>
-<span class="co">#&gt; 1 https://ec.europa.eu/fisheries/cfp/aquaculture/aquaculture-advisory-council/</span>
-<span class="co">#&gt;                         the_geom</span>
-<span class="co">#&gt; 1 MULTIPOLYGON (((55.66534 -2...</span></code></pre></div>
-<p>Layers can also be returned to a single <code>sf</code> object through argument <code>reduce_layers</code>. If <code>TRUE</code> the function will try to reduce all layers into a single <code>sf</code> and will fail if not.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span>, 
-                   reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; v WFS client created succesfully</span>
-<span class="co">#&gt; i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
-<span class="co">#&gt; i Version: '2.0.0'</span>
-<span class="co">#&gt; i crs transformed from 3857 to 4326</span>
-<span class="co">#&gt; Simple feature collection with 112 features and 8 fields</span>
-<span class="co">#&gt; geometry type:  MULTISURFACE</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="co">#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High</span>
-<span class="co">#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High</span>
-<span class="co">#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High</span>
-<span class="co">#&gt;    val_comm                           geom</span>
-<span class="co">#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...</span>
-<span class="co">#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...</span>
-<span class="co">#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((10....</span>
-<span class="co">#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span>,
+                   reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Using <code>reduce_layers = TRUE</code> is also useful for returning an <code>sf</code> object rather than a list in single layer request.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+                  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dk003069"</span><span class="op">)</span>, 
                    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Download of layer 'bl_beacheslocations_2001_2008_monitoring' failed: Error in ft[[1]]: subscript out of bounds</span>
-<span class="co">#&gt; Simple feature collection with 3490 features and 15 fields</span>
-<span class="co">#&gt; geometry type:  POINT</span>
-<span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642</span>
-<span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; First 10 features:</span>
-<span class="co">#&gt;    gml_id id country country_name beachcode         beachname</span>
-<span class="co">#&gt; 1    &lt;NA&gt;  1      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 2    &lt;NA&gt;  2      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 3    &lt;NA&gt;  3      SE       Sweden         1 Björkängs Havsbad</span>
-<span class="co">#&gt; 4    &lt;NA&gt;  4      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 5    &lt;NA&gt;  5      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 6    &lt;NA&gt;  6      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 7    &lt;NA&gt;  7      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 8    &lt;NA&gt;  8      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 9    &lt;NA&gt;  9      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt; 10   &lt;NA&gt; 10      SE       Sweden        11          Rullsand</span>
-<span class="co">#&gt;       surveytype_class      surveytype year          surveyyear nbsurvey</span>
-<span class="co">#&gt; 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1</span>
-<span class="co">#&gt; 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3</span>
-<span class="co">#&gt; 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3</span>
-<span class="co">#&gt; 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2</span>
-<span class="co">#&gt; 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3</span>
-<span class="co">#&gt; 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3</span>
-<span class="co">#&gt; 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3</span>
-<span class="co">#&gt; 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3</span>
-<span class="co">#&gt;    surveylength litterreferencelist           littergroup litterabundance</span>
-<span class="co">#&gt; 1      100/1000         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 2      100/1000         UNEP_MARLIN Fishing related items             3.0</span>
-<span class="co">#&gt; 3      100/1000         UNEP_MARLIN Fishing related items            14.0</span>
-<span class="co">#&gt; 4       100/500         UNEP_MARLIN Fishing related items            12.0</span>
-<span class="co">#&gt; 5       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 6       100/500         UNEP_MARLIN Fishing related items             5.0</span>
-<span class="co">#&gt; 7       100/500         UNEP_MARLIN Fishing related items             1.0</span>
-<span class="co">#&gt; 8       100/500         UNEP_MARLIN Fishing related items             3.2</span>
-<span class="co">#&gt; 9       100/500         UNEP_MARLIN Fishing related items             4.6</span>
-<span class="co">#&gt; 10      100/500         UNEP_MARLIN Fishing related items             9.2</span>
-<span class="co">#&gt;                   msGeometry</span>
-<span class="co">#&gt; 1  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 2  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 3  POINT (12.34726 57.00938)</span>
-<span class="co">#&gt; 4   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 5   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 6   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 7   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 8   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 9   POINT (17.4729 60.64045)</span>
-<span class="co">#&gt; 10  POINT (17.4729 60.64045)</span></code></pre></div>
+<span class="co">#&gt; ✓ WFS client created succesfully</span>
+<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span>
+<span class="co">#&gt; ℹ Version: '2.0.0'</span></code></pre></div>
 </div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
