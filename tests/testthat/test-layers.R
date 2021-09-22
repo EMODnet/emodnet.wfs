@@ -54,6 +54,16 @@ test_that("crs checking from wfs service works correctly", {
   expect_equal(sf::st_crs(l_data[[1]])$input, "+init=epsg:3034")
 })
 
+
+test_that("reduce layers on single layer returns sf", {
+  sf_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
+                               layers = "seabed_substrate_1m",
+                               cql_filter = "country='Baltic Sea'",
+                               reduce_layers = TRUE)
+
+  expect_s3_class(sf_data, c("sf", "data.frame"))
+})
+
 test_that("random layers fail", {
   expect_error(emodnet_get_layers(layers = c("randomlayer")))
 })

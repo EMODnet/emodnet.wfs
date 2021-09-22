@@ -49,7 +49,8 @@ If \code{reduce_layers = FALSE} (default), a list of \code{sf}
 objects, one element for each layer. Any layers for which download was
 unsuccessful will be NULL. If \code{reduce_layers = TRUE}, all layers are
 reduced (if possible) to a single \code{sf} containing data for all layers.
-\code{NULL} layers are ignored.
+\code{NULL} layers are ignored. \code{reduce_layers = TRUE} can also be used to return
+an \code{sf} out of a single layer request instead of a list of length 1.
 }
 \description{
 Performs an WFS getFeature request for layers from a \code{wfs} object or specified EMODnet Service. Filtering
@@ -59,5 +60,5 @@ of layer features can also be handled via ECQL language filters.
 emodnet_get_layers(layers = c("dk003069", "dk003070"))
 emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-    cql_filter = "sitename='Territory sea (12 nm)'" )
+    cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
 }

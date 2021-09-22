@@ -23,14 +23,15 @@
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
 #' reduced (if possible) to a single `sf` containing data for all layers.
-#' `NULL` layers are ignored.
+#' `NULL` layers are ignored. `reduce_layers = TRUE` can also be used to return
+#' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
 #'
 #' @examples
 #' emodnet_get_layers(layers = c("dk003069", "dk003070"))
 #' emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 #' emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-#'     cql_filter = "sitename='Territory sea (12 nm)'" )
+#'     cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
 emodnet_get_layers <- function(wfs = NULL,
                                service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                                service_version = "2.0.0", layers, crs = NULL,
@@ -75,8 +76,10 @@ emodnet_get_layers <- function(wfs = NULL,
                              Try again with {usethis::ui_code('reduce_layers = FALSE')}")
             }
         )
+    }else{
+
     }
-    standardise_crs(out, crs)
+    out <- standardise_crs(out, crs)
 }
 
 
