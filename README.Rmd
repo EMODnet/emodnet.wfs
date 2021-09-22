@@ -100,7 +100,7 @@ emodnet_get_all_wfs_info()
 
 ## Get WFS layers
 
-You can extract layers directly from a `wfs` object using layer names. All layers are downloaded as `sf` objects and the crs of outputs are standardised to `EPSG` code 4326 by default.
+You can extract layers directly from a `wfs` object using layer names. All layers are downloaded as `sf` objects and output as a list with a named element for each layer requested.
 
 ```{r}
 emodnet_get_layers(wfs = wfs_cml, layers = layers)
