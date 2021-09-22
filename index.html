@@ -269,7 +269,7 @@
 <div id="get-wfs-layers" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-wfs-layers" class="anchor"></a>Get WFS layers</h2>
-<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and the crs of outputs are standardised to <code>EPSG</code> code 4326 by default.</p>
+<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></code></pre></div>
 <p>You can change the output <code>crs</code> through argument <code>crs</code>.</p>
