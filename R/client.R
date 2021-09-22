@@ -10,7 +10,8 @@
 #'
 #' @seealso `WFSClient` in package `ows4R`.
 #' @examples
-#' wfs <- emodnet_init_wfs_client(service = "seabed_habitats_individual_habitat_map_and_model_datasets")
+#' wfs <- emodnet_init_wfs_client(
+#'        service = "seabed_habitats_individual_habitat_map_and_model_datasets")
 emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
     service <- match.arg(service, choices = EMODnetWFS::emodnet_wfs$service_name)

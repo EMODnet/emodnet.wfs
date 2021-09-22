@@ -19,7 +19,8 @@ A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Ser
 Initialise an EMODnet Seabed Habitats WFS client
 }
 \examples{
-wfs <- emodnet_init_wfs_client(service = "seabed_habitats_individual_habitat_map_and_model_datasets")
+wfs <- emodnet_init_wfs_client(
+       service = "seabed_habitats_individual_habitat_map_and_model_datasets")
 }
 \seealso{
 \code{WFSClient} in package \code{ows4R}.
