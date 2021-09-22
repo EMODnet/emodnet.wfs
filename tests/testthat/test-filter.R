@@ -1,5 +1,7 @@
+wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+
 test_that("categorical filters work", {
-    wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+
   expect_equal(emodnet_get_layers(wfs = wfs,
                                   layers = "seabed_substrate_1m",
                                   cql_filter = "country='Baltic Sea'",
