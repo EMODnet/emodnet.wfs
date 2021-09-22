@@ -138,7 +138,7 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers,
                    reduce_layers = TRUE)
 ```
 
-Using `reduce_layers = TRUE` is also useful for returning an `sf` object rather than a list in single layer requests
+Using `reduce_layers = TRUE` is also useful for returning an `sf` object rather than a list in single layer request.
 
 ```{r}
 emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
