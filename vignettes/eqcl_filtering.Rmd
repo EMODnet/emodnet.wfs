@@ -1,0 +1,171 @@
+---
+title: "EQCL feature filtering"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EQCL feature filtering}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(EMODnetWFS)
+```
+
+## Filtering by attributes
+
+
+However, by using WFS services you can request some analysis to be performed in the EMODnet servers. For example: using [CQL filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html), you can send a query that will occur on the server side. Only the information you need will be send back. 
+
+Rethinking the case before where we downloaded all the european maritime boundaries and later we filtered only the Territorial Seas, we could have retrieved directly the Territorial Seas. 
+
+First, we start a new WFS client with `emodnet_init_wfs_client`
+
+
+### Inspecting attributes
+
+Before developing filters,
+
+ To start, you might want to know the names of a layer's attributes.
+
+```{r}
+wfs <- emodnet_init_wfs_client(service = "human_activities")
+
+layer_attributes_get_names(wfs, layer = "maritimebnds")
+```
+
+All functions can also be used by providing a service name instead of a `wfs` object.
+```{r}
+layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+```
+
+The type of filtering you might want to apply will depend on the data type of each attribute. 
+
+You can inspect attribute descriptions (metadata) for a given layer with `layer_attribute_descriptions()`. 
+```{r}
+
+layer_attribute_descriptions(wfs, layer = "maritimebnds")
+```
+
+and get summaries of the values in of each attribute with `layer_attributes_summarise()`
+
+```{r}
+layer_attributes_summarise(wfs, layer = "maritimebnds")
+```
+
+
+### Filtering categorical attributes values
+
+We can filter features using categorical attributes. We might want to start by inspecting the available values. 
+```{r}
+layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+```
+
+
+
+```{r}
+layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+```
+
+```{r}
+layer_attributes_tbl(wfs, layer = "longdistancefleet")
+```
+
+
+```{r}
+emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)'" )
+```
+
+### Using `OR` and `AND` staments
+
+```{r}
+sitename_filtered <- emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)' OR sitename='Exclusive Economic Zone (200 nm) EEZ'", 
+                   reduce_layers = TRUE )
+```
+
+```{r}
+unique(sitename_filtered$sitename)
+```
+
+
+
+```{r}
+emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)' AND country='France'", 
+                   reduce_layers = TRUE )
+```
+
+
+```{r}
+wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+
+filter_sf1 <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
+                       cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
+                       reduce_layers = TRUE )
+filter_sf1
+
+```
+
+The query returns features where `country` is `Baltic Sea` and `Bulgaria` but we can see that the minimum value is below the minimum we set with our filter. That's because the `AND` filter is added only to the `country='Bulgaria'`, so while only features with `shape_length > 1` are returned where `country` is also `Bulgaria`, the filter is not applied to `shape_length` where `country` is `Baltic Sea`.
+
+```{r}
+unique(filter_sf1$country)
+
+min(filter_sf1$shape_length)
+```
+
+
+To add the `AND` filter to both `OR` filters, we can use a parenthesis:
+
+```{r}
+filter_sf2 <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
+                       cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
+                       reduce_layers = TRUE )
+
+```
+
+
+Now the minimum value is indeed above 1. However, we only get features where `country` is `'Bulgaria'`. That's because the single `Baltic Sea` feature had a `shape_length` value smaller than 1 so is filtered out.
+
+```{r}
+
+min(filter_sf2$shape_length)
+unique(filter_sf2$country)
+```
+
+Finally filtering for `shape_length < 1` returns features with `shape_length` values smaller than 1 for both `country` values.
+
+
+```{r}
+filter_sf3 <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
+                       cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
+                       reduce_layers = TRUE )
+
+```
+
+
+```{r}
+max(filter_sf3$shape_length)
+unique(filter_sf3$country)
+```
+
+
+
+
+
+
+
+
+### Advanced use
+
+There is more that can accomplished by using the EMODnet WFS services than downloading data. The EMODnetWFS package is built on top of the [ows4R](https://github.com/eblondel/ows4R) library, meaning that all the functionalities of this package are available for EMODnetWFS. The ows4R returns a special type of R object called R6. You can learn more in Hadley Wickham's chapter on R6 Objects of the [Advance R book](https://adv-r.hadley.nz/r6.html).
+
+For instance: it is not efficient to read a large dataset into R just and later subset part of it. This requires longer waiting times and more bandwidth usage, and in very large datasets it would simply not be possible. For instance, all the occurrences data available through the EMODnet Biology portal are stored in [one table](https://www.emodnet-biology.eu/emodnet-data-format): These are approximately 30 millions rows! In this case, we suggest you access the EMODnet Biology occurrence data through the [download toolbox](https://www.emodnet-biology.eu/toolbox/) or the [eurobis R package](https://github.com/lifewatch/eurobis/) instead.

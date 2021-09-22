@@ -25,6 +25,9 @@ test_that("wfs info works on wfs object", {
     expect_s3_class(layer_info_all,
                     class = c("tbl_df", "tbl", "data.frame"))
     expect_gt(nrow(layer_info_all), 0)
+    expect_equal(unique(layer_info_all$service_name),  "chemistry_marine_litter")
+    expect_equal(unique(layer_info_all$service_url),
+                 "https://www.ifremer.fr/services/wfs/emodnet_chemistry2")
 })
 
 

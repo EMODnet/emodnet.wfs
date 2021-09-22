@@ -1,0 +1,24 @@
+## code to prepare `emodnet_wfs` dataset goes here
+
+emodent_wfs <- tibble::tribble(
+    ~service_name,                                                        ~service_url,
+    "bathymetry",                             "https://ows.emodnet-bathymetry.eu/wfs",
+    "biology",                       "http://geo.vliz.be/geoserver/Emodnetbio/wfs",
+    "biology_occurrence_data",                       "http://geo.vliz.be/geoserver/Dataportal/wfs",
+    "chemistry_cdi_data_discovery_and_access_service",                "https://geo-service.maris.nl/emodnet_chemistry/wfs",
+    "chemistry_cdi_distribution_observations_per_category_and_region",            "https://geo-service.maris.nl/emodnet_chemistry_p36/wfs",
+    "chemistry_contaminants",            "https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs",
+    "chemistry_marine_litter",            "https://www.ifremer.fr/services/wfs/emodnet_chemistry2",
+    "geology_coastal_behavior",                "https://drive.emodnet-geology.eu/geoserver/tno/wfs",
+    "geology_events_and_probabilities",              "https://drive.emodnet-geology.eu/geoserver/ispra/wfs",
+    "geology_marine_minerals",                "https://drive.emodnet-geology.eu/geoserver/gsi/wfs",
+    "geology_sea_floor_bedrock",                "https://drive.emodnet-geology.eu/geoserver/bgr/wfs",
+    "geology_seabed_substrate_maps",                "https://drive.emodnet-geology.eu/geoserver/gtk/wfs",
+    "geology_submerged_landscapes",                "https://drive.emodnet-geology.eu/geoserver/bgs/wfs",
+    "human_activities",                        "https://ows.emodnet-humanactivities.eu/wfs",
+    "physics",        "https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs",
+    "seabed_habitats_general_datasets_and_products",            "https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs",
+    "seabed_habitats_individual_habitat_map_and_model_datasets", "https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs"
+)
+
+usethis::use_data(emodnet_wfs, overwrite = TRUE)

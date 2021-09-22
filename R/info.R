@@ -7,9 +7,6 @@
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
 #' @examples
-#' # Query the default service
-#' emodnet_get_wfs_info()
-#' # Query a service
 #' emodnet_get_wfs_info(service = "bathymetry")
 #' # Query a wfs object
 #' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
@@ -18,9 +15,13 @@
 #' layers <- c("bl_fishing_monitoring",
 #'            "bl_beacheslocations_monitoring")
 #' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
-emodnet_get_wfs_info <- function(wfs = NULL,
-                                 service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                                 service_version = "2.0.0") {
+emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
+
+    if(is.null(wfs) & is.null(service)){
+        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+                         Both cannot be {usethis::ui_value('NULL')}")
+    }
+
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service, service_version)
     }else{check_wfs(wfs)}
@@ -29,8 +30,8 @@ emodnet_get_wfs_info <- function(wfs = NULL,
 
     tibble::tibble(
         data_source = "emodnet_wfs",
-        service_name = service,
-        service_url = get_service_url(service),
+        service_name = get_service_name(caps$getUrl()),
+        service_url = caps$getUrl(),
         layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
         title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
         abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
@@ -75,7 +76,7 @@ emodnet_get_layer_info <- function(wfs, layers) {
 #' services from server.
 #' @export
 emodnet_get_all_wfs_info <- function() {
-    purrr::map_df(emodnet_wfs$service_name,
+    purrr::map_df(EMODnetWFS::emodnet_wfs$service_name,
                ~suppressMessages(emodnet_get_wfs_info(service = .x)))
 }
 

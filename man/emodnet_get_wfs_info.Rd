@@ -6,27 +6,22 @@
 \alias{emodnet_get_all_wfs_info}
 \title{Get WFS available layer information}
 \usage{
-emodnet_get_wfs_info(
-  wfs = NULL,
-  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-  service_version = "2.0.0"
-)
+emodnet_get_wfs_info(wfs = NULL, service = NULL, service_version = "2.0.0")
 
 emodnet_get_layer_info(wfs, layers)
 
 emodnet_get_all_wfs_info()
 }
 \arguments{
-\item{wfs}{A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.}
+\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
 
-\item{service}{the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
-Habitats WFS `"seabed_habitats_individual_habitat_map_and_model_datasets"`. For
-available services, see `emodnet_wfs`.}
+\item{service}{the EMODnet OGC WFS service name. For
+available services, see \code{emodnet_wfs}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
 
 \item{layers}{a character vector of layer names. To get info on layers, including
-`layer_name` use `emodnet_get_wfs_info()`}
+\code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 }
 \value{
 a tibble containg metadata on each layer available from the service.
@@ -39,16 +34,13 @@ Get WFS available layer information
 \item \code{emodnet_get_wfs_info}: Get info on all layers from am EMODnet WFS service.
 
 \item \code{emodnet_get_layer_info}: Get metadata for specific layers. Requires a
-`wfs` object as input.
+\code{wfs} object as input.
 
 \item \code{emodnet_get_all_wfs_info}: Get metadata on all layers and all available
 services from server.
 }}
 
 \examples{
-# Query the default service
-emodnet_get_wfs_info()
-# Query a service
 emodnet_get_wfs_info(service = "bathymetry")
 # Query a wfs object
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
