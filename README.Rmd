@@ -36,7 +36,7 @@ vignette("emodnetwfs")
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-remotes::install_github("EMODnet/EMODnetWFS", build_vignettes = TRUE)
+remotes::install_github("EMODnet/EMODnetWFS")
 ```
 ## Available services
 
@@ -58,6 +58,7 @@ View(emodnet_wfs)
 Create new WFS Client.  Specify the service using the `service` argument. 
 
 ```{r}
+
 wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
 
 wfs_bath$getUrl()
