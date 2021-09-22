@@ -6,7 +6,7 @@
 #' @inheritParams emodnet_get_wfs_info
 #' @param layers a character vector of layer names. To get info on layers, including
 #' `layer_name` use [emodnet_get_wfs_info()].
-#' @param crs integer. An EPSG code for the output crs. Defaults to 4326, corresponding to `"+proj=longlat +datum=WGS84 +no_defs"`,
+#' @param crs integer. EPSG code for the output crs. If `NULL` (default), layers are returned with original crs.
 #' @param cql_filter character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
 #' filtering statements (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>). Should be one of:
 #'  \itemize{
@@ -33,10 +33,9 @@
 #'     cql_filter = "sitename='Territory sea (12 nm)'" )
 emodnet_get_layers <- function(wfs = NULL,
                                service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                               service_version = "2.0.0", layers, crs = 4326,
+                               service_version = "2.0.0", layers, crs = NULL,
                                cql_filter = NULL, reduce_layers = FALSE,
                                suppress_warnings = FALSE) {
-    checkmate::assert_int(crs)
 
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service,
@@ -80,24 +79,60 @@ emodnet_get_layers <- function(wfs = NULL,
     standardise_crs(out, crs)
 }
 
-checkmate_crs <- function(sf, crs = 4326){
+
+check_layer_crs <- function(layer_sf, layer, wfs) {
+
+    sf_crs <- sf::st_crs(layer_sf)
+
+    if(is.na(sf_crs) | is.null(sf_crs)) {
+
+        # try to get the identifier of the default CRS for this feature type in
+        # service description CRS
+        wfs_crs <- get_layer_default_crs(layer, wfs)
+
+        if(is.na(wfs_crs) | is.null(wfs_crs)){
+            # If full crs object not available, try to get epsg number from identifier of
+            # the default CRS for this feature type in service description CRS
+            wfs_crs <- get_layer_default_crs(layer, wfs, output = "epsg.num")
+        }
+
+        if(!is.na(wfs_crs) & !is.null(wfs_crs)){
+            # If full crs object not available, try to get epsg number from identifier of
+            # the default CRS for this feature type in service description CRS
+            sf::st_crs(layer_sf) <- wfs_crs
+        }
+
+
+    }
+
+    return(layer_sf)
+
+}
+
+
+checkmate_crs <- function(sf, crs = NULL){
     if(checkmate::test_null(sf)){
         return(sf)
     }
+
     if(is.na(sf::st_crs(sf)) | is.null(sf::st_crs(sf))){
-        sf::st_crs(sf) <- crs
-        usethis::ui_warn("{usethis::ui_field('crs')} missing. Set to default {usethis::ui_value(crs)}")
-    }
-    sf_crs <- sf::st_crs(sf)$epsg
-    if(sf_crs != crs){
-        sf <- sf::st_transform(sf, crs)
-        usethis::ui_info("{usethis::ui_field('crs')} transformed from {usethis::ui_value(sf_crs)} to {usethis::ui_value(crs)}")
+        usethis::ui_warn("{usethis::ui_field('crs')} missing.")
+
+        if(!is.null(crs)){
+            sf::st_crs(sf) <- crs
+            usethis::ui_info("{Set to user specified CRS: {usethis::ui_value(crs)}.")
+        }
+    }else{
+        if(!is.null(crs)){
+                sf <- sf::st_transform(sf, crs)
+                usethis::ui_info("{usethis::ui_field('crs')} transformed from {usethis::ui_value(sf_crs)} to {usethis::ui_value(crs)}")
+        }
     }
     return(sf)
 }
 
 
-standardise_crs <- function(out, crs = 4326) {
+standardise_crs <- function(out, crs = NULL) {
 
     if(checkmate::test_class(out, "list")){
        purrr::map(out, ~checkmate_crs(.x, crs = crs))
@@ -112,7 +147,8 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL){
     if(is.null(cql_filter)){
         # get layer without cql_filter
         tryCatch(
-            layer <- wfs$getFeatures(x),
+            layer <- wfs$getFeatures(x) %>%
+                check_layer_crs(layer = x, wfs = wfs),
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
                 }
@@ -120,7 +156,8 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL){
     }else{
         # get layer using cql_filter
         tryCatch(
-            layer <- wfs$getFeatures(x, cql_filter = utils::URLencode(cql_filter)),
+            layer <- wfs$getFeatures(x, cql_filter = utils::URLencode(cql_filter)) %>%
+                check_layer_crs(layer = x, wfs = wfs),
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
                 }

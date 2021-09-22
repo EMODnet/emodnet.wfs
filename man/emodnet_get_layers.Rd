@@ -9,7 +9,7 @@ emodnet_get_layers(
   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   service_version = "2.0.0",
   layers,
-  crs = 4326,
+  crs = NULL,
   cql_filter = NULL,
   reduce_layers = FALSE,
   suppress_warnings = FALSE
@@ -27,7 +27,7 @@ available services, see \code{emodnet_wfs}.}
 \item{layers}{a character vector of layer names. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
-\item{crs}{integer. An EPSG code for the output crs. Defaults to 4326, corresponding to \code{"+proj=longlat +datum=WGS84 +no_defs"},}
+\item{crs}{integer. EPSG code for the output crs. If \code{NULL} (default), layers are returned with original crs.}
 
 \item{cql_filter}{character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
 filtering statements (\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}). Should be one of:

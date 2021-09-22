@@ -198,5 +198,3 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
         )
     }
 }
-
-

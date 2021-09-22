@@ -46,6 +46,13 @@ test_that("crs trasform works from wfs object", {
   expect_equal(3857, l_crs)
 })
 
+test_that("crs checking from wfs service works correctly", {
+  l_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
+                               layers = "seabed_substrate_1m",
+                               cql_filter = "country='Baltic Sea'")
+
+  expect_equal(sf::st_crs(l_data[[1]])$input, "+init=epsg:3034")
+})
 
 test_that("random layers fail", {
   expect_error(emodnet_get_layers(layers = c("randomlayer")))
