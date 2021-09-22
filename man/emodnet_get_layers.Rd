@@ -6,7 +6,7 @@
 \usage{
 emodnet_get_layers(
   wfs = NULL,
-  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+  service = NULL,
   service_version = "2.0.0",
   layers,
   crs = NULL,
@@ -18,8 +18,7 @@ emodnet_get_layers(
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
 
-\item{service}{the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
-Habitats WFS \code{"seabed_habitats_individual_habitat_map_and_model_datasets"}. For
+\item{service}{the EMODnet OGC WFS service name. For
 available services, see \code{emodnet_wfs}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
@@ -57,8 +56,10 @@ Performs an WFS getFeature request for layers from a \code{wfs} object or specif
 of layer features can also be handled via ECQL language filters.
 }
 \examples{
-emodnet_get_layers(layers = c("dk003069", "dk003070"))
-emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
+emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+                   layers = c("dk003069", "dk003070"))
+emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+                   layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-    cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
+                   cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
 }

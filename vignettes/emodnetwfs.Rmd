@@ -22,7 +22,7 @@ The package was designed to make EMODnet vector data layers easily accessible in
 You can install the development version of `EMODnetWFS` from GitHub with:
 
 ```{r install, eval = FALSE}
-remotes::install_github("EMODnet/EMODnetWFS", build_vignettes = TRUE)
+remotes::install_github("EMODnet/EMODnetWFS")
 ```
 
 ### Explore the EMODnet WFS services with R
@@ -114,21 +114,13 @@ emodnet_get_wfs_info(service = "human_activities")
 
 The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) seems to be `maritimebnds`. This dataset was developed based on the official [data provided by the European Environmental Agency](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) and the [Maritime Boundaries Database](https://marineregions.org/eez.php) compiled by MarineRegions.org (Flanders Marine Institute, 2019).
 
-We will call the human activities service and query directly this layer.
+The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
 
 ```{r}
 maritime_boundaries <- emodnet_get_layers(service = "human_activities", 
                                           layers = "maritimebnds", 
-                                          reduce_layers = TRUE)
-
-glimpse(maritime_boundaries)
-```
-
-
-The `sitename` variable shows the different types of boundaries. For illustration purposes, we will filter the [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
-
-```{r}
-maritime_boundaries <- maritime_boundaries %>% filter(sitename == "Territory sea (12 nm)")
+                                          reduce_layers = TRUE,
+                                          cql_filter = "sitename='Territory sea (12 nm)'")
 
 glimpse(maritime_boundaries)
 ```
@@ -145,63 +137,6 @@ We have now combined data from the Seabed Habitats and Human Activities portals.
 
 ```{r, eval = FALSE}
 emodnet_get_all_wfs_info()
-```
-
-
-
-### Advanced use
-
-There is more that can accomplished by using the EMODnet WFS services than downloading data. The EMODnetWFS package is built on top of the [ows4R](https://github.com/eblondel/ows4R) library, meaning that all the functionalities of this package are available for EMODnetWFS. The ows4R returns a special type of R object called R6. You can learn more in Hadley Wickham's chapter on R6 Objects of the [Advance R book](https://adv-r.hadley.nz/r6.html).
-
-For instance: it is not efficient to read a large dataset into R just and later subset part of it. This requires longer waiting times and morebandwidth usage, and in very large datasets it would simply not be possible. For instance, all the occurrences data available through the EMODnet Biology portal are stored in [one table](https://www.emodnet-biology.eu/emodnet-data-format): These are approximately 30 millions rows! In this case, we suggest you access the EMODnet Biology occurrence data through the [download toolbox](https://www.emodnet-biology.eu/toolbox/) or the [eurobis R package](https://github.com/lifewatch/eurobis/) instead.
-
-```{r, eval = FALSE, purl = FALSE}
-# Won't work
-emodnet_get_layers(service = "biology_occurrence_data", layers = "eurobis-obisenv")
-```
-
-
-
-However, by using WFS services you can request some analysis to be performed in the EMODnet servers. For example: using [CQL filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html), you can send a query that will occur on the server side. Only the information you need will be send back. 
-
-Rethinking the case before where we downloaded all the european maritime boundaries and later we filtered only the Territorial Seas, we could have retrieved directly the Territorial Seas. 
-
-First, we start a new WFS client with `emodnet_init_wfs_client`
-
-```{r}
-human_activities <- emodnet_init_wfs_client(service = "human_activities")
-```
-
-
-
-We can use now `getCapabilities` to see the inherited methods of the WFS client.
-
-```{r}
-human_activities_caps <- human_activities$getCapabilities()
-
-human_activities_caps
-```
-
-
-
-Select now the maritime boundaries feature using the `findFeatureTypeByName` method.
-
-```{r}
-human_activities_caps_layer <- human_activities_caps$findFeatureTypeByName("emodnet:maritimebnds")
-
-human_activities_caps_layer
-```
-
-
-
-And finally, we write a CQL filter that can be passed to the `getFeatures` method.
-
-```{r}
-cql_filter = URLencode("sitename='Territory sea (12 nm)'")
-
-maritime_boundaries_filtered <- human_activities_caps_layer$getFeatures(cql_filter = cql_filter)
-
-glimpse(maritime_boundaries_filtered)
 ```
 
 

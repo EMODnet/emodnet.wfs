@@ -14,8 +14,7 @@ layer_attribute_descriptions(
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
 
-\item{service}{the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
-Habitats WFS \code{"seabed_habitats_individual_habitat_map_and_model_datasets"}. For
+\item{service}{the EMODnet OGC WFS service name. For
 available services, see \code{emodnet_wfs}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}

@@ -1,5 +1,6 @@
 test_that("get layers works on server", {
-  l_data <- emodnet_get_layers(layers = c("dk003069", "dk003070"))
+  l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+                               layers = c("dk003069", "dk003070"))
   l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1)
@@ -14,7 +15,8 @@ test_that("get layers works on server", {
 })
 
 test_that("crs trasform works from server", {
-  l_data <- emodnet_get_layers(layers = "dk003070", crs = 4326)
+  l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+                               layers = "dk003070", crs = 4326)
   l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
   expect_length(l_crs, 1)
   expect_equal(4326, l_crs)
@@ -70,6 +72,7 @@ test_that("random layers fail", {
 
 test_that("reduce works", {
     sf_data <- emodnet_get_layers(
+      service = "seabed_habitats_individual_habitat_map_and_model_datasets",
         layers = c("dk003069", "dk003070"),
         reduce_layers = TRUE)
     expect_s3_class(sf_data, class = c("sf", "data.frame"))

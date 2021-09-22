@@ -28,16 +28,20 @@
 #' @export
 #'
 #' @examples
-#' emodnet_get_layers(layers = c("dk003069", "dk003070"))
-#' emodnet_get_layers(layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
+#' emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+#'                    layers = c("dk003069", "dk003070"))
+#' emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+#'                    layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
 #' emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-#'     cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
-emodnet_get_layers <- function(wfs = NULL,
-                               service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                               service_version = "2.0.0", layers, crs = NULL,
-                               cql_filter = NULL, reduce_layers = FALSE,
-                               suppress_warnings = FALSE) {
+#'                    cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
+emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
+                               layers, crs = NULL, cql_filter = NULL,
+                               reduce_layers = FALSE, suppress_warnings = FALSE) {
 
+    if(is.null(wfs) & is.null(service)){
+        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+                         Both cannot be {usethis::ui_value('NULL')}")
+    }
     if(is.null(wfs)){
         wfs <- emodnet_init_wfs_client(service,
                                        service_version)
