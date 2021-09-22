@@ -3,7 +3,7 @@ test_that("get layers works on server", {
   l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1)
-  expect_equal(4326, l_crs)
+  expect_equal(3857, l_crs)
   expect_equal(length(l_data), 2)
   expect_type(l_data, "list")
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
@@ -14,10 +14,10 @@ test_that("get layers works on server", {
 })
 
 test_that("crs trasform works from server", {
-  l_data <- emodnet_get_layers(layers = "dk003070", crs = 3857)
+  l_data <- emodnet_get_layers(layers = "dk003070", crs = 4326)
   l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
   expect_length(l_crs, 1)
-  expect_equal(3857, l_crs)
+  expect_equal(4326, l_crs)
 })
 
 

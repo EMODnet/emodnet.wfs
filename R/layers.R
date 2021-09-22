@@ -125,7 +125,7 @@ checkmate_crs <- function(sf, crs = NULL){
     }else{
         if(!is.null(crs)){
                 sf <- sf::st_transform(sf, crs)
-                usethis::ui_info("{usethis::ui_field('crs')} transformed from {usethis::ui_value(sf_crs)} to {usethis::ui_value(crs)}")
+                usethis::ui_info("{usethis::ui_field('crs')} transformed to {usethis::ui_value(crs)}")
         }
     }
     return(sf)
