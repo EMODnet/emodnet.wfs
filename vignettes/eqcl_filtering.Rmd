@@ -1,0 +1,113 @@
+---
+title: "EQCL feature filtering"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EQCL feature filtering}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(EMODnetWFS)
+```
+
+## Filtering by attributes
+
+### Inspecting attributes
+
+Before developing filters,
+
+ To start, you might want to know the names of a layer's attributes.
+
+```{r}
+wfs <- emodnet_init_wfs_client(service = "human_activities")
+
+layer_attributes_get_names(wfs, layer = "maritimebnds")
+```
+
+All functions can also be used by providing a service name instead of a `wfs` object.
+```{r}
+layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+```
+
+The type of filtering you might want to apply will depend on the data type of each attribute. 
+
+You can inspect attribute descriptions (metadata) for a given layer with `layer_attribute_descriptions()`. 
+```{r}
+
+layer_attribute_descriptions(wfs, layer = "maritimebnds")
+```
+
+and get summaries of the values in of each attribute with `layer_attributes_summarise()`
+
+```{r}
+layer_attributes_summarise(wfs, layer = "maritimebnds")
+```
+
+
+### Filtering categorical attributes values
+
+We can filter features using categorical attributes. We might want to start by inspecting the available values. 
+```{r}
+layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+```
+
+
+
+```{r}
+layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+```
+
+```{r}
+layer_attributes_tbl(wfs, layer = "longdistancefleet")
+```
+
+
+```{r}
+emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)'" )
+```
+
+```{r}
+sitename_filtered <- emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)' OR sitename='Exclusive Economic Zone (200 nm) EEZ'", 
+                   reduce_layers = TRUE )
+```
+
+```{r}
+unique(sitename_filtered$sitename)
+```
+
+
+```{r}
+emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   cql_filter = "sitename='Territory sea (12 nm)' AND country='France'", 
+                   reduce_layers = TRUE )
+```
+
+
+```{r}
+emodnet_get_wfs_info(wfs)
+emodnet_get_layer_info(wfs, layers = "maritimebnds")
+emodnet_get_layers(wfs, layers = "maritimebnds", 
+                   reduce_layers = TRUE )
+```
+
+
+
+```{r}
+emodnet_get_layers(wfs, layers = "windfarms")
+```
+
+```{r}
+library(EMODnetWFS)
+emodnet_get_layers(service = "human_activities", layers = "windfarms")
+```
+
