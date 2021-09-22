@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Initialise an EMODnet Seabed Habitats WFS client — emodnet_init_wfs_client • EMODnetWFS</title>
+<title>Inspect layer attribute — layer_attribute_inspect • EMODnetWFS</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Initialise an EMODnet Seabed Habitats WFS client — emodnet_init_wfs_client" />
-<meta property="og:description" content="Initialise an EMODnet Seabed Habitats WFS client" />
+<meta property="og:title" content="Inspect layer attribute — layer_attribute_inspect" />
+<meta property="og:description" content="Inspect layer attribute" />
 
 
 
@@ -126,20 +126,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Initialise an EMODnet Seabed Habitats WFS client</h1>
-    <small class="dont-index">Source: <a href='https://github.com/EMODnet/EMODnetWFS/blob/master/R/client.R'><code>R/client.R</code></a></small>
-    <div class="hidden name"><code>emodnet_init_wfs_client.Rd</code></div>
+    <h1>Inspect layer attribute</h1>
+    <small class="dont-index">Source: <a href='https://github.com/EMODnet/EMODnetWFS/blob/master/R/layer_attributes.R'><code>R/layer_attributes.R</code></a></small>
+    <div class="hidden name"><code>layer_attribute_inspect.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Initialise an EMODnet Seabed Habitats WFS client</p>
+    <p>Inspect layer attribute</p>
     </div>
 
-    <pre class="usage"><span class='fu'>emodnet_init_wfs_client</span><span class='op'>(</span><span class='va'>service</span>, service_version <span class='op'>=</span> <span class='st'>"2.0.0"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>layer_attribute_inspect</span><span class='op'>(</span>
+  wfs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  service <span class='op'>=</span> <span class='cn'>NULL</span>,
+  service_version <span class='op'>=</span> <span class='st'>"2.0.0"</span>,
+  <span class='va'>layer</span>,
+  <span class='va'>attribute</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>wfs</th>
+      <td><p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p></td>
+    </tr>
     <tr>
       <th>service</th>
       <td><p>the EMODnet OGC WFS service name. For
@@ -149,19 +159,39 @@ available services, see <code>emodnet_wfs</code>.</p></td>
       <th>service_version</th>
       <td><p>the WFS service version. Defaults to "2.0.0".</p></td>
     </tr>
+    <tr>
+      <th>layer</th>
+      <td><p>character sting of layer name. To get info on layers, including
+<code>layer_name</code> use <code><a href='emodnet_get_wfs_info.html'>emodnet_get_wfs_info()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>attribute</th>
+      <td><p>character string, name of layer attribute (variable). Use
+<code><a href='layer_attributes_get_names.html'>layer_attributes_get_names()</a></code> to get layer attribute names.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code>WFSClient</code> in package <code>ows4R</code>.</p></div>
+    <p>Detailed summary of individual attribute (variable). Particularly useful for inspecting
+factor or character variable levels or unique values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>wfs</span> <span class='op'>&lt;-</span> <span class='fu'>emodnet_init_wfs_client</span><span class='op'>(</span>
-       service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>wfs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='emodnet_init_wfs_client.html'>emodnet_init_wfs_client</a></span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'><a href='layer_attributes_get_names.html'>layer_attributes_get_names</a></span><span class='op'>(</span><span class='va'>wfs</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "objectid"   "mblszotpid" "localid"    "sitename"   "legalfound"
+#&gt;  [6] "legalfou_1" "country"    "nationalle" "nutscode"   "mblsds_mbl"
+#&gt; [11] "shape_leng" "the_geom"  </div><div class='input'><span class='fu'>layer_attribute_inspect</span><span class='op'>(</span><span class='va'>wfs</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span>, attribute <span class='op'>=</span> <span class='st'>"sitename"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                                                         .   n    percent
+#&gt;                                                  Baseline 486 0.46374046
+#&gt;                                   Contiguous zone (24 nm)  65 0.06202290
+#&gt;                                         Continental Shelf  78 0.07442748
+#&gt;                          Delimitation line between states 212 0.20229008
+#&gt;                      Exclusive Economic Zone (200 nm) EEZ  68 0.06488550
+#&gt;        Exclusive Economic Zone (200 nm) EEZ - Median Line  23 0.02194656
+#&gt;  Exclusive Economic Zone (200 nm) EEZ - Overlapping claim  14 0.01335878
+#&gt;                                           Internal waters  38 0.03625954
+#&gt;                                     Territory sea (12 nm)  64 0.06106870</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EMODnetWFS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -97,7 +97,13 @@
     <li>
       <a href="../articles/emodnetwfs.html">emodnetwfs</a>
     </li>
+    <li>
+      <a href="../articles/eqcl_filtering.html">EQCL feature filtering</a>
+    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -129,11 +135,7 @@
     <p>Get WFS available layer information</p>
     </div>
 
-    <pre class="usage"><span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span>
-  wfs <span class='op'>=</span> <span class='cn'>NULL</span>,
-  service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
-  service_version <span class='op'>=</span> <span class='st'>"2.0.0"</span>
-<span class='op'>)</span>
+    <pre class="usage"><span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span>wfs <span class='op'>=</span> <span class='cn'>NULL</span>, service <span class='op'>=</span> <span class='cn'>NULL</span>, service_version <span class='op'>=</span> <span class='st'>"2.0.0"</span><span class='op'>)</span>
 
 <span class='fu'>emodnet_get_layer_info</span><span class='op'>(</span><span class='va'>wfs</span>, <span class='va'>layers</span><span class='op'>)</span>
 
@@ -144,13 +146,12 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>wfs</th>
-      <td><p>A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.</p></td>
+      <td><p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p></td>
     </tr>
     <tr>
       <th>service</th>
-      <td><p>the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
-Habitats WFS `"seabed_habitats_individual_habitat_map_and_model_datasets"`. For
-available services, see `emodnet_wfs`.</p></td>
+      <td><p>the EMODnet OGC WFS service name. For
+available services, see <code>emodnet_wfs</code>.</p></td>
     </tr>
     <tr>
       <th>service_version</th>
@@ -159,7 +160,7 @@ available services, see `emodnet_wfs`.</p></td>
     <tr>
       <th>layers</th>
       <td><p>a character vector of layer names. To get info on layers, including
-`layer_name` use `emodnet_get_wfs_info()`</p></td>
+<code>layer_name</code> use <code>emodnet_get_wfs_info()</code>.</p></td>
     </tr>
     </table>
 
@@ -172,30 +173,13 @@ available services, see `emodnet_wfs`.</p></td>
 <ul>
 <li><p><code>emodnet_get_wfs_info</code>: Get info on all layers from am EMODnet WFS service.</p></li>
 <li><p><code>emodnet_get_layer_info</code>: Get metadata for specific layers. Requires a
-`wfs` object as input.</p></li>
+<code>wfs</code> object as input.</p></li>
 <li><p><code>emodnet_get_all_wfs_info</code>: Get metadata on all layers and all available
 services from server.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Query the default service</span>
-<span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 909 × 9</span>
-#&gt;    data_source service_name    service_url      layer_namespace layer_name title
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>
-#&gt; <span style='color: #BCBCBC;'> 1</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… be000225   BE00…
-#&gt; <span style='color: #BCBCBC;'> 2</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… be000226   BE00…
-#&gt; <span style='color: #BCBCBC;'> 3</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… be000227   BE00…
-#&gt; <span style='color: #BCBCBC;'> 4</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… be000228   BE00…
-#&gt; <span style='color: #BCBCBC;'> 5</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… fr004015   FR00…
-#&gt; <span style='color: #BCBCBC;'> 6</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… gb001308   GB00…
-#&gt; <span style='color: #BCBCBC;'> 7</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… gb001517   GB00…
-#&gt; <span style='color: #BCBCBC;'> 8</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… gb100299   GB10…
-#&gt; <span style='color: #BCBCBC;'> 9</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… gb100355   GB10…
-#&gt; <span style='color: #BCBCBC;'>10</span> emodnet_wfs seabed_habitat… https://ows.emo… emodnet_open_m… gb100361   GB10…
-#&gt; <span style='color: #949494;'># … with 899 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
-#&gt; <span style='color: #949494;'>#   format &lt;chr&gt;</span></div><div class='input'><span class='co'># Query a service</span>
-<span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"bathymetry"</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"bathymetry"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-bathymetry.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 3 × 9</span>
 #&gt;   data_source service_name service_url layer_namespace layer_name title abstract
 #&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
@@ -206,18 +190,18 @@ services from server.</p></li>
 <span class='va'>wfs_cml</span> <span class='op'>&lt;-</span> <span class='fu'><a href='emodnet_init_wfs_client.html'>emodnet_init_wfs_client</a></span><span class='op'>(</span><span class='st'>"chemistry_marine_litter"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'>emodnet_get_wfs_info</span><span class='op'>(</span><span class='va'>wfs_cml</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 21 × 9</span>
-#&gt;    data_source service_name   service_url    layer_namespace layer_name  title  
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  
-#&gt; <span style='color: #BCBCBC;'> 1</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_beaches… Beache…
-#&gt; <span style='color: #BCBCBC;'> 2</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_tempora… Number…
-#&gt; <span style='color: #BCBCBC;'> 3</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_totalab… Beach …
-#&gt; <span style='color: #BCBCBC;'> 4</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_materia… Beach …
-#&gt; <span style='color: #BCBCBC;'> 5</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_cigaret… Beach …
-#&gt; <span style='color: #BCBCBC;'> 6</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_cigaret… Beach …
-#&gt; <span style='color: #BCBCBC;'> 7</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_fishing… Beach …
-#&gt; <span style='color: #BCBCBC;'> 8</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_plastic… Beach …
-#&gt; <span style='color: #BCBCBC;'> 9</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_beaches… Beache…
-#&gt; <span style='color: #BCBCBC;'>10</span> emodnet_wfs seabed_habita… https://ows.e… ms              bl_tempora… Number…
+#&gt;    data_source service_name  service_url    layer_namespace layer_name  title   
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
+#&gt; <span style='color: #BCBCBC;'> 2</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
+#&gt; <span style='color: #BCBCBC;'> 3</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_totalab… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 4</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_materia… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 5</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 6</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 7</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_fishing… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 8</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_plastic… Beach L…
+#&gt; <span style='color: #BCBCBC;'> 9</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
+#&gt; <span style='color: #BCBCBC;'>10</span> emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
 #&gt; <span style='color: #949494;'># … with 11 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 #&gt; <span style='color: #949494;'>#   format &lt;chr&gt;</span></div><div class='input'><span class='co'># Get info for specific layers from wfs object</span>
 <span class='va'>layers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"bl_fishing_monitoring"</span>,

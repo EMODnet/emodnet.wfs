@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Get EMODnet WFS layers — emodnet_get_layers" />
-<meta property="og:description" content="Get EMODnet WFS layers" />
+<meta property="og:description" content="Performs an WFS getFeature request for layers from a wfs object or specified EMODnet Service. Filtering
+of layer features can also be handled via ECQL language filters." />
 
 
 
@@ -72,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EMODnetWFS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -97,7 +98,13 @@
     <li>
       <a href="../articles/emodnetwfs.html">emodnetwfs</a>
     </li>
+    <li>
+      <a href="../articles/eqcl_filtering.html">EQCL feature filtering</a>
+    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -126,15 +133,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Get EMODnet WFS layers</p>
+    <p>Performs an WFS getFeature request for layers from a <code>wfs</code> object or specified EMODnet Service. Filtering
+of layer features can also be handled via ECQL language filters.</p>
     </div>
 
     <pre class="usage"><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>
   wfs <span class='op'>=</span> <span class='cn'>NULL</span>,
-  service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+  service <span class='op'>=</span> <span class='cn'>NULL</span>,
   service_version <span class='op'>=</span> <span class='st'>"2.0.0"</span>,
   <span class='va'>layers</span>,
-  crs <span class='op'>=</span> <span class='fl'>4326</span>,
+  crs <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cql_filter <span class='op'>=</span> <span class='cn'>NULL</span>,
   reduce_layers <span class='op'>=</span> <span class='cn'>FALSE</span>,
   suppress_warnings <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
@@ -144,13 +153,12 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>wfs</th>
-      <td><p>A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.</p></td>
+      <td><p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p></td>
     </tr>
     <tr>
       <th>service</th>
-      <td><p>the EMODnet OGC WFS service name. Defaults to the EMODnet Seabed
-Habitats WFS `"seabed_habitats_individual_habitat_map_and_model_datasets"`. For
-available services, see `emodnet_wfs`.</p></td>
+      <td><p>the EMODnet OGC WFS service name. For
+available services, see <code>emodnet_wfs</code>.</p></td>
     </tr>
     <tr>
       <th>service_version</th>
@@ -159,15 +167,26 @@ available services, see `emodnet_wfs`.</p></td>
     <tr>
       <th>layers</th>
       <td><p>a character vector of layer names. To get info on layers, including
-`layer_name` use `emodnet_get_wfs_info()`</p></td>
+<code>layer_name</code> use <code><a href='emodnet_get_wfs_info.html'>emodnet_get_wfs_info()</a></code>.</p></td>
     </tr>
     <tr>
       <th>crs</th>
-      <td><p>integer. An EPSG code for the outpur crs. Defaults to 4326, corresponsing to `"+proj=longlat +datum=WGS84 +no_defs"`</p></td>
+      <td><p>integer. EPSG code for the output crs. If <code>NULL</code> (default), layers are returned with original crs.</p></td>
+    </tr>
+    <tr>
+      <th>cql_filter</th>
+      <td><p>character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
+filtering statements (<a href='https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html'>https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html</a>). Should be one of:</p><ul>
+<li><p>character string or character vector of length 1. Filter will be recycled across all layers requested</p></li>
+<li><p>character vector of length equal to the length of layers. Filter will be matched to layers sequentially.
+Elements containing <code>NA</code> are ignored</p></li>
+<li><p>named character vector. Each filter will be applied to the layer corresponding to the filter name.
+Filters with names that do not correspond to any layers are ignored. Layers without corresponding filters are returned whole</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>reduce_layers</th>
-      <td><p>whether to reduce output layers to a single `sf` object.</p></td>
+      <td><p>whether to reduce output layers to a single <code>sf</code> object.</p></td>
     </tr>
     <tr>
       <th>suppress_warnings</th>
@@ -178,102 +197,21 @@ download failures.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If `reduce_layers = FALSE` (default), a list of `sf`
+    <p>If <code>reduce_layers = FALSE</code> (default), a list of <code>sf</code>
 objects, one element for each layer. Any layers for which download was
-unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
-reduced (if possible) to a single `sf` containing data for all layers.
-`NULL` layers are ignored.</p>
+unsuccessful will be NULL. If <code>reduce_layers = TRUE</code>, all layers are
+reduced (if possible) to a single <code>sf</code> containing data for all layers.
+<code>NULL</code> layers are ignored. <code>reduce_layers = TRUE</code> can also be used to return
+an <code>sf</code> out of a single layer request instead of a list of length 1.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading ISO 19139 XML schemas...</span></div><div class='output co'>#&gt; <span class='message'>Loading ISO 19115 codelists...</span></div><div class='output co'>#&gt; <span class='message'>Loading IANA mime types...</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> <span style='color: #00BB00;'>crs</span> transformed from <span style='color: #0000BB;'>3857</span> to <span style='color: #0000BB;'>4326</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> <span style='color: #00BB00;'>crs</span> transformed from <span style='color: #0000BB;'>3857</span> to <span style='color: #0000BB;'>4326</span></span></div><div class='output co'>#&gt; $dk003069
-#&gt; Simple feature collection with 82 features and 8 fields
-#&gt; Geometry type: MULTISURFACE
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: 9.575308 ymin: 54.77378 xmax: 10.24418 ymax: 55.12132
-#&gt; Geodetic CRS:  WGS 84
-#&gt; First 10 features:
-#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
-#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
-#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High
-#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
-#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
-#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
-#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
-#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
-#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
-#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
-#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High
-#&gt;    val_comm                           geom
-#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...
-#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...
-#&gt; 
-#&gt; $dk003070
-#&gt; Simple feature collection with 30 features and 8 fields
-#&gt; Geometry type: MULTISURFACE
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: 11.39643 ymin: 54.55514 xmax: 11.96792 ymax: 54.63234
-#&gt; Geodetic CRS:  WGS 84
-#&gt; First 10 features:
-#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
-#&gt; 1  dk003070.39886 39886 DK003070      21   1170 Geogenic origin       High
-#&gt; 2  dk003070.39890 39890 DK003070      25   1170 Geogenic origin       High
-#&gt; 3  dk003070.39882 39882 DK003070      17   1170 Geogenic origin       High
-#&gt; 4  dk003070.39875 39875 DK003070      10   1170 Geogenic origin       High
-#&gt; 5  dk003070.39881 39881 DK003070      16   1170 Geogenic origin       High
-#&gt; 6  dk003070.39887 39887 DK003070      22   1170 Geogenic origin       High
-#&gt; 7  dk003070.39885 39885 DK003070      20   1170 Geogenic origin       High
-#&gt; 8  dk003070.39879 39879 DK003070      14   1170 Geogenic origin       High
-#&gt; 9  dk003070.39867 39867 DK003070       2   1170 Geogenic origin       High
-#&gt; 10 dk003070.39873 39873 DK003070       8   1170 Geogenic origin       High
-#&gt;    val_comm                           geom
-#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((11....
-#&gt; </div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span>, reduce_layers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> <span style='color: #00BB00;'>crs</span> transformed from <span style='color: #0000BB;'>3857</span> to <span style='color: #0000BB;'>4326</span></span></div><div class='output co'>#&gt; Simple feature collection with 112 features and 8 fields
-#&gt; Geometry type: MULTISURFACE
-#&gt; Dimension:     XY
-#&gt; Bounding box:  xmin: 9.575308 ymin: 54.55514 xmax: 11.96792 ymax: 55.12132
-#&gt; Geodetic CRS:  WGS 84
-#&gt; First 10 features:
-#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
-#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
-#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High
-#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
-#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
-#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
-#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
-#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
-#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
-#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
-#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High
-#&gt;    val_comm                           geom
-#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...
-#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((9.8...
-#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((10....
-#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((9.9...</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+                   layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading ISO 19139 XML schemas...</span></div><div class='output co'>#&gt; <span class='message'>Loading ISO 19115 codelists...</span></div><div class='output co'>#&gt; <span class='message'>Loading IANA mime types...</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+                   layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span>, reduce_layers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layers <span class='op'>=</span> <span class='st'>"maritimebnds"</span>,
+                   cql_filter <span class='op'>=</span> <span class='st'>"sitename='Territory sea (12 nm)'"</span>, reduce_layers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EMODnetWFS</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -56,7 +56,13 @@
 <li>
       <a href="../articles/emodnetwfs.html">emodnetwfs</a>
     </li>
+    <li>
+      <a href="../articles/eqcl_filtering.html">EQCL feature filtering</a>
+    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -102,7 +108,7 @@
 <a href="#installation" class="anchor"></a>Installation</h3>
 <p>You can install the development version of <code>EMODnetWFS</code> from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="explore-the-emodnet-wfs-services-with-r" class="section level3">
 <h3 class="hasAnchor">
@@ -183,7 +189,7 @@
 <code class="sourceCode R"><span class="va">habitats_directive_layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">seabed_wfs_client</span>, 
                                                 layers <span class="op">=</span> <span class="va">habitats_directive_layer_names</span>, 
                                                 reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  
-<span class="co">#&gt; ℹ crs transformed from 3035 to 4326</span>
+
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span>
 <span class="co">#&gt; [1] "sf"         "data.frame"</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span>
@@ -197,7 +203,7 @@
 <span class="co">#&gt; $ country_code        &lt;chr&gt; "Denmark", "Spain", "Spain", "Portugal", "Portugal…</span>
 <span class="co">#&gt; $ habitat_code_uri    &lt;chr&gt; "http://dd.eionet.europa.eu/vocabulary/art17_2018/…</span>
 <span class="co">#&gt; $ habitat_description &lt;chr&gt; "Sandbanks which are slightly covered by sea water…</span>
-<span class="co">#&gt; $ geom                &lt;MULTISURFACE [°]&gt; MULTISURFACE (POLYGON ((8.0..., MULTI…</span></code></pre></div>
+<span class="co">#&gt; $ geom                &lt;MULTISURFACE [m]&gt; MULTISURFACE (POLYGON ((420..., MULTI…</span></code></pre></div>
 <p>Run the following code to have a quick look at the layers geometries</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Transform to Polygon geometry type from Multisurface</span>
@@ -234,34 +240,15 @@
 <span class="co">#&gt; # … with 91 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span></code></pre></div>
 <p>The <code>layer_name</code> for the <a href="https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries">maritime boundaries</a> seems to be <code>maritimebnds</code>. This dataset was developed based on the official <a href="https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries">data provided by the European Environmental Agency</a> and the <a href="https://marineregions.org/eez.php">Maritime Boundaries Database</a> compiled by MarineRegions.org (Flanders Marine Institute, 2019).</p>
-<p>We will call the human activities service and query directly this layer.</p>
+<p>The <code>sitename</code> variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only <a href="https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm">Territorial Seas</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">maritime_boundaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span>, 
                                           layers <span class="op">=</span> <span class="st">"maritimebnds"</span>, 
-                                          reduce_layers <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+                                          reduce_layers <span class="op">=</span> <span class="cn">TRUE</span>,
+                                          cql_filter <span class="op">=</span> <span class="st">"sitename='Territory sea (12 nm)'"</span><span class="op">)</span>
 <span class="co">#&gt; ✔ WFS client created succesfully</span>
 <span class="co">#&gt; ℹ Service: 'https://ows.emodnet-humanactivities.eu/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
-<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">maritime_boundaries</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 1,048</span>
-<span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ gml_id     &lt;chr&gt; "maritimebnds.1", "maritimebnds.2", "maritimebnds.3", "mari…</span>
-<span class="co">#&gt; $ objectid   &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, …</span>
-<span class="co">#&gt; $ mblszotpid &lt;int&gt; 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,…</span>
-<span class="co">#&gt; $ localid    &lt;dbl&gt; 49469, 49471, 49472, 49473, 49474, 49475, 49476, 49478, 494…</span>
-<span class="co">#&gt; $ sitename   &lt;chr&gt; "Internal waters", "Internal waters", "Internal waters", "I…</span>
-<span class="co">#&gt; $ legalfound &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ legalfou_1 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
-<span class="co">#&gt; $ country    &lt;chr&gt; "Germany", "Bulgaria", "Croatia", "Denmark", "Estonia", "Fi…</span>
-<span class="co">#&gt; $ nationalle &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
-<span class="co">#&gt; $ nutscode   &lt;chr&gt; "DE", "BG", "HR", "DK", "EE", "FI", "FR", "IE", "IT", "LV",…</span>
-<span class="co">#&gt; $ mblsds_mbl &lt;chr&gt; "In www.marineregions.org", "In www.marineregions.org", "In…</span>
-<span class="co">#&gt; $ shape_leng &lt;dbl&gt; 54.8403979, 4.5441870, 59.1587891, 77.2555152, 44.5001023, …</span>
-<span class="co">#&gt; $ the_geom   &lt;MULTICURVE [°]&gt; MULTICURVE (LINESTRING (11...., MULTICURVE (LINE…</span></code></pre></div>
-<p>The <code>sitename</code> variable shows the different types of boundaries. For illustration purposes, we will filter the <a href="https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm">Territorial Seas</a>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">maritime_boundaries</span> <span class="op">&lt;-</span> <span class="va">maritime_boundaries</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">sitename</span> <span class="op">==</span> <span class="st">"Territory sea (12 nm)"</span><span class="op">)</span>
-
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">maritime_boundaries</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 64</span>
 <span class="co">#&gt; Columns: 13</span>
@@ -279,147 +266,11 @@
 <span class="co">#&gt; $ shape_leng &lt;dbl&gt; 12.005746, 1.949563, 2.072975, 1.837879, 27.878496, 13.6428…</span>
 <span class="co">#&gt; $ the_geom   &lt;MULTICURVE [°]&gt; MULTICURVE (LINESTRING (23...., MULTICURVE (LINE…</span></code></pre></div>
 <p>Add the maritime boundaries to the previous map with this line.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">map</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mapview/man/mapView.html">mapview</a></span><span class="op">(</span><span class="va">maritime_boundaries</span><span class="op">)</span></code></pre></div>
 <p>We have now combined data from the Seabed Habitats and Human Activities portals. However, there is more! EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="advanced-use" class="section level3">
-<h3 class="hasAnchor">
-<a href="#advanced-use" class="anchor"></a>Advanced use</h3>
-<p>There is more that can accomplished by using the EMODnet WFS services than downloading data. The EMODnetWFS package is built on top of the <a href="https://github.com/eblondel/ows4R">ows4R</a> library, meaning that all the functionalities of this package are available for EMODnetWFS. The ows4R returns a special type of R object called R6. You can learn more in Hadley Wickham’s chapter on R6 Objects of the <a href="https://adv-r.hadley.nz/r6.html">Advance R book</a>.</p>
-<p>For instance: it is not efficient to read a large dataset into R just and later subset part of it. This requires longer waiting times and morebandwidth usage, and in very large datasets it would simply not be possible. For instance, all the occurrences data available through the EMODnet Biology portal are stored in <a href="https://www.emodnet-biology.eu/emodnet-data-format">one table</a>: These are approximately 30 millions rows! In this case, we suggest you access the EMODnet Biology occurrence data through the <a href="https://www.emodnet-biology.eu/toolbox/">download toolbox</a> or the <a href="https://github.com/lifewatch/eurobis/">eurobis R package</a> instead.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Won't work</span>
-<span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology_occurrence_data"</span>, layers <span class="op">=</span> <span class="st">"eurobis-obisenv"</span><span class="op">)</span></code></pre></div>
-<p>However, by using WFS services you can request some analysis to be performed in the EMODnet servers. For example: using <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html">CQL filters</a>, you can send a query that will occur on the server side. Only the information you need will be send back.</p>
-<p>Rethinking the case before where we downloaded all the european maritime boundaries and later we filtered only the Territorial Seas, we could have retrieved directly the Territorial Seas.</p>
-<p>First, we start a new WFS client with <code>emodnet_init_wfs_client</code></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">human_activities</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span><span class="op">)</span>
-<span class="co">#&gt; ✔ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'https://ows.emodnet-humanactivities.eu/wfs'</span>
-<span class="co">#&gt; ℹ Version: '2.0.0'</span></code></pre></div>
-<p>We can use now <code>getCapabilities</code> to see the inherited methods of the WFS client.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">human_activities_caps</span> <span class="op">&lt;-</span> <span class="va">human_activities</span><span class="op">$</span><span class="fu">getCapabilities</span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">human_activities_caps</span>
-<span class="co">#&gt; &lt;WFSCapabilities&gt;</span>
-<span class="co">#&gt;   Inherits from: &lt;OWSCapabilities&gt;</span>
-<span class="co">#&gt;   Public:</span>
-<span class="co">#&gt;     attrs: list</span>
-<span class="co">#&gt;     clone: function (deep = FALSE) </span>
-<span class="co">#&gt;     defaults: list</span>
-<span class="co">#&gt;     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE) </span>
-<span class="co">#&gt;     ERROR: function (text) </span>
-<span class="co">#&gt;     findFeatureTypeByName: function (expr, exact = TRUE) </span>
-<span class="co">#&gt;     getClass: function () </span>
-<span class="co">#&gt;     getClassName: function () </span>
-<span class="co">#&gt;     getFeatureTypes: function (pretty = FALSE) </span>
-<span class="co">#&gt;     getOperationsMetadata: function () </span>
-<span class="co">#&gt;     getOWSVersion: function () </span>
-<span class="co">#&gt;     getRequest: function () </span>
-<span class="co">#&gt;     getService: function () </span>
-<span class="co">#&gt;     getServiceIdentification: function () </span>
-<span class="co">#&gt;     getServiceProvider: function () </span>
-<span class="co">#&gt;     getServiceVersion: function () </span>
-<span class="co">#&gt;     getUrl: function () </span>
-<span class="co">#&gt;     INFO: function (text) </span>
-<span class="co">#&gt;     initialize: function (url, version, logger = NULL) </span>
-<span class="co">#&gt;     logger: function (type, text) </span>
-<span class="co">#&gt;     loggerType: NULL</span>
-<span class="co">#&gt;     verbose.debug: FALSE</span>
-<span class="co">#&gt;     verbose.info: FALSE</span>
-<span class="co">#&gt;     WARN: function (text) </span>
-<span class="co">#&gt;     wrap: FALSE</span>
-<span class="co">#&gt;   Private:</span>
-<span class="co">#&gt;     featureTypes: list</span>
-<span class="co">#&gt;     fetchFeatureTypes: function (xmlObj, version) </span>
-<span class="co">#&gt;     operationsMetadata: OWSOperationsMetadata, R6</span>
-<span class="co">#&gt;     owsVersion: 1.1</span>
-<span class="co">#&gt;     request: OWSGetCapabilities, OWSRequest, OGCAbstractObject, R6</span>
-<span class="co">#&gt;     service: WFS</span>
-<span class="co">#&gt;     serviceIdentification: OWSServiceIdentification, R6</span>
-<span class="co">#&gt;     serviceProvider: OWSServiceProvider, R6</span>
-<span class="co">#&gt;     serviceVersion: 2.0.0</span>
-<span class="co">#&gt;     system_fields: verbose.info verbose.debug loggerType wrap attrs defaults</span>
-<span class="co">#&gt;     url: https://ows.emodnet-humanactivities.eu/wfs</span>
-<span class="co">#&gt;     xmlElement: NULL</span>
-<span class="co">#&gt;     xmlNamespace: NULL</span>
-<span class="co">#&gt;     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")</span></code></pre></div>
-<p>Select now the maritime boundaries feature using the <code>findFeatureTypeByName</code> method.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">human_activities_caps_layer</span> <span class="op">&lt;-</span> <span class="va">human_activities_caps</span><span class="op">$</span><span class="fu">findFeatureTypeByName</span><span class="op">(</span><span class="st">"emodnet:maritimebnds"</span><span class="op">)</span>
-
-<span class="va">human_activities_caps_layer</span>
-<span class="co">#&gt; &lt;WFSFeatureType&gt;</span>
-<span class="co">#&gt;   Inherits from: &lt;OGCAbstractObject&gt;</span>
-<span class="co">#&gt;   Public:</span>
-<span class="co">#&gt;     attrs: list</span>
-<span class="co">#&gt;     clone: function (deep = FALSE) </span>
-<span class="co">#&gt;     defaults: list</span>
-<span class="co">#&gt;     description: NULL</span>
-<span class="co">#&gt;     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE) </span>
-<span class="co">#&gt;     ERROR: function (text) </span>
-<span class="co">#&gt;     features: NULL</span>
-<span class="co">#&gt;     getAbstract: function () </span>
-<span class="co">#&gt;     getBoundingBox: function () </span>
-<span class="co">#&gt;     getClass: function () </span>
-<span class="co">#&gt;     getClassName: function () </span>
-<span class="co">#&gt;     getDefaultCRS: function () </span>
-<span class="co">#&gt;     getDescription: function (pretty = FALSE) </span>
-<span class="co">#&gt;     getFeatures: function (...) </span>
-<span class="co">#&gt;     getKeywords: function () </span>
-<span class="co">#&gt;     getName: function () </span>
-<span class="co">#&gt;     getTitle: function () </span>
-<span class="co">#&gt;     INFO: function (text) </span>
-<span class="co">#&gt;     initialize: function (xmlObj, capabilities, version, logger = NULL) </span>
-<span class="co">#&gt;     logger: function (type, text) </span>
-<span class="co">#&gt;     loggerType: NULL</span>
-<span class="co">#&gt;     verbose.debug: FALSE</span>
-<span class="co">#&gt;     verbose.info: FALSE</span>
-<span class="co">#&gt;     WARN: function (text) </span>
-<span class="co">#&gt;     wrap: FALSE</span>
-<span class="co">#&gt;   Private:</span>
-<span class="co">#&gt;     abstract: These conventions list the coordinates of points which a ...</span>
-<span class="co">#&gt;     capabilities: WFSCapabilities, OWSCapabilities, OGCAbstractObject, R6</span>
-<span class="co">#&gt;     defaultCRS: crs</span>
-<span class="co">#&gt;     fetchFeatureType: function (xmlObj, version) </span>
-<span class="co">#&gt;     gmlIdAttributeName: gml_id</span>
-<span class="co">#&gt;     keywords: features maritimebnds</span>
-<span class="co">#&gt;     name: emodnet:maritimebnds</span>
-<span class="co">#&gt;     system_fields: verbose.info verbose.debug loggerType wrap attrs defaults</span>
-<span class="co">#&gt;     title: Maritime Boundaries</span>
-<span class="co">#&gt;     url: https://ows.emodnet-humanactivities.eu/wfs</span>
-<span class="co">#&gt;     version: 2.0.0</span>
-<span class="co">#&gt;     WGS84BoundingBox: -73.2688140869141 4.5029821395874 35.9677352905273 76.06 ...</span>
-<span class="co">#&gt;     xmlElement: NULL</span>
-<span class="co">#&gt;     xmlNamespace: NULL</span>
-<span class="co">#&gt;     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")</span></code></pre></div>
-<p>And finally, we write a CQL filter that can be passed to the <code>getFeatures</code> method.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cql_filter</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/URLencode.html">URLencode</a></span><span class="op">(</span><span class="st">"sitename='Territory sea (12 nm)'"</span><span class="op">)</span>
-
-<span class="va">maritime_boundaries_filtered</span> <span class="op">&lt;-</span> <span class="va">human_activities_caps_layer</span><span class="op">$</span><span class="fu">getFeatures</span><span class="op">(</span>cql_filter <span class="op">=</span> <span class="va">cql_filter</span><span class="op">)</span>
-
-<span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">maritime_boundaries_filtered</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 64</span>
-<span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ gml_id     &lt;chr&gt; "maritimebnds.49", "maritimebnds.58", "maritimebnds.59", "m…</span>
-<span class="co">#&gt; $ objectid   &lt;dbl&gt; 49, 58, 59, 60, 61, 62, 54, 55, 56, 57, 39, 40, 41, 42, 44,…</span>
-<span class="co">#&gt; $ mblszotpid &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span>
-<span class="co">#&gt; $ localid    &lt;dbl&gt; 49024, 49064, 49065, 49066, 49087, 49099, 49034, 49036, 490…</span>
-<span class="co">#&gt; $ sitename   &lt;chr&gt; "Territory sea (12 nm)", "Territory sea (12 nm)", "Territor…</span>
-<span class="co">#&gt; $ legalfound &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</span>
-<span class="co">#&gt; $ legalfou_1 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
-<span class="co">#&gt; $ country    &lt;chr&gt; "Latvia", "France", "France", "France", "Spain", "Cyprus", …</span>
-<span class="co">#&gt; $ nationalle &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span>
-<span class="co">#&gt; $ nutscode   &lt;chr&gt; "LV", "FR", "FR", "FR", "ES", "CY", "SE", "UK", "FR", "FR",…</span>
-<span class="co">#&gt; $ mblsds_mbl &lt;chr&gt; "In www.marineregions.org", "In www.marineregions.org", "In…</span>
-<span class="co">#&gt; $ shape_leng &lt;dbl&gt; 12.005746, 1.949563, 2.072975, 1.837879, 27.878496, 13.6428…</span>
-<span class="co">#&gt; $ the_geom   &lt;MULTICURVE&gt; MULTICURVE (LINESTRING (23...., MULTICURVE (LINESTRI…</span></code></pre></div>
 </div>
 </div>
 <div id="more-information" class="section level2">
