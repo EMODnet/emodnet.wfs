@@ -84,6 +84,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
     }
     out <- standardise_crs(out, crs)
+    return(out)
 }
 
 
