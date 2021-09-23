@@ -207,11 +207,135 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
                    layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading ISO 19139 XML schemas...</span></div><div class='output co'>#&gt; <span class='message'>Loading ISO 19115 codelists...</span></div><div class='output co'>#&gt; <span class='message'>Loading IANA mime types...</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
+</div><div class='output co'>#&gt; <span class='message'>Loading ISO 19139 XML schemas...</span></div><div class='output co'>#&gt; <span class='message'>Loading ISO 19115 codelists...</span></div><div class='output co'>#&gt; <span class='message'>Loading IANA mime types...</span></div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; $dk003069
+#&gt; Simple feature collection with 82 features and 8 fields
+#&gt; Geometry type: MULTISURFACE
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
+#&gt; Projected CRS: WGS 84 / Pseudo-Mercator
+#&gt; First 10 features:
+#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
+#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
+#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High
+#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
+#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
+#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
+#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
+#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
+#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
+#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
+#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High
+#&gt;    val_comm                           geom
+#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((113...
+#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((113...
+#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((110...
+#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((111...
+#&gt; 
+#&gt; $dk003070
+#&gt; Simple feature collection with 30 features and 8 fields
+#&gt; Geometry type: MULTISURFACE
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836
+#&gt; Projected CRS: WGS 84 / Pseudo-Mercator
+#&gt; First 10 features:
+#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
+#&gt; 1  dk003070.39886 39886 DK003070      21   1170 Geogenic origin       High
+#&gt; 2  dk003070.39890 39890 DK003070      25   1170 Geogenic origin       High
+#&gt; 3  dk003070.39882 39882 DK003070      17   1170 Geogenic origin       High
+#&gt; 4  dk003070.39875 39875 DK003070      10   1170 Geogenic origin       High
+#&gt; 5  dk003070.39881 39881 DK003070      16   1170 Geogenic origin       High
+#&gt; 6  dk003070.39887 39887 DK003070      22   1170 Geogenic origin       High
+#&gt; 7  dk003070.39885 39885 DK003070      20   1170 Geogenic origin       High
+#&gt; 8  dk003070.39879 39879 DK003070      14   1170 Geogenic origin       High
+#&gt; 9  dk003070.39867 39867 DK003070       2   1170 Geogenic origin       High
+#&gt; 10 dk003070.39873 39873 DK003070       8   1170 Geogenic origin       High
+#&gt;    val_comm                           geom
+#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((131...
+#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((131...
+#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((128...
+#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((130...
+#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((128...
+#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((131...
+#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((131...
+#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((129...
+#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((129...
+#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((128...
+#&gt; </div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,
                    layers <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"dk003069"</span>, <span class='st'>"dk003070"</span><span class='op'>)</span>, reduce_layers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layers <span class='op'>=</span> <span class='st'>"maritimebnds"</span>,
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; Simple feature collection with 112 features and 8 fields
+#&gt; Geometry type: MULTISURFACE
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447
+#&gt; Projected CRS: WGS 84 / Pseudo-Mercator
+#&gt; First 10 features:
+#&gt;            gml_id   gid      gui polygon annexi         subtype confidence
+#&gt; 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
+#&gt; 2  dk003069.39847 39847 DK003069      64   1110            &lt;NA&gt;       High
+#&gt; 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
+#&gt; 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
+#&gt; 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
+#&gt; 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
+#&gt; 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
+#&gt; 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
+#&gt; 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
+#&gt; 10 dk003069.39849 39849 DK003069      66   1110            &lt;NA&gt;       High
+#&gt;    val_comm                           geom
+#&gt; 1      &lt;NA&gt; MULTISURFACE (POLYGON ((113...
+#&gt; 2      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 3      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 4      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 5      &lt;NA&gt; MULTISURFACE (POLYGON ((113...
+#&gt; 6      &lt;NA&gt; MULTISURFACE (POLYGON ((110...
+#&gt; 7      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 8      &lt;NA&gt; MULTISURFACE (POLYGON ((109...
+#&gt; 9      &lt;NA&gt; MULTISURFACE (POLYGON ((112...
+#&gt; 10     &lt;NA&gt; MULTISURFACE (POLYGON ((111...</div><div class='input'><span class='fu'>emodnet_get_layers</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layers <span class='op'>=</span> <span class='st'>"maritimebnds"</span>,
                    cql_filter <span class='op'>=</span> <span class='st'>"sitename='Territory sea (12 nm)'"</span>, reduce_layers <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div></pre>
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt; Simple feature collection with 64 features and 12 fields
+#&gt; Geometry type: MULTICURVE
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: -178.3897 ymin: -50.21866 xmax: 169.1762 ymax: 83.8746
+#&gt; CRS:           +init=epsg:4326
+#&gt; First 10 features:
+#&gt;             gml_id objectid mblszotpid localid              sitename legalfound
+#&gt; 1  maritimebnds.49       49          1   49024 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 2  maritimebnds.58       58          1   49064 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 3  maritimebnds.59       59          1   49065 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 4  maritimebnds.60       60          1   49066 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 5  maritimebnds.61       61          1   49087 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 6  maritimebnds.62       62          1   49099 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 7  maritimebnds.54       54          1   49034 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 8  maritimebnds.55       55          1   49036 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 9  maritimebnds.56       56          1   49042 Territory sea (12 nm)       &lt;NA&gt;
+#&gt; 10 maritimebnds.57       57          1   49063 Territory sea (12 nm)       &lt;NA&gt;
+#&gt;    legalfou_1        country nationalle nutscode               mblsds_mbl
+#&gt; 1        &lt;NA&gt;         Latvia       &lt;NA&gt;       LV In www.marineregions.org
+#&gt; 2        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org
+#&gt; 3        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org
+#&gt; 4        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org
+#&gt; 5        &lt;NA&gt;          Spain       &lt;NA&gt;       ES In www.marineregions.org
+#&gt; 6        &lt;NA&gt;         Cyprus       &lt;NA&gt;       CY In www.marineregions.org
+#&gt; 7        &lt;NA&gt;         Sweden       &lt;NA&gt;       SE In www.marineregions.org
+#&gt; 8        &lt;NA&gt; United Kingdom       &lt;NA&gt;       UK In www.marineregions.org
+#&gt; 9        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org
+#&gt; 10       &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org
+#&gt;    shape_leng                       the_geom
+#&gt; 1   12.005746 MULTICURVE (LINESTRING (23....
+#&gt; 2    1.949563 MULTICURVE (LINESTRING (42....
+#&gt; 3    2.072975 MULTICURVE (LINESTRING (39....
+#&gt; 4    1.837879 MULTICURVE (LINESTRING (40....
+#&gt; 5   27.878496 MULTICURVE (LINESTRING (-17...
+#&gt; 6   13.642806 MULTICURVE (LINESTRING (34....
+#&gt; 7   68.013014 MULTICURVE (LINESTRING (19....
+#&gt; 8  141.545470 MULTICURVE (LINESTRING (-13...
+#&gt; 9   70.017156 MULTICURVE (LINESTRING (169...
+#&gt; 10   5.116398 MULTICURVE (LINESTRING (55....</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

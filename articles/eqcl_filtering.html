@@ -212,7 +212,47 @@
 <span class="co">#&gt; # … with 2 more variables: members &lt;chr&gt;, url &lt;chr&gt;</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span><span class="va">wfs</span>, layers <span class="op">=</span> <span class="st">"maritimebnds"</span>, 
-                   cql_filter <span class="op">=</span> <span class="st">"sitename='Territory sea (12 nm)'"</span> <span class="op">)</span></code></pre></div>
+                   cql_filter <span class="op">=</span> <span class="st">"sitename='Territory sea (12 nm)'"</span> <span class="op">)</span>
+<span class="co">#&gt; $maritimebnds</span>
+<span class="co">#&gt; Simple feature collection with 64 features and 12 fields</span>
+<span class="co">#&gt; Geometry type: MULTICURVE</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: -178.3897 ymin: -50.21866 xmax: 169.1762 ymax: 83.8746</span>
+<span class="co">#&gt; CRS:           +init=epsg:4326</span>
+<span class="co">#&gt; First 10 features:</span>
+<span class="co">#&gt;             gml_id objectid mblszotpid localid              sitename legalfound</span>
+<span class="co">#&gt; 1  maritimebnds.49       49          1   49024 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 2  maritimebnds.58       58          1   49064 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 3  maritimebnds.59       59          1   49065 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 4  maritimebnds.60       60          1   49066 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 5  maritimebnds.61       61          1   49087 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 6  maritimebnds.62       62          1   49099 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 7  maritimebnds.54       54          1   49034 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 8  maritimebnds.55       55          1   49036 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 9  maritimebnds.56       56          1   49042 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 10 maritimebnds.57       57          1   49063 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt;    legalfou_1        country nationalle nutscode               mblsds_mbl</span>
+<span class="co">#&gt; 1        &lt;NA&gt;         Latvia       &lt;NA&gt;       LV In www.marineregions.org</span>
+<span class="co">#&gt; 2        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
+<span class="co">#&gt; 3        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
+<span class="co">#&gt; 4        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
+<span class="co">#&gt; 5        &lt;NA&gt;          Spain       &lt;NA&gt;       ES In www.marineregions.org</span>
+<span class="co">#&gt; 6        &lt;NA&gt;         Cyprus       &lt;NA&gt;       CY In www.marineregions.org</span>
+<span class="co">#&gt; 7        &lt;NA&gt;         Sweden       &lt;NA&gt;       SE In www.marineregions.org</span>
+<span class="co">#&gt; 8        &lt;NA&gt; United Kingdom       &lt;NA&gt;       UK In www.marineregions.org</span>
+<span class="co">#&gt; 9        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
+<span class="co">#&gt; 10       &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
+<span class="co">#&gt;    shape_leng                       the_geom</span>
+<span class="co">#&gt; 1   12.005746 MULTICURVE (LINESTRING (23....</span>
+<span class="co">#&gt; 2    1.949563 MULTICURVE (LINESTRING (42....</span>
+<span class="co">#&gt; 3    2.072975 MULTICURVE (LINESTRING (39....</span>
+<span class="co">#&gt; 4    1.837879 MULTICURVE (LINESTRING (40....</span>
+<span class="co">#&gt; 5   27.878496 MULTICURVE (LINESTRING (-17...</span>
+<span class="co">#&gt; 6   13.642806 MULTICURVE (LINESTRING (34....</span>
+<span class="co">#&gt; 7   68.013014 MULTICURVE (LINESTRING (19....</span>
+<span class="co">#&gt; 8  141.545470 MULTICURVE (LINESTRING (-13...</span>
+<span class="co">#&gt; 9   70.017156 MULTICURVE (LINESTRING (169...</span>
+<span class="co">#&gt; 10   5.116398 MULTICURVE (LINESTRING (55....</span></code></pre></div>
 </div>
 <div id="using-or-and-and-staments" class="section level3">
 <h3 class="hasAnchor">
@@ -228,7 +268,46 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span><span class="va">wfs</span>, layers <span class="op">=</span> <span class="st">"maritimebnds"</span>, 
                    cql_filter <span class="op">=</span> <span class="st">"sitename='Territory sea (12 nm)' AND country='France'"</span>, 
-                   reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span></code></pre></div>
+                   reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> <span class="op">)</span>
+<span class="co">#&gt; Simple feature collection with 18 features and 12 fields</span>
+<span class="co">#&gt; Geometry type: MULTICURVE</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: -178.3897 ymin: -50.21866 xmax: 169.1762 ymax: 51.26491</span>
+<span class="co">#&gt; CRS:           +init=epsg:4326</span>
+<span class="co">#&gt; First 10 features:</span>
+<span class="co">#&gt;             gml_id objectid mblszotpid localid              sitename legalfound</span>
+<span class="co">#&gt; 1  maritimebnds.58       58          1   49064 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 2  maritimebnds.59       59          1   49065 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 3  maritimebnds.60       60          1   49066 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 4  maritimebnds.56       56          1   49042 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 5  maritimebnds.57       57          1   49063 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 6  maritimebnds.45       45          1   49018 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 7  maritimebnds.66       66          1   49106 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 8  maritimebnds.67       67          1   49107 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 9  maritimebnds.68       68          1   49108 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt; 10 maritimebnds.69       69          1   49121 Territory sea (12 nm)       &lt;NA&gt;</span>
+<span class="co">#&gt;    legalfou_1 country nationalle nutscode               mblsds_mbl shape_leng</span>
+<span class="co">#&gt; 1        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   1.949563</span>
+<span class="co">#&gt; 2        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   2.072975</span>
+<span class="co">#&gt; 3        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   1.837879</span>
+<span class="co">#&gt; 4        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org  70.017156</span>
+<span class="co">#&gt; 5        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   5.116398</span>
+<span class="co">#&gt; 6        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org  65.577172</span>
+<span class="co">#&gt; 7        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   8.157558</span>
+<span class="co">#&gt; 8        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   3.691194</span>
+<span class="co">#&gt; 9        &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org  13.821110</span>
+<span class="co">#&gt; 10       &lt;NA&gt;  France       &lt;NA&gt;       FR In www.marineregions.org   1.568862</span>
+<span class="co">#&gt;                          the_geom</span>
+<span class="co">#&gt; 1  MULTICURVE (LINESTRING (42....</span>
+<span class="co">#&gt; 2  MULTICURVE (LINESTRING (39....</span>
+<span class="co">#&gt; 3  MULTICURVE (LINESTRING (40....</span>
+<span class="co">#&gt; 4  MULTICURVE (LINESTRING (169...</span>
+<span class="co">#&gt; 5  MULTICURVE (LINESTRING (55....</span>
+<span class="co">#&gt; 6  MULTICURVE (LINESTRING (9.6...</span>
+<span class="co">#&gt; 7  MULTICURVE (LINESTRING (51....</span>
+<span class="co">#&gt; 8  MULTICURVE (LINESTRING (77....</span>
+<span class="co">#&gt; 9  MULTICURVE (LINESTRING (69....</span>
+<span class="co">#&gt; 10 MULTICURVE (LINESTRING (-10...</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"geology_seabed_substrate_maps"</span><span class="op">)</span>
 <span class="co">#&gt; ✔ WFS client created succesfully</span>
