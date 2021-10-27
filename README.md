@@ -66,6 +66,9 @@ To explore available services in Rstudio use:
 View(emodnet_wfs)
 ```
 
+If you experience problems, please consult the [EMODnet OGC monitor
+](https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC%3AWFS) to check the status of services prior to opening issues in the package.
+
 ## Create Service Client
 
 Create new WFS Client. Specify the service using the `service` argument.
