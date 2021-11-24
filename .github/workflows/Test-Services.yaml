@@ -26,5 +26,6 @@ jobs:
       - name: Test Services
         run: |
           options(crayon.enabled = TRUE)
+          install.packages(".", repos = NULL, type="source")
           testthat::test_that("All services work", {lapply(EMODnetWFS::emodnet_wfs$service_name, EMODnetWFS::emodnet_init_wfs_client)})
         shell: Rscript {0}
