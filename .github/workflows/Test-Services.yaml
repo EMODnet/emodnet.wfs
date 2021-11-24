@@ -1,0 +1,30 @@
+on:
+  push:
+    branches: [ update-tests]
+
+name: Test-Services
+
+jobs:
+  Test-Services:
+    runs-on: ubuntu-20.04
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - name: Install spatial dependencies
+        run: sudo apt-get install libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+
+      - name: Install dependencies
+        run: |
+          install.packages(c("remotes", "testthat"))
+          remotes::install_deps(dependencies = TRUE)
+        shell: Rscript {0}
+
+      - name: Test Services
+        run: |
+          options(crayon.enabled = TRUE)
+          testthat::test_that("All services work", {lapply(EMODnetWFS::emodnet_wfs$service_name, EMODnetWFS::emodnet_init_wfs_client)})
+        shell: Rscript {0}
