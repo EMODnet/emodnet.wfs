@@ -170,31 +170,35 @@ available services, see <code>emodnet_wfs</code>.</p></td>
     <p>output of <code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> on the attributes (variables) in a given layer for a given service.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>layer_attributes_summarise</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt;     gml_id             objectid        mblszotpid      localid       
-#&gt;  Length:1048        Min.   :   1.0   Min.   :0.00   Min.   :    0.0  
-#&gt;  Class :character   1st Qu.: 262.8   1st Qu.:0.00   1st Qu.:  346.8  
-#&gt;  Mode  :character   Median : 524.5   Median :1.00   Median : 1745.5  
-#&gt;                     Mean   : 524.5   Mean   :1.73   Mean   : 9188.8  
-#&gt;                     3rd Qu.: 786.2   3rd Qu.:3.00   3rd Qu.: 3751.2  
-#&gt;                     Max.   :1048.0   Max.   :7.00   Max.   :62595.0  
-#&gt;                                                                      
-#&gt;    sitename           legalfound          legalfou_1          country         
-#&gt;  Length:1048        Min.   :1932-01-30   Length:1048        Length:1048       
-#&gt;  Class :character   1st Qu.:1984-11-09   Class :character   Class :character  
-#&gt;  Mode  :character   Median :2004-12-06   Mode  :character   Mode  :character  
-#&gt;                     Mean   :1999-11-21                                        
-#&gt;                     3rd Qu.:2012-12-26                                        
-#&gt;                     Max.   :2019-09-29                                        
-#&gt;                     NA's   :221                                               
-#&gt;   nationalle          nutscode          mblsds_mbl          shape_leng       
-#&gt;  Length:1048        Length:1048        Length:1048        Min.   :   0.0000  
-#&gt;  Class :character   Class :character   Class :character   1st Qu.:   0.0829  
-#&gt;  Mode  :character   Mode  :character   Mode  :character   Median :   0.5562  
-#&gt;                                                           Mean   :  13.3026  
-#&gt;                                                           3rd Qu.:   4.1102  
-#&gt;                                                           Max.   :1804.3286  
-#&gt;                                                                              </div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>layer_attributes_summarise</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #00BB00;'>✔</span> WFS client created succesfully</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     gml_id             objectid        mblszotpid      localid       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Length:1048        Min.   :   1.0   Min.   :0.00   Min.   :    0.0  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Class :character   1st Qu.: 262.8   1st Qu.:0.00   1st Qu.:  346.8  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Mode  :character   Median : 524.5   Median :1.00   Median : 1745.5  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     Mean   : 524.5   Mean   :1.73   Mean   : 9188.8  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     3rd Qu.: 786.2   3rd Qu.:3.00   3rd Qu.: 3751.2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     Max.   :1048.0   Max.   :7.00   Max.   :62595.0  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    sitename           legalfound          legalfou_1          country         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Length:1048        Min.   :1932-01-30   Length:1048        Length:1048       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Class :character   1st Qu.:1984-11-09   Class :character   Class :character  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Mode  :character   Median :2004-12-06   Mode  :character   Mode  :character  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     Mean   :1999-11-21                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     3rd Qu.:2012-12-26                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     Max.   :2019-09-29                                        </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     NA's   :221                                               </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   nationalle          nutscode          mblsds_mbl          shape_leng       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Length:1048        Length:1048        Length:1048        Min.   :   0.0000  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Class :character   Class :character   Class :character   1st Qu.:   0.0829  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  Mode  :character   Mode  :character   Mode  :character   Median :   0.5562  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                           Mean   :  13.3026  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                           3rd Qu.:   4.1102  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                           Max.   :1804.3286  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                                              </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -170,20 +170,24 @@ available services, see <code>emodnet_wfs</code>.</p></td>
     <p>data.frame containing layer attribute descriptions (metadata).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>layer_attribute_descriptions</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> WFS client created succesfully</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span></div><div class='output co'>#&gt; <span class='message'><span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span></div><div class='output co'>#&gt;          name      type minOccurs maxOccurs nillable
-#&gt; 1    objectid   numeric         0         1     TRUE
-#&gt; 2  mblszotpid   integer         0         1     TRUE
-#&gt; 3     localid   numeric         0         1     TRUE
-#&gt; 4    sitename character         0         1     TRUE
-#&gt; 5  legalfound      Date         0         1     TRUE
-#&gt; 6  legalfou_1 character         0         1     TRUE
-#&gt; 7     country character         0         1     TRUE
-#&gt; 8  nationalle character         0         1     TRUE
-#&gt; 9    nutscode character         0         1     TRUE
-#&gt; 10 mblsds_mbl character         0         1     TRUE
-#&gt; 11 shape_leng    double         0         1     TRUE
-#&gt; 12   the_geom  geometry         0         1     TRUE</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>layer_attribute_descriptions</span><span class='op'>(</span>service <span class='op'>=</span> <span class='st'>"human_activities"</span>, layer <span class='op'>=</span> <span class='st'>"maritimebnds"</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #00BB00;'>✔</span> WFS client created succesfully</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #BBBB00;'>ℹ</span> Service: <span style='color: #0000BB;'>'https://ows.emodnet-humanactivities.eu/wfs'</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> <span style='color: #BBBB00;'>ℹ</span> Version: <span style='color: #0000BB;'>'2.0.0'</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          name      type minOccurs maxOccurs nillable</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1    objectid   numeric         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2  mblszotpid   integer         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3     localid   numeric         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4    sitename character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5  legalfound      Date         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6  legalfou_1 character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7     country character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8  nationalle character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9    nutscode character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10 mblsds_mbl character         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11 shape_leng    double         0         1     TRUE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12   the_geom  geometry         0         1     TRUE</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
