@@ -262,7 +262,7 @@ min(filter_sf1$shape_length)
 To add the `AND` filter to both `OR` filters, we can use a parenthesis:
 
 ```{r}
-filter_sf2 <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
+filter_sf2 <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
                        cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
                        reduce_layers = TRUE )
 
@@ -281,7 +281,7 @@ Finally filtering for `shape_length < 1` returns features with `shape_length` va
 
 
 ```{r}
-filter_sf3 <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
+filter_sf3 <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
                        cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
                        reduce_layers = TRUE )
 
