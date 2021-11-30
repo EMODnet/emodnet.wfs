@@ -1,8 +1,8 @@
 ---
-title: "emodnetwfs"
+title: "EMODnetWFS Case Study: Accessing and mapping EMODnet data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{emodnetwfs}
+  %\VignetteIndexEntry{EMODnetWFS Case Study: Accessing and mapping EMODnet data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
