@@ -32,8 +32,11 @@ GeoServer supports the use of both CQL and ECQL in WFS requests and whenever the
 <div class="alert alert-info" role="alert">
 
 The examples provided here are only a small subset of filtering functionality available through Geoserver. Full references and further examples can be found in the following documentation:
+
 - [ECQL Reference](https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html): reference for the syntax of the ECQL language
+
 - [Filter Function Reference](https://docs.geoserver.org/stable/en/user/filter/function_reference.html): The OGC Filter Encoding specification provides a generic concept of a filter function. A filter function is a named function with any number of arguments, which can be used in a filter expression to perform specific calculations. This provides much richer expressiveness for defining filters.GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations
+
 - [CQL and ECQL Tutorial](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html) shows examples of defining filters.
 
 </div>
