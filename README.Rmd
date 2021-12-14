@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 options(timeout = 2000)
 ```
 
-# EMODnetWFS: Access EMODnet Web Feature Service data through R <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
+# EMODnetWFS: Access EMODnet Web Feature Service data through R
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -22,7 +22,7 @@ options(timeout = 2000)
 [![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=master)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation and access to the [EMODnet Web Feature Services](https://www.emodnet.eu/en/data) data in R. This package was developed by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020.
+The goal of EMODnetWFS is to allow interrogation of and access to EMODnet geographic vector data in R though the [EMODnet Web Feature Services](https://www.emodnet.eu/en/data). [Web Feature services (WFS)](https://www.ogc.org/standards/wfs) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. This package was developed by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020.
 
 You can read the product story on the EMODnet-Biology portal following [this link](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r), or read the vignette directly in R after installing the package.
 

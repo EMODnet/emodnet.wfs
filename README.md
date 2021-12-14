@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMODnetWFS: Access EMODnet Web Feature Service data through R <img src='man/figures/emodnetwfs.svg' align="right" height="200"/>
+# EMODnetWFS: Access EMODnet Web Feature Service data through R
 
 <!-- badges: start -->
 
@@ -13,10 +13,15 @@ status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](
 coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=master)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation and access to the
-[EMODnet Web Feature Services](https://www.emodnet.eu/en/data) data in
-R. This package was developed by the Sheffield University during the
-EMODnet Biology WP4 data products workshop in June 2020.
+The goal of EMODnetWFS is to allow interrogation of and access to
+EMODnet geographic vector data in R though the [EMODnet Web Feature
+Services](https://www.emodnet.eu/en/data). [Web Feature services
+(WFS)](https://www.ogc.org/standards/wfs) represent a change in the way
+geographic information is created, modified and exchanged on the
+Internet and offer direct fine-grained access to geographic information
+at the feature and feature property level. This package was developed by
+the Sheffield University during the EMODnet Biology WP4 data products
+workshop in June 2020.
 
 You can read the product story on the EMODnet-Biology portal following
 [this
@@ -66,9 +71,6 @@ To explore available services in Rstudio use:
 View(emodnet_wfs)
 ```
 
-If you experience problems, please consult the [EMODnet OGC monitor
-](https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC%3AWFS) to check the status of services prior to opening issues in the package.
-
 ## Create Service Client
 
 Create new WFS Client. Specify the service using the `service` argument.
@@ -77,9 +79,11 @@ Create new WFS Client. Specify the service using the `service` argument.
 wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
 #> Loading ISO 19139 XML schemas...
 #> Loading ISO 19115 codelists...
-#> v WFS client created succesfully
-#> i Service: 'https://ows.emodnet-bathymetry.eu/wfs'
-#> i Version: '2.0.0'
+#> Loading IANA mime types...
+#> No encoding supplied: defaulting to UTF-8.
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> ℹ Version: '2.0.0'
 
 wfs_bath$getUrl()
 #> [1] "https://ows.emodnet-bathymetry.eu/wfs"
@@ -91,64 +95,64 @@ You can get metadata about the layers available from a service.
 
 ``` r
 emodnet_get_wfs_info(service = "bathymetry")
-#> v WFS client created succesfully
-#> i Service: 'https://ows.emodnet-bathymetry.eu/wfs'
-#> i Version: '2.0.0'
-#> # A tibble: 3 x 9
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> ℹ Version: '2.0.0'
+#> # A tibble: 3 × 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs bathymetry   https://ow~ emodnet         contours   Dept~ "Genera~
-#> 2 emodnet_wfs bathymetry   https://ow~ emodnet         quality_i~ Qual~ "Repres~
-#> 3 emodnet_wfs bathymetry   https://ow~ emodnet         source_re~ Sour~ "Covera~
-#> # ... with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…
+#> 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…
+#> 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
+#> # … with 2 more variables: class <chr>, format <chr>
 ```
 
 or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bath)
-#> # A tibble: 3 x 9
+#> # A tibble: 3 × 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs bathymetry   https://ow~ emodnet         contours   Dept~ "Genera~
-#> 2 emodnet_wfs bathymetry   https://ow~ emodnet         quality_i~ Qual~ "Repres~
-#> 3 emodnet_wfs bathymetry   https://ow~ emodnet         source_re~ Sour~ "Covera~
-#> # ... with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…
+#> 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…
+#> 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
+#> # … with 2 more variables: class <chr>, format <chr>
 ```
 
 You can also get info for specific layers from wfs object:
 
 ``` r
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-#> v WFS client created succesfully
-#> i Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'
-#> i Version: '2.0.0'
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'
+#> ℹ Version: '2.0.0'
 emodnet_get_wfs_info(wfs_cml)
-#> # A tibble: 21 x 9
+#> # A tibble: 21 × 9
 #>    data_source service_name  service_url    layer_namespace layer_name  title   
 #>    <chr>       <chr>         <chr>          <chr>           <chr>       <chr>   
-#>  1 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_beaches~ Beaches~
-#>  2 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_tempora~ Number ~
-#>  3 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_totalab~ Beach L~
-#>  4 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_materia~ Beach L~
-#>  5 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_cigaret~ Beach L~
-#>  6 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_cigaret~ Beach L~
-#>  7 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_fishing~ Beach L~
-#>  8 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_plastic~ Beach L~
-#>  9 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_beaches~ Beaches~
-#> 10 emodnet_wfs chemistry_ma~ https://www.i~ ms              bl_tempora~ Number ~
-#> # ... with 11 more rows, and 3 more variables: abstract <chr>, class <chr>,
+#>  1 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
+#>  2 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
+#>  3 emodnet_wfs chemistry_ma… https://www.i… ms              bl_totalab… Beach L…
+#>  4 emodnet_wfs chemistry_ma… https://www.i… ms              bl_materia… Beach L…
+#>  5 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
+#>  6 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
+#>  7 emodnet_wfs chemistry_ma… https://www.i… ms              bl_fishing… Beach L…
+#>  8 emodnet_wfs chemistry_ma… https://www.i… ms              bl_plastic… Beach L…
+#>  9 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
+#> 10 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
+#> # … with 11 more rows, and 3 more variables: abstract <chr>, class <chr>,
 #> #   format <chr>
 
 layers <- c("bl_fishing_monitoring",
           "bl_beacheslocations_2001_2008_monitoring")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
-#> # A tibble: 1 x 9
+#> # A tibble: 1 × 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs https://www~ chemistry_~ ms              bl_fishin~ Beac~ ""      
-#> # ... with 2 more variables: class <chr>, format <chr>
+#> 1 emodnet_wfs https://www… chemistry_… ms              bl_fishin… Beac… ""      
+#> # … with 2 more variables: class <chr>, format <chr>
 ```
 
 Finally, you can get details on all available services and layers from
@@ -168,10 +172,10 @@ named element for each layer requested.
 emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> $bl_fishing_monitoring
 #> Simple feature collection with 3490 features and 15 fields
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
-#> geographic CRS: WGS 84
+#> Geometry type: POINT
+#> Dimension:     XY
+#> Bounding box:  xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
+#> Geodetic CRS:  WGS 84
 #> First 10 features:
 #>    gml_id id country country_name beachcode         beachname
 #> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
@@ -223,13 +227,13 @@ You can change the output `crs` through argument `crs`.
 
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
-#> i crs transformed to 3857
+#> ℹ crs transformed to 3857
 #> $bl_fishing_monitoring
 #> Simple feature collection with 3490 features and 15 fields
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: -5966984 ymin: 3292219 xmax: 4649942 ymax: 16721730
-#> projected CRS:  WGS 84 / Pseudo-Mercator
+#> Geometry type: POINT
+#> Dimension:     XY
+#> Bounding box:  xmin: -5966984 ymin: 3292219 xmax: 4649942 ymax: 16721730
+#> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>    gml_id id country country_name beachcode         beachname
 #> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
@@ -282,15 +286,15 @@ You can also extract layers directly from a WFS service.
 ``` r
 emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                    layers = c("dk003069", "dk003070"))
-#> v WFS client created succesfully
-#> i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
-#> i Version: '2.0.0'
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
+#> ℹ Version: '2.0.0'
 #> $dk003069
 #> Simple feature collection with 82 features and 8 fields
-#> geometry type:  MULTISURFACE
-#> dimension:      XY
-#> bbox:           xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
-#> projected CRS:  WGS 84 / Pseudo-Mercator
+#> Geometry type: MULTISURFACE
+#> Dimension:     XY
+#> Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
+#> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>            gml_id   gid      gui polygon annexi         subtype confidence
 #> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
@@ -317,10 +321,10 @@ emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_d
 #> 
 #> $dk003070
 #> Simple feature collection with 30 features and 8 fields
-#> geometry type:  MULTISURFACE
-#> dimension:      XY
-#> bbox:           xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836
-#> projected CRS:  WGS 84 / Pseudo-Mercator
+#> Geometry type: MULTISURFACE
+#> Dimension:     XY
+#> Bounding box:  xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836
+#> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>            gml_id   gid      gui polygon annexi         subtype confidence
 #> 1  dk003070.39886 39886 DK003070      21   1170 Geogenic origin       High
@@ -354,14 +358,14 @@ into a single `sf`.
 emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                    layers = c("dk003069", "dk003070"), 
                    reduce_layers = TRUE)
-#> v WFS client created succesfully
-#> i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
-#> i Version: '2.0.0'
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
+#> ℹ Version: '2.0.0'
 #> Simple feature collection with 112 features and 8 fields
-#> geometry type:  MULTISURFACE
-#> dimension:      XY
-#> bbox:           xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447
-#> projected CRS:  WGS 84 / Pseudo-Mercator
+#> Geometry type: MULTISURFACE
+#> Dimension:     XY
+#> Bounding box:  xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447
+#> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>            gml_id   gid      gui polygon annexi         subtype confidence
 #> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
@@ -393,10 +397,10 @@ If attempting to reduce fails, it will return a list with a warning:
 emodnet_get_layers(wfs = wfs_cml, layers = layers,
                    reduce_layers = TRUE)
 #> Simple feature collection with 3490 features and 15 fields
-#> geometry type:  POINT
-#> dimension:      XY
-#> bbox:           xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
-#> geographic CRS: WGS 84
+#> Geometry type: POINT
+#> Dimension:     XY
+#> Bounding box:  xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
+#> Geodetic CRS:  WGS 84
 #> First 10 features:
 #>    gml_id id country country_name beachcode         beachname
 #> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
@@ -451,14 +455,14 @@ rather than a list in single layer request.
 emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
                   layers = c("dk003069"), 
                    reduce_layers = TRUE)
-#> v WFS client created succesfully
-#> i Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
-#> i Version: '2.0.0'
+#> ✓ WFS client created succesfully
+#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
+#> ℹ Version: '2.0.0'
 #> Simple feature collection with 82 features and 8 fields
-#> geometry type:  MULTISURFACE
-#> dimension:      XY
-#> bbox:           xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
-#> projected CRS:  WGS 84 / Pseudo-Mercator
+#> Geometry type: MULTISURFACE
+#> Dimension:     XY
+#> Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
+#> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>            gml_id   gid      gui polygon annexi         subtype confidence
 #> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
