@@ -1,0 +1,7 @@
+url: "https://emodnet.github.io/EMODnetWFS/"
+
+home:
+  title: Access EMODnet Web Feature Service data through R
+
+template:
+  bootstrap: 5
