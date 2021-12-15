@@ -16,8 +16,15 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
     service <- match.arg(service, choices = EMODnetWFS::emodnet_wfs$service_name)
 
-    wfs <- suppressWarnings(ows4R::WFSClient$new(get_service_url(service),
-                         serviceVersion = service_version))
+    tryCatch(
+        wfs <- suppressWarnings(ows4R::WFSClient$new(get_service_url(service),
+                                                     serviceVersion = service_version)),
+        error = function(e){
+            resource <- subset(emodnet_wfs$service_monitor, emodnet_wfs$service_name == service)
+            check_service(resource = resource)
+        }
+
+    )
 
     check_wfs(wfs)
     usethis::ui_done("WFS client created succesfully")
@@ -46,5 +53,53 @@ get_service_name <- function(service_url) {
                          choices = EMODnetWFS::emodnet_wfs$service_url)
 
     EMODnetWFS::emodnet_wfs$service_name[EMODnetWFS::emodnet_wfs$service_url == service_url]
+}
+
+
+check_service <- function(host = "monitor.emodnet.eu", resource){
+    usethis::ui_info("Checking WFS service status:")
+
+    # Is there internet connection?
+    if(curl::has_internet()){
+        usethis::ui_done("Internet connection available.")
+
+        # Is the tool up?
+        if(!is.null(curl::nslookup(host, error = FALSE))){
+            msg <- paste("Monitor tool at", host, "is available")
+            usethis::ui_done(msg)
+
+            # Is the service working?
+            service_url <- paste0("https://", host)
+            service_json <- paste0(service_url, "/resource/", as.character(resource), "/json")
+            service_response <- jsonlite::fromJSON(service_json)
+
+            msg <- paste0(service_response$title, ". Last run: ", service_response$last_run, ".")
+
+            if(service_response$status){
+                msg <- paste("Service available:", msg)
+                usethis::ui_done(msg)
+                # out <- TRUE
+            }else if(!service_response$status){
+                msg <- paste("Service currently not available:", msg)
+                usethis::ui_oops(msg)
+            }else{stop()}
+
+
+        }else{
+            msg <- paste("Monitor tool at", host, "is currently not available.")
+            usethis::ui_oops(msg)
+        }
+
+    }else{
+        usethis::ui_oops("Internet connection not available.")
+    }
+
+    # Logical to indicate if service is currently available
+    # if(!exists("out")){
+    #     out <- FALSE
+    # }
+    #
+    # return(out)
+
 }
 
