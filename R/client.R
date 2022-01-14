@@ -15,23 +15,31 @@
 emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
     service <- match.arg(service, choices = EMODnetWFS::emodnet_wfs$service_name)
+    service_url <- get_service_url(service)
+
+    # Request as a function to be reused if something fails.
+    create_client <- function(){
+
+        wfs <- suppressWarnings(ows4R::WFSClient$new(service_url,
+                                                     serviceVersion = service_version))
+
+        check_wfs(wfs)
+        usethis::ui_done("WFS client created succesfully")
+        usethis::ui_info("Service: {usethis::ui_value(wfs$getUrl())}")
+        usethis::ui_info("Version: {usethis::ui_value(wfs$getVersion())}")
+
+        wfs
+    }
 
     tryCatch(
-        wfs <- suppressWarnings(ows4R::WFSClient$new(get_service_url(service),
-                                                     serviceVersion = service_version)),
-        error = function(e){
-            resource <- subset(emodnet_wfs$service_monitor, emodnet_wfs$service_name == service)
-            check_service(resource = resource)
-        }
+        create_client(),
 
+        error = function(e){
+            check_service(perform_http_request(service_url))
+        }
     )
 
-    check_wfs(wfs)
-    usethis::ui_done("WFS client created succesfully")
-    usethis::ui_info("Service: {usethis::ui_value(wfs$getUrl())}")
-    usethis::ui_info("Version: {usethis::ui_value(wfs$getVersion())}")
 
-    wfs
 }
 
 check_wfs <- function(wfs) {
@@ -56,50 +64,50 @@ get_service_name <- function(service_url) {
 }
 
 
-check_service <- function(host = "monitor.emodnet.eu", resource){
-    usethis::ui_info("Checking WFS service status:")
+# Checks if there is internet and performs an HTTP GET request
+perform_http_request <- function(service_url){
+    usethis::ui_oops("WFS client creation failed.")
+    usethis::ui_info("Service: {usethis::ui_value(service_url)}")
 
-    # Is there internet connection?
-    if(curl::has_internet()){
-        usethis::ui_done("Internet connection available.")
-
-        # Is the tool up?
-        if(!is.null(curl::nslookup(host, error = FALSE))){
-            msg <- paste("Monitor tool at", host, "is available")
-            usethis::ui_done(msg)
-
-            # Is the service working?
-            service_url <- paste0("https://", host)
-            service_json <- paste0(service_url, "/resource/", as.character(resource), "/json")
-            service_response <- jsonlite::fromJSON(service_json)
-
-            msg <- paste0(service_response$title, ". Last run: ", service_response$last_run, ".")
-
-            if(service_response$status){
-                msg <- paste("Service available:", msg)
-                usethis::ui_done(msg)
-                # out <- TRUE
-            }else if(!service_response$status){
-                msg <- paste("Service currently not available:", msg)
-                usethis::ui_oops(msg)
-            }else{stop()}
-
-
-        }else{
-            msg <- paste("Monitor tool at", host, "is currently not available.")
-            usethis::ui_oops(msg)
-        }
-
-    }else{
-        usethis::ui_oops("Internet connection not available.")
+    if(!curl::has_internet()){
+        usethis::ui_info("There is no internet connection")
+        return(NULL)
     }
 
-    # Logical to indicate if service is currently available
-    # if(!exists("out")){
-    #     out <- FALSE
-    # }
-    #
-    # return(out)
+    service_url %>%
+        paste0("?request=GetCapabilities") %>%
+        httr::GET()
 
 }
+
+
+# Checks if there is internet connection and HTTP status of the service
+# If fails returns FALSE, if there is internet and HTTP status is successful then return TRUE
+check_service <- function(request){
+
+    # Raise the GetCapabilities throws a bad HTTP status
+    if(httr::http_error(request)){
+        usethis::ui_info("HTTP Status: {crayon::red(httr::http_status(request)$message)}")
+        usethis::ui_line()
+
+        # Check if monitor tool is up, and then ask if wants to browse the app
+        if(!is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))){
+            if(usethis::ui_yeah("Browse the EMODnet OGC monitor?")){
+                browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+            }
+        }
+
+        return(NULL)
+
+    # If no HTTP status, something else is wrong
+    }else if(!httr::http_error(request)){
+        usethis::ui_info("HTTP Status: {crayon::green(httr::http_status(request)$message)}")
+        create_client()
+        usethis::ui_stop("An exception has occured. Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}")
+    }
+
+}
+
+
+
 
