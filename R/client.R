@@ -17,7 +17,6 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
     service <- match.arg(service, choices = EMODnetWFS::emodnet_wfs$service_name)
     service_url <- get_service_url(service)
 
-    # Request as a function to be reused if something fails.
     create_client <- function(){
 
         wfs <- suppressWarnings(ows4R::WFSClient$new(service_url,
@@ -70,7 +69,7 @@ perform_http_request <- function(service_url){
     usethis::ui_info("Service: {usethis::ui_value(service_url)}")
 
     if(!curl::has_internet()){
-        usethis::ui_info("There is no internet connection")
+        usethis::ui_info("Reason: There is no internet connection")
         return(NULL)
     }
 
@@ -91,7 +90,7 @@ check_service <- function(request){
         usethis::ui_line()
 
         # Check if monitor tool is up, and then ask if wants to browse the app
-        if(!is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))){
+        if(interactive() & !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))){
             if(usethis::ui_yeah("Browse the EMODnet OGC monitor?")){
                 browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
             }
@@ -107,6 +106,7 @@ check_service <- function(request){
     }
 
 }
+
 
 
 
