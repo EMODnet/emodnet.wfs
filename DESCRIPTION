@@ -52,7 +52,8 @@ Imports:
     sf,
     janitor,
     curl,
-    jsonlite
+    jsonlite,
+    httr
 URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 VignetteBuilder: knitr
