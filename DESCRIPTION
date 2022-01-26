@@ -36,7 +36,8 @@ Suggests:
     dplyr,
     mapview,
     testthis,
-    webmockr
+    webmockr,
+    withr
 RoxygenNote: 7.1.1
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0),
     PROJ (>= 4.8.0)
@@ -53,7 +54,8 @@ Imports:
     janitor,
     curl,
     jsonlite,
-    httr
+    httr,
+    utils
 URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 VignetteBuilder: knitr

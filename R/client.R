@@ -68,7 +68,14 @@ perform_http_request <- function(service_url){
     usethis::ui_oops("WFS client creation failed.")
     usethis::ui_info("Service: {usethis::ui_value(service_url)}")
 
-    if(!curl::has_internet()){
+    has_internet <- function() {
+        if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
+            return(FALSE)
+        }
+        curl::has_internet()
+    }
+
+    if(!has_internet()){
         usethis::ui_info("Reason: There is no internet connection")
         return(NULL)
     }
@@ -84,15 +91,18 @@ perform_http_request <- function(service_url){
 # If fails returns FALSE, if there is internet and HTTP status is successful then return TRUE
 check_service <- function(request){
 
-    # Raise the GetCapabilities throws a bad HTTP status
+    if(is.null(request)){
+        return(NULL)
+    }
+
     if(httr::http_error(request)){
         usethis::ui_info("HTTP Status: {crayon::red(httr::http_status(request)$message)}")
         usethis::ui_line()
 
-        # Check if monitor tool is up, and then ask if wants to browse the app
-        if(interactive() & !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))){
+        is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
+        if(interactive() & is_monitor_up){
             if(usethis::ui_yeah("Browse the EMODnet OGC monitor?")){
-                browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+                utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
             }
         }
 
