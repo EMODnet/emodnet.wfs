@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r, include=FALSE}
+library(httptest)
+start_vignette("ecql_filtering")
+```
 
 So far, we've demonstrated using `EMODnetWFS` to request complete layers.
 
@@ -35,7 +39,7 @@ The examples provided here are only a small subset of filtering functionality av
 
 - [ECQL Reference](https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html): reference for the syntax of the ECQL language
 
-- [Filter Function Reference](https://docs.geoserver.org/stable/en/user/filter/function_reference.html): The OGC Filter Encoding specification provides a generic concept of a filter function. A filter function is a named function with any number of arguments, which can be used in a filter expression to perform specific calculations. This provides much richer expressiveness for defining filters.GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations
+- [Filter Function Reference](https://docs.geoserver.org/stable/en/user/filter/function_reference.html): The OGC Filter Encoding specification provides a generic concept of a filter function. A filter function is a named function with any number of arguments, which can be used in a filter expression to perform specific calculations. This provides much richer expressiveness for defining filters. GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations
 
 - [CQL and ECQL Tutorial](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html) shows examples of defining filters.
 
@@ -308,3 +312,7 @@ unique(filter_sf3$country)
 There is more that can accomplished by using the EMODnet WFS services than downloading data. The EMODnetWFS package is built on top of the [ows4R](https://github.com/eblondel/ows4R) library, meaning that all the functionalities of this package are available for EMODnetWFS. The ows4R returns a special type of R object called R6. You can learn more in Hadley Wickham's chapter on R6 Objects of the [Advance R book](https://adv-r.hadley.nz/r6.html).
 
 For instance: it is not efficient to read a large dataset into R just and later subset part of it. This requires longer waiting times and more bandwidth usage, and in very large datasets it would simply not be possible. For instance, all the occurrences data available through the EMODnet Biology portal are stored in [one table](https://www.emodnet-biology.eu/emodnet-data-format): These are approximately 30 millions rows! In this case, we suggest you access the EMODnet Biology occurrence data through the [download toolbox](https://www.emodnet-biology.eu/toolbox/) or the [eurobis R package](https://github.com/lifewatch/eurobis/) instead.
+
+```{r, include=FALSE}
+end_vignette()
+```

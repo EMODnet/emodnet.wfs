@@ -5,3 +5,7 @@
 attic/*
 docs/*
 inst/doc
+!attic/layer_sizes.csv
+!attic/query_layer_sizes.R
+tests/testthat/*/*
+vignettes/*/*
