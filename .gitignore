@@ -5,4 +5,5 @@
 attic/*
 docs/*
 inst/doc
-
+/doc/
+/Meta/

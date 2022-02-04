@@ -7,3 +7,9 @@
 ^attic$
 ^docs$
 ^data-raw$
+^vignettes/articles$
+^_pkgdown\.yml$
+^pkgdown$
+^logo\.svg$
+^doc$
+^Meta$

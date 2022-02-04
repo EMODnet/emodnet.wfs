@@ -53,7 +53,7 @@ test_that("crs checking from wfs service works correctly", {
                                layers = "seabed_substrate_1m",
                                cql_filter = "country='Baltic Sea'")
 
-  expect_equal(sf::st_crs(l_data[[1]])$input, "+init=epsg:3034")
+  expect_equal(sf::st_crs(l_data[[1]])$input, "epsg:3034")
 })
 
 
