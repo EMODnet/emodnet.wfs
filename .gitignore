@@ -9,3 +9,5 @@ inst/doc
 !attic/query_layer_sizes.R
 tests/testthat/*/*
 vignettes/*/*
+/doc/
+/Meta/
