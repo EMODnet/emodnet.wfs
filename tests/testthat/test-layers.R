@@ -90,4 +90,3 @@ with_mock_dir("reduce_single_layer", {
     expect_s3_class(sf_data, c("sf", "data.frame"))
   })
 })
-

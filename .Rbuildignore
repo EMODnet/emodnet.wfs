@@ -10,3 +10,6 @@
 ^vignettes/articles$
 ^_pkgdown\.yml$
 ^pkgdown$
+^logo\.svg$
+^doc$
+^Meta$
