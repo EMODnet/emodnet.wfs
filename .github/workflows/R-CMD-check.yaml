@@ -100,7 +100,7 @@ jobs:
       - name: Install dependencies macOS and Linux
         if: runner.os != 'Windows'
         run: |
-          remotes::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE, type = "both")
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("codecov")
         shell: Rscript {0}
@@ -108,7 +108,7 @@ jobs:
       - name: Install dependencies Windows
         if: runner.os == 'Windows'
         run: |
-          remotes::install_deps(dependencies = TRUE, type = "binary")
+          remotes::install_deps(dependencies = TRUE, type = "both")
           remotes::install_cran("rcmdcheck")
           remotes::install_cran("codecov")
         shell: Rscript {0}
