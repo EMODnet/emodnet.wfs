@@ -93,7 +93,8 @@ jobs:
             libudunits2-dev \
             libgdal-dev \
             libgeos-dev \
-            libproj-dev
+            libproj-dev \
+            libsodium-dev
 
       - name: Install dependencies Linux
         if: runner.os == 'Linux'
