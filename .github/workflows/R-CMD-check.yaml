@@ -94,7 +94,8 @@ jobs:
             libgdal-dev \
             libgeos-dev \
             libproj-dev \
-            libsodium-dev
+            libsodium-dev \
+            libcurl4-openssl-dev
 
       - name: Install dependencies Linux
         if: runner.os == 'Linux'
