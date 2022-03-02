@@ -1,21 +1,5 @@
-#' Get WFS available layer information
-#'
-#' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
-#' @inheritParams emodnet_init_wfs_client
-#' @importFrom rlang .data
-#' @return a tibble containg metadata on each layer available from the service.
-#' @export
-#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
-#' @examples
-#' emodnet_get_wfs_info(service = "bathymetry")
-#' # Query a wfs object
-#' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-#' emodnet_get_wfs_info(wfs_cml)
-#' # Get info for specific layers from wfs object
-#' layers <- c("bl_fishing_monitoring",
-#'            "bl_beacheslocations_monitoring")
-#' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
-emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
+
+.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
 
     if(is.null(wfs) & is.null(service)){
         usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
@@ -42,12 +26,34 @@ emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "
                         sep = ":")
 
 }
-
-#' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
-#' `wfs` object as input.
-#' @inheritParams emodnet_get_layers
+#' Get WFS available layer information
+#'
+#' @rdname emodnet_get_wfs_info
+#' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
+#' @inheritParams emodnet_init_wfs_client
+#' @importFrom rlang .data
+#' @return a tibble containg metadata on each layer available from the service.
+#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
+#' @details To minimize the number of requests sent to webservices,
+#' these functions use {[memoise](https://github.com/r-lib/memoise)} to cache results
+#' inside the active R session.
+#' To clear the cache, re-start R or
+#' run `memoise::forget(emodnet_get_wfs_info)`/`memoise::forget(emodnet_get_layer_info)`.
+#' @examples
+#' emodnet_get_wfs_info(service = "bathymetry")
+#' # Query a wfs object
+#' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+#' emodnet_get_wfs_info(wfs_cml)
+#' # Get info for specific layers from wfs object
+#' layers <- c("bl_fishing_monitoring",
+#'            "bl_beacheslocations_monitoring")
+#' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+#' @importFrom memoise memoise
 #' @export
-emodnet_get_layer_info <- function(wfs, layers) {
+emodnet_get_wfs_info <- memoise::memoise(.emodnet_get_wfs_info)
+
+
+.emodnet_get_layer_info <- function(wfs, layers) {
     check_wfs(wfs)
     layers  <- match.arg(layers, choices = emodnet_get_wfs_info(wfs)$layer_name,
                          several.ok = TRUE)
@@ -71,6 +77,11 @@ emodnet_get_layer_info <- function(wfs, layers) {
                         into = c("layer_namespace", "layer_name"),
                         sep = ":")
 }
+#' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
+#' `wfs` object as input.
+#' @inheritParams emodnet_get_layers
+#' @export
+emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
 #' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available
 #' services from server.

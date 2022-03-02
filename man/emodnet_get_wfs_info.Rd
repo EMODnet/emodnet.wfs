@@ -29,10 +29,15 @@ a tibble containg metadata on each layer available from the service.
 \description{
 Get WFS available layer information
 }
+\details{
+To minimize the number of requests sent to webservices,
+these functions use {\href{https://github.com/r-lib/memoise}{memoise}} to cache results
+inside the active R session.
+To clear the cache, re-start R or
+run \code{memoise::forget(emodnet_get_wfs_info)}/\code{memoise::forget(emodnet_get_layer_info)}.
+}
 \section{Functions}{
 \itemize{
-\item \code{emodnet_get_wfs_info}: Get info on all layers from am EMODnet WFS service.
-
 \item \code{emodnet_get_layer_info}: Get metadata for specific layers. Requires a
 \code{wfs} object as input.
 
