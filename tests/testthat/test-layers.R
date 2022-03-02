@@ -1,78 +1,85 @@
 test_that("get layers works on server", {
-  l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                               layers = c("dk003069", "dk003070"))
-  l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
+    l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+        layers = c("dk003069", "dk003070"))
+    l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(3857, l_crs)
-  expect_equal(length(l_data), 2)
-  expect_type(l_data, "list")
-  expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
-  expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
-  expect_gt(nrow(l_data[[1]]), 0)
-  expect_gt(nrow(l_data[[2]]), 0)
+    expect_length(l_crs, 1)
+    expect_equal(3857, l_crs)
+    expect_equal(length(l_data), 2)
+    expect_type(l_data, "list")
+    expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
+    expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
+    expect_gt(nrow(l_data[[1]]), 0)
+    expect_gt(nrow(l_data[[2]]), 0)
 
 })
 
 test_that("crs trasform works from server", {
-  l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                               layers = "dk003070", crs = 4326)
-  l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
-  expect_length(l_crs, 1)
-  expect_equal(4326, l_crs)
+    l_data <- emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+        layers = "dk003070", crs = 4326)
+    l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
+    expect_length(l_crs, 1)
+    expect_equal(4326, l_crs)
 })
 
-
-
-wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-layers <- c("sl_fishing", "sl_plasticbags")
-
 test_that("get layers works on wfs object", {
-  l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers)
-  l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
+    wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+    layers <- c("sl_fishing", "sl_plasticbags")
+    l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers)
+    l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(4326, l_crs)
-  expect_equal(length(l_data), 2)
-  expect_type(l_data, "list")
-  expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
-  expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
-  expect_gt(nrow(l_data[[1]]), 0)
-  expect_gt(nrow(l_data[[2]]), 0)
+    expect_length(l_crs, 1)
+    expect_equal(4326, l_crs)
+    expect_equal(length(l_data), 2)
+    expect_type(l_data, "list")
+    expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
+    expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
+    expect_gt(nrow(l_data[[1]]), 0)
+    expect_gt(nrow(l_data[[2]]), 0)
 })
 
 test_that("crs trasform works from wfs object", {
-  l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
-  l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
-  expect_length(l_crs, 1)
-  expect_equal(3857, l_crs)
+    wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+    layers <- c("sl_fishing", "sl_plasticbags")
+    l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
+    l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
+    expect_length(l_crs, 1)
+    expect_equal(3857, l_crs)
 })
 
 test_that("crs checking from wfs service works correctly", {
-  l_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
-                               layers = "seabed_substrate_1m",
-                               cql_filter = "country='Baltic Sea'")
+    l_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
+        layers = "seabed_substrate_1m",
+        cql_filter = "country='Baltic Sea'")
 
-  expect_equal(sf::st_crs(l_data[[1]])$input, "epsg:3034")
+    expect_equal(sf::st_crs(l_data[[1]])$input, "epsg:3034")
 })
 
 
 test_that("reduce layers on single layer returns sf", {
-  sf_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
-                               layers = "seabed_substrate_1m",
-                               cql_filter = "country='Baltic Sea'",
-                               reduce_layers = TRUE)
+    sf_data <- emodnet_get_layers(service="geology_seabed_substrate_maps",
+        layers = "seabed_substrate_1m",
+        cql_filter = "country='Baltic Sea'",
+        reduce_layers = TRUE)
 
-  expect_s3_class(sf_data, c("sf", "data.frame"))
+    expect_s3_class(sf_data, c("sf", "data.frame"))
 })
 
-test_that("random layers fail", {
-  expect_error(emodnet_get_layers(layers = c("randomlayer")))
+test_that("emodnet_get_layers errors well when no service nor wfs", {
+    expect_snapshot_error(emodnet_get_layers(layers = c("randomlayer")))
+})
+
+test_that("emodnet_get_layers errors well when bad wfs", {
+    expect_snapshot_error(emodnet_get_layers(wfs = "a service"))
+})
+
+test_that("emodnet_get_layers errors well when bad layer", {
+    expect_snapshot_error(emodnet_get_layers(service = "human_activities", layers = "blop"))
 })
 
 test_that("reduce works", {
     sf_data <- emodnet_get_layers(
-      service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+        service = "seabed_habitats_individual_habitat_map_and_model_datasets",
         layers = c("dk003069", "dk003070"),
         reduce_layers = TRUE)
     expect_s3_class(sf_data, class = c("sf", "data.frame"))

@@ -28,15 +28,33 @@
 #' @export
 #'
 #' @examples
-#' emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-#'                    layers = c("dk003069", "dk003070"))
-#' emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-#'                    layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
-#' emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-#'                    cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
+#' \dontrun{
+#' # Layers as character vector
+#' emodnet_get_layers(
+#'   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+#'   layers = c("dk003069", "dk003070")
+#'  )
+#'
+#'  # Layers as character vector, layers to be reduced
+#' emodnet_get_layers(
+#'   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+#'   layers = c("dk003069", "dk003070"),
+#'   reduce_layers = TRUE
+#' )
+#'
+#' # Usage of cql_filter
+#' emodnet_get_layers(
+#'   service = "human_activities",
+#'   layers = "maritimebnds",
+#'   cql_filter = "sitename='Territory sea (12 nm)'",
+#'   reduce_layers = TRUE
+#' )
+#' }
 emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
                                layers, crs = NULL, cql_filter = NULL,
                                reduce_layers = FALSE, suppress_warnings = FALSE) {
+
+    # check wfs ----------------------------------------------------------------
 
     if (is.null(wfs) & is.null(service)) {
         usethis::ui_stop(
@@ -44,6 +62,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
          Both cannot be {usethis::ui_value('NULL')} at the same time."
         )
     }
+
     if (is.null(wfs)) {
         wfs <- emodnet_init_wfs_client(service, service_version)
     }
@@ -51,29 +70,34 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     check_wfs(wfs)
 
     # check layers -----------------------------------------------
-    layers <- match.arg(layers, several.ok = TRUE,
-                       choices = emodnet_get_wfs_info(wfs)$layer_name)
+    possible_layers <- emodnet_get_wfs_info(wfs)$layer_name
+    layers <- match.arg(layers, choices = possible_layers, several.ok = TRUE)
 
     # check filter vector -----------------------------------------
     cql_filter <- cql_filter %||% rep(NA, times = length(layers))
-    checkmate::testCharacter(cql_filter, min.len = 1, any.missing = TRUE)
-    if(length(cql_filter) == 1 & length(layers) > 1){
+    checkmate::assert_character(cql_filter, min.len = 1, any.missing = TRUE)
+
+    if (length(cql_filter) == 1 & length(layers) > 1){
         cql_filter <- rep(cql_filter, times = length(layers))
         usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
     }
-    if(checkmate::test_named(cql_filter)){
+
+    if (checkmate::test_named(cql_filter)){
         cql_filter <- cql_filter[layers]
     }
     checkmate::assert_character(cql_filter, len = length(layers))
 
 
-        # get features
-    out <- purrr::map2(.x = layers, .y = cql_filter, ~ews_get_layer(.x, wfs, cql_filter = .y), wfs,
-                      suppress_warnings) %>%
-         stats::setNames(layers)
+    # get features -------------------------------------------------------------
+    out <- purrr::map2(
+        .x = layers, .y = cql_filter,
+        ~ews_get_layer(.x, wfs, cql_filter = .y),
+        wfs, suppress_warnings
+    ) %>%
+        stats::setNames(layers)
 
-    # if reduce_layers = T, reduce to single sf
-    if(reduce_layers){
+    # if reduce_layers = T, reduce to single sf --------------------------------
+    if (reduce_layers) {
         tryCatch(
             out <- purrr::reduce(out, rbind),
             error = function(e) {
@@ -81,11 +105,9 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
                              Try again with {usethis::ui_code('reduce_layers = FALSE')}")
             }
         )
-    }else{
-
     }
-    out <- standardise_crs(out, crs)
-    return(out)
+
+    standardise_crs(out, crs)
 }
 
 

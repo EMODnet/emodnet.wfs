@@ -56,10 +56,21 @@ Performs an WFS getFeature request for layers from a \code{wfs} object or specif
 of layer features can also be handled via ECQL language filters.
 }
 \examples{
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"))
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"), reduce_layers = TRUE)
-emodnet_get_layers(service = "human_activities", layers = "maritimebnds",
-                   cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+emodnet_get_layers(
+  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+  layers = c("dk003069", "dk003070")
+ )
+emodnet_get_layers(
+  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
+  layers = c("dk003069", "dk003070"),
+  reduce_layers = TRUE
+)
+emodnet_get_layers(
+  service = "human_activities",
+  layers = "maritimebnds",
+  cql_filter = "sitename='Territory sea (12 nm)'",
+  reduce_layers = TRUE
+)
+\dontshow{\}) # examplesIf}
 }
