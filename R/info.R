@@ -52,10 +52,10 @@ emodnet_get_layer_info <- function(wfs, layers) {
     layers  <- match.arg(layers, choices = emodnet_get_wfs_info(wfs)$layer_name,
                          several.ok = TRUE)
 
-    caps <- wfs$getCapabilities()
+    capabilities <- wfs$getCapabilities()
 
-    wfs_layers <- purrr::map(layers,
-                             ~caps$findFeatureTypeByName(.x))
+    wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
+        unlist(recursive = FALSE)
 
     tibble::tibble(
         data_source = "emodnet_wfs",
@@ -67,9 +67,12 @@ emodnet_get_layer_info <- function(wfs, layers) {
         class = purrr::map_chr(wfs_layers, ~.x$getClassName()),
         format = "sf"
     ) %>%
-        tidyr::separate(.data$layer_name,
-                        into = c("layer_namespace", "layer_name"),
-                        sep = ":")
+        tidyr::separate(
+            .data$layer_name,
+            into = c("layer_namespace", "layer_name"),
+            sep = ":"
+        ) %>%
+        unique()
 }
 
 #' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available
