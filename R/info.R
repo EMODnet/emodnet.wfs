@@ -76,7 +76,7 @@ emodnet_get_layer_info <- function(wfs, layers) {
 #' services from server.
 #' @export
 emodnet_get_all_wfs_info <- function() {
-    purrr::map_df(EMODnetWFS::emodnet_wfs$service_name,
+    purrr::map_df(emodnet_wfs$service_name,
                ~suppressMessages(emodnet_get_wfs_info(service = .x)))
 }
 
