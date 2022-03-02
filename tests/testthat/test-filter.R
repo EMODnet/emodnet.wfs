@@ -1,43 +1,36 @@
-
 test_that("categorical filters work", {
-    wfs <- emodnet_init_wfs_client(service = "chemistry_marine_litter")
+    wfs <- emodnet_init_wfs_client(service = "biology")
 
-    simple_filter_sf <- emodnet_get_layers(
-        wfs = wfs,
-        layers = "sl_fishing",
-        cql_filter = "country='Baltic Sea'",
-        reduce_layers = TRUE
-    )
-    expect_equal(unique(simple_filter_sf$country), 'Baltic Sea')
+    with_mock_dir("mediseh_cymodocea_pnt-Grecia", {
+        simple_filter_sf <- emodnet_get_layers(
+            wfs = wfs,
+            layers = "mediseh_cymodocea_pnt",
+            cql_filter = "country='Grecia'",
+            reduce_layers = TRUE
+        )
+    })
+    expect_equal(unique(simple_filter_sf$country), 'Grecia')
 
-    or_filter_sf <- emodnet_get_layers(
-        wfs = wfs,
-        layers = "sl_fishing",
-        cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
-        reduce_layers = TRUE
-    )
-    expect_equal(unique(or_filter_sf$country), c("Bulgaria", "Baltic Sea"))
+    with_mock_dir("mediseh_cymodocea_pnt-Francia-Grecia", {
+        or_filter_sf <- emodnet_get_layers(
+            wfs = wfs,
+            layers = "mediseh_cymodocea_pnt",
+            cql_filter = "country='Francia' OR country=='Grecia'",
+            reduce_layers = TRUE
+        )
+    })
+    expect_equal(unique(or_filter_sf$country), c("Francia", "Grecia"))
 })
 
 
 test_that("numeric filters work", {
-    wfs <- emodnet_init_wfs_client(service = "chemistry_marine_litter")
-
-    num_filter_sf <- emodnet_get_layers(
-        wfs = wfs, layers = "sl_fishing",
-        cql_filter = "country='Bulgaria' AND shape_length>1",
-        reduce_layers = TRUE
-    )
-    expect_equal(unique(num_filter_sf$country), c("Bulgaria"))
-    expect_true(min(num_filter_sf$shape_length) > 1)
-
-
-    num_filter_sf <- emodnet_get_layers(
-        wfs = wfs,
-        layers = "sl_fishing",
-        cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
-        reduce_layers = TRUE
-    )
-    expect_equal(unique(num_filter_sf$country), c("Bulgaria", "Baltic Sea"))
-    expect_true(min(num_filter_sf$shape_length) < 1)
+    wfs <- emodnet_init_wfs_client(service = "biology")
+    with_mock_dir("mediseh_posidonia_nodata", {
+        num_filter_sf <- emodnet_get_layers(
+            wfs = wfs, layers = "mediseh_posidonia_nodata",
+            cql_filter = "km>400",
+            reduce_layers = TRUE
+        )
+    })
+    expect_true(min(num_filter_sf$km) > 400)
 })

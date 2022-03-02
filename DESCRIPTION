@@ -29,16 +29,17 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.6.0)
 Suggests: 
-    testthat (>= 3.0.0),
     covr,
-    knitr,
-    rmarkdown,
     dplyr,
+    httptest,
+    knitr,
     mapview,
+    rmarkdown,
+    skimr,
+    testthat (>= 3.0.0),
     testthis,
     webmockr,
-    withr,
-    skimr
+    withr
 RoxygenNote: 7.1.2
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0),
     PROJ (>= 4.8.0)
