@@ -1,5 +1,5 @@
 test_that("categorical filters work", {
-    skip_on_cran()
+    skip_if_offline()
     with_mock_dir("mediseh_cymodocea_pnt-Grecia", {
         wfs <- emodnet_init_wfs_client(service = "biology")
         simple_filter_sf <- emodnet_get_layers(
@@ -25,7 +25,7 @@ test_that("categorical filters work", {
 
 
 test_that("numeric filters work", {
-    skip_on_cran()
+    skip_if_offline()
     with_mock_dir("mediseh_posidonia_nodata", {
     wfs <- emodnet_init_wfs_client(service = "biology")
         num_filter_sf <- emodnet_get_layers(

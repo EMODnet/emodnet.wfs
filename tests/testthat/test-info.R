@@ -1,6 +1,6 @@
 test_that("wfs info works from the server for a random service", {
     skip_on_os("linux")
-    skip_on_cran()
+    skip_if_offline()
     service_name <- sample(emodnet_wfs$service_name, 1)
     info <- emodnet_get_wfs_info(service = service_name)
 
@@ -12,7 +12,7 @@ test_that("wfs info works from the server for a random service", {
 test_that("wfs all info works", {
     skip_on_os("linux")
     skip_on_ci()
-    skip_on_cran()
+    skip_if_offline()
     all_info <- emodnet_get_all_wfs_info()
     expect_s3_class(all_info, class = c("tbl_df", "tbl", "data.frame"))
     expect_gt(nrow(all_info), 0)
