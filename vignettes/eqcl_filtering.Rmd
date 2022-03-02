@@ -25,7 +25,7 @@ A more efficient approach would be to use a filter and request only the features
 
 ### CQL & ECQL Query languages.
 
-CQL (Common Query Language) is a plain-text language created for the OGC Catalog specification. GeoServer has adapted it to be an easy-to-use filtering mechanism. GeoServer actually implements a more powerful extension called ECQL (Extended CQL), which allows expressing the full range of filters that OGC Filter 1.1 can encode. ECQL is accepted in many places in GeoServer
+CQL (Common Query Language) is a plain-text language created for the OGC Catalog specification. GeoServer has adapted it to be an easy-to-use filtering mechanism. GeoServer actually implements a more powerful extension called ECQL (Extended CQL), which allows expressing the full range of filters that OGC Filter 1.1 can encode. ECQL is accepted in many places in GeoServer.
 
 GeoServer supports the use of both CQL and ECQL in WFS requests and whenever the documentation refers to CQL, ECQL syntax can be used as well.
 
@@ -41,7 +41,7 @@ The examples provided here are only a small subset of filtering functionality av
 
 </div>
 
-### Inintialise EMODnet WFS client
+### Initialise EMODnet WFS client
 
 First, let's load the library and start a new WFS client with `emodnet_init_wfs_client`.
 
