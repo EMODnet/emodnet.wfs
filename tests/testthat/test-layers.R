@@ -53,19 +53,19 @@ test_that("crs transform works from wfs object", {
 
 test_that("crs checking from wfs service works correctly", {
     l_data <- emodnet_get_layers(
-        service = "geology_seabed_substrate_maps",
-        layers = "seabed_substrate_1m",
+        service = "chemistry_marine_litter",
+        layers = "sl_fishing",
         cql_filter = "country='Baltic Sea'"
     )
 
-    expect_equal(sf::st_crs(l_data[[1]])$input, "epsg:3034")
+    expect_equal(sf::st_crs(l_data[[1]])$input, "WGS 84")
 })
 
 
 test_that("reduce layers on single layer returns sf", {
     sf_data <- emodnet_get_layers(
-        service = "geology_seabed_substrate_maps",
-        layers = "seabed_substrate_1m",
+        service = "chemistry_marine_litter",
+        layers = "sl_fishing",
         cql_filter = "country='Baltic Sea'",
         reduce_layers = TRUE
     )
