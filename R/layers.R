@@ -77,12 +77,12 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     cql_filter <- cql_filter %||% rep(NA, times = length(layers))
     checkmate::assert_character(cql_filter, min.len = 1, any.missing = TRUE)
 
-    if (length(cql_filter) == 1 & length(layers) > 1){
+    if (length(cql_filter) == 1 & length(layers) > 1) {
         cql_filter <- rep(cql_filter, times = length(layers))
         usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
     }
 
-    if (checkmate::test_named(cql_filter)){
+    if (checkmate::test_named(cql_filter)) {
         cql_filter <- cql_filter[layers]
     }
     checkmate::assert_character(cql_filter, len = length(layers))
@@ -121,13 +121,13 @@ check_layer_crs <- function(layer_sf, layer, wfs) {
         # service description CRS
         wfs_crs <- get_layer_default_crs(layer, wfs)
 
-        if(is.na(wfs_crs) | is.null(wfs_crs)){
+        if(is.na(wfs_crs) | is.null(wfs_crs)) {
             # If full crs object not available, try to get epsg number from identifier of
             # the default CRS for this feature type in service description CRS
             wfs_crs <- get_layer_default_crs(layer, wfs, output = "epsg.num")
         }
 
-        if(!is.na(wfs_crs) & !is.null(wfs_crs)){
+        if(!is.na(wfs_crs) & !is.null(wfs_crs)) {
             # If full crs object not available, try to get epsg number from identifier of
             # the default CRS for this feature type in service description CRS
             sf::st_crs(layer_sf) <- wfs_crs
@@ -141,20 +141,20 @@ check_layer_crs <- function(layer_sf, layer, wfs) {
 }
 
 
-checkmate_crs <- function(sf, crs = NULL){
-    if(checkmate::test_null(sf)){
+checkmate_crs <- function(sf, crs = NULL) {
+    if(checkmate::test_null(sf)) {
         return(sf)
     }
 
-    if(is.na(sf::st_crs(sf)) | is.null(sf::st_crs(sf))){
+    if(is.na(sf::st_crs(sf)) | is.null(sf::st_crs(sf))) {
         usethis::ui_warn("{usethis::ui_field('crs')} missing.")
 
-        if(!is.null(crs)){
+        if(!is.null(crs)) {
             sf::st_crs(sf) <- crs
             usethis::ui_info("{Set to user specified CRS: {usethis::ui_value(crs)}.")
         }
     }else{
-        if(!is.null(crs)){
+        if(!is.null(crs)) {
                 sf <- sf::st_transform(sf, crs)
                 usethis::ui_info("{usethis::ui_field('crs')} transformed to {usethis::ui_value(crs)}")
         }
@@ -165,17 +165,17 @@ checkmate_crs <- function(sf, crs = NULL){
 
 standardise_crs <- function(out, crs = NULL) {
 
-    if(checkmate::test_class(out, "list")){
+    if(checkmate::test_class(out, "list")) {
        purrr::map(out, ~checkmate_crs(.x, crs = crs))
     }else{
         checkmate_crs(out, crs = crs)
     }
 }
 
-ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL){
+ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) {
     layer <- NULL
-    if(is.na(cql_filter)){cql_filter <- NULL}
-    if(is.null(cql_filter)){
+    if(is.na(cql_filter)) {cql_filter <- NULL}
+    if(is.null(cql_filter)) {
         # get layer without cql_filter
         tryCatch(
             layer <- wfs$getFeatures(x) %>%
