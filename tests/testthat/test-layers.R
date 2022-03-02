@@ -1,4 +1,5 @@
 test_that("get layers works on server", {
+    skip_on_cran()
     l_data <- emodnet_get_layers(
         service = "seabed_habitats_individual_habitat_map_and_model_datasets",
         layers = c("dk003069", "dk003070"))
@@ -16,6 +17,7 @@ test_that("get layers works on server", {
 })
 
 test_that("crs transform works from server", {
+    skip_on_cran()
     l_data <- emodnet_get_layers(
         service = "seabed_habitats_individual_habitat_map_and_model_datasets",
         layers = "dk003070",
@@ -27,6 +29,7 @@ test_that("crs transform works from server", {
 })
 
 test_that("get layers works on wfs object", {
+    skip_on_cran()
     wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
     layers <- c("sl_fishing", "sl_plasticbags")
     l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers)
@@ -43,6 +46,7 @@ test_that("get layers works on wfs object", {
 })
 
 test_that("crs transform works from wfs object", {
+    skip_on_cran()
     wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
     layers <- c("sl_fishing", "sl_plasticbags")
     l_data <- emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
@@ -52,6 +56,7 @@ test_that("crs transform works from wfs object", {
 })
 
 test_that("crs checking from wfs service works correctly", {
+    skip_on_cran()
     l_data <- emodnet_get_layers(
         service = "chemistry_marine_litter",
         layers = "sl_fishing",
@@ -63,6 +68,7 @@ test_that("crs checking from wfs service works correctly", {
 
 
 test_that("reduce layers on single layer returns sf", {
+    skip_on_cran()
     sf_data <- emodnet_get_layers(
         service = "chemistry_marine_litter",
         layers = "sl_fishing",
@@ -86,6 +92,7 @@ test_that("emodnet_get_layers errors well when bad layer", {
 })
 
 test_that("reduce works", {
+    skip_on_cran()
     sf_data <- emodnet_get_layers(
         service = "seabed_habitats_individual_habitat_map_and_model_datasets",
         layers = c("dk003069", "dk003070"),

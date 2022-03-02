@@ -36,7 +36,7 @@ Suggests:
     mapview,
     rmarkdown,
     skimr,
-    testthat (>= 3.0.0),
+    testthat (>= 3.1.2),
     testthis,
     webmockr,
     withr

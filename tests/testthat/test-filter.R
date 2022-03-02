@@ -1,7 +1,7 @@
 test_that("categorical filters work", {
-    wfs <- emodnet_init_wfs_client(service = "biology")
-
+    skip_on_cran()
     with_mock_dir("mediseh_cymodocea_pnt-Grecia", {
+        wfs <- emodnet_init_wfs_client(service = "biology")
         simple_filter_sf <- emodnet_get_layers(
             wfs = wfs,
             layers = "mediseh_cymodocea_pnt",
@@ -12,6 +12,7 @@ test_that("categorical filters work", {
     expect_equal(unique(simple_filter_sf$country), 'Grecia')
 
     with_mock_dir("mediseh_cymodocea_pnt-Francia-Grecia", {
+        wfs <- emodnet_init_wfs_client(service = "biology")
         or_filter_sf <- emodnet_get_layers(
             wfs = wfs,
             layers = "mediseh_cymodocea_pnt",
@@ -24,8 +25,9 @@ test_that("categorical filters work", {
 
 
 test_that("numeric filters work", {
-    wfs <- emodnet_init_wfs_client(service = "biology")
+    skip_on_cran()
     with_mock_dir("mediseh_posidonia_nodata", {
+    wfs <- emodnet_init_wfs_client(service = "biology")
         num_filter_sf <- emodnet_get_layers(
             wfs = wfs, layers = "mediseh_posidonia_nodata",
             cql_filter = "km>400",
