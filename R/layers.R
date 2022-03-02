@@ -38,33 +38,34 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
                                layers, crs = NULL, cql_filter = NULL,
                                reduce_layers = FALSE, suppress_warnings = FALSE) {
 
-    if(is.null(wfs) & is.null(service)){
-        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
-                         Both cannot be {usethis::ui_value('NULL')}")
+    if (is.null(wfs) & is.null(service)) {
+        usethis::ui_stop(
+        "Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+         Both cannot be {usethis::ui_value('NULL')} at the same time."
+        )
     }
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service,
-                                       service_version)
-    }else{check_wfs(wfs)}
+    if (is.null(wfs)) {
+        wfs <- emodnet_init_wfs_client(service, service_version)
+    }
 
-    # check layers
+    check_wfs(wfs)
+
+    # check layers -----------------------------------------------
     layers <- match.arg(layers, several.ok = TRUE,
                        choices = emodnet_get_wfs_info(wfs)$layer_name)
 
-    # check filter vector
-    if(!is.null(cql_filter)){
-        checkmate::testCharacter(cql_filter, min.len = 1)
-        if(length(cql_filter) == 1 & length(layers) > 1){
-            cql_filter <- rep(cql_filter, times = length(layers))
-            usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
-        }
-        if(checkmate::test_named(cql_filter)){
-            cql_filter <- cql_filter[layers]
-            }
-        checkmate::assert_character(cql_filter, len = length(layers))
-    }else{
-        cql_filter <- rep(NA, times = length(layers))
+    # check filter vector -----------------------------------------
+    cql_filter <- cql_filter %||% rep(NA, times = length(layers))
+    checkmate::testCharacter(cql_filter, min.len = 1, any.missing = TRUE)
+    if(length(cql_filter) == 1 & length(layers) > 1){
+        cql_filter <- rep(cql_filter, times = length(layers))
+        usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
     }
+    if(checkmate::test_named(cql_filter)){
+        cql_filter <- cql_filter[layers]
+    }
+    checkmate::assert_character(cql_filter, len = length(layers))
+
 
         # get features
     out <- purrr::map2(.x = layers, .y = cql_filter, ~ews_get_layer(.x, wfs, cql_filter = .y), wfs,
