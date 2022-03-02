@@ -14,6 +14,6 @@ structure(list(url = "http://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&ve
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = charToRaw("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xsd:schema xmlns:Emodnetbio=\"geo.vliz.be/Emodnetbio\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\" targetNamespace=\"geo.vliz.be/Emodnetbio\">\n  <xsd:import namespace=\"http://www.opengis.net/gml/3.2\" schemaLocation=\"http://geo.vliz.be:80/geoserver/schemas/gml/3.2.1/gml.xsd\"/>\n  <xsd:complexType name=\"mediseh_cymodocea_pntType\">\n    <xsd:complexContent>\n      <xsd:extension base=\"gml:AbstractFeatureType\">\n        <xsd:sequence>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"id\" nillable=\"true\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"country\" nillable=\"true\" type=\"xsd:string\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"the_geom\" nillable=\"true\" type=\"gml:PointPropertyType\"/>\n        </xsd:sequence>\n      </xsd:extension>\n    </xsd:complexContent>\n  </xsd:complexType>\n  <xsd:element name=\"mediseh_cymodocea_pnt\" substitutionGroup=\"gml:AbstractFeature\" type=\"Emodnetbio:mediseh_cymodocea_pntType\"/>\n</xsd:schema>\n"), 
     date = structure(1646233660, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.4e-05, 
-    connect = 2.5e-05, pretransfer = 6.8e-05, starttransfer = 0.0374, 
-    total = 0.037485)), class = "response")
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.3e-05, 
+    connect = 2.4e-05, pretransfer = 6.6e-05, starttransfer = 0.034537, 
+    total = 0.034592)), class = "response")

@@ -1,17 +1,17 @@
 test_that("Default connection works", {
-    wfs <- emodnet_init_wfs_client(service = "biology")
-  expect_equal(class(wfs),
-               c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
-  expect_equal(wfs$getUrl(),
-               "http://geo.vliz.be/geoserver/Emodnetbio/wfs")
- })
+    with_mock_dir("biology-info", {
+        wfs <- emodnet_init_wfs_client(service = "biology")
+    })
+    expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
+    expect_equal(wfs$getUrl(), "http://geo.vliz.be/geoserver/Emodnetbio/wfs")
+})
 
 test_that("Specified connection works", {
-    wfs <- emodnet_init_wfs_client(service = "bathymetry")
-    expect_equal(class(wfs),
-                 c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
-    expect_equal(wfs$getUrl(),
-                 "https://ows.emodnet-bathymetry.eu/wfs")
+    with_mock_dir("bathymetry-info", {
+      wfs <- emodnet_init_wfs_client(service = "bathymetry")
+    })
+    expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
+    expect_equal(wfs$getUrl(), "https://ows.emodnet-bathymetry.eu/wfs")
 })
 
 test_that("Services down handled", {
