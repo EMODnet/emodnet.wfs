@@ -12,7 +12,8 @@ emodnet_get_layers(
   crs = NULL,
   cql_filter = NULL,
   reduce_layers = FALSE,
-  suppress_warnings = FALSE
+  suppress_warnings = FALSE,
+  ...
 )
 }
 \arguments{
@@ -42,6 +43,9 @@ Filters with names that do not correspond to any layers are ignored. Layers with
 
 \item{suppress_warnings}{logical. Whether to suppress messages of layer
 download failures.}
+
+\item{...}{additional arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{GetFeature}.
+For example, including \code{count=1} returns the first available feature.}
 }
 \value{
 If \code{reduce_layers = FALSE} (default), a list of \code{sf}

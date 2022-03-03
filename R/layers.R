@@ -19,6 +19,8 @@
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 #' @param suppress_warnings logical. Whether to suppress messages of layer
 #' download failures.
+#' @param ... additional arguments passed to [GetFeature](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
+#' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
@@ -36,7 +38,8 @@
 #'                    cql_filter = "sitename='Territory sea (12 nm)'", reduce_layers = TRUE)
 emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
                                layers, crs = NULL, cql_filter = NULL,
-                               reduce_layers = FALSE, suppress_warnings = FALSE) {
+                               reduce_layers = FALSE, suppress_warnings = FALSE,
+                               ...) {
 
     if(is.null(wfs) & is.null(service)){
         usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
@@ -67,8 +70,8 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     }
 
         # get features
-    out <- purrr::map2(.x = layers, .y = cql_filter, ~ews_get_layer(.x, wfs, cql_filter = .y), wfs,
-                      suppress_warnings) %>%
+    out <- purrr::map2(.x = layers, .y = cql_filter, ~ews_get_layer(.x, wfs, cql_filter = .y, ...), wfs,
+                      suppress_warnings, ...) %>%
          stats::setNames(layers)
 
     # if reduce_layers = T, reduce to single sf
@@ -149,13 +152,13 @@ standardise_crs <- function(out, crs = NULL) {
     }
 }
 
-ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL){
+ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, ...){
     layer <- NULL
     if(is.na(cql_filter)){cql_filter <- NULL}
     if(is.null(cql_filter)){
         # get layer without cql_filter
         tryCatch(
-            layer <- wfs$getFeatures(x) %>%
+            layer <- wfs$getFeatures(x, ...) %>%
                 check_layer_crs(layer = x, wfs = wfs),
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
@@ -164,7 +167,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL){
     }else{
         # get layer using cql_filter
         tryCatch(
-            layer <- wfs$getFeatures(x, cql_filter = utils::URLencode(cql_filter)) %>%
+            layer <- wfs$getFeatures(x, cql_filter = utils::URLencode(cql_filter), ...) %>%
                 check_layer_crs(layer = x, wfs = wfs),
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
