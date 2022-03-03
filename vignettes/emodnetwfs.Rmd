@@ -39,7 +39,7 @@ install.packages(c("sf", "dplyr", "mapview"))
 
 With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS. 
 
-Imagine we are interested on seabed substrates. The first stop is to choose what EMODnet lot can provide with these data. For that, we can check the services available on the `emodnet_wfs` dataset contained inside the package. 
+Imagine we are interested on seabed substrates. The first stop is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function. 
 
 ```{r error = FALSE, warning = FALSE, message = FALSE}
 library(EMODnetWFS)
@@ -47,7 +47,7 @@ library(mapview)
 library(dplyr)
 library(sf)
 
-emodnet_wfs
+emodnet_wfs()
 ```
 
 

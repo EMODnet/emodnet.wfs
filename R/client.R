@@ -14,7 +14,7 @@
 #'        service = "seabed_habitats_individual_habitat_map_and_model_datasets")
 emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
-    service <- match.arg(service, choices = emodnet_wfs$service_name)
+    service <- match.arg(service, choices = emodnet_wfs()$service_name)
     service_url <- get_service_url(service)
 
     create_client <- function(){
@@ -50,16 +50,16 @@ check_wfs <- function(wfs) {
 
 get_service_url <- function(service) {
     service <- match.arg(service,
-                         choices = emodnet_wfs$service_name)
+                         choices = emodnet_wfs()$service_name)
 
-    emodnet_wfs$service_url[emodnet_wfs$service_name == service]
+    emodnet_wfs()$service_url[emodnet_wfs()$service_name == service]
 }
 
 get_service_name <- function(service_url) {
     service_url <- match.arg(service_url,
-                         choices = emodnet_wfs$service_url)
+                         choices = emodnet_wfs()$service_url)
 
-    emodnet_wfs$service_name[emodnet_wfs$service_url == service_url]
+    emodnet_wfs()$service_name[emodnet_wfs()$service_url == service_url]
 }
 
 
