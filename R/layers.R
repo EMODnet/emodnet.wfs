@@ -175,6 +175,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) 
     if (is.null(cql_filter)) {
         # get layer without cql_filter
         tryCatch(
+
             layer <- wfs$getFeatures(x) %>%
                 check_layer_crs(layer = x, wfs = wfs),
             error = function(e) {

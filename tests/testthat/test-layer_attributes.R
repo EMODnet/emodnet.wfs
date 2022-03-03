@@ -1,7 +1,7 @@
 test_that("layer_attributes_get_names works", {
     skip_if_offline()
-    with_mock_dir("biology-attr", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
+    wfs <- create_biology_wfs()
+    with_mock_dir("biology-info", {
         layer_attr1 <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
         layer_attr2 <- layer_attributes_get_names(service = "biology", layer = "mediseh_zostera_m_pnt")
     })
@@ -11,17 +11,15 @@ test_that("layer_attributes_get_names works", {
 
 test_that("layer_attribute_descriptions works", {
     skip_if_offline()
-    with_mock_dir("biology-attr", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
-        attr <- layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
-    })
+    wfs <- create_biology_wfs()
+    attr <- layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
     expect_snapshot_output(attr)
 })
 
 test_that("layer_attribute_inspect works", {
     skip_if_offline()
+    wfs <- create_biology_wfs()
     with_mock_dir("biology-attr2", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
         country <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
         id <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "id")
     })
@@ -37,8 +35,8 @@ test_that("layer_attribute_inspect works", {
 
 test_that("layer_attributes_summarise works", {
     skip_if_offline()
+    wfs <- create_biology_wfs()
     with_mock_dir("biology-attr3", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
         attrs <- layer_attributes_summarise(wfs, layer = "mediseh_zostera_m_pnt")
     })
     expect_equal(class(attrs), "table")
@@ -51,8 +49,8 @@ test_that("layer_attributes_summarise works", {
 
 test_that("get_default_crs works", {
     skip_if_offline()
+    wfs <- create_biology_wfs()
     with_mock_dir("biology-crs", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
         crs1 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.text")
         crs2 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.num")
     })

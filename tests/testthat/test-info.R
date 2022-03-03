@@ -19,10 +19,9 @@ test_that("wfs all info works", {
     expect_setequal(unique(all_info$service_name), emodnet_wfs$service_name)
 })
 
-
 test_that("wfs info works on wfs object", {
+    wfs <- create_biology_wfs()
     with_mock_dir("biology-info", {
-        wfs <- emodnet_init_wfs_client("biology")
         layer_info_all <- emodnet_get_wfs_info(wfs)
     })
 

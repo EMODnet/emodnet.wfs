@@ -21,8 +21,9 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
         wfs <- suppressWarnings(ows4R::WFSClient$new(
             service_url,
-            serviceVersion = service_version
-            ))
+            serviceVersion = service_version,
+            headers = c("User-Agent" = "EMODnetWFS")
+        ))
 
         check_wfs(wfs)
         usethis::ui_done("WFS client created succesfully")

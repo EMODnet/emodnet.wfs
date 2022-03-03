@@ -1,7 +1,5 @@
 test_that("Default connection works", {
-    with_mock_dir("biology-info", {
-        wfs <- emodnet_init_wfs_client(service = "biology")
-    })
+    wfs <- create_biology_wfs()
     expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
     expect_equal(wfs$getUrl(), "http://geo.vliz.be/geoserver/Emodnetbio/wfs")
 })
