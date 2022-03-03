@@ -40,17 +40,17 @@ remotes::install_github("EMODnet/EMODnetWFS")
 ```
 ## Available services
 
-All available services are contained in the `emodnet_wfs` package dataset.
+All available services are contained in the tibble returned by `emodnet_wfs()`.
 
 
 ```{r, echo=FALSE}
 library(EMODnetWFS)
-knitr::kable(emodnet_wfs)
+knitr::kable(emodnet_wfs())
 ```
 
 To explore available services in Rstudio use:
 ```r
-View(emodnet_wfs)
+View(emodnet_wfs())
 ```
 
 ## Create Service Client
@@ -58,10 +58,9 @@ View(emodnet_wfs)
 Create new WFS Client.  Specify the service using the `service` argument. 
 
 ```{r}
+wfs_bio <- emodnet_init_wfs_client(service = "biology")
 
-wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
-
-wfs_bath$getUrl()
+wfs_bio$getUrl()
 ```
 
 ## Get WFS Layer info
@@ -69,23 +68,22 @@ wfs_bath$getUrl()
 You can get metadata about the layers available from a service. 
 
 ```{r}
-emodnet_get_wfs_info(service = "bathymetry")
+emodnet_get_wfs_info(service = "biology")
 ```
 
 or you can pass a wfs client object.
 
 ```{r}
-emodnet_get_wfs_info(wfs_bath)
+emodnet_get_wfs_info(wfs_bio)
 ```
 
 You can also get info for specific layers from wfs object:
 
 ```{r}
-wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+wfs_cml <- emodnet_init_wfs_client("biology")
 emodnet_get_wfs_info(wfs_cml)
 
-layers <- c("bl_fishing_monitoring",
-          "bl_beacheslocations_2001_2008_monitoring")
+layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 ```
@@ -113,37 +111,37 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 
 ```
 
-
 You can also extract layers directly from a WFS service.
 
 ```{r}
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"))
+emodnet_get_layers(
+    service = "biology",
+    layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+)
 
 ```
 
 
 Layers can also be returned to a single `sf` object through argument `reduce_layers`.  If `TRUE` the function will try to reduce all layers into a single `sf`.
 
-```{r}
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"), 
-                   reduce_layers = TRUE)
-```
-
 If attempting to reduce fails, it will return a list with a warning:
  
 ```{r, error=TRUE}
-emodnet_get_layers(wfs = wfs_cml, layers = layers,
-                   reduce_layers = TRUE)
+emodnet_get_layers(
+    wfs = wfs_cml, 
+    layers = layers,
+    reduce_layers = TRUE
+)
 ```
 
 Using `reduce_layers = TRUE` is also useful for returning an `sf` object rather than a list in single layer request.
 
 ```{r}
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                  layers = c("dk003069"), 
-                   reduce_layers = TRUE)
+emodnet_get_layers(
+    service = "biology",
+    layers = c("mediseh_posidonia_nodata"), 
+    reduce_layers = TRUE
+)
 ```
 
 

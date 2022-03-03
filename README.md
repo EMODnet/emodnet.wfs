@@ -42,33 +42,33 @@ remotes::install_github("EMODnet/EMODnetWFS")
 
 ## Available services
 
-All available services are contained in the `emodnet_wfs` package
-dataset.
+All available services are contained in the tibble returned by
+`emodnet_wfs()`.
 
-| service\_name                                                          | service\_url                                                                  |
-|:-----------------------------------------------------------------------|:------------------------------------------------------------------------------|
-| bathymetry                                                             | <https://ows.emodnet-bathymetry.eu/wfs>                                       |
-| biology                                                                | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                                 |
-| biology\_occurrence\_data                                              | <http://geo.vliz.be/geoserver/Dataportal/wfs>                                 |
-| chemistry\_cdi\_data\_discovery\_and\_access\_service                  | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                          |
-| chemistry\_cdi\_distribution\_observations\_per\_category\_and\_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>                      |
-| chemistry\_contaminants                                                | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>                      |
-| chemistry\_marine\_litter                                              | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>                      |
-| geology\_coastal\_behavior                                             | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                          |
-| geology\_events\_and\_probabilities                                    | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>                        |
-| geology\_marine\_minerals                                              | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                          |
-| geology\_sea\_floor\_bedrock                                           | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                          |
-| geology\_seabed\_substrate\_maps                                       | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                          |
-| geology\_submerged\_landscapes                                         | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                          |
-| human\_activities                                                      | <https://ows.emodnet-humanactivities.eu/wfs>                                  |
-| physics                                                                | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>                  |
-| seabed\_habitats\_general\_datasets\_and\_products                     | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
-| seabed\_habitats\_individual\_habitat\_map\_and\_model\_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
+| service_name                                                    | service_url                                                         |
+|:----------------------------------------------------------------|:--------------------------------------------------------------------|
+| bathymetry                                                      | <https://ows.emodnet-bathymetry.eu/wfs>                             |
+| biology                                                         | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
+| biology_occurrence_data                                         | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
+| chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                |
+| chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>            |
+| chemistry_contaminants                                          | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>            |
+| chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>            |
+| geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                |
+| geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>              |
+| geology_marine_minerals                                         | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                |
+| geology_sea_floor_bedrock                                       | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                |
+| geology_seabed_substrate_maps                                   | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                |
+| geology_submerged_landscapes                                    | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                |
+| human_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                        |
+| physics                                                         | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>        |
+| seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs>            |
+| seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs> |
 
 To explore available services in Rstudio use:
 
 ``` r
-View(emodnet_wfs)
+View(emodnet_wfs())
 ```
 
 ## Create Service Client
@@ -76,17 +76,17 @@ View(emodnet_wfs)
 Create new WFS Client. Specify the service using the `service` argument.
 
 ``` r
-wfs_bath <- emodnet_init_wfs_client(service = "bathymetry")
+wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> Loading ISO 19139 XML schemas...
 #> Loading ISO 19115 codelists...
 #> Loading IANA mime types...
 #> No encoding supplied: defaulting to UTF-8.
 #> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 
-wfs_bath$getUrl()
-#> [1] "https://ows.emodnet-bathymetry.eu/wfs"
+wfs_bio$getUrl()
+#> [1] "http://geo.vliz.be/geoserver/Emodnetbio/wfs"
 ```
 
 ## Get WFS Layer info
@@ -94,64 +94,80 @@ wfs_bath$getUrl()
 You can get metadata about the layers available from a service.
 
 ``` r
-emodnet_get_wfs_info(service = "bathymetry")
+emodnet_get_wfs_info(service = "biology")
 #> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-bathymetry.eu/wfs'
+#> ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
-#> # A tibble: 3 × 9
-#>   data_source service_name service_url layer_namespace layer_name title abstract
-#>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…
-#> 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…
-#> 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
-#> # … with 2 more variables: class <chr>, format <chr>
+#> # A tibble: 31 × 9
+#>    data_source service_name service_url         layer_namespace layer_name title
+#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
+#>  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…
+#>  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> # … with 21 more rows, and 3 more variables: abstract <chr>, class <chr>,
+#> #   format <chr>
 ```
 
 or you can pass a wfs client object.
 
 ``` r
-emodnet_get_wfs_info(wfs_bath)
-#> # A tibble: 3 × 9
-#>   data_source service_name service_url layer_namespace layer_name title abstract
-#>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs bathymetry   https://ow… emodnet         contours   Dept… "Genera…
-#> 2 emodnet_wfs bathymetry   https://ow… emodnet         quality_i… Qual… "Repres…
-#> 3 emodnet_wfs bathymetry   https://ow… emodnet         source_re… Sour… "Covera…
-#> # … with 2 more variables: class <chr>, format <chr>
+emodnet_get_wfs_info(wfs_bio)
+#> # A tibble: 31 × 9
+#>    data_source service_name service_url         layer_namespace layer_name title
+#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
+#>  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…
+#>  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> # … with 21 more rows, and 3 more variables: abstract <chr>, class <chr>,
+#> #   format <chr>
 ```
 
 You can also get info for specific layers from wfs object:
 
 ``` r
-wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+wfs_cml <- emodnet_init_wfs_client("biology")
 #> ✓ WFS client created succesfully
-#> ℹ Service: 'https://www.ifremer.fr/services/wfs/emodnet_chemistry2'
+#> ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 emodnet_get_wfs_info(wfs_cml)
-#> # A tibble: 21 × 9
-#>    data_source service_name  service_url    layer_namespace layer_name  title   
-#>    <chr>       <chr>         <chr>          <chr>           <chr>       <chr>   
-#>  1 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
-#>  2 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
-#>  3 emodnet_wfs chemistry_ma… https://www.i… ms              bl_totalab… Beach L…
-#>  4 emodnet_wfs chemistry_ma… https://www.i… ms              bl_materia… Beach L…
-#>  5 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
-#>  6 emodnet_wfs chemistry_ma… https://www.i… ms              bl_cigaret… Beach L…
-#>  7 emodnet_wfs chemistry_ma… https://www.i… ms              bl_fishing… Beach L…
-#>  8 emodnet_wfs chemistry_ma… https://www.i… ms              bl_plastic… Beach L…
-#>  9 emodnet_wfs chemistry_ma… https://www.i… ms              bl_beaches… Beaches…
-#> 10 emodnet_wfs chemistry_ma… https://www.i… ms              bl_tempora… Number …
-#> # … with 11 more rows, and 3 more variables: abstract <chr>, class <chr>,
+#> # A tibble: 31 × 9
+#>    data_source service_name service_url         layer_namespace layer_name title
+#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
+#>  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…
+#>  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…
+#>  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…
+#>  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…
+#> # … with 21 more rows, and 3 more variables: abstract <chr>, class <chr>,
 #> #   format <chr>
 
-layers <- c("bl_fishing_monitoring",
-          "bl_beacheslocations_2001_2008_monitoring")
+layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
-#> # A tibble: 1 × 9
+#> # A tibble: 2 × 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs https://www… chemistry_… ms              bl_fishin… Beac… ""      
+#> 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…
+#> 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…
 #> # … with 2 more variables: class <chr>, format <chr>
 ```
 
@@ -170,57 +186,43 @@ named element for each layer requested.
 
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers)
-#> $bl_fishing_monitoring
-#> Simple feature collection with 3490 features and 15 fields
+#> $mediseh_zostera_m_pnt
+#> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
+#> Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451
 #> Geodetic CRS:  WGS 84
 #> First 10 features:
-#>    gml_id id country country_name beachcode         beachname
-#> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
-#> 2    <NA>  2      SE       Sweden         1 Björkängs Havsbad
-#> 3    <NA>  3      SE       Sweden         1 Björkängs Havsbad
-#> 4    <NA>  4      SE       Sweden        11          Rullsand
-#> 5    <NA>  5      SE       Sweden        11          Rullsand
-#> 6    <NA>  6      SE       Sweden        11          Rullsand
-#> 7    <NA>  7      SE       Sweden        11          Rullsand
-#> 8    <NA>  8      SE       Sweden        11          Rullsand
-#> 9    <NA>  9      SE       Sweden        11          Rullsand
-#> 10   <NA> 10      SE       Sweden        11          Rullsand
-#>       surveytype_class      surveytype year          surveyyear nbsurvey
-#> 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1
-#> 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2
-#> 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3
-#> 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3
-#> 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3
-#> 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3
-#>    surveylength litterreferencelist           littergroup litterabundance
-#> 1      100/1000         UNEP_MARLIN Fishing related items             5.0
-#> 2      100/1000         UNEP_MARLIN Fishing related items             3.0
-#> 3      100/1000         UNEP_MARLIN Fishing related items            14.0
-#> 4       100/500         UNEP_MARLIN Fishing related items            12.0
-#> 5       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 6       100/500         UNEP_MARLIN Fishing related items             5.0
-#> 7       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 8       100/500         UNEP_MARLIN Fishing related items             3.2
-#> 9       100/500         UNEP_MARLIN Fishing related items             4.6
-#> 10      100/500         UNEP_MARLIN Fishing related items             9.2
-#>                   msGeometry
-#> 1  POINT (12.34726 57.00938)
-#> 2  POINT (12.34726 57.00938)
-#> 3  POINT (12.34726 57.00938)
-#> 4   POINT (17.4729 60.64045)
-#> 5   POINT (17.4729 60.64045)
-#> 6   POINT (17.4729 60.64045)
-#> 7   POINT (17.4729 60.64045)
-#> 8   POINT (17.4729 60.64045)
-#> 9   POINT (17.4729 60.64045)
-#> 10  POINT (17.4729 60.64045)
+#>                      gml_id id country                   the_geom
+#> 1   mediseh_zostera_m_pnt.1  0  Spagna  POINT (-2.61314 36.71681)
+#> 2   mediseh_zostera_m_pnt.2  0  Spagna POINT (-3.846598 36.75127)
+#> 3   mediseh_zostera_m_pnt.3  0  Spagna POINT (-3.957785 36.72266)
+#> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)
+#> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)
+#> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)
+#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)
+#> 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)
+#> 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)
+#> 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)
+#> 
+#> $mediseh_posidonia_nodata
+#> Simple feature collection with 465 features and 3 fields
+#> Geometry type: MULTICURVE
+#> Dimension:     XY
+#> Bounding box:  xmin: -2.1798 ymin: 30.26623 xmax: 34.60767 ymax: 45.47668
+#> Geodetic CRS:  WGS 84
+#> First 10 features:
+#>                         gml_id id         km                       the_geom
+#> 1   mediseh_posidonia_nodata.1  0 291.503233 MULTICURVE (LINESTRING (27....
+#> 2   mediseh_posidonia_nodata.2  0  75.379502 MULTICURVE (LINESTRING (23....
+#> 3   mediseh_posidonia_nodata.3  0  38.627764 MULTICURVE (LINESTRING (22....
+#> 4   mediseh_posidonia_nodata.4  0 110.344802 MULTICURVE (LINESTRING (19....
+#> 5  mediseh_posidonia_nodata.13  0  66.997461 MULTICURVE (LINESTRING (9.1...
+#> 6  mediseh_posidonia_nodata.14  0  18.090640 MULTICURVE (LINESTRING (9.7...
+#> 7  mediseh_posidonia_nodata.15  0  16.618978 MULTICURVE (LINESTRING (9.8...
+#> 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....
+#> 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....
+#> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
 You can change the output `crs` through argument `crs`.
@@ -228,264 +230,140 @@ You can change the output `crs` through argument `crs`.
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> ℹ crs transformed to 3857
-#> $bl_fishing_monitoring
-#> Simple feature collection with 3490 features and 15 fields
+#> ℹ crs transformed to 3857
+#> $mediseh_zostera_m_pnt
+#> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -5966984 ymin: 3292219 xmax: 4649942 ymax: 16721730
+#> Bounding box:  xmin: -463885.5 ymin: 3905638 xmax: 1709607 ymax: 5736311
 #> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
-#>    gml_id id country country_name beachcode         beachname
-#> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
-#> 2    <NA>  2      SE       Sweden         1 Björkängs Havsbad
-#> 3    <NA>  3      SE       Sweden         1 Björkängs Havsbad
-#> 4    <NA>  4      SE       Sweden        11          Rullsand
-#> 5    <NA>  5      SE       Sweden        11          Rullsand
-#> 6    <NA>  6      SE       Sweden        11          Rullsand
-#> 7    <NA>  7      SE       Sweden        11          Rullsand
-#> 8    <NA>  8      SE       Sweden        11          Rullsand
-#> 9    <NA>  9      SE       Sweden        11          Rullsand
-#> 10   <NA> 10      SE       Sweden        11          Rullsand
-#>       surveytype_class      surveytype year          surveyyear nbsurvey
-#> 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1
-#> 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2
-#> 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3
-#> 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3
-#> 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3
-#> 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3
-#>    surveylength litterreferencelist           littergroup litterabundance
-#> 1      100/1000         UNEP_MARLIN Fishing related items             5.0
-#> 2      100/1000         UNEP_MARLIN Fishing related items             3.0
-#> 3      100/1000         UNEP_MARLIN Fishing related items            14.0
-#> 4       100/500         UNEP_MARLIN Fishing related items            12.0
-#> 5       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 6       100/500         UNEP_MARLIN Fishing related items             5.0
-#> 7       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 8       100/500         UNEP_MARLIN Fishing related items             3.2
-#> 9       100/500         UNEP_MARLIN Fishing related items             4.6
-#> 10      100/500         UNEP_MARLIN Fishing related items             9.2
-#>                 msGeometry
-#> 1  POINT (1374491 7762037)
-#> 2  POINT (1374491 7762037)
-#> 3  POINT (1374491 7762037)
-#> 4  POINT (1945074 8543728)
-#> 5  POINT (1945074 8543728)
-#> 6  POINT (1945074 8543728)
-#> 7  POINT (1945074 8543728)
-#> 8  POINT (1945074 8543728)
-#> 9  POINT (1945074 8543728)
-#> 10 POINT (1945074 8543728)
+#>                      gml_id id country                  the_geom
+#> 1   mediseh_zostera_m_pnt.1  0  Spagna POINT (-290893.4 4399707)
+#> 2   mediseh_zostera_m_pnt.2  0  Spagna POINT (-428201.3 4404494)
+#> 3   mediseh_zostera_m_pnt.3  0  Spagna POINT (-440578.6 4400520)
+#> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-449698.7 4403229)
+#> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-456430.2 4400610)
+#> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-463885.5 4399075)
+#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-141193.9 4517168)
+#> 8   mediseh_zostera_m_pnt.8  0 Francia  POINT (539748.1 5369436)
+#> 9   mediseh_zostera_m_pnt.9  0  Italia   POINT (1527115 5732431)
+#> 10 mediseh_zostera_m_pnt.10  0  Italia   POINT (1465385 5736311)
+#> 
+#> $mediseh_posidonia_nodata
+#> Simple feature collection with 465 features and 3 fields
+#> Geometry type: MULTICURVE
+#> Dimension:     XY
+#> Bounding box:  xmin: -242654.2 ymin: 3537818 xmax: 3852508 ymax: 5696879
+#> Projected CRS: WGS 84 / Pseudo-Mercator
+#> First 10 features:
+#>                         gml_id id         km                       the_geom
+#> 1   mediseh_posidonia_nodata.1  0 291.503233 MULTICURVE (LINESTRING (302...
+#> 2   mediseh_posidonia_nodata.2  0  75.379502 MULTICURVE (LINESTRING (257...
+#> 3   mediseh_posidonia_nodata.3  0  38.627764 MULTICURVE (LINESTRING (246...
+#> 4   mediseh_posidonia_nodata.4  0 110.344802 MULTICURVE (LINESTRING (221...
+#> 5  mediseh_posidonia_nodata.13  0  66.997461 MULTICURVE (LINESTRING (101...
+#> 6  mediseh_posidonia_nodata.14  0  18.090640 MULTICURVE (LINESTRING (108...
+#> 7  mediseh_posidonia_nodata.15  0  16.618978 MULTICURVE (LINESTRING (110...
+#> 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (121...
+#> 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (169...
+#> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (169...
 ```
 
 You can also extract layers directly from a WFS service.
 
 ``` r
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"))
+emodnet_get_layers(
+    service = "biology",
+    layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+)
 #> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
+#> ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
-#> $dk003069
-#> Simple feature collection with 82 features and 8 fields
-#> Geometry type: MULTISURFACE
+#> $mediseh_zostera_m_pnt
+#> Simple feature collection with 54 features and 3 fields
+#> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
-#> Projected CRS: WGS 84 / Pseudo-Mercator
+#> Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451
+#> Geodetic CRS:  WGS 84
 #> First 10 features:
-#>            gml_id   gid      gui polygon annexi         subtype confidence
-#> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
-#> 2  dk003069.39847 39847 DK003069      64   1110            <NA>       High
-#> 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
-#> 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
-#> 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
-#> 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
-#> 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
-#> 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
-#> 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
-#> 10 dk003069.39849 39849 DK003069      66   1110            <NA>       High
-#>    val_comm                           geom
-#> 1      <NA> MULTISURFACE (POLYGON ((113...
-#> 2      <NA> MULTISURFACE (POLYGON ((112...
-#> 3      <NA> MULTISURFACE (POLYGON ((112...
-#> 4      <NA> MULTISURFACE (POLYGON ((109...
-#> 5      <NA> MULTISURFACE (POLYGON ((113...
-#> 6      <NA> MULTISURFACE (POLYGON ((110...
-#> 7      <NA> MULTISURFACE (POLYGON ((109...
-#> 8      <NA> MULTISURFACE (POLYGON ((109...
-#> 9      <NA> MULTISURFACE (POLYGON ((112...
-#> 10     <NA> MULTISURFACE (POLYGON ((111...
+#>                      gml_id id country                   the_geom
+#> 1   mediseh_zostera_m_pnt.1  0  Spagna  POINT (-2.61314 36.71681)
+#> 2   mediseh_zostera_m_pnt.2  0  Spagna POINT (-3.846598 36.75127)
+#> 3   mediseh_zostera_m_pnt.3  0  Spagna POINT (-3.957785 36.72266)
+#> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)
+#> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)
+#> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)
+#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)
+#> 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)
+#> 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)
+#> 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)
 #> 
-#> $dk003070
-#> Simple feature collection with 30 features and 8 fields
-#> Geometry type: MULTISURFACE
+#> $mediseh_posidonia_nodata
+#> Simple feature collection with 465 features and 3 fields
+#> Geometry type: MULTICURVE
 #> Dimension:     XY
-#> Bounding box:  xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836
-#> Projected CRS: WGS 84 / Pseudo-Mercator
+#> Bounding box:  xmin: -2.1798 ymin: 30.26623 xmax: 34.60767 ymax: 45.47668
+#> Geodetic CRS:  WGS 84
 #> First 10 features:
-#>            gml_id   gid      gui polygon annexi         subtype confidence
-#> 1  dk003070.39886 39886 DK003070      21   1170 Geogenic origin       High
-#> 2  dk003070.39890 39890 DK003070      25   1170 Geogenic origin       High
-#> 3  dk003070.39882 39882 DK003070      17   1170 Geogenic origin       High
-#> 4  dk003070.39875 39875 DK003070      10   1170 Geogenic origin       High
-#> 5  dk003070.39881 39881 DK003070      16   1170 Geogenic origin       High
-#> 6  dk003070.39887 39887 DK003070      22   1170 Geogenic origin       High
-#> 7  dk003070.39885 39885 DK003070      20   1170 Geogenic origin       High
-#> 8  dk003070.39879 39879 DK003070      14   1170 Geogenic origin       High
-#> 9  dk003070.39867 39867 DK003070       2   1170 Geogenic origin       High
-#> 10 dk003070.39873 39873 DK003070       8   1170 Geogenic origin       High
-#>    val_comm                           geom
-#> 1      <NA> MULTISURFACE (POLYGON ((131...
-#> 2      <NA> MULTISURFACE (POLYGON ((131...
-#> 3      <NA> MULTISURFACE (POLYGON ((128...
-#> 4      <NA> MULTISURFACE (POLYGON ((130...
-#> 5      <NA> MULTISURFACE (POLYGON ((128...
-#> 6      <NA> MULTISURFACE (POLYGON ((131...
-#> 7      <NA> MULTISURFACE (POLYGON ((131...
-#> 8      <NA> MULTISURFACE (POLYGON ((129...
-#> 9      <NA> MULTISURFACE (POLYGON ((129...
-#> 10     <NA> MULTISURFACE (POLYGON ((128...
+#>                         gml_id id         km                       the_geom
+#> 1   mediseh_posidonia_nodata.1  0 291.503233 MULTICURVE (LINESTRING (27....
+#> 2   mediseh_posidonia_nodata.2  0  75.379502 MULTICURVE (LINESTRING (23....
+#> 3   mediseh_posidonia_nodata.3  0  38.627764 MULTICURVE (LINESTRING (22....
+#> 4   mediseh_posidonia_nodata.4  0 110.344802 MULTICURVE (LINESTRING (19....
+#> 5  mediseh_posidonia_nodata.13  0  66.997461 MULTICURVE (LINESTRING (9.1...
+#> 6  mediseh_posidonia_nodata.14  0  18.090640 MULTICURVE (LINESTRING (9.7...
+#> 7  mediseh_posidonia_nodata.15  0  16.618978 MULTICURVE (LINESTRING (9.8...
+#> 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....
+#> 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....
+#> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
 Layers can also be returned to a single `sf` object through argument
 `reduce_layers`. If `TRUE` the function will try to reduce all layers
 into a single `sf`.
 
-``` r
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                   layers = c("dk003069", "dk003070"), 
-                   reduce_layers = TRUE)
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
-#> ℹ Version: '2.0.0'
-#> Simple feature collection with 112 features and 8 fields
-#> Geometry type: MULTISURFACE
-#> Dimension:     XY
-#> Bounding box:  xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447
-#> Projected CRS: WGS 84 / Pseudo-Mercator
-#> First 10 features:
-#>            gml_id   gid      gui polygon annexi         subtype confidence
-#> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
-#> 2  dk003069.39847 39847 DK003069      64   1110            <NA>       High
-#> 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
-#> 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
-#> 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
-#> 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
-#> 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
-#> 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
-#> 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
-#> 10 dk003069.39849 39849 DK003069      66   1110            <NA>       High
-#>    val_comm                           geom
-#> 1      <NA> MULTISURFACE (POLYGON ((113...
-#> 2      <NA> MULTISURFACE (POLYGON ((112...
-#> 3      <NA> MULTISURFACE (POLYGON ((112...
-#> 4      <NA> MULTISURFACE (POLYGON ((109...
-#> 5      <NA> MULTISURFACE (POLYGON ((113...
-#> 6      <NA> MULTISURFACE (POLYGON ((110...
-#> 7      <NA> MULTISURFACE (POLYGON ((109...
-#> 8      <NA> MULTISURFACE (POLYGON ((109...
-#> 9      <NA> MULTISURFACE (POLYGON ((112...
-#> 10     <NA> MULTISURFACE (POLYGON ((111...
-```
-
 If attempting to reduce fails, it will return a list with a warning:
 
 ``` r
-emodnet_get_layers(wfs = wfs_cml, layers = layers,
-                   reduce_layers = TRUE)
-#> Simple feature collection with 3490 features and 15 fields
-#> Geometry type: POINT
-#> Dimension:     XY
-#> Bounding box:  xmin: -53.60233 ymin: 28.34246 xmax: 41.77114 ymax: 81.68642
-#> Geodetic CRS:  WGS 84
-#> First 10 features:
-#>    gml_id id country country_name beachcode         beachname
-#> 1    <NA>  1      SE       Sweden         1 Björkängs Havsbad
-#> 2    <NA>  2      SE       Sweden         1 Björkängs Havsbad
-#> 3    <NA>  3      SE       Sweden         1 Björkängs Havsbad
-#> 4    <NA>  4      SE       Sweden        11          Rullsand
-#> 5    <NA>  5      SE       Sweden        11          Rullsand
-#> 6    <NA>  6      SE       Sweden        11          Rullsand
-#> 7    <NA>  7      SE       Sweden        11          Rullsand
-#> 8    <NA>  8      SE       Sweden        11          Rullsand
-#> 9    <NA>  9      SE       Sweden        11          Rullsand
-#> 10   <NA> 10      SE       Sweden        11          Rullsand
-#>       surveytype_class      surveytype year          surveyyear nbsurvey
-#> 1  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 2  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 3  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        1
-#> 4  Official monitoring MSFD_monitoring 2012 2012-01-01 00:00:00        3
-#> 5  Official monitoring MSFD_monitoring 2013 2013-01-01 00:00:00        3
-#> 6  Official monitoring MSFD_monitoring 2014 2014-01-01 00:00:00        2
-#> 7  Official monitoring MSFD_monitoring 2015 2015-01-01 00:00:00        3
-#> 8  Official monitoring MSFD_monitoring 2016 2016-01-01 00:00:00        3
-#> 9  Official monitoring MSFD_monitoring 2017 2017-01-01 00:00:00        3
-#> 10 Official monitoring MSFD_monitoring 2018 2018-01-01 00:00:00        3
-#>    surveylength litterreferencelist           littergroup litterabundance
-#> 1      100/1000         UNEP_MARLIN Fishing related items             5.0
-#> 2      100/1000         UNEP_MARLIN Fishing related items             3.0
-#> 3      100/1000         UNEP_MARLIN Fishing related items            14.0
-#> 4       100/500         UNEP_MARLIN Fishing related items            12.0
-#> 5       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 6       100/500         UNEP_MARLIN Fishing related items             5.0
-#> 7       100/500         UNEP_MARLIN Fishing related items             1.0
-#> 8       100/500         UNEP_MARLIN Fishing related items             3.2
-#> 9       100/500         UNEP_MARLIN Fishing related items             4.6
-#> 10      100/500         UNEP_MARLIN Fishing related items             9.2
-#>                   msGeometry
-#> 1  POINT (12.34726 57.00938)
-#> 2  POINT (12.34726 57.00938)
-#> 3  POINT (12.34726 57.00938)
-#> 4   POINT (17.4729 60.64045)
-#> 5   POINT (17.4729 60.64045)
-#> 6   POINT (17.4729 60.64045)
-#> 7   POINT (17.4729 60.64045)
-#> 8   POINT (17.4729 60.64045)
-#> 9   POINT (17.4729 60.64045)
-#> 10  POINT (17.4729 60.64045)
+emodnet_get_layers(
+    wfs = wfs_cml, 
+    layers = layers,
+    reduce_layers = TRUE
+)
+#> Error: Cannot reduce layers.
+#> Try again with `reduce_layers = FALSE`
 ```
 
 Using `reduce_layers = TRUE` is also useful for returning an `sf` object
 rather than a list in single layer request.
 
 ``` r
-emodnet_get_layers(service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-                  layers = c("dk003069"), 
-                   reduce_layers = TRUE)
+emodnet_get_layers(
+    service = "biology",
+    layers = c("mediseh_posidonia_nodata"), 
+    reduce_layers = TRUE
+)
 #> ✓ WFS client created succesfully
-#> ℹ Service: 'https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs'
+#> ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
-#> Simple feature collection with 82 features and 8 fields
-#> Geometry type: MULTISURFACE
+#> Simple feature collection with 465 features and 3 fields
+#> Geometry type: MULTICURVE
 #> Dimension:     XY
-#> Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447
-#> Projected CRS: WGS 84 / Pseudo-Mercator
+#> Bounding box:  xmin: -2.1798 ymin: 30.26623 xmax: 34.60767 ymax: 45.47668
+#> Geodetic CRS:  WGS 84
 #> First 10 features:
-#>            gml_id   gid      gui polygon annexi         subtype confidence
-#> 1  dk003069.39813 39813 DK003069      30   1170 Geogenic origin       High
-#> 2  dk003069.39847 39847 DK003069      64   1110            <NA>       High
-#> 3  dk003069.39794 39794 DK003069      11   1170 Geogenic origin       High
-#> 4  dk003069.39787 39787 DK003069       4   1170 Geogenic origin       High
-#> 5  dk003069.39809 39809 DK003069      26   1170 Geogenic origin       High
-#> 6  dk003069.39806 39806 DK003069      23   1170 Geogenic origin       High
-#> 7  dk003069.39801 39801 DK003069      18   1170 Geogenic origin       High
-#> 8  dk003069.39805 39805 DK003069      22   1170 Geogenic origin       High
-#> 9  dk003069.39827 39827 DK003069      44   1170 Geogenic origin       High
-#> 10 dk003069.39849 39849 DK003069      66   1110            <NA>       High
-#>    val_comm                           geom
-#> 1      <NA> MULTISURFACE (POLYGON ((113...
-#> 2      <NA> MULTISURFACE (POLYGON ((112...
-#> 3      <NA> MULTISURFACE (POLYGON ((112...
-#> 4      <NA> MULTISURFACE (POLYGON ((109...
-#> 5      <NA> MULTISURFACE (POLYGON ((113...
-#> 6      <NA> MULTISURFACE (POLYGON ((110...
-#> 7      <NA> MULTISURFACE (POLYGON ((109...
-#> 8      <NA> MULTISURFACE (POLYGON ((109...
-#> 9      <NA> MULTISURFACE (POLYGON ((112...
-#> 10     <NA> MULTISURFACE (POLYGON ((111...
+#>                         gml_id id         km                       the_geom
+#> 1   mediseh_posidonia_nodata.1  0 291.503233 MULTICURVE (LINESTRING (27....
+#> 2   mediseh_posidonia_nodata.2  0  75.379502 MULTICURVE (LINESTRING (23....
+#> 3   mediseh_posidonia_nodata.3  0  38.627764 MULTICURVE (LINESTRING (22....
+#> 4   mediseh_posidonia_nodata.4  0 110.344802 MULTICURVE (LINESTRING (19....
+#> 5  mediseh_posidonia_nodata.13  0  66.997461 MULTICURVE (LINESTRING (9.1...
+#> 6  mediseh_posidonia_nodata.14  0  18.090640 MULTICURVE (LINESTRING (9.7...
+#> 7  mediseh_posidonia_nodata.15  0  16.618978 MULTICURVE (LINESTRING (9.8...
+#> 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....
+#> 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....
+#> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
 ## Citation
