@@ -43,7 +43,7 @@ RoxygenNote: 7.1.1
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0),
     PROJ (>= 4.8.0)
 Imports: 
-    ows4R,
+    ows4R (>= 0.3),
     purrr,
     tidyr,
     usethis,
@@ -61,3 +61,5 @@ URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
+Remotes:  
+    eblondel/ows4R
