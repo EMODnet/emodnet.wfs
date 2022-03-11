@@ -17,6 +17,19 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
     service <- match.arg(service, choices = emodnet_wfs()$service_name)
     service_url <- get_service_url(service)
 
+    if (Sys.info()[["sysname"]] == "Linux") {
+        services <- emodnet_wfs()
+        ok_on_linux <- services$ok_on_linux[services$service_name == service]
+        if (!ok_on_linux) {
+            rlang::abort(
+                c(
+                    "This service is not supported on Linux yet.",
+                    i = "Head over to https://github.com/EMODnet/EMODnetWFS/issues/69."
+                )
+            )
+        }
+    }
+
     create_client <- function(){
 
         wfs <- suppressWarnings(ows4R::WFSClient$new(service_url,
