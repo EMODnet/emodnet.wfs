@@ -38,6 +38,7 @@ You can install the development version of EMODnetWFS from GitHub with:
 ``` r
 remotes::install_github("EMODnet/EMODnetWFS")
 ```
+
 ## Available services
 
 All available services are contained in the tibble returned by `emodnet_wfs()`.
@@ -49,9 +50,12 @@ knitr::kable(emodnet_wfs())
 ```
 
 To explore available services in Rstudio use:
+
 ```r
 View(emodnet_wfs())
 ```
+
+**On Linux, the geology services will not work without tweaking your openssl setting (e.g. see the second suggestion in https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level/1233456#1233456). This approach is for expert users only, be cautious. See https://github.com/EMODnet/EMODnetWFS/issues/69 for more details and updates.**
 
 ## Create Service Client
 
@@ -83,7 +87,7 @@ You can also get info for specific layers from wfs object:
 wfs_cml <- emodnet_init_wfs_client("biology")
 emodnet_get_wfs_info(wfs_cml)
 
-layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+layers <- c("mediseh_zostera_m_pnt","mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 ```

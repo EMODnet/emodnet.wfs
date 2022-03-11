@@ -71,6 +71,8 @@ To explore available services in Rstudio use:
 View(emodnet_wfs())
 ```
 
+**On Linux, the geology services will not work without tweaking your openssl setting (e.g. see the second suggestion in https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level/1233456#1233456). This approach is for expert users only, be cautious. See https://github.com/EMODnet/EMODnetWFS/issues/69 for more details and updates.**
+
 ## Create Service Client
 
 Create new WFS Client. Specify the service using the `service` argument.
