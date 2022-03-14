@@ -2,7 +2,7 @@
 #'
 #' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
 #' @inheritParams emodnet_init_wfs_client
-#' @importFrom rlang .data
+#' @importFrom rlang .data `%||%`
 #' @return a tibble containg metadata on each layer available from the service.
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
@@ -48,14 +48,15 @@ emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "
 #' @inheritParams emodnet_get_layers
 #' @export
 emodnet_get_layer_info <- function(wfs, layers) {
+
     check_wfs(wfs)
-    layers  <- match.arg(layers, choices = emodnet_get_wfs_info(wfs)$layer_name,
-                         several.ok = TRUE)
 
-    caps <- wfs$getCapabilities()
+    layers <- namespace_layer_names(wfs, layers)
 
-    wfs_layers <- purrr::map(layers,
-                             ~caps$findFeatureTypeByName(.x))
+    capabilities <- wfs$getCapabilities()
+
+    wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
+        unlist(recursive = FALSE)
 
     tibble::tibble(
         data_source = "emodnet_wfs",
@@ -67,9 +68,12 @@ emodnet_get_layer_info <- function(wfs, layers) {
         class = purrr::map_chr(wfs_layers, ~.x$getClassName()),
         format = "sf"
     ) %>%
-        tidyr::separate(.data$layer_name,
-                        into = c("layer_namespace", "layer_name"),
-                        sep = ":")
+        tidyr::separate(
+            .data$layer_name,
+            into = c("layer_namespace", "layer_name"),
+            sep = ":"
+        ) %>%
+        unique()
 }
 
 #' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available

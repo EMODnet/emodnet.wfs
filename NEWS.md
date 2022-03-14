@@ -1,3 +1,5 @@
+# EMODnetWFS (development version)
+
 # EMODnetWFS 2.0.1
 
 * Introduced better handling of server response errors.
