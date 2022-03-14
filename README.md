@@ -45,33 +45,31 @@ remotes::install_github("EMODnet/EMODnetWFS")
 All available services are contained in the tibble returned by
 `emodnet_wfs()`.
 
-| service_name                                                    | service_url                                                         |
-|:----------------------------------------------------------------|:--------------------------------------------------------------------|
-| bathymetry                                                      | <https://ows.emodnet-bathymetry.eu/wfs>                             |
-| biology                                                         | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                       |
-| biology_occurrence_data                                         | <http://geo.vliz.be/geoserver/Dataportal/wfs>                       |
-| chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                |
-| chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>            |
-| chemistry_contaminants                                          | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>            |
-| chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>            |
-| geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                |
-| geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>              |
-| geology_marine_minerals                                         | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                |
-| geology_sea_floor_bedrock                                       | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                |
-| geology_seabed_substrate_maps                                   | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                |
-| geology_submerged_landscapes                                    | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                |
-| human_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                        |
-| physics                                                         | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>        |
-| seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs>            |
-| seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs> |
+| service_name                                                    | service_url                                                                   |
+|:----------------------------------------------------------------|:------------------------------------------------------------------------------|
+| bathymetry                                                      | <https://ows.emodnet-bathymetry.eu/wfs>                                       |
+| biology                                                         | <http://geo.vliz.be/geoserver/Emodnetbio/wfs>                                 |
+| biology_occurrence_data                                         | <http://geo.vliz.be/geoserver/Dataportal/wfs>                                 |
+| chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                          |
+| chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>                      |
+| chemistry_contaminants                                          | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>                      |
+| chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>                      |
+| geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                          |
+| geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>                        |
+| geology_marine_minerals                                         | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                          |
+| geology_sea_floor_bedrock                                       | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                          |
+| geology_seabed_substrate_maps                                   | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                          |
+| geology_submerged_landscapes                                    | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                          |
+| human_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                                  |
+| physics                                                         | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>                  |
+| seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
+| seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
 
 To explore available services in Rstudio use:
 
 ``` r
 View(emodnet_wfs())
 ```
-
-**On Linux, the geology services will not work without tweaking your openssl setting (e.g. see the second suggestion in https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level/1233456#1233456). This approach is for expert users only, be cautious. See https://github.com/EMODnet/EMODnetWFS/issues/69 for more details and updates.**
 
 ## Create Service Client
 
@@ -162,14 +160,14 @@ emodnet_get_wfs_info(wfs_cml)
 #> # … with 21 more rows, and 3 more variables: abstract <chr>, class <chr>,
 #> #   format <chr>
 
-layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+layers <- c("mediseh_zostera_m_pnt","mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 #> # A tibble: 2 × 9
 #>   data_source service_name service_url layer_namespace layer_name title abstract
 #>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…
-#> 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…
+#> 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…
+#> 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…
 #> # … with 2 more variables: class <chr>, format <chr>
 ```
 
@@ -231,8 +229,8 @@ You can change the output `crs` through argument `crs`.
 
 ``` r
 emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
-#> ℹ crs transformed to 3857
-#> ℹ crs transformed to 3857
+#> ℹ crs transformed to 3857.
+#> ℹ crs transformed to 3857.
 #> $mediseh_zostera_m_pnt
 #> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT

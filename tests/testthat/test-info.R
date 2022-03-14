@@ -1,6 +1,4 @@
 test_that("wfs info works from the server for a random service", {
-
-    skip_on_os("linux")
     skip_if_offline()
 
     service_name <- sample(emodnet_wfs()$service_name, 1)
@@ -13,7 +11,6 @@ test_that("wfs info works from the server for a random service", {
 })
 
 test_that("wfs all info works", {
-    skip_on_os("linux")
     skip_on_ci()
     skip_if_offline()
     all_info <- emodnet_get_all_wfs_info()
