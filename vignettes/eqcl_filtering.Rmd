@@ -10,22 +10,30 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = !(Sys.info()[["sysname"]] == "Linux")
 )
 ```
 
 
 So far, we've demonstrated using `EMODnetWFS` to request complete layers.
 
-However, WFS services allows us to be selective with what features are returned from the EMODnet servers. For example: using [CQL filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html), we can send a query including a filtering clause that will be executed on the server and return only the subset of the information we request. This can make queries a lot faster and reduce the need for filtering data after download. 
+However, WFS services allows us to be selective with what features are returned from the EMODnet servers. 
+For example: using [CQL filters](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html), we can send a query including a filtering clause that will be executed on the server and return only the subset of the information we request. 
+This can make queries a lot faster and reduce the need for filtering data after download. 
 
-For example, let's consider the case where we want to include the territorial sea boundaries in a habitat map.  One way to approach this would be to download the full layer containing all the European maritime boundaries from the human activities service and then filter the `sf` object returned for features representing Territorial Seas. 
+For example, let's consider the case where we want to include the territorial sea boundaries in a habitat map.  
+One way to approach this would be to download the full layer containing all the European maritime boundaries from the human activities service and then filter the `sf` object returned for features representing Territorial Seas. 
 
-A more efficient approach would be to use a filter and request only the features representing Territorial Seas from the server. Let's have a look at how to do that.
+A more efficient approach would be to use a filter and request only the features representing Territorial Seas from the server. 
+Let's have a look at how to do that.
 
 ### CQL & ECQL Query languages.
 
-CQL (Common Query Language) is a plain-text language created for the OGC Catalog specification. GeoServer has adapted it to be an easy-to-use filtering mechanism. GeoServer actually implements a more powerful extension called ECQL (Extended CQL), which allows expressing the full range of filters that OGC Filter 1.1 can encode. ECQL is accepted in many places in GeoServer
+CQL (Common Query Language) is a plain-text language created for the OGC Catalog specification. 
+GeoServer has adapted it to be an easy-to-use filtering mechanism. GeoServer actually implements a more powerful extension called ECQL (Extended CQL), 
+which allows expressing the full range of filters that OGC Filter 1.1 can encode. 
+ECQL is accepted in many places in GeoServer.
 
 GeoServer supports the use of both CQL and ECQL in WFS requests and whenever the documentation refers to CQL, ECQL syntax can be used as well.
 
@@ -33,15 +41,15 @@ GeoServer supports the use of both CQL and ECQL in WFS requests and whenever the
 
 The examples provided here are only a small subset of filtering functionality available through Geoserver. Full references and further examples can be found in the following documentation:
 
-- [ECQL Reference](https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html): reference for the syntax of the ECQL language
+- [ECQL Reference](https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html): reference for the syntax of the ECQL language.
 
-- [Filter Function Reference](https://docs.geoserver.org/stable/en/user/filter/function_reference.html): The OGC Filter Encoding specification provides a generic concept of a filter function. A filter function is a named function with any number of arguments, which can be used in a filter expression to perform specific calculations. This provides much richer expressiveness for defining filters.GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations
+- [Filter Function Reference](https://docs.geoserver.org/stable/en/user/filter/function_reference.html): The OGC Filter Encoding specification provides a generic concept of a filter function. A filter function is a named function with any number of arguments, which can be used in a filter expression to perform specific calculations. This provides much richer expressiveness for defining filters.GeoServer provides many different kinds of filter functions, covering a wide range of functionality including mathematics, string formatting, and geometric operations.
 
 - [CQL and ECQL Tutorial](https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html) shows examples of defining filters.
 
 </div>
 
-### Inintialise EMODnet WFS client
+### Initialise EMODnet WFS client
 
 First, let's load the library and start a new WFS client with `emodnet_init_wfs_client`.
 
@@ -51,26 +59,34 @@ library(EMODnetWFS)
 
 
 ```{r}
-wfs_ha <- emodnet_init_wfs_client(service = "human_activities")
+wfs <- emodnet_init_wfs_client(service = "biology")
 ```
 
 
 
 ### Inspecting attributes
 
-To develop filters, we first need information about the attributes we can filter on. For example, we might want to know the data type and range or distribution of values of each attributes of a given layer. 
+To develop filters, we first need information about the attributes we can filter on. 
+For example, we might want to know the data type and range or distribution of values of each attributes of a given layer. 
+
+Let's look at existing layers.
+
+```{r}
+emodnet_get_wfs_info(wfs) 
+```
 
 #### Layer attribute names
 
 To start, you might want to know the names of a layer's attributes.
 
 ```{r}
-layer_attributes_get_names(wfs_ha, layer = "maritimebnds")
+layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 ```
 
 All functions can also be used by providing a service name instead of a `wfs` object.
+
 ```{r}
-layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+layer_attributes_get_names(service = "biology", layer = "mediseh_zostera_m_pnt")
 ```
 
 #### Layer attribute descriptions
@@ -78,8 +94,9 @@ layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
 The type of filtering you might want to apply will depend on the data type of each attribute. 
 
 You can inspect attribute descriptions (metadata) for a given layer with `layer_attribute_descriptions()`. 
+
 ```{r}
-layer_attribute_descriptions(wfs_ha, layer = "maritimebnds")
+layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
 ```
 
 #### Layer attribute summaries
@@ -87,7 +104,7 @@ layer_attribute_descriptions(wfs_ha, layer = "maritimebnds")
 You can get summaries of the values of each attribute with `layer_attributes_summarise()`. This function basically runs `summary()` on the attribute columns of the layer. 
 
 ```{r}
-layer_attributes_summarise(wfs_ha, layer = "maritimebnds")
+layer_attributes_summarise(wfs, layer = "mediseh_zostera_m_pnt")
 ```
 
 #### Inspecting individual layer attributes
@@ -96,7 +113,7 @@ You can also inspect individual attributes which, in the case of categorical var
 
 
 ```{r}
-layer_attribute_inspect(wfs_ha, layer = "maritimebnds", attribute = "sitename")
+layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
 ```
 
 
@@ -105,7 +122,7 @@ layer_attribute_inspect(wfs_ha, layer = "maritimebnds", attribute = "sitename")
 Finally, to enable full inspection and custom processing of attribute data, you can download the full set of attributes as a `data.frame`, excluding the geometry column. As the geometries are usually the largest column, this is much faster than downloading the full layer and can be useful in developing attribute filtering rules.  
 
 ```{r}
-attr_tbl <- layer_attributes_tbl(wfs_ha, layer = "maritimebnds")
+attr_tbl <- layer_attributes_tbl(wfs, layer = "mediseh_zostera_m_pnt")
 
 attr_tbl
 ```
@@ -120,31 +137,53 @@ skimr::skim(attr_tbl)
 
 ### Filtering categorical attributes values using text comparisons
 
-Once we know the values of a categorical attribute of a layer, we can use them to filter the features returned from our query. For example, let's say we are only interested in the territorial sea boundaries that extend to 12 nautical miles. From our previous interrogation of the attributes associated with the `maritimebnds` layer, we have seen that the attribute `sitename` contains categories of type of boundary for each feature (row) and the value `Territory sea (12 nm)` indicates a territorial sea maritime boundary. 
+Once we know the values of a categorical attribute of a layer, we can use them to filter the features returned from our query. 
+For example, let's say we are only interested in results for France. 
+From our previous interrogation of the attributes associated with the `mediseh_zostera_m_pnt` layer, we have seen that the attribute `country` contains the country. 
 
 We can use the **name of the attribute** and the **value** we require to **construct our eqcl filter** and pass it to our request using the `cql_filter` argument.
 
 ```{r}
-emodnet_get_layers(wfs_ha, layers = "maritimebnds", 
-                   cql_filter = "sitename = 'Territory sea (12 nm)'" )
+emodnet_get_layers(
+    wfs, 
+    layers = "mediseh_zostera_m_pnt",
+    cql_filter = "country = 'Francia'" 
+)
 ```
 
-The above shows the most basic text comparisons we can make use the equality operator `=`. If we want to  match more than one value, we can use the operator `IN` instead and provide a list of values to compare to. For example, to request both Territorial (12 nm) and Contiguous zone (24 nm) boundaries, we could use the following filter: 
+The above shows the most basic text comparisons we can make use the equality operator `=`. 
+If we want to  match more than one value, we can use the operator `IN` instead and provide a list of values to compare to. 
+For example, to request both France and Spain, we could use the following filter: 
 
 ```{r}
-emodnet_get_layers(wfs_ha, layers = "maritimebnds", 
-                   cql_filter = "sitename IN ('Territory sea (12 nm)', 'Contiguous zone (24 nm)')" )
+emodnet_get_layers(
+    wfs, 
+    layers = "mediseh_zostera_m_pnt", 
+    cql_filter = "country IN ('Francia', 'Spagna')" 
+)
 ```
 
+It is the same as using the `OR` filter:
 
-Other text comparisons include text pattern matching using operator `LIKE`. For example, to request maritime boundaries for countries starting with an `F`, we can use the following filter: 
+```{r}
+emodnet_get_layers(
+    wfs, 
+    layers = "mediseh_zostera_m_pnt", 
+    cql_filter = "country='Francia' OR country='Spagna')"
+)
+```
+
+Other text comparisons include text pattern matching using operator `LIKE`. For example, to request maritime boundaries for countries starting with an `S`, we can use the following filter: 
 
 
 
 ```{r}
-emodnet_get_layers(wfs = wfs_ha, layers = "maritimebnds",
-                       cql_filter = "country LIKE 'F%'",
-                       reduce_layers = TRUE )
+emodnet_get_layers(
+    wfs = wfs, 
+    layers = "mediseh_zostera_m_pnt",
+    cql_filter = "country LIKE 'S%'",
+                       reduce_layers = TRUE 
+)
 ```
 
 CQL/ECQL filters can also include any of the [filter functions](https://docs.geoserver.org/stable/en/user/filter/function_reference.html#filter-function-reference) available in GeoServer, including multiple [string functions](https://docs.geoserver.org/stable/en/user/filter/function_reference.html#string-functions) which greatly increases the power of CQL expressions. 
@@ -153,9 +192,12 @@ For example, we can request countries that contain `l` anywhere, including the f
 
 
 ```{r}
-emodnet_get_layers(wfs = wfs_ha, layers = "maritimebnds",
-                       cql_filter = "strToLowerCase(country) LIKE '%l%'",
-                       reduce_layers = TRUE )
+emodnet_get_layers(
+    wfs = wfs, 
+    layers = "mediseh_zostera_m_pnt",
+    cql_filter = "strToLowerCase(country) LIKE '%l%'",
+    reduce_layers = TRUE 
+)
 ```
 
 <div class="alert alert-info" role="alert">
@@ -168,37 +210,37 @@ emodnet_get_layers(wfs = wfs_ha, layers = "maritimebnds",
 
 A number of additional **comparison operators, such as =, `<>`, `>`, `>=`, `<`, `<=`** , arithmetic operators **`+`, `-`, `*`, `/`** as well as **[comparison](https://docs.geoserver.org/stable/en/user/filter/function_reference.html#comparison-functions) and [math](https://docs.geoserver.org/stable/en/user/filter/function_reference.html#comparison-functions) functions** can be used for filtering numeric variables.
 
-This time we'll use the **1m seabed substrate layer** from the **Geology Seabed Substrate maps** endpoint  and filter our requests according to the shape length of each feature.
-
-Again, we start by initialising a new WFS client:
-
-```{r}
-wfs_gs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
-```
+This time we'll use the **mediseh_posidonia_nodata**.
 
 We can inspect again use some of our interrogative functions to get information on layer attributes. 
 
 ```{r}
-layer_attributes_get_names(wfs_gs, layer = "seabed_substrate_1m")
+layer_attributes_get_names(wfs, layer = "mediseh_posidonia_nodata")
 
-layer_attribute_inspect(wfs_gs, layer = "seabed_substrate_1m", attribute = "shape_length")
+layer_attribute_inspect(wfs, layer = "mediseh_posidonia_nodata", attribute = "km")
 ```
 
-We can see that values range between `0` and `~295` with a mean of `~0.55`. 
+We can see that values range between `0.23` and `~473` with a mean of `~40`. 
 
-Let's say we are interested in values greater than `5`. We can use the operator `>` to create our filter:
+Let's say we are interested in values greater than `400`. We can use the operator `>` to create our filter:
 
 ```{r}
-emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "shape_length > 5",
-                       reduce_layers = TRUE )
+emodnet_get_layers(
+    wfs = wfs, 
+    layers = "mediseh_posidonia_nodata",
+    cql_filter = "km > 400",
+    reduce_layers = TRUE 
+)
 ```
 
 To request a range we can use filter functions `between` and `and`.
 ```{r}
-emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "shape_length between 2 and 4",
-                       reduce_layers = TRUE )
+emodnet_get_layers(
+    wfs = wfs, 
+    layers = "mediseh_posidonia_nodata",
+    cql_filter = "km between 40 and 400",
+    reduce_layers = TRUE 
+)
 ```
 
 
@@ -209,14 +251,17 @@ Another powerful option for filtering features is by using [spatial predicates](
 
 For example, we could use the **ECQL spatial predicate `BBOX()`** to request only features that intersect a defined bounding box. Note that `geom` is the name of the attribute that contains feature geometries, **coordinates are supplied in the sequence `xmin`, `xmax`, `ymin`, `ymax`** and the query default is to use the CRS of the queried layer unless an additional CRS argument is provided.
 
-```{r}
-bbox_filter <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "BBOX(geom, 2565427, 4026324, 1522239, 2778536)",
-                       reduce_layers = TRUE ) 
+```{r, eval=FALSE}
+bbox_filter <- emodnet_get_layers(
+    wfs = wfs, 
+    layers = "mediseh_posidonia_nodata",
+    cql_filter = "BBOX(geom, 2565427, 4026324, 1522239, 2778536)",
+    reduce_layers = TRUE 
+) 
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 
 map <- bbox_filter %>% 
     sf::st_cast(to = "GEOMETRYCOLLECTION") %>% 
@@ -226,36 +271,40 @@ mapview::mapview(zcol = "folk_7cl_txt", burst = TRUE)
 map
 ```
 
-
-
-
 ### Using `OR` and `AND` statements
 
 Filter conditions can also be a logical combination of other conditions using `AND`, `OR` or `NOT`. We showed previously how we could use a list of potential values to match an attribute to. This could also be achieved using an `OR` statement.
 
 For example, the following query returns features where country is either `Baltic Sea` or `Bulgaria`.
 
-```{r}
-emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
-                   reduce_layers = TRUE )
+```{r, eval=FALSE}
+wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+emodnet_get_layers(
+    wfs = wfs, 
+    layers = "seabed_substrate_1m",
+    cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
+    reduce_layers = TRUE 
+)
 ```
 
 
 Let's say we also want to restrict the features returned those having `shape_length` > 1. We can include an additional condition which must be met using an `AND` statement.
 
-```{r}
+```{r, eval=FALSE}
 
-filter_sf1 <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
-                       reduce_layers = TRUE )
+filter_sf1 <- emodnet_get_layers(
+    wfs = wfs, 
+    layers = "seabed_substrate_1m",
+    cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
+    reduce_layers = TRUE 
+)
 filter_sf1
 
 ```
 
 The query returns features where `country` is `Baltic Sea` or `Bulgaria` but we can see that the minimum value is below the minimum we set with our filter. That's because the `AND` filter is added only to the `country='Bulgaria'`, so while only features with `shape_length > 1` are returned where `country` is also `Bulgaria`, the filter is not applied to `shape_length` where `country` is `Baltic Sea`.
 
-```{r}
+```{r, eval=FALSE}
 unique(filter_sf1$country)
 
 min(filter_sf1$shape_length)
@@ -264,18 +313,20 @@ min(filter_sf1$shape_length)
 
 To add the `AND` filter to both `OR` filters, we can use a parenthesis:
 
-```{r}
-filter_sf2 <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
-                       reduce_layers = TRUE )
+```{r, eval=FALSE}
+filter_sf2 <- emodnet_get_layers(
+    wfs = wfs, 
+    layers = "seabed_substrate_1m",
+    cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
+    reduce_layers = TRUE 
+)
 
 ```
 
 
 Now the minimum value is indeed above 1. However, we only get features where `country` is `'Bulgaria'`. That's because the single `Baltic Sea` feature had a `shape_length` value smaller than 1 so is filtered out.
 
-```{r}
-
+```{r, eval=FALSE}
 min(filter_sf2$shape_length)
 unique(filter_sf2$country)
 ```
@@ -283,25 +334,21 @@ unique(filter_sf2$country)
 Finally filtering for `shape_length < 1` returns features with `shape_length` values smaller than 1 for both `country` values.
 
 
-```{r}
-filter_sf3 <- emodnet_get_layers(wfs = wfs_gs, layers = "seabed_substrate_1m",
-                       cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
-                       reduce_layers = TRUE )
+```{r, eval=FALSE}
+filter_sf3 <- emodnet_get_layers(
+    wfs = wfs, 
+    layers = "seabed_substrate_1m",
+    cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
+    reduce_layers = TRUE 
+)
 
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 max(filter_sf3$shape_length)
 unique(filter_sf3$country)
 ```
-
-
-
-
-
-
-
 
 ### Advanced use
 

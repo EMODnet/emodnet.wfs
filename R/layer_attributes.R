@@ -93,10 +93,12 @@ layer_attribute_inspect <- function(wfs = NULL,
 
     layer <- match.arg(layer, several.ok = FALSE,
                        choices = emodnet_get_wfs_info(wfs)$layer_name)
+    namespaced_layer <- namespace_layer_names(wfs, layer)
+
     attribute <- match.arg(attribute, several.ok = FALSE,
                            choices = layer_attributes_get_names(wfs, layer = layer))
 
-    attribute_vector <- wfs$getFeatures(layer, PROPERTYNAME=attribute)[[attribute]]
+    attribute_vector <- wfs$getFeatures(namespaced_layer, PROPERTYNAME=attribute)[[attribute]]
     attribute_type <- class(attribute_vector)
 
     switch(attribute_type,
@@ -137,28 +139,22 @@ layer_attributes_tbl <- function(wfs = NULL,
 
     layer <- match.arg(layer, several.ok = FALSE,
                        choices = emodnet_get_wfs_info(wfs)$layer_name)
+    namespaced_layer <- namespace_layer_names(wfs, layer)
 
     attributes <- layer_attributes_get_names(wfs, layer = layer)
     attributes <- attributes[attributes != get_layer_geom_name(layer, wfs)]
-    wfs$getFeatures(layer, PROPERTYNAME=paste(attributes, collapse = ",")) %>%
+
+    wfs$getFeatures(namespaced_layer, PROPERTYNAME=paste(attributes, collapse = ",")) %>%
         sf::st_drop_geometry() %>% tibble::as_tibble()
 }
 
 get_layer_metadata <- function(layer, wfs) {
 
     check_wfs(wfs)
-    layer <- match.arg(layer, several.ok = FALSE,
-                       choices = emodnet_get_wfs_info(wfs)$layer_name)
 
-    # check layers
-    layer_info <- emodnet_get_wfs_info(wfs)
-    layer <- match.arg(layer, several.ok = FALSE,
-                       choices = layer_info$layer_name)
+    namespaced_layer <- namespace_layer_names(wfs, layer)
 
-    layer_name <- paste(layer_info$layer_namespace[layer_info$layer_name == layer],
-                        layer, sep = ":")
-
-    wfs$getCapabilities()$findFeatureTypeByName(layer_name)
+    wfs$getCapabilities()$findFeatureTypeByName(namespaced_layer)
 
 }
 
@@ -179,6 +175,7 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
 
     check_wfs(wfs)
     output <- match.arg(output, several.ok = FALSE)
+
     layer <- match.arg(layer, several.ok = FALSE,
                         choices = emodnet_get_wfs_info(wfs)$layer_name)
 

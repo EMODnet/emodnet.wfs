@@ -2,63 +2,59 @@ Package: EMODnetWFS
 Title: Access EMODnet Web Feature Service data through R
 Version: 2.0.1.9000
 Authors@R: c(
-    person(given = "Anna",
-           family = "Krystalli",
-           role = c("aut"),
-           email = "annakrystalli@googlemail.com",
+    person("Anna", "Krystalli", , "annakrystalli@googlemail.com", role = "aut",
            comment = c(ORCID = "0000-0002-2378-4915")),
-    person(given = "Salvador",
-           family = "Fernández-Bejarano",
-           role = c("ctb", "cre"),
-           email = "salvador.fernandez@vliz.be",
+    person("Salvador", "Fernández-Bejarano", , "salvador.fernandez@vliz.be", role = c("ctb", "cre"),
            comment = c(ORCID = "0000-0003-0535-7677")),
-    person(given = "Thomas J",
-           family = "Webb",
-           role = c("ctb"),
-           email = "t.j.webb@sheffield.ac.uk"),
-    person(given = "European Marine Observation Data Network (EMODnet) Biology project",
-           family = "European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE)",
-           role = c("cph"),
-           email = "bio@emodnet.eu"),
-    person(given = "VLIZ (VLAAMS INSTITUUT VOOR DE ZEE)",
-           role = c("fnd"),
-           email = "info@vliz.be"))
-Description: Access and interrogate EMODnet Web Feature Service data through R.
+    person("Thomas J", "Webb", , "t.j.webb@sheffield.ac.uk", role = "ctb"),
+    person("European Marine Observation Data Network (EMODnet) Biology project", "European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE)", , "bio@emodnet.eu", role = "cph"),
+    person("VLIZ (VLAAMS INSTITUUT VOOR DE ZEE)", , , "info@vliz.be", role = "fnd"),
+    person("Maëlle", "Salmon", , "msmaellesalmon@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0002-2815-0399"))
+  )
+Description: Access and interrogate EMODnet Web Feature Service data
+    through R.
 License: MIT + file LICENSE
-Encoding: UTF-8
-LazyData: true
-Depends: R (>= 3.6.0)
-Suggests: 
-    testthat (>= 2.1.0),
-    covr,
-    knitr,
-    rmarkdown,
-    dplyr,
-    mapview,
-    testthis,
-    webmockr,
-    withr,
-    skimr
-RoxygenNote: 7.1.2
-SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0),
-    PROJ (>= 4.8.0)
-Imports: 
-    ows4R,
-    purrr,
-    tidyr,
-    usethis,
-    magrittr,
-    tibble,
-    rlang,
-    checkmate,
-    sf,
-    janitor,
-    curl,
-    jsonlite,
-    httr,
-    utils,
-    memoise
 URL: https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
+Depends: 
+    R (>= 3.6.0)
+Imports: 
+    checkmate,
+    curl,
+    httr,
+    janitor,
+    jsonlite,
+    magrittr,
+    memoise,
+    ows4R (>= 0.3),
+    purrr,
+    readr,
+    rlang,
+    sf,
+    tibble,
+    tidyr,
+    usethis,
+    utils
+Suggests: 
+    covr,
+    dplyr,
+    httptest,
+    knitr,
+    mapview,
+    rmarkdown,
+    skimr,
+    testthat (>= 3.1.2),
+    testthis,
+    webmockr,
+    withr
+Remotes: 
+    eblondel/ows4R
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=
+    4.8.0)
