@@ -48,9 +48,10 @@ emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "
 #' @inheritParams emodnet_get_layers
 #' @export
 emodnet_get_layer_info <- function(wfs, layers) {
+
     check_wfs(wfs)
-    layers  <- match.arg(layers, choices = emodnet_get_wfs_info(wfs)$layer_name,
-                         several.ok = TRUE)
+
+    layers <- namespace_layer_names(wfs, layers)
 
     capabilities <- wfs$getCapabilities()
 
