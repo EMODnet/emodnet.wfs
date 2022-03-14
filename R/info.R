@@ -1,53 +1,4 @@
-#' Get WFS available layer information
-#'
-#' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
-#' @inheritParams emodnet_init_wfs_client
-#' @importFrom rlang .data `%||%`
-#' @return a tibble containg metadata on each layer available from the service.
-#' @export
-#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
-#' @examples
-#' emodnet_get_wfs_info(service = "bathymetry")
-#' # Query a wfs object
-#' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-#' emodnet_get_wfs_info(wfs_cml)
-#' # Get info for specific layers from wfs object
-#' layers <- c("bl_fishing_monitoring",
-#'            "bl_beacheslocations_monitoring")
-#' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
-emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
-
-    if(is.null(wfs) & is.null(service)){
-        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
-                         Both cannot be {usethis::ui_value('NULL')}")
-    }
-
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service, service_version)
-    }else{check_wfs(wfs)}
-
-    caps <- wfs$getCapabilities()
-
-    tibble::tibble(
-        data_source = "emodnet_wfs",
-        service_name = get_service_name(caps$getUrl()),
-        service_url = caps$getUrl(),
-        layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
-        title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
-        abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
-        class = purrr::map_chr(caps$getFeatureTypes(), ~.x$getClassName()),
-        format = "sf"
-    ) %>%
-        tidyr::separate(.data$layer_name, into = c("layer_namespace", "layer_name"),
-                        sep = ":")
-
-}
-
-#' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
-#' `wfs` object as input.
-#' @inheritParams emodnet_get_layers
-#' @export
-emodnet_get_layer_info <- function(wfs, layers) {
+.emodnet_get_layer_info <- function(wfs, layers) {
 
     check_wfs(wfs)
 
@@ -75,6 +26,62 @@ emodnet_get_layer_info <- function(wfs, layers) {
         ) %>%
         unique()
 }
+
+#' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
+#' `wfs` object as input.
+#' @inheritParams emodnet_get_layers
+#' @importFrom memoise memoise
+#' @details To minimize the number of requests sent to webservices,
+#' these functions use `memoise` to cache results inside the active R session.
+#' To clear the cache, re-start R or run `memoise::forget(emodnet_get_wfs_info)`/`memoise::forget(emodnet_get_layer_info)`.
+#' @export
+emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
+
+.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
+
+    if(is.null(wfs) & is.null(service)){
+        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+                         Both cannot be {usethis::ui_value('NULL')}")
+    }
+
+    if(is.null(wfs)){
+        wfs <- emodnet_init_wfs_client(service, service_version)
+    }else{check_wfs(wfs)}
+
+    caps <- wfs$getCapabilities()
+
+    tibble::tibble(
+        data_source = "emodnet_wfs",
+        service_name = get_service_name(caps$getUrl()),
+        service_url = caps$getUrl(),
+        layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
+        title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
+        abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
+        class = purrr::map_chr(caps$getFeatureTypes(), ~.x$getClassName()),
+        format = "sf"
+    ) %>%
+        tidyr::separate(.data$layer_name, into = c("layer_namespace", "layer_name"),
+                        sep = ":")
+
+}
+#' Get WFS available layer information
+#'
+#' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
+#' @inheritParams emodnet_init_wfs_client
+#' @importFrom rlang .data `%||%`
+#' @return a tibble containg metadata on each layer available from the service.
+#' @export
+#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
+#' @examples
+#' emodnet_get_wfs_info(service = "bathymetry")
+#' # Query a wfs object
+#' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
+#' emodnet_get_wfs_info(wfs_cml)
+#' # Get info for specific layers from wfs object
+#' layers <- c("bl_fishing_monitoring",
+#'            "bl_beacheslocations_monitoring")
+#' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+emodnet_get_wfs_info <- memoise::memoise(.emodnet_get_wfs_info)
 
 #' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available
 #' services from server.

@@ -1,5 +1,8 @@
 # EMODnetWFS (development version)
 
+* Added memoising (caching during each R session) of the functions getting services
+ and layers information (#52).
+
 # EMODnetWFS 2.0.1
 
 * Introduced better handling of server response errors.
