@@ -1,7 +1,7 @@
 test_that("layer_attributes_get_names works", {
     skip_if_offline()
     wfs <- create_biology_wfs()
-    with_mock_dir("biology-info", {
+    with_mock_dir("biology-layers", {
         layer_attr1 <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
         layer_attr2 <- layer_attributes_get_names(service = "biology", layer = "mediseh_zostera_m_pnt")
     })
