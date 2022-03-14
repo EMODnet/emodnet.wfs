@@ -17,7 +17,7 @@
         title = purrr::map_chr(wfs_layers, ~.x$getTitle()),
         abstract = purrr::map_chr(wfs_layers, ~getAbstractNull(.x)),
         class = purrr::map_chr(wfs_layers, ~.x$getClassName()),
-        format = "sf"
+        format = purrr::map_chr(wfs_layers, guess_layer_format)
     ) %>%
         tidyr::separate(
             .data$layer_name,
@@ -57,7 +57,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
         title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
         abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
         class = purrr::map_chr(caps$getFeatureTypes(), ~.x$getClassName()),
-        format = "sf"
+        format = purrr::map_chr(caps$getFeatureTypes(), guess_layer_format)
     ) %>%
         tidyr::separate(.data$layer_name, into = c("layer_namespace", "layer_name"),
                         sep = ":")
@@ -94,4 +94,12 @@ emodnet_get_all_wfs_info <- function() {
 getAbstractNull <- function(x){
     abstract <- x$getAbstract()
     ifelse(is.null(abstract), "", abstract)
+}
+
+guess_layer_format <- function(layer) {
+    if (any(layer$getDescription(pretty = T)$type == "geometry")) {
+        "sf"
+    } else {
+        "data.frame"
+    }
 }

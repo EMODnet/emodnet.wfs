@@ -51,27 +51,36 @@
 #' )
 #' }
 emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
-                               layers, crs = NULL, cql_filter = NULL,
-                               reduce_layers = FALSE, suppress_warnings = FALSE) {
+    layers, crs = NULL, cql_filter = NULL,
+    reduce_layers = FALSE, suppress_warnings = FALSE) {
 
     # check wfs ----------------------------------------------------------------
 
     if (is.null(wfs) & is.null(service)) {
         usethis::ui_stop(
-        "Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+            "Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
          Both cannot be {usethis::ui_value('NULL')} at the same time."
         )
     }
 
-    if (is.null(wfs)) {
-        wfs <- emodnet_init_wfs_client(service, service_version)
-    }
+    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
 
     check_wfs(wfs)
 
     # check layers -----------------------------------------
     layers <- match.arg(layers, several.ok = TRUE,
-                       choices = emodnet_get_wfs_info(wfs)$layer_name)
+        choices = emodnet_get_wfs_info(wfs)$layer_name)
+
+    formats <- purrr::map_chr(layers, get_layer_format, wfs)
+    if (any(formats != "sf") && reduce_layers) {
+        rlang::abort(
+            c(
+                "Can't reduce layers when one is a data.frame",
+                i = sprintf("data.frame layer(s): %s", toString(layers[formats == "data.frame"]))
+            )
+
+        )
+    }
 
     # check filter vector -----------------------------------------
     cql_filter <- cql_filter %||% rep(NA, times = length(layers))
@@ -140,7 +149,13 @@ check_layer_crs <- function(layer_sf, layer, wfs) {
 
 
 checkmate_crs <- function(sf, crs = NULL) {
+
     if (checkmate::test_null(sf)) {
+        return(sf)
+    }
+
+    # data.frame layers
+    if (!inherits(sf, "sf")) {
         return(sf)
     }
 
@@ -163,14 +178,13 @@ checkmate_crs <- function(sf, crs = NULL) {
 standardise_crs <- function(out, crs = NULL) {
 
     if (checkmate::test_class(out, "list")) {
-       purrr::map(out, ~checkmate_crs(.x, crs = crs))
+        purrr::map(out, ~checkmate_crs(.x, crs = crs))
     } else {
         checkmate_crs(out, crs = crs)
     }
 }
 
 ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) {
-
     # check and namespace layers -----------------------------------------------
     namespaced_x <- namespace_layer_names(wfs, x)
 
@@ -178,22 +192,28 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) 
     if (is.na(cql_filter)) {cql_filter <- NULL}
     if (is.null(cql_filter)) {
         # get layer without cql_filter
-        tryCatch(
+        tryCatch({
 
-            layer <- wfs$getFeatures(namespaced_x) %>%
-                check_layer_crs(layer = x, wfs = wfs),
+            layer <- wfs$getFeatures(namespaced_x)
+            if (inherits(layer, "sf")) {
+                layer <- check_layer_crs(layer = x, wfs = wfs)
+            }
+        },
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
-                }
+            }
         )
     } else {
         # get layer using cql_filter
-        tryCatch(
-            layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter)) %>%
-                check_layer_crs(layer = x, wfs = wfs),
+        tryCatch({
+            layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter))
+            if (inherits(layer, "sf")) {
+              layer <- check_layer_crs(layer = x, wfs = wfs)
+            }
+                },
             error = function(e) {
                 usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
-                }
+            }
         )
     }
     return(layer)
@@ -203,11 +223,16 @@ namespace_layer_names <- function(wfs, layers) {
 
     info <- emodnet_get_wfs_info(wfs)
     layers  <- match.arg(layers, choices = info$layer_name,
-                         several.ok = TRUE)
+        several.ok = TRUE)
 
     # get layer namespace from info and concatenate with layer name. Otherwise
     # empty list returned in capabilities$findFeatureTypeByName
     info[info$layer_name %in% layers,
-                   c("layer_namespace", "layer_name")] %>%
+        c("layer_namespace", "layer_name")] %>%
         apply(1, FUN = function(x){paste0(x, collapse=":")})
+}
+
+get_layer_format <- function(layer, wfs) {
+    layers <- emodnet_get_wfs_info(wfs)
+    layers$format[layers$layer_name == layer]
 }

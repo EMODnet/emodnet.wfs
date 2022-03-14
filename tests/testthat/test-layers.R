@@ -107,3 +107,14 @@ test_that("reduce works", {
     expect_s3_class(sf_data, class = c("sf", "data.frame"))
     expect_gt(nrow(sf_data), 0)
 })
+
+test_that("works when data.frame layer", {
+    skip_if_offline()
+    wfs <- create_biology_wfs()
+    expect_snapshot_error(emodnet_get_layers(wfs, layers = c("OOPS_summaries", "OOPS_metadata"), reduce_layers = TRUE))
+    result_list <- emodnet_get_layers(wfs, layers = c("OOPS_summaries", "OOPS_metadata"))
+    expect_type(result_list, "list")
+    expect_s3_class(result_list[[1]], "data.frame")
+    expect_s3_class(result_list[[2]], "data.frame")
+
+})
