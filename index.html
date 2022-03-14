@@ -100,8 +100,8 @@
 <p>All available services are contained in the tibble returned by <code><a href="reference/emodnet_wfs.html">emodnet_wfs()</a></code>.</p>
 <table class="table">
 <colgroup>
-<col width="48%">
-<col width="51%">
+<col width="45%">
+<col width="54%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">service_name</th>
@@ -170,18 +170,17 @@
 </tr>
 <tr class="even">
 <td align="left">seabed_habitats_general_datasets_and_products</td>
-<td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/emodnet_open/wfs</a></td>
+<td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs</a></td>
 </tr>
 <tr class="odd">
 <td align="left">seabed_habitats_individual_habitat_map_and_model_datasets</td>
-<td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/emodnet_open_maplibrary/wfs</a></td>
+<td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs</a></td>
 </tr>
 </tbody>
 </table>
 <p>To explore available services in Rstudio use:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="fu"><a href="reference/emodnet_wfs.html">emodnet_wfs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><strong>On Linux, the geology services will not work without tweaking your openssl setting (e.g. see the second suggestion in <a href="https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level/1233456#1233456" class="external-link uri">https://askubuntu.com/questions/1233186/ubuntu-20-04-how-to-set-lower-ssl-security-level/1233456#1233456</a>). This approach is for expert users only, be cautious. See <a href="https://github.com/EMODnet/EMODnetWFS/issues/69" class="external-link uri">https://github.com/EMODnet/EMODnetWFS/issues/69</a> for more details and updates.</strong></p>
 </div>
 <div class="section level2">
 <h2 id="create-service-client">Create Service Client<a class="anchor" aria-label="anchor" href="#create-service-client"></a>
@@ -265,14 +264,14 @@
 <span class="co">#&gt; # … with 21 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span>
 
-<span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>
+<span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>,<span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>
 
 <span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_layer_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 2 × 9</span>
 <span class="co">#&gt;   data_source service_name service_url layer_namespace layer_name title abstract</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…</span>
-<span class="co">#&gt; 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…</span>
+<span class="co">#&gt; 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…</span>
+<span class="co">#&gt; 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…</span>
 <span class="co">#&gt; # … with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
 <p>Finally, you can get details on all available services and layers from the server</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -324,8 +323,8 @@
 <p>You can change the output <code>crs</code> through argument <code>crs</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span>
-<span class="co">#&gt; ℹ crs transformed to 3857</span>
-<span class="co">#&gt; ℹ crs transformed to 3857</span>
+<span class="co">#&gt; ℹ crs transformed to 3857.</span>
+<span class="co">#&gt; ℹ crs transformed to 3857.</span>
 <span class="co">#&gt; $mediseh_zostera_m_pnt</span>
 <span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span>
 <span class="co">#&gt; Geometry type: POINT</span>
