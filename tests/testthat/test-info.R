@@ -31,7 +31,7 @@ test_that("wfs info works on wfs object", {
     expect_s3_class(layer_info_all, class = c("tbl_df", "tbl", "data.frame"))
     expect_gt(nrow(layer_info_all), 0)
     expect_equal(unique(layer_info_all$service_name), "biology")
-    expect_equal(unique(layer_info_all$service_url), "http://geo.vliz.be/geoserver/Emodnetbio/wfs")
+    expect_equal(unique(layer_info_all$service_url), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
 })
 
 
