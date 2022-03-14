@@ -21,7 +21,6 @@ test_that("categorical filters work", {
     })
     expect_equal(unique(or_filter_sf$country), c("Francia", "Grecia"))
 
-    skip_on_os("linux")
     wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
 
     expect_equal(emodnet_get_layers(wfs = wfs,
@@ -51,7 +50,6 @@ test_that("numeric filters work", {
     })
     expect_true(min(num_filter_sf$km) > 400)
 
-    skip_on_os("linux")
     wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
 
     num_filter_sf <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",

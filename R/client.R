@@ -19,10 +19,20 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
     create_client <- function(){
 
+        # TODO: remove this when the geology web services are fixed
+        is_linux <- (Sys.info()[["sysname"]] == "Linux")
+        is_geology <- (grepl("^geology_", service))
+        config <- if (is_linux && is_geology) {
+            httr::config(ssl_cipher_list = 'DEFAULT@SECLEVEL=1')
+        } else {
+            httr::config()
+        }
+
         wfs <- suppressWarnings(ows4R::WFSClient$new(
             service_url,
             serviceVersion = service_version,
-            headers = c("User-Agent" = "EMODnetWFS")
+            headers = c("User-Agent" = "EMODnetWFS R package https://github.com/EMODnet/EMODnetWFS"),
+            config = config
         ))
 
         check_wfs(wfs)
@@ -46,21 +56,21 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
 
 check_wfs <- function(wfs) {
     checkmate::assertR6(wfs, classes = c("WFSClient",
-                                         "OWSClient",
-                                         "OGCAbstractObject",
-                                         "R6"))
+        "OWSClient",
+        "OGCAbstractObject",
+        "R6"))
 }
 
 get_service_url <- function(service) {
     service <- match.arg(service,
-                         choices = emodnet_wfs()$service_name)
+        choices = emodnet_wfs()$service_name)
 
     emodnet_wfs()$service_url[emodnet_wfs()$service_name == service]
 }
 
 get_service_name <- function(service_url) {
     service_url <- match.arg(service_url,
-                         choices = emodnet_wfs()$service_url)
+        choices = emodnet_wfs()$service_url)
 
     emodnet_wfs()$service_name[emodnet_wfs()$service_url == service_url]
 }
@@ -111,7 +121,7 @@ check_service <- function(request){
 
         return(NULL)
 
-    # If no HTTP status, something else is wrong
+        # If no HTTP status, something else is wrong
     }else if(!httr::http_error(request)){
         usethis::ui_info("HTTP Status: {crayon::green(httr::http_status(request)$message)}")
         usethis::ui_stop("An exception has occured. Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}")
