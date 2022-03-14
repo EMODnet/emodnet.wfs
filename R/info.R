@@ -44,9 +44,8 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
                          Both cannot be {usethis::ui_value('NULL')}")
     }
 
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service, service_version)
-    }else{check_wfs(wfs)}
+    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+    check_wfs(wfs)
 
     caps <- wfs$getCapabilities()
 
