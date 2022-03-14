@@ -30,6 +30,10 @@
 #' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
 #' `wfs` object as input.
 #' @inheritParams emodnet_get_layers
+#' @importFrom memoise memoise
+#' @details To minimize the number of requests sent to webservices,
+#' these functions use `memoise` to cache results inside the active R session.
+#' To clear the cache, re-start R or run `memoise::forget(emodnet_get_wfs_info)`/`memoise::forget(emodnet_get_layer_info)`.
 #' @export
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
