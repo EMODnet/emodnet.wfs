@@ -46,6 +46,3 @@ test_that("No internet challenge", {
     expect_null(req_no_internet)
     expect_null(check_service(req_no_internet))
 })
-
-
-

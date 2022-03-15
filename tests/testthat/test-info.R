@@ -31,7 +31,6 @@ test_that("wfs info works on wfs object", {
     expect_equal(unique(layer_info_all$service_url), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
 })
 
-
 test_that("emodnet_get_layer_info works", {
     with_mock_dir("biology-info", {
         wfs <- emodnet_init_wfs_client("biology")
@@ -46,5 +45,3 @@ test_that("emodnet_get_layer_info works", {
     expect_s3_class(layer_info_cml,
         class = c("tbl_df", "tbl", "data.frame"))
 })
-
-

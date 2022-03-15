@@ -32,7 +32,6 @@ test_that("layer_attribute_inspect works", {
     expect_length(id, 6L)
 })
 
-
 test_that("layer_attributes_summarise works", {
     skip_if_offline()
     wfs <- create_biology_wfs()
