@@ -32,8 +32,8 @@ test_that("wfs info works on wfs object", {
 })
 
 test_that("emodnet_get_layer_info works", {
+    wfs <- create_biology_wfs()
     with_mock_dir("biology-info", {
-        wfs <- emodnet_init_wfs_client("biology")
         layers <- c("mediseh_zostera_m_pnt", "mediseh_cymodocea_pnt")
         layer_info_cml <- emodnet_get_layer_info(
             wfs = wfs,

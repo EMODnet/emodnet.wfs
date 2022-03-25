@@ -1,17 +1,14 @@
-test_that("categorical filters work", {
+test_that("categorical filters work -- biology", {
     skip_if_offline()
     wfs <- create_biology_wfs()
-    with_mock_dir("mediseh_cymodocea_pnt-Grecia", {
+    with_mock_dir("mediseh_cymodocea_pnt-Francia-Grecia", {
         simple_filter_sf <- emodnet_get_layers(
             wfs = wfs,
             layers = "mediseh_cymodocea_pnt",
             cql_filter = "country='Grecia'",
             reduce_layers = TRUE
         )
-    })
-    expect_equal(unique(simple_filter_sf$country), 'Grecia')
 
-    with_mock_dir("mediseh_cymodocea_pnt-Francia-Grecia", {
         or_filter_sf <- emodnet_get_layers(
             wfs = wfs,
             layers = "mediseh_cymodocea_pnt",
@@ -19,9 +16,12 @@ test_that("categorical filters work", {
             reduce_layers = TRUE
         )
     })
+    expect_equal(unique(simple_filter_sf$country), 'Grecia')
     expect_equal(unique(or_filter_sf$country), c("Francia", "Grecia"))
+})
 
-    wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+test_that("categorical filters work -- geology_seabed_substrate_maps", {
+    wfs <- create_geology_seabed_substrate_maps_wfs()
 
     expect_equal(emodnet_get_layers(wfs = wfs,
         layers = "seabed_substrate_1m",
@@ -37,8 +37,7 @@ test_that("categorical filters work", {
 })
 
 
-test_that("numeric filters work", {
-
+test_that("numeric filters work -- biology", {
     skip_if_offline()
     wfs <- create_biology_wfs()
     with_mock_dir("mediseh_posidonia_nodata", {
@@ -49,8 +48,10 @@ test_that("numeric filters work", {
         )
     })
     expect_true(min(num_filter_sf$km) > 400)
+})
 
-    wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
+test_that("numeric filters work -- geology_seabed_substrate_maps", {
+    wfs <- create_geology_seabed_substrate_maps_wfs()
 
     num_filter_sf <- emodnet_get_layers(wfs = wfs, layers = "seabed_substrate_1m",
         cql_filter = "country='Bulgaria' AND shape_length>1",

@@ -2,19 +2,18 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(server = "Apache-Coyote/1.1", 
         `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
         `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-        `transfer-encoding` = "chunked", date = "Tue, 15 Mar 2022 06:59:16 GMT", 
-        connection = "close"), class = c("insensitive", "list"
-    )), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
+        `transfer-encoding` = "chunked", date = "Fri, 25 Mar 2022 15:13:28 GMT"), class = c("insensitive", 
+    "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(server = "Apache-Coyote/1.1", 
             `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
             `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-            `transfer-encoding` = "chunked", date = "Tue, 15 Mar 2022 06:59:16 GMT", 
-            connection = "close"), class = c("insensitive", "list"
-        )))), cookies = structure(list(domain = logical(0), flag = logical(0), 
-        path = logical(0), secure = logical(0), expiration = structure(numeric(0), class = c("POSIXct", 
+            `transfer-encoding` = "chunked", date = "Fri, 25 Mar 2022 15:13:28 GMT"), class = c("insensitive", 
+        "list")))), cookies = structure(list(domain = logical(0), 
+        flag = logical(0), path = logical(0), secure = logical(0), 
+        expiration = structure(numeric(0), class = c("POSIXct", 
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = charToRaw("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xsd:schema xmlns:Emodnetbio=\"geo.vliz.be/Emodnetbio\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\" targetNamespace=\"geo.vliz.be/Emodnetbio\">\n  <xsd:import namespace=\"http://www.opengis.net/gml/3.2\" schemaLocation=\"http://geo.vliz.be:80/geoserver/schemas/gml/3.2.1/gml.xsd\"/>\n  <xsd:complexType name=\"mediseh_cor_abs_polyType\">\n    <xsd:complexContent>\n      <xsd:extension base=\"gml:AbstractFeatureType\">\n        <xsd:sequence>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"area\" nillable=\"true\" type=\"xsd:double\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"perimeter\" nillable=\"true\" type=\"xsd:double\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"abspoldd_\" nillable=\"true\" type=\"xsd:double\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"abspoldd_i\" nillable=\"true\" type=\"xsd:double\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"the_geom\" nillable=\"true\" type=\"gml:MultiSurfacePropertyType\"/>\n        </xsd:sequence>\n      </xsd:extension>\n    </xsd:complexContent>\n  </xsd:complexType>\n  <xsd:element name=\"mediseh_cor_abs_poly\" substitutionGroup=\"gml:AbstractFeature\" type=\"Emodnetbio:mediseh_cor_abs_polyType\"/>\n</xsd:schema>\n"), 
-    date = structure(1647327556, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 3.1e-05, 
-    connect = 3.2e-05, pretransfer = 0.000109, starttransfer = 0.033838, 
-    total = 0.033951)), class = "response")
+    date = structure(1648221208, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.1e-05, 
+    connect = 2.2e-05, pretransfer = 7.7e-05, starttransfer = 0.033733, 
+    total = 0.033791)), class = "response")

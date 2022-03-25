@@ -1,28 +1,16 @@
-test_that("layer_attributes_get_names works", {
-    skip_if_offline()
+test_that("layer attributes stuff works", {
     wfs <- create_biology_wfs()
     with_mock_dir("biology-layers", {
-        layer_attr1 <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
-        layer_attr2 <- layer_attributes_get_names(service = "biology", layer = "mediseh_zostera_m_pnt")
-    })
-    expect_equal(layer_attr1, c("id", "country", "the_geom"))
-    expect_equal(layer_attr2, c("id", "country", "the_geom"))
-})
-
-test_that("layer_attribute_descriptions works", {
-    skip_if_offline()
-    wfs <- create_biology_wfs()
-    attr <- layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
-    expect_snapshot_output(attr)
-})
-
-test_that("layer_attribute_inspect works", {
-    skip_if_offline()
-    wfs <- create_biology_wfs()
-    with_mock_dir("biology-attr2", {
+        layer_attr <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
+        layer_attr_desc <- layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
         country <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
         id <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "id")
+        attr_summary <- layer_attributes_summarise(wfs, layer = "mediseh_zostera_m_pnt")
+        crs1 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.text")
+        crs2 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.num")
     })
+    expect_equal(layer_attr, c("id", "country", "the_geom"))
+    expect_snapshot_output(layer_attr_desc)
     expect_equal(class(country), c("tabyl", "data.frame"))
     expect_equal(names(country), c(".", "n", "percent"))
     expect_true(nrow(country) > 1)
@@ -30,29 +18,16 @@ test_that("layer_attribute_inspect works", {
     expect_equal(class(id), c("summaryDefault", "table"))
     expect_equal(names(id), c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max."))
     expect_length(id, 6L)
-})
 
-test_that("layer_attributes_summarise works", {
-    skip_if_offline()
-    wfs <- create_biology_wfs()
-    with_mock_dir("biology-attr3", {
-        attrs <- layer_attributes_summarise(wfs, layer = "mediseh_zostera_m_pnt")
-    })
-    expect_equal(class(attrs), "table")
-    expect_equal(attrs[ , "  country"][2:3],
+    expect_equal(class(attr_summary), "table")
+    expect_equal(attr_summary[ , "  country"][2:3],
         structure(c("Class :character  ", "Mode  :character  "), .Names = c("",
             "")))
-    expect_equal(attrs[ , 2][1],
+    expect_equal(attr_summary[ , 2][1],
         structure("Min.   :0  ", .Names = ""))
-})
 
-test_that("get_default_crs works", {
-    skip_if_offline()
-    wfs <- create_biology_wfs()
-    with_mock_dir("biology-crs", {
-        crs1 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.text")
-        crs2 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.num")
-    })
+
     expect_equal(crs1, "epsg:4326")
     expect_equal(crs2, 4326)
 })
+

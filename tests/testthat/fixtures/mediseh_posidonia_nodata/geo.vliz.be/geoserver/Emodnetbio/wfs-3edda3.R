@@ -2,18 +2,18 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(server = "Apache-Coyote/1.1", 
         `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
         `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-        `transfer-encoding` = "chunked", date = "Tue, 15 Mar 2022 06:59:16 GMT"), class = c("insensitive", 
+        `transfer-encoding` = "chunked", date = "Fri, 25 Mar 2022 15:13:28 GMT"), class = c("insensitive", 
     "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(server = "Apache-Coyote/1.1", 
             `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
             `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-            `transfer-encoding` = "chunked", date = "Tue, 15 Mar 2022 06:59:16 GMT"), class = c("insensitive", 
+            `transfer-encoding` = "chunked", date = "Fri, 25 Mar 2022 15:13:28 GMT"), class = c("insensitive", 
         "list")))), cookies = structure(list(domain = logical(0), 
         flag = logical(0), path = logical(0), secure = logical(0), 
         expiration = structure(numeric(0), class = c("POSIXct", 
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = charToRaw("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xsd:schema xmlns:Emodnetbio=\"geo.vliz.be/Emodnetbio\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\" targetNamespace=\"geo.vliz.be/Emodnetbio\">\n  <xsd:import namespace=\"http://www.opengis.net/gml/3.2\" schemaLocation=\"http://geo.vliz.be:80/geoserver/schemas/gml/3.2.1/gml.xsd\"/>\n  <xsd:complexType name=\"mediseh_cymodocea_pntType\">\n    <xsd:complexContent>\n      <xsd:extension base=\"gml:AbstractFeatureType\">\n        <xsd:sequence>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"id\" nillable=\"true\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"country\" nillable=\"true\" type=\"xsd:string\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"the_geom\" nillable=\"true\" type=\"gml:PointPropertyType\"/>\n        </xsd:sequence>\n      </xsd:extension>\n    </xsd:complexContent>\n  </xsd:complexType>\n  <xsd:element name=\"mediseh_cymodocea_pnt\" substitutionGroup=\"gml:AbstractFeature\" type=\"Emodnetbio:mediseh_cymodocea_pntType\"/>\n</xsd:schema>\n"), 
-    date = structure(1647327556, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 4.5e-05, 
-    connect = 0.007258, pretransfer = 0.257732, starttransfer = 0.292154, 
-    total = 0.292357)), class = "response")
+    date = structure(1648221208, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.4e-05, 
+    connect = 2.4e-05, pretransfer = 6.5e-05, starttransfer = 0.035045, 
+    total = 0.03513)), class = "response")
