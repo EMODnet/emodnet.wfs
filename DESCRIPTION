@@ -1,6 +1,6 @@
 Package: EMODnetWFS
 Title: Access EMODnet Web Feature Service data through R
-Version: 2.0.1
+Version: 2.0.1.9000
 Authors@R: c(
     person("Anna", "Krystalli", , "annakrystalli@googlemail.com", role = "aut",
            comment = c(ORCID = "0000-0002-2378-4915")),
@@ -27,7 +27,7 @@ Imports:
     jsonlite,
     magrittr,
     memoise,
-    ows4R,
+    ows4R (>= 0.3),
     purrr,
     readr,
     rlang,
@@ -39,18 +39,21 @@ Imports:
 Suggests: 
     covr,
     dplyr,
+    httptest,
     knitr,
     mapview,
     rmarkdown,
     skimr,
-    testthat (>= 2.1.0),
+    testthat (>= 3.1.2),
     testthis,
     webmockr,
     withr
-VignetteBuilder: 
-    knitr
+Remotes: 
+    eblondel/ows4R
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=

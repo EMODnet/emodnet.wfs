@@ -38,6 +38,7 @@ You can install the development version of EMODnetWFS from GitHub with:
 ``` r
 remotes::install_github("EMODnet/EMODnetWFS")
 ```
+
 ## Available services
 
 All available services are contained in the tibble returned by `emodnet_wfs()`.
@@ -49,9 +50,11 @@ knitr::kable(emodnet_wfs())
 ```
 
 To explore available services in Rstudio use:
+
 ```r
 View(emodnet_wfs())
 ```
+
 
 ## Create Service Client
 
@@ -83,7 +86,7 @@ You can also get info for specific layers from wfs object:
 wfs_cml <- emodnet_init_wfs_client("biology")
 emodnet_get_wfs_info(wfs_cml)
 
-layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+layers <- c("mediseh_zostera_m_pnt","mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 ```
