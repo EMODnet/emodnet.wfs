@@ -93,7 +93,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     # get features -------------------------------------------------------------
     out <- purrr::map2(
         .x = layers, .y = cql_filter,
-        ~ews_get_layer(.x, wfs, cql_filter = .y),
+        ~ews_get_layer(.x, wfs, cql_filter = .y, ...),
         wfs, suppress_warnings, ...
     ) %>%
         stats::setNames(layers)
