@@ -12,14 +12,15 @@ emodnet_get_layers(
   crs = NULL,
   cql_filter = NULL,
   reduce_layers = FALSE,
-  suppress_warnings = FALSE
+  suppress_warnings = FALSE,
+  ...
 )
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
 
-\item{service}{the EMODnet OGC WFS service name. For
-available services, see \code{emodnet_wfs}.}
+\item{service}{the EMODnet OGC WFS service name.
+For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
 
@@ -42,6 +43,9 @@ Filters with names that do not correspond to any layers are ignored. Layers with
 
 \item{suppress_warnings}{logical. Whether to suppress messages of layer
 download failures.}
+
+\item{...}{additional vendor parameter arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{GetFeature}.
+For example, including \code{count=1} returns the first available feature.}
 }
 \value{
 If \code{reduce_layers = FALSE} (default), a list of \code{sf}
@@ -75,6 +79,13 @@ emodnet_get_layers(
   service = "human_activities",
   layers = "maritimebnds",
   cql_filter = "sitename='Territory sea (12 nm)'",
+  reduce_layers = TRUE
+)
+# Usage of vendor parameter
+emodnet_get_layers(
+  service = "human_activities",
+  layers = "maritimebnds",
+  count = 1,
   reduce_layers = TRUE
 )
 }
