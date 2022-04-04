@@ -19,7 +19,7 @@
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 #' @param suppress_warnings logical. Whether to suppress messages of layer
 #' download failures.
-#' @param ... additional vendor parameter arguments passed to [GetFeature](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
+#' @param ... additional vendor parameter arguments passed to [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
 #' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
