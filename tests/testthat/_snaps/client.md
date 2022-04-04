@@ -4,7 +4,7 @@
 
 # Services down handled
 
-    Service creation failed
+    An exception has occurred. Please raise an issue in https://github.com/EMODnet/EMODnetWFS/issues
 
 ---
 
