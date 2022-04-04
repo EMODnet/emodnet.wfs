@@ -9,11 +9,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(EMODnetWFS)
-```
-
-
 
 So far, we've demonstrated using `EMODnetWFS` to request complete layers.
 
