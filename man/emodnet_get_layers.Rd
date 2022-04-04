@@ -44,7 +44,7 @@ Filters with names that do not correspond to any layers are ignored. Layers with
 \item{suppress_warnings}{logical. Whether to suppress messages of layer
 download failures.}
 
-\item{...}{additional vendor parameter arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{GetFeature}.
+\item{...}{additional vendor parameter arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.
 For example, including \code{count=1} returns the first available feature.}
 }
 \value{
