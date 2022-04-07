@@ -1,4 +1,3 @@
-
 #' Initialise an EMODnet Seabed Habitats WFS client
 #'
 #' @param service the EMODnet OGC WFS service name. For

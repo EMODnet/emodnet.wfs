@@ -68,8 +68,11 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     check_wfs(wfs)
 
     # check layers -----------------------------------------
-    layers <- match.arg(layers, several.ok = TRUE,
-        choices = emodnet_get_wfs_info(wfs)$layer_name)
+    layers <- match.arg(
+        layers,
+        several.ok = TRUE,
+        choices = emodnet_get_wfs_info(wfs)$layer_name
+    )
 
     formats <- purrr::map_chr(layers, get_layer_format, wfs)
     if (any(formats != "sf") && reduce_layers) {
@@ -222,8 +225,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) 
 namespace_layer_names <- function(wfs, layers) {
 
     info <- emodnet_get_wfs_info(wfs)
-    layers  <- match.arg(layers, choices = info$layer_name,
-        several.ok = TRUE)
+    layers  <- match.arg(layers, choices = info$layer_name, several.ok = TRUE)
 
     # get layer namespace from info and concatenate with layer name. Otherwise
     # empty list returned in capabilities$findFeatureTypeByName
