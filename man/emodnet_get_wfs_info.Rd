@@ -18,8 +18,8 @@ emodnet_get_all_wfs_info()
 \item{layers}{a character vector of layer names. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
-\item{service}{the EMODnet OGC WFS service name. For
-available services, see \code{emodnet_wfs}.}
+\item{service}{the EMODnet OGC WFS service name.
+For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
 }

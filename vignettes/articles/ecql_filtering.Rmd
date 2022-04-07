@@ -1,10 +1,5 @@
 ---
 title: "EQCL feature filtering"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{EQCL feature filtering}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
