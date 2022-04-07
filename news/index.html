@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">EMODnetWFS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.0.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/ecql_filtering.html">EQCL feature filtering</a>
     <a class="dropdown-item" href="../articles/emodnetwfs.html">EMODnetWFS Case Study: Accessing and mapping EMODnet data</a>
-    <a class="dropdown-item" href="../articles/eqcl_filtering.html">EQCL feature filtering</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -53,7 +53,8 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="emodnetwfs-development-version">EMODnetWFS (development version)<a class="anchor" aria-label="anchor" href="#emodnetwfs-development-version"></a></h2>
-<ul><li>Added memoising (caching during each R session) of the functions getting services and layers information (<a href="https://github.com/EMODnet/EMODnetWFS/issues/52" class="external-link">#52</a>).</li>
+<ul><li>Added ability to pass vendor parameter to <code><a href="../reference/emodnet_get_layers.html">EMODnetWFS::emodnet_get_layers()</a></code> queries (<a href="https://github.com/EMODnet/EMODnetWFS/issues/88" class="external-link">#88</a>).</li>
+<li>Added memoising (caching during each R session) of the functions getting services and layers information (<a href="https://github.com/EMODnet/EMODnetWFS/issues/52" class="external-link">#52</a>).</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.1" id="emodnetwfs-201">EMODnetWFS 2.0.1<a class="anchor" aria-label="anchor" href="#emodnetwfs-201"></a></h2>
