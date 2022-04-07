@@ -19,6 +19,8 @@
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 #' @param suppress_warnings logical. Whether to suppress messages of layer
 #' download failures.
+#' @param ... additional vendor parameter arguments passed to [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
+#' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
@@ -49,10 +51,18 @@
 #'   cql_filter = "sitename='Territory sea (12 nm)'",
 #'   reduce_layers = TRUE
 #' )
+#' # Usage of vendor parameter
+#' emodnet_get_layers(
+#'   service = "human_activities",
+#'   layers = "maritimebnds",
+#'   count = 1,
+#'   reduce_layers = TRUE
+#' )
 #' }
 emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
-    layers, crs = NULL, cql_filter = NULL,
-    reduce_layers = FALSE, suppress_warnings = FALSE) {
+                               layers, crs = NULL, cql_filter = NULL,
+                               reduce_layers = FALSE, suppress_warnings = FALSE,
+                               ...) {
 
     # check wfs ----------------------------------------------------------------
 
@@ -101,10 +111,16 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
 
     # get features -------------------------------------------------------------
+    # unnamed function and explicit passing of ellipses used because of idiosyncratic use of ...
+    # within purrr::map2 function.
+    # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r
     out <- purrr::map2(
         .x = layers, .y = cql_filter,
-        ~ews_get_layer(.x, wfs, cql_filter = .y),
-        wfs, suppress_warnings
+        .f = function(x, y, wfs, suppress_warnings, ...){
+        ews_get_layer(x, wfs = wfs, cql_filter = y,
+                       suppress_warnings = suppress_warnings, ...)
+            },
+        wfs, suppress_warnings, ...
     ) %>%
         stats::setNames(layers)
 
@@ -187,7 +203,8 @@ standardise_crs <- function(out, crs = NULL) {
     }
 }
 
-ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) {
+ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, ...) {
+
     # check and namespace layers -----------------------------------------------
     namespaced_x <- namespace_layer_names(wfs, x)
 
@@ -197,7 +214,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) 
         # get layer without cql_filter
         tryCatch({
 
-            layer <- wfs$getFeatures(namespaced_x)
+            layer <- wfs$getFeatures(namespaced_x, ...)
             if (inherits(layer, "sf")) {
                 layer <- check_layer_crs(layer, layer = x, wfs = wfs)
             }
@@ -209,7 +226,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL) 
     } else {
         # get layer using cql_filter
         tryCatch({
-            layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter))
+            layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter), ...)
             if (inherits(layer, "sf")) {
               layer <- check_layer_crs(layer, layer = x, wfs = wfs)
             }
