@@ -9,10 +9,3 @@ create_biology_wfs <- function() {
         emodnet_init_wfs_client(service = "biology")
     })
 }
-
-create_geology_seabed_substrate_maps_wfs <- function() {
-    with_mock_dir("wfs-geology_seabed_substrate_maps", {
-        emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
-    })
-}
-
