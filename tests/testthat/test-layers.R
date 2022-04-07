@@ -3,7 +3,8 @@ test_that("get layers works on server", {
     wfs <- create_biology_wfs()
     l_data <- emodnet_get_layers(
         wfs = wfs,
-        layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata"))
+        layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+    )
     l_crs <- purrr::map_int(l_data, ~sf::st_crs(.x)$epsg) %>% unique()
 
     expect_length(l_crs, 1)
@@ -14,7 +15,6 @@ test_that("get layers works on server", {
     expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
     expect_gt(nrow(l_data[[1]]), 0)
     expect_gt(nrow(l_data[[2]]), 0)
-
 })
 
 test_that("crs transform works from server", {
