@@ -5,3 +5,19 @@ home:
 
 template:
   bootstrap: 5
+
+reference:
+- title: Download information about web services
+  contents:
+  - '`emodnet_wfs`'
+  - '`emodnet_init_wfs_client`'
+  - '`emodnet_get_wfs_info`'
+ 
+- title: Download layers, or information about layers
+  contents:
+  - '`emodnet_get_layers`'
+  - '`layer_attribute_descriptions`'
+  - '`layer_attribute_inspect`'
+  - '`layer_attributes_get_names`'
+  - '`layer_attributes_summarise`'
+  - '`layer_attributes_tbl`'

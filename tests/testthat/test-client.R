@@ -4,6 +4,10 @@ test_that("Specified connection works", {
     expect_equal(wfs$getUrl(), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
 })
 
+test_that("Error when wrong service", {
+    expect_snapshot_error(emodnet_init_wfs_client("blop"))
+})
+
 test_that("Services down handled", {
     webmockr::httr_mock()
 
@@ -22,8 +26,8 @@ test_that("Services down handled", {
     expect_false(httr::http_error(req_success))
 
     # Test check_service behavior
-    expect_null(check_service(req_fail))
-    expect_error(check_service(req_success))
+    expect_snapshot_error(check_service(req_fail))
+    expect_snapshot_error(check_service(req_success))
 
     webmockr::disable()
 })
@@ -36,5 +40,5 @@ test_that("No internet challenge", {
     req_no_internet <- perform_http_request(test_url)
 
     expect_null(req_no_internet)
-    expect_null(check_service(req_no_internet))
+    expect_snapshot_error(check_service(req_no_internet))
 })
