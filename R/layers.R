@@ -99,6 +99,9 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
 
     # get features -------------------------------------------------------------
+    # unnamed function and explicit passing of ellipses used because of idiosyncratic use of ...
+    # within purrr::map2 function.
+    # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r
     out <- purrr::map2(
         .x = layers, .y = cql_filter,
         .f = function(x, y, wfs, suppress_warnings, ...){
