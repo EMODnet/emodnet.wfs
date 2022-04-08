@@ -215,6 +215,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         tryCatch({
 
             layer <- wfs$getFeatures(namespaced_x, ...)
+
             if (inherits(layer, "sf")) {
                 layer <- check_layer_crs(layer, layer = x, wfs = wfs)
             }
@@ -226,7 +227,9 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
     } else {
         # get layer using cql_filter
         tryCatch({
+
             layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter), ...)
+
             if (inherits(layer, "sf")) {
               layer <- check_layer_crs(layer, layer = x, wfs = wfs)
             }
