@@ -239,44 +239,6 @@ emodnet_get_layers(
 
 
 
-### Filtering with spatial predicates
-
-Another powerful option for filtering features is by using [spatial predicates](https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate)
-
-For example, we could use the **ECQL spatial predicate `BBOX()`** to request only features that intersect a defined bounding box. Note that `geom` is the name of the attribute that contains feature geometries, **coordinates are supplied in the sequence `xmin`, `xmax`, `ymin`, `ymax`** and the query default is to use the CRS of the queried layer unless an additional CRS argument is provided.
-
-
-
-```{r}
-bbox_filter <- emodnet_get_layers(service = "geology_seabed_substrate_maps",
-                                  layers = "seabed_substrate_1m",
-                                  cql_filter = "BBOX(geom, 3526324, 3526330, 1522239, 1522300)",
-                                  reduce_layers = TRUE ) 
-```
-
-
-```{r}
-map <- bbox_filter %>% 
-    sf::st_cast(to = "GEOMETRYCOLLECTION") %>% 
-    sf::st_collection_extract(type = "POLYGON") %>%
-mapview::mapview(zcol = "folk_7cl_txt", burst = TRUE)
-map
-```
-
-
-```{r, echo=FALSE, eval=FALSE}
-pr_sf <- bbox_filter %>% 
-    sf::st_cast(to = "GEOMETRYCOLLECTION") %>% 
-    sf::st_collection_extract(type = "POLYGON")
-
-
-sf::st_crs(pr_sf) <- 3034
-
-
-plot(pr_sf["folk_7cl_txt"])
-```
-
-
 ### Using `OR` and `AND` statements
 
 Filter conditions can also be a logical combination of other conditions using `AND`, `OR` or `NOT`. We showed previously how we could use a list of potential values to match an attribute to. This could also be achieved using an `OR` statement.
