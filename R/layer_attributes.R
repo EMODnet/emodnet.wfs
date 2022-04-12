@@ -99,17 +99,22 @@ layer_attribute_inspect <- function(wfs = NULL,
                            choices = layer_attributes_get_names(wfs, layer = layer))
 
     attribute_vector <- wfs$getFeatures(namespaced_layer, PROPERTYNAME=attribute)[[attribute]]
-    attribute_type <- class(attribute_vector)
+
+    if (inherits(attribute_vector, "sfc")) {
+        attribute_type <- "geometry"
+    } else {
+        attribute_type <- class(attribute_vector)
+        }
+
 
     switch(attribute_type,
-           character = attribute_vector %>% janitor::tabyl(),
+           character =  janitor::tabyl(attribute_vector),
            factor = janitor::tabyl(attribute_vector),
            numeric = summary(attribute_vector),
            integer = summary(attribute_vector),
            double = summary(attribute_vector),
-           Date = summary(attribute_vector)#,
-           #geometry = TODO
-               )
+           Date = summary(attribute_vector),
+           geometry = sf::st_geometry(attribute_vector))
 
 }
 
