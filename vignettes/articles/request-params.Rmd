@@ -154,6 +154,26 @@ emodnet_get_layers(
 ```
 
 
+## Limit spatial extent using a boundary box
+
+The `bbox` parameter allows us to search for features that are contained (or partially contained) inside a box of user-defined coordinates. The format of the `bbox`  parameter in most EMODnet WFS cases (assuming you are using version `2.0.0`) is `bbox=a1,b1,a2,b2,[crs]` where `a1`, `b1`, `a2`, and `b2` represent the coordinate values. The optional `crs` parameter is used to name the CRS for the bbox coordinates (if they are different to the featureTypes native CRS.) The order of coordinates passed to the `bbox` parameter depends on the coordinate system used (this is why the coordinate syntax isn’t represented with `x` or `y`).
+
+In the following example, we specify the bounding box by proving coordinates in the order `xmin,ymin,xmax,ymax` and specifying that coordinates are given in the `EPSG:4326` coordinate reference system.
+
+```{r}
+bbox_response <- emodnet_get_layers(
+    service = "biology", 
+    layers = "mediseh_posidonia_nodata",
+    bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
+    reduce_layers = TRUE 
+) 
+
+bbox_response %>% 
+  sf::st_cast(to = "MULTILINESTRING") %>% 
+  mapview::mapview(burst = TRUE, legend = FALSE)
+```
+
+
 ## Non-standard Vendor Parameters
 
 WFS vendor parameters are additonal, non-standard request parameters defined by an implementation to provide enhanced capabilities. 
