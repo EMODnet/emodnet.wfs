@@ -36,6 +36,7 @@ vignette("emodnetwfs")
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
+# install.packages("remotes")
 remotes::install_github("EMODnet/EMODnetWFS")
 ```
 
