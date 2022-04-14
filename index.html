@@ -52,6 +52,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/ecql_filtering.html">EQCL feature filtering</a>
     <a class="dropdown-item" href="articles/emodnetwfs.html">EMODnetWFS Case Study: Accessing and mapping EMODnet data</a>
+    <a class="dropdown-item" href="articles/request-params.html">Using request parameters to limit query results</a>
   </div>
 </li>
 <li class="nav-item">
@@ -92,7 +93,8 @@
 </h2>
 <p>You can install the development version of EMODnetWFS from GitHub with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="available-services">Available services<a class="anchor" aria-label="anchor" href="#available-services"></a>
@@ -114,11 +116,11 @@
 </tr>
 <tr class="even">
 <td align="left">biology</td>
-<td align="left"><a href="http://geo.vliz.be/geoserver/Emodnetbio/wfs" class="external-link uri">http://geo.vliz.be/geoserver/Emodnetbio/wfs</a></td>
+<td align="left"><a href="https://geo.vliz.be/geoserver/Emodnetbio/wfs" class="external-link uri">https://geo.vliz.be/geoserver/Emodnetbio/wfs</a></td>
 </tr>
 <tr class="odd">
 <td align="left">biology_occurrence_data</td>
-<td align="left"><a href="http://geo.vliz.be/geoserver/Dataportal/wfs" class="external-link uri">http://geo.vliz.be/geoserver/Dataportal/wfs</a></td>
+<td align="left"><a href="https://geo.vliz.be/geoserver/Dataportal/wfs" class="external-link uri">https://geo.vliz.be/geoserver/Dataportal/wfs</a></td>
 </tr>
 <tr class="even">
 <td align="left">chemistry_cdi_data_discovery_and_access_service</td>
@@ -193,11 +195,11 @@
 <span class="co">#&gt; Loading IANA mime types...</span>
 <span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span>
 <span class="co">#&gt; ✓ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
+<span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
 
 <span class="va">wfs_bio</span><span class="op">$</span><span class="fu">getUrl</span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; [1] "http://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></code></pre></div>
+<span class="co">#&gt; [1] "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-wfs-layer-info">Get WFS Layer info<a class="anchor" aria-label="anchor" href="#get-wfs-layer-info"></a>
@@ -206,62 +208,62 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span>
 <span class="co">#&gt; ✓ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
+<span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
-<span class="co">#&gt; # A tibble: 31 × 9</span>
+<span class="co">#&gt; # A tibble: 33 × 9</span>
 <span class="co">#&gt;    data_source service_name service_url         layer_namespace layer_name title</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…</span>
-<span class="co">#&gt;  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; # … with 21 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
+<span class="co">#&gt;  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…</span>
+<span class="co">#&gt;  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; # … with 23 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span></code></pre></div>
 <p>or you can pass a wfs client object.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bio</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 31 × 9</span>
+<span class="co">#&gt; # A tibble: 33 × 9</span>
 <span class="co">#&gt;    data_source service_name service_url         layer_namespace layer_name title</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…</span>
-<span class="co">#&gt;  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; # … with 21 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
+<span class="co">#&gt;  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…</span>
+<span class="co">#&gt;  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; # … with 23 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span></code></pre></div>
 <p>You can also get info for specific layers from wfs object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wfs_cml</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span><span class="st">"biology"</span><span class="op">)</span>
 <span class="co">#&gt; ✓ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
+<span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
 <span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_cml</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 31 × 9</span>
+<span class="co">#&gt; # A tibble: 33 × 9</span>
 <span class="co">#&gt;    data_source service_name service_url         layer_namespace layer_name title</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;               &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  2 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  3 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_c… EMOD…</span>
-<span class="co">#&gt;  4 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  5 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  6 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  7 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      Species_g… EMOD…</span>
-<span class="co">#&gt;  8 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_h… EMOD…</span>
-<span class="co">#&gt;  9 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; 10 emodnet_wfs biology      http://geo.vliz.be… Emodnetbio      mediseh_m… EMOD…</span>
-<span class="co">#&gt; # … with 21 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
+<span class="co">#&gt;  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…</span>
+<span class="co">#&gt;  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…</span>
+<span class="co">#&gt;  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…</span>
+<span class="co">#&gt;  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…</span>
+<span class="co">#&gt; # … with 23 more rows, and 3 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span>
 <span class="co">#&gt; #   format &lt;chr&gt;</span>
 
 <span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>,<span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>
@@ -270,8 +272,8 @@
 <span class="co">#&gt; # A tibble: 2 × 9</span>
 <span class="co">#&gt;   data_source service_name service_url layer_namespace layer_name title abstract</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…</span>
-<span class="co">#&gt; 2 emodnet_wfs http://geo.… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…</span>
+<span class="co">#&gt; 1 emodnet_wfs https://geo… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…</span>
+<span class="co">#&gt; 2 emodnet_wfs https://geo… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…</span>
 <span class="co">#&gt; # … with 2 more variables: class &lt;chr&gt;, format &lt;chr&gt;</span></code></pre></div>
 <p>Finally, you can get details on all available services and layers from the server</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -369,7 +371,7 @@
     layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; ✓ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
+<span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
 <span class="co">#&gt; $mediseh_zostera_m_pnt</span>
 <span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span>
@@ -426,7 +428,7 @@
     reduce_layers <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span>
 <span class="co">#&gt; ✓ WFS client created succesfully</span>
-<span class="co">#&gt; ℹ Service: 'http://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
+<span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span>
 <span class="co">#&gt; ℹ Version: '2.0.0'</span>
 <span class="co">#&gt; Simple feature collection with 465 features and 3 fields</span>
 <span class="co">#&gt; Geometry type: MULTICURVE</span>

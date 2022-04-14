@@ -50,6 +50,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/ecql_filtering.html">EQCL feature filtering</a>
     <a class="dropdown-item" href="../articles/emodnetwfs.html">EMODnetWFS Case Study: Accessing and mapping EMODnet data</a>
+    <a class="dropdown-item" href="../articles/request-params.html">Using request parameters to limit query results</a>
   </div>
 </li>
 <li class="nav-item">
@@ -382,12 +383,24 @@ One way to approach this would be to download the full layer containing all the 
 <code class="sourceCode R"><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
     <span class="va">wfs</span>, 
     layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>, 
-    cql_filter <span class="op">=</span> <span class="st">"country='Francia' OR country='Spagna')"</span>
+    cql_filter <span class="op">=</span> <span class="st">"country='Francia' OR country='Spagna'"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Warning: Download of layer <span style="color: #0000BB;">'mediseh_zostera_m_pnt'</span> failed: <span style="color: #00BB00;">Error: Cannot open "/tmp/Rtmpdw5GrO/file39fea98fe6b.gml"; The source could be corrupt or not supported. See `st_drivers()` for a list of supported formats.</span></span>
-<span class="co"><span style="color: #00BB00;">#&gt; </span></span>
 <span class="co">#&gt; $mediseh_zostera_m_pnt</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
+<span class="co">#&gt; Simple feature collection with 9 features and 3 fields</span>
+<span class="co">#&gt; Geometry type: POINT</span>
+<span class="co">#&gt; Dimension:     XY</span>
+<span class="co">#&gt; Bounding box:  xmin: -4.167154 ymin: 36.71226 xmax: 4.84864 ymax: 43.37637</span>
+<span class="co">#&gt; Geodetic CRS:  WGS 84</span>
+<span class="co">#&gt;                     gml_id id country                   the_geom</span>
+<span class="co">#&gt; 1  mediseh_zostera_m_pnt.1  0  Spagna  POINT (-2.61314 36.71681)</span>
+<span class="co">#&gt; 2  mediseh_zostera_m_pnt.2  0  Spagna POINT (-3.846598 36.75127)</span>
+<span class="co">#&gt; 3  mediseh_zostera_m_pnt.3  0  Spagna POINT (-3.957785 36.72266)</span>
+<span class="co">#&gt; 4  mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)</span>
+<span class="co">#&gt; 5  mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)</span>
+<span class="co">#&gt; 6  mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)</span>
+<span class="co">#&gt; 7  mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)</span>
+<span class="co">#&gt; 8  mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)</span>
+<span class="co">#&gt; 9 mediseh_zostera_m_pnt.54  0  Spagna  POINT (3.291868 42.29132)</span></code></pre></div>
 <p>Other text comparisons include text pattern matching using operator <code>LIKE</code>. For example, to request maritime boundaries for countries starting with an <code>S</code>, we can use the following filter:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
@@ -449,7 +462,7 @@ One way to approach this would be to download the full layer containing all the 
 </h3>
 <p>A number of additional <strong>comparison operators, such as =, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code></strong> , arithmetic operators <strong><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code></strong> as well as <strong><a href="https://docs.geoserver.org/stable/en/user/filter/function_reference.html#comparison-functions" class="external-link">comparison</a> and <a href="https://docs.geoserver.org/stable/en/user/filter/function_reference.html#comparison-functions" class="external-link">math</a> functions</strong> can be used for filtering numeric variables.</p>
 <p>This time we’ll use the <strong>mediseh_posidonia_nodata</strong>.</p>
-<p>We can inspect again use some of our interrogative functions to get information on layer attributes.</p>
+<p>We can inspect again, using some of our interrogative functions to get information on layer attributes.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "id"       "km"       "the_geom"</span>
@@ -503,32 +516,11 @@ One way to approach this would be to download the full layer containing all the 
 <span class="co">#&gt; 10 mediseh_posidonia_nodata.17  0 184.05959 MULTICURVE (LINESTRING (10....</span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="filtering-with-spatial-predicates">Filtering with spatial predicates<a class="anchor" aria-label="anchor" href="#filtering-with-spatial-predicates"></a>
-</h3>
-<p>Another powerful option for filtering features is by using <a href="https://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate" class="external-link">spatial predicates</a></p>
-<p>For example, we could use the <strong>ECQL spatial predicate <code>BBOX()</code></strong> to request only features that intersect a defined bounding box. Note that <code>geom</code> is the name of the attribute that contains feature geometries, <strong>coordinates are supplied in the sequence <code>xmin</code>, <code>xmax</code>, <code>ymin</code>, <code>ymax</code></strong> and the query default is to use the CRS of the queried layer unless an additional CRS argument is provided.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">bbox_filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
-    wfs <span class="op">=</span> <span class="va">wfs</span>, 
-    layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,
-    cql_filter <span class="op">=</span> <span class="st">"BBOX(geom, 2565427, 4026324, 1522239, 2778536)"</span>,
-    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> 
-<span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">map</span> <span class="op">&lt;-</span> <span class="va">bbox_filter</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html" class="external-link">st_cast</a></span><span class="op">(</span>to <span class="op">=</span> <span class="st">"GEOMETRYCOLLECTION"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_collection_extract.html" class="external-link">st_collection_extract</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"POLYGON"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
-<span class="fu">mapview</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mapview/man/mapView.html" class="external-link">mapview</a></span><span class="op">(</span>zcol <span class="op">=</span> <span class="st">"folk_7cl_txt"</span>, burst <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="va">map</span></code></pre></div>
-</div>
-<div class="section level3">
 <h3 id="using-or-and-and-statements">Using <code>OR</code> and <code>AND</code> statements<a class="anchor" aria-label="anchor" href="#using-or-and-and-statements"></a>
 </h3>
 <p>Filter conditions can also be a logical combination of other conditions using <code>AND</code>, <code>OR</code> or <code>NOT</code>. We showed previously how we could use a list of potential values to match an attribute to. This could also be achieved using an <code>OR</code> statement.</p>
 <p>For example, the following query returns features where country is either <code>Baltic Sea</code> or <code>Bulgaria</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"geology_seabed_substrate_maps"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
     wfs <span class="op">=</span> <span class="va">wfs</span>, 
@@ -537,7 +529,7 @@ One way to approach this would be to download the full layer containing all the 
     reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> 
 <span class="op">)</span></code></pre></div>
 <p>Let’s say we also want to restrict the features returned those having <code>shape_length</code> &gt; 1. We can include an additional condition which must be met using an <code>AND</code> statement.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">filter_sf1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
     wfs <span class="op">=</span> <span class="va">wfs</span>, 
@@ -547,12 +539,12 @@ One way to approach this would be to download the full layer containing all the 
 <span class="op">)</span>
 <span class="va">filter_sf1</span></code></pre></div>
 <p>The query returns features where <code>country</code> is <code>Baltic Sea</code> or <code>Bulgaria</code> but we can see that the minimum value is below the minimum we set with our filter. That’s because the <code>AND</code> filter is added only to the <code>country='Bulgaria'</code>, so while only features with <code>shape_length &gt; 1</code> are returned where <code>country</code> is also <code>Bulgaria</code>, the filter is not applied to <code>shape_length</code> where <code>country</code> is <code>Baltic Sea</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf1</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">filter_sf1</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span></code></pre></div>
 <p>To add the <code>AND</code> filter to both <code>OR</code> filters, we can use a parenthesis:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filter_sf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
     wfs <span class="op">=</span> <span class="va">wfs</span>, 
     layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,
@@ -560,18 +552,18 @@ One way to approach this would be to download the full layer containing all the 
     reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> 
 <span class="op">)</span></code></pre></div>
 <p>Now the minimum value is indeed above 1. However, we only get features where <code>country</code> is <code>'Bulgaria'</code>. That’s because the single <code>Baltic Sea</code> feature had a <code>shape_length</code> value smaller than 1 so is filtered out.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">filter_sf2</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf2</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
 <p>Finally filtering for <code>shape_length &lt; 1</code> returns features with <code>shape_length</code> values smaller than 1 for both <code>country</code> values.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filter_sf3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>
     wfs <span class="op">=</span> <span class="va">wfs</span>, 
     layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,
     cql_filter <span class="op">=</span> <span class="st">"(country='Baltic Sea' OR country='Bulgaria') AND shape_length&lt;1"</span>,
     reduce_layers <span class="op">=</span> <span class="cn">TRUE</span> 
 <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">filter_sf3</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf3</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></code></pre></div>
 </div>
