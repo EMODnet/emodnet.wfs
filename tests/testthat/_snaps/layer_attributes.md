@@ -1,4 +1,4 @@
-# layer_attribute_descriptions works
+# layer attributes stuff works
 
           name      type minOccurs maxOccurs nillable
     1       id   integer         0         1     TRUE

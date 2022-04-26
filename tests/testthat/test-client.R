@@ -1,15 +1,7 @@
-test_that("Default connection works", {
+test_that("Specified connection works", {
     wfs <- create_biology_wfs()
     expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
     expect_equal(wfs$getUrl(), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
-})
-
-test_that("Specified connection works", {
-    with_mock_dir("bathymetry-info", {
-      wfs <- emodnet_init_wfs_client(service = "bathymetry")
-    })
-    expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
-    expect_equal(wfs$getUrl(), "https://ows.emodnet-bathymetry.eu/wfs")
 })
 
 test_that("Error when wrong service", {
@@ -50,6 +42,3 @@ test_that("No internet challenge", {
     expect_null(req_no_internet)
     expect_snapshot_error(check_service(req_no_internet))
 })
-
-
-

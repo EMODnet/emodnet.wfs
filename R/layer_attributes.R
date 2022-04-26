@@ -32,10 +32,9 @@ layer_attributes_summarise <- function(wfs = NULL,
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = "2.0.0", layer) {
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service,
-                                       service_version)
-    }else{check_wfs(wfs)}
+
+    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+    check_wfs(wfs)
 
     get_layer_metadata(layer, wfs)$getDescription(pretty = TRUE)
 }
@@ -86,10 +85,8 @@ layer_attribute_inspect <- function(wfs = NULL,
                                     service_version = "2.0.0",
                                     layer, attribute) {
 
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service,
-                                       service_version)
-    }else{check_wfs(wfs)}
+    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+    check_wfs(wfs)
 
     layer <- match.arg(layer, several.ok = FALSE,
                        choices = emodnet_get_wfs_info(wfs)$layer_name)
@@ -137,10 +134,8 @@ layer_attributes_tbl <- function(wfs = NULL,
                                 service = NULL,
                                 service_version = "2.0.0", layer) {
 
-    if(is.null(wfs)){
-        wfs <- emodnet_init_wfs_client(service,
-                                       service_version)
-    }else{check_wfs(wfs)}
+    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+    check_wfs(wfs)
 
     layer <- match.arg(layer, several.ok = FALSE,
                        choices = emodnet_get_wfs_info(wfs)$layer_name)
