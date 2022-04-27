@@ -1,7 +1,7 @@
 test_that("categorical filters work -- biology", {
     skip_if_offline()
     wfs <- create_biology_wfs()
-    with_mock_dir("mediseh_cymodocea_pnt-Malta-Israele", {
+    with_mock_dir("Malta-Israele", {
         simple_filter_sf <- emodnet_get_layers(
             wfs = wfs,
             layers = "mediseh_cymodocea_pnt",
@@ -23,7 +23,7 @@ test_that("categorical filters work -- biology", {
 test_that("numeric filters work -- biology", {
     skip_if_offline()
     wfs <- create_biology_wfs()
-    with_mock_dir("mediseh_posidonia_nodata", {
+    with_mock_dir("nodata", {
         num_filter_sf <- emodnet_get_layers(
             wfs = wfs, layers = "mediseh_posidonia_nodata",
             cql_filter = "km>400",
