@@ -50,7 +50,7 @@ Suggests:
     withr
 Remotes: 
     eblondel/ows4R,
-    maelle/httptest@fix-requester-usage
+    nealrichardson/httptest
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
