@@ -29,5 +29,7 @@ output of \code{summary()} on the attributes (variables) in a given layer for a 
 Get summaries of layer attributes (variables)
 }
 \examples{
+\dontrun{
 layer_attributes_summarise(service = "human_activities", layer = "maritimebnds")
+}
 }

@@ -71,6 +71,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
 #' @examples
+#' \dontrun{
 #' emodnet_get_wfs_info(service = "bathymetry")
 #' # Query a wfs object
 #' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
@@ -79,6 +80,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' layers <- c("bl_fishing_monitoring",
 #'            "bl_beacheslocations_monitoring")
 #' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+#' }
 emodnet_get_wfs_info <- memoise::memoise(.emodnet_get_wfs_info)
 
 #' @describeIn emodnet_get_wfs_info Get metadata on all layers and all available

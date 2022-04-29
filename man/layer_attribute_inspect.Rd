@@ -34,7 +34,9 @@ factor or character variable levels or unique values.
 Inspect layer attribute
 }
 \examples{
+\dontrun{
 wfs <- emodnet_init_wfs_client(service = "human_activities")
 layer_attributes_get_names(wfs, layer = "maritimebnds")
 layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+}
 }

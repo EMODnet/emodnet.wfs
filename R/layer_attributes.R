@@ -9,7 +9,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' layer_attributes_summarise(service = "human_activities", layer = "maritimebnds")
+#' }
 layer_attributes_summarise <- function(wfs = NULL,
                            service = NULL,
                            service_version = "2.0.0", layer){
@@ -28,7 +30,9 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun(
 #' layer_attribute_descriptions(service = "human_activities", layer = "maritimebnds")
+#' )
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = "2.0.0", layer) {
@@ -50,7 +54,9 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+#' }
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = "2.0.0", layer){
@@ -77,9 +83,11 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' wfs <- emodnet_init_wfs_client(service = "human_activities")
 #' layer_attributes_get_names(wfs, layer = "maritimebnds")
 #' layer_attribute_inspect(wfs, layer = "maritimebnds", attribute = "sitename")
+#' }
 layer_attribute_inspect <- function(wfs = NULL,
                                     service = NULL,
                                     service_version = "2.0.0",
@@ -129,7 +137,9 @@ layer_attribute_inspect <- function(wfs = NULL,
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' layer_attributes_tbl(service = "human_activities", layer = "maritimebnds")
+#' }
 layer_attributes_tbl <- function(wfs = NULL,
                                 service = NULL,
                                 service_version = "2.0.0", layer) {

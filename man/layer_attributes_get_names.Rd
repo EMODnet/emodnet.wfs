@@ -29,5 +29,7 @@ character vector of layer attribute (variable) names.
 Get names of layer attributes
 }
 \examples{
+\dontrun{
 layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+}
 }

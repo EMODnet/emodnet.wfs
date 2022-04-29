@@ -46,6 +46,7 @@ services from server.
 }}
 
 \examples{
+\dontrun{
 emodnet_get_wfs_info(service = "bathymetry")
 # Query a wfs object
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
@@ -54,4 +55,5 @@ emodnet_get_wfs_info(wfs_cml)
 layers <- c("bl_fishing_monitoring",
            "bl_beacheslocations_monitoring")
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+}
 }

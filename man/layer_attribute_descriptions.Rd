@@ -29,5 +29,7 @@ data.frame containing layer attribute descriptions (metadata).
 Get layer attribute description
 }
 \examples{
+\dontrun(
 layer_attribute_descriptions(service = "human_activities", layer = "maritimebnds")
+)
 }

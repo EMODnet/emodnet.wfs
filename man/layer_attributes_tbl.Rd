@@ -34,5 +34,7 @@ useful for inspecting attribute values and constructing feature filters for more
 targeted and faster layer download.
 }
 \examples{
+\dontrun{
 layer_attributes_tbl(service = "human_activities", layer = "maritimebnds")
+}
 }
