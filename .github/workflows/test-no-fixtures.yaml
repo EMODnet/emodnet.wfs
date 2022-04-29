@@ -9,7 +9,7 @@ on:
 name: test-without-fixtures
 
 jobs:
-  test-coverage:
+  test-without-fixtures:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
