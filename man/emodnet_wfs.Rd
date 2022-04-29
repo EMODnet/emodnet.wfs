@@ -12,3 +12,7 @@ Tibble of available EMODnet Web Feature Services
 \description{
 Available EMODnet Web Feature Services
 }
+\examples{
+emodnet_wfs()
+
+}
