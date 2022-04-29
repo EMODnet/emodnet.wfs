@@ -1,30 +1,29 @@
 .emodnet_get_layer_info <- function(wfs, layers) {
+  check_wfs(wfs)
 
-    check_wfs(wfs)
+  layers <- namespace_layer_names(wfs, layers)
 
-    layers <- namespace_layer_names(wfs, layers)
+  capabilities <- wfs$getCapabilities()
 
-    capabilities <- wfs$getCapabilities()
+  wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
+    unlist(recursive = FALSE)
 
-    wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
-        unlist(recursive = FALSE)
-
-    tibble::tibble(
-        data_source = "emodnet_wfs",
-        service_name = wfs$getUrl(),
-        service_url = get_service_name(wfs$getUrl()),
-        layer_name = purrr::map_chr(wfs_layers, ~.x$getName()),
-        title = purrr::map_chr(wfs_layers, ~.x$getTitle()),
-        abstract = purrr::map_chr(wfs_layers, ~getAbstractNull(.x)),
-        class = purrr::map_chr(wfs_layers, ~.x$getClassName()),
-        format = purrr::map_chr(wfs_layers, guess_layer_format)
+  tibble::tibble(
+    data_source = "emodnet_wfs",
+    service_name = wfs$getUrl(),
+    service_url = get_service_name(wfs$getUrl()),
+    layer_name = purrr::map_chr(wfs_layers, ~ .x$getName()),
+    title = purrr::map_chr(wfs_layers, ~ .x$getTitle()),
+    abstract = purrr::map_chr(wfs_layers, ~ getAbstractNull(.x)),
+    class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
+    format = purrr::map_chr(wfs_layers, guess_layer_format)
+  ) %>%
+    tidyr::separate(
+      .data$layer_name,
+      into = c("layer_namespace", "layer_name"),
+      sep = ":"
     ) %>%
-        tidyr::separate(
-            .data$layer_name,
-            into = c("layer_namespace", "layer_name"),
-            sep = ":"
-        ) %>%
-        unique()
+    unique()
 }
 
 #' @describeIn emodnet_get_wfs_info Get metadata for specific layers. Requires a
@@ -38,30 +37,30 @@
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
 .emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
-
-    if(is.null(wfs) & is.null(service)){
-        usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
+  if (is.null(wfs) & is.null(service)) {
+    usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
                          Both cannot be {usethis::ui_value('NULL')}")
-    }
+  }
 
-    wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
-    check_wfs(wfs)
+  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+  check_wfs(wfs)
 
-    caps <- wfs$getCapabilities()
+  caps <- wfs$getCapabilities()
 
-    tibble::tibble(
-        data_source = "emodnet_wfs",
-        service_name = get_service_name(caps$getUrl()),
-        service_url = caps$getUrl(),
-        layer_name = purrr::map_chr(caps$getFeatureTypes(), ~.x$getName()),
-        title = purrr::map_chr(caps$getFeatureTypes(), ~.x$getTitle()),
-        abstract = purrr::map_chr(caps$getFeatureTypes(), ~getAbstractNull(.x)),
-        class = purrr::map_chr(caps$getFeatureTypes(), ~.x$getClassName()),
-        format = purrr::map_chr(caps$getFeatureTypes(), guess_layer_format)
-    ) %>%
-        tidyr::separate(.data$layer_name, into = c("layer_namespace", "layer_name"),
-                        sep = ":")
-
+  tibble::tibble(
+    data_source = "emodnet_wfs",
+    service_name = get_service_name(caps$getUrl()),
+    service_url = caps$getUrl(),
+    layer_name = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getName()),
+    title = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getTitle()),
+    abstract = purrr::map_chr(caps$getFeatureTypes(), ~ getAbstractNull(.x)),
+    class = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getClassName()),
+    format = purrr::map_chr(caps$getFeatureTypes(), guess_layer_format)
+  ) %>%
+    tidyr::separate(.data$layer_name,
+      into = c("layer_namespace", "layer_name"),
+      sep = ":"
+    )
 }
 #' Get WFS available layer information
 #'
@@ -77,8 +76,10 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
 #' emodnet_get_wfs_info(wfs_cml)
 #' # Get info for specific layers from wfs object
-#' layers <- c("bl_fishing_monitoring",
-#'            "bl_beacheslocations_monitoring")
+#' layers <- c(
+#'   "bl_fishing_monitoring",
+#'   "bl_beacheslocations_monitoring"
+#' )
 #' emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 #' }
 emodnet_get_wfs_info <- memoise::memoise(.emodnet_get_wfs_info)
@@ -87,20 +88,22 @@ emodnet_get_wfs_info <- memoise::memoise(.emodnet_get_wfs_info)
 #' services from server.
 #' @export
 emodnet_get_all_wfs_info <- function() {
-    purrr::map_df(emodnet_wfs()$service_name,
-               ~suppressMessages(emodnet_get_wfs_info(service = .x)))
+  purrr::map_df(
+    emodnet_wfs()$service_name,
+    ~ suppressMessages(emodnet_get_wfs_info(service = .x))
+  )
 }
 
 
-getAbstractNull <- function(x){
-    abstract <- x$getAbstract()
-    ifelse(is.null(abstract), "", abstract)
+getAbstractNull <- function(x) {
+  abstract <- x$getAbstract()
+  ifelse(is.null(abstract), "", abstract)
 }
 
 guess_layer_format <- function(layer) {
-    if (any(layer$getDescription(pretty = T)$type == "geometry")) {
-        "sf"
-    } else {
-        "data.frame"
-    }
+  if (any(layer$getDescription(pretty = T)$type == "geometry")) {
+    "sf"
+  } else {
+    "data.frame"
+  }
 }
