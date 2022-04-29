@@ -26,7 +26,7 @@ jobs:
           extra-packages: fs
 
       - name: rm fixtures
-        run: fs::dir_delete(file.path("tests", "fixtures")
+        run: fs::dir_delete(file.path("tests", "fixtures"))
         shell: Rscript {0}
 
 
