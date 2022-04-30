@@ -31,9 +31,9 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' @export
 #'
 #' @examples
-#' (
-#'   layer_attribute_descriptions(service = "human_activities", layer = "maritimebnds")
-#' )
+#' \dontrun{
+#' layer_attribute_descriptions(service = "human_activities", layer = "maritimebnds")
+#' }
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = "2.0.0", layer) {
