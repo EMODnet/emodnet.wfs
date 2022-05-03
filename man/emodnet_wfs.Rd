@@ -14,5 +14,4 @@ Available EMODnet Web Feature Services
 }
 \examples{
 emodnet_wfs()
-
 }

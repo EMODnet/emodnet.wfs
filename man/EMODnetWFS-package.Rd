@@ -11,6 +11,7 @@ Access and interrogate EMODnet Web Feature Service data through R.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://emodnet.github.io/EMODnetWFS/}
   \item \url{https://github.com/EMODnet/EMODnetWFS}
   \item Report bugs at \url{https://github.com/EMODnet/EMODnetWFS/issues}
 }

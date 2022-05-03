@@ -66,7 +66,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #'
 #' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
 #' @inheritParams emodnet_init_wfs_client
-#' @return a tibble containg metadata on each layer available from the service.
+#' @return a tibble containing metadata on each layer available from the service.
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
 #' @examples
@@ -94,14 +94,13 @@ emodnet_get_all_wfs_info <- function() {
   )
 }
 
-
 getAbstractNull <- function(x) {
   abstract <- x$getAbstract()
-  ifelse(is.null(abstract), "", abstract)
+  abstract %||% ""
 }
 
 guess_layer_format <- function(layer) {
-  if (any(layer$getDescription(pretty = T)$type == "geometry")) {
+  if (any(layer$getDescription(pretty = TRUE)$type == "geometry")) {
     "sf"
   } else {
     "data.frame"
