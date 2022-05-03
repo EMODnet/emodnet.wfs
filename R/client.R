@@ -39,7 +39,7 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
     )
 
     check_wfs(wfs)
-    usethis::ui_done("WFS client created succesfully")
+    usethis::ui_done("WFS client created successfully")
     usethis::ui_info("Service: {usethis::ui_value(wfs$getUrl())}")
     usethis::ui_info("Version: {usethis::ui_value(wfs$getVersion())}")
 
