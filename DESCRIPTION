@@ -24,7 +24,6 @@ Imports:
     curl,
     httr,
     janitor,
-    jsonlite,
     magrittr,
     memoise,
     ows4R (>= 0.3),

@@ -4,6 +4,7 @@
   "identifier": "EMODnetWFS",
   "description": "Access and interrogate EMODnet Web Feature Service data through R.",
   "name": "EMODnetWFS: Access EMODnet Web Feature Service data through R",
+  "relatedLink": "https://emodnet.github.io/EMODnetWFS/",
   "codeRepository": "https://github.com/EMODnet/EMODnetWFS",
   "issueTracker": "https://github.com/EMODnet/EMODnetWFS/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -104,7 +105,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=httptest"
+      "sameAs": "https://github.com/nealrichardson/httptest"
     },
     {
       "@type": "SoftwareApplication",
@@ -261,18 +262,6 @@
     },
     "6": {
       "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    "7": {
-      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "provider": {
@@ -283,7 +272,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "memoise",
       "name": "memoise",
@@ -295,7 +284,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=memoise"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "ows4R",
       "name": "ows4R",
@@ -308,7 +297,7 @@
       },
       "sameAs": "https://github.com/eblondel/ows4R"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -320,7 +309,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "readr",
       "name": "readr",
@@ -332,7 +321,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readr"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -344,7 +333,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "13": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -356,7 +345,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "14": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -368,7 +357,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -380,7 +369,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "16": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "usethis",
       "name": "usethis",
@@ -392,14 +381,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=usethis"
     },
-    "17": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": "C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=\n    4.8.0)"
   },
-  "fileSize": "881.706KB",
+  "fileSize": "882.123KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
