@@ -45,17 +45,17 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
   wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
   check_wfs(wfs)
 
-  caps <- wfs$getCapabilities()
+  capabilities <- wfs$getCapabilities()
 
   tibble::tibble(
     data_source = "emodnet_wfs",
-    service_name = get_service_name(caps$getUrl()),
-    service_url = caps$getUrl(),
-    layer_name = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getName()),
-    title = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getTitle()),
-    abstract = purrr::map_chr(caps$getFeatureTypes(), ~ getAbstractNull(.x)),
-    class = purrr::map_chr(caps$getFeatureTypes(), ~ .x$getClassName()),
-    format = purrr::map_chr(caps$getFeatureTypes(), guess_layer_format)
+    service_name = get_service_name(capabilities$getUrl()),
+    service_url = capabilities$getUrl(),
+    layer_name = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getName()),
+    title = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getTitle()),
+    abstract = purrr::map_chr(capabilities$getFeatureTypes(), ~ getAbstractNull(.x)),
+    class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
+    format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
   ) %>%
     tidyr::separate(.data$layer_name,
       into = c("layer_namespace", "layer_name"),
