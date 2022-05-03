@@ -100,7 +100,7 @@ getAbstractNull <- function(x) {
 }
 
 guess_layer_format <- function(layer) {
-  if (any(layer$getDescription(pretty = T)$type == "geometry")) {
+  if (any(layer$getDescription(pretty = TRUE)$type == "geometry")) {
     "sf"
   } else {
     "data.frame"
