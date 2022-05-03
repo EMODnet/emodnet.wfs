@@ -1,5 +1,4 @@
 test_that("wfs all info works", {
-  skip_on_ci()
   skip_if_offline()
   all_info <- emodnet_get_all_wfs_info()
   expect_s3_class(all_info, class = c("tbl_df", "tbl", "data.frame"))
