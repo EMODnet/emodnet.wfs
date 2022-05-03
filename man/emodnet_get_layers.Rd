@@ -65,9 +65,9 @@ of layer features can also be handled via ECQL language filters.
 emodnet_get_layers(
   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   layers = c("dk003069", "dk003070")
- )
+)
 
- # Layers as character vector, layers to be reduced
+# Layers as character vector, layers to be reduced
 emodnet_get_layers(
   service = "seabed_habitats_individual_habitat_map_and_model_datasets",
   layers = c("dk003069", "dk003070"),

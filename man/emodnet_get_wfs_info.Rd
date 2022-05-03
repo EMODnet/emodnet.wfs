@@ -24,7 +24,7 @@ For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 \item{service_version}{the WFS service version. Defaults to "2.0.0".}
 }
 \value{
-a tibble containg metadata on each layer available from the service.
+a tibble containing metadata on each layer available from the service.
 }
 \description{
 Get WFS available layer information
@@ -52,8 +52,10 @@ emodnet_get_wfs_info(service = "bathymetry")
 wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
 emodnet_get_wfs_info(wfs_cml)
 # Get info for specific layers from wfs object
-layers <- c("bl_fishing_monitoring",
-           "bl_beacheslocations_monitoring")
+layers <- c(
+  "bl_fishing_monitoring",
+  "bl_beacheslocations_monitoring"
+)
 emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
 }
 }
