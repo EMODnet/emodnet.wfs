@@ -15,10 +15,14 @@
 layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = "2.0.0", layer) {
-  summary(layer_attributes_tbl(
-    wfs = wfs, service = service,
-    service_version = service_version, layer
-  ))
+    summary(
+        layer_attributes_tbl(
+            wfs = wfs,
+            service = service,
+            service_version = service_version,
+            layer
+        )
+    )
 }
 
 #' Get layer attribute description
@@ -60,17 +64,15 @@ layer_attribute_descriptions <- function(wfs = NULL,
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = "2.0.0", layer) {
-  layer_attribute_descriptions(
-    wfs = wfs, service = service,
-    service_version = service_version,
-    layer = layer
-  )$name
+    layer_attribute_descriptions(
+        wfs = wfs,
+        service = service,
+        service_version = service_version,
+        layer = layer
+    )$name
 }
 
-
-
-
-#' Inspect layer attribute
+#' Inspect layer attributes
 #'
 #' @inheritParams layer_attributes_summarise
 #' @param attribute character string, name of layer attribute (variable). Use
