@@ -1,20 +1,27 @@
 #' Get EMODnet WFS layers
 #'
-#' Performs an WFS getFeature request for layers from a `wfs` object or specified EMODnet Service. Filtering
+#' Performs an WFS getFeature request for layers from a `wfs` object or
+#' specified EMODnet Service. Filtering
 #' of layer features can also be handled via ECQL language filters.
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #' @param layers a character vector of layer names. To get info on layers, including
 #' `layer_name` use [emodnet_get_wfs_info()].
-#' @param crs integer. EPSG code for the output crs. If `NULL` (default), layers are returned with original crs.
-#' @param cql_filter character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
-#' filtering statements (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>). Should be one of:
+#' @param crs integer. EPSG code for the output crs. If `NULL` (default), layers
+#' are returned with original crs.
+#' @param cql_filter character. Features returned can be filtered using valid
+#' Extended Common Query Language (ECQL) filtering statements
+#' (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>). Should be one of:
 #'  \itemize{
-#'   \item{character string or character vector of length 1. Filter will be recycled across all layers requested}
-#'   \item{character vector of length equal to the length of layers. Filter will be matched to layers sequentially.
+#'   \item{character string or character vector of length 1.
+#'   Filter will be recycled across all layers requested}
+#'   \item{character vector of length equal to the length of layers.
+#'   Filter will be matched to layers sequentially.
 #'   Elements containing `NA` are ignored}
-#'   \item{named character vector. Each filter will be applied to the layer corresponding to the filter name.
-#'   Filters with names that do not correspond to any layers are ignored. Layers without corresponding filters are returned whole }
+#'   \item{named character vector. Each filter will be applied to the layer
+#'   corresponding to the filter name.
+#'   Filters with names that do not correspond to any layers are ignored.
+#'   Layers without corresponding filters are returned whole }
 #' }
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 #' @param suppress_warnings logical. Whether to suppress messages of layer

@@ -103,7 +103,8 @@ layer_attribute_inspect <- function(wfs = NULL,
   )
   namespaced_layer <- namespace_layer_names(wfs, layer)
 
-  attribute <- match.arg(attribute,
+  attribute <- match.arg(
+    attribute,
     several.ok = FALSE,
     choices = layer_attributes_get_names(wfs, layer = layer)
   )
@@ -116,8 +117,8 @@ layer_attribute_inspect <- function(wfs = NULL,
     attribute_type <- class(attribute_vector)
   }
 
-
-  switch(attribute_type,
+  switch(
+    attribute_type,
     character = attribute_vector %>% janitor::tabyl(),
     factor = attribute_vector %>% janitor::tabyl(),
     numeric = summary(attribute_vector),
@@ -127,7 +128,6 @@ layer_attribute_inspect <- function(wfs = NULL,
     geometry = sf::st_geometry(attribute_vector)
   )
 }
-
 
 #' Get layer attribute values tibble
 #'
@@ -178,7 +178,8 @@ get_layer_bbox <- function(layer, wfs) {
 }
 
 get_layer_geom_name <- function(layer, wfs) {
-  layer <- match.arg(layer,
+  layer <- match.arg(
+  	layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
@@ -191,7 +192,8 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
   check_wfs(wfs)
   output <- match.arg(output, several.ok = FALSE)
 
-  layer <- match.arg(layer,
+  layer <- match.arg(
+  	layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
@@ -200,7 +202,6 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
   if (output == "crs") {
     return(crs)
   }
-
 
   epsg.text <- regmatches(crs$input, regexpr("epsg\\:[[:digit:]]{4}", crs$input))
   if (output == "epsg.text") {
