@@ -15,7 +15,7 @@ Authors@R: c(
 Description: Access and interrogate EMODnet Web Feature Service data
     through R.
 License: MIT + file LICENSE
-URL: https://github.com/EMODnet/EMODnetWFS
+URL: https://emodnet.github.io/EMODnetWFS/, https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 Depends: 
     R (>= 3.6.0)
