@@ -11,6 +11,7 @@ jobs:
     runs-on: windows-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      EMODNETWFS_CI: yes
 
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +38,7 @@ jobs:
           run1 <- as.data.frame(devtools::test())
           if (sum(run1$error, run1$failed, run1$warning) > 0) {
             stop("Tests did not pass with devtools::test()")
-          }        
+          }
         shell: Rscript {0}
 
       - name: Upload check results
