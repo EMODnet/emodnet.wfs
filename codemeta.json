@@ -388,7 +388,7 @@
     },
     "SystemRequirements": "C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=\n    4.8.0)"
   },
-  "fileSize": "882.123KB",
+  "fileSize": "882.122KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -406,8 +406,8 @@
     }
   ],
   "releaseNotes": "https://github.com/EMODnet/EMODnetWFS/blob/master/NEWS.md",
-  "readme": "https://github.com/EMODnet/EMODnetWFS/blob/master/README.md",
-  "contIntegration": ["https://github.com/EMODnet/EMODnetWFS/actions", "https://codecov.io/gh/EMODnet/EMODnetWFS?branch=master"],
+  "readme": "https://github.com/EMODnet/EMODnetWFS/blob/main/README.md",
+  "contIntegration": ["https://github.com/EMODnet/EMODnetWFS/actions", "https://codecov.io/gh/EMODnet/EMODnetWFS?branch=main"],
   "developmentStatus": "https://www.tidyverse.org/lifecycle/#experimental",
   "keywords": ["rstats", "emodnet", "wfs", "marine-data"]
 }

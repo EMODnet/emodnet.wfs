@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R build
 status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/master/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=master)
+coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=main)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation of and access to
