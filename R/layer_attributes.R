@@ -179,7 +179,7 @@ get_layer_bbox <- function(layer, wfs) {
 
 get_layer_geom_name <- function(layer, wfs) {
   layer <- match.arg(
-  	layer,
+    layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
@@ -193,7 +193,7 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
   output <- match.arg(output, several.ok = FALSE)
 
   layer <- match.arg(
-  	layer,
+    layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
