@@ -8,7 +8,7 @@ test_that("get layers works on server", {
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1L)
-  expect_identical(l_crs, 4326)
+  expect_identical(l_crs, 4326L)
   expect_type(l_data, "list")
   expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
@@ -28,7 +28,7 @@ test_that("crs transform works from server", {
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1L)
-  expect_identical(l_crs, 4326)
+  expect_identical(l_crs, 4326L)
 })
 
 test_that("get layers works on wfs object", {
@@ -39,7 +39,7 @@ test_that("get layers works on wfs object", {
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1L)
-  expect_identical(l_crs, 4326)
+  expect_identical(l_crs, 4326L)
   expect_type(l_data, "list")
   expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
@@ -56,7 +56,7 @@ test_that("crs transform works from wfs object", {
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
   expect_length(l_crs, 1L)
-  expect_identical(l_crs, 3857)
+  expect_identical(l_crs, 3857L)
 })
 
 test_that("crs checking from wfs service works correctly", {

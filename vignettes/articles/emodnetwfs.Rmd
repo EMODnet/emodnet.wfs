@@ -74,9 +74,9 @@ emodnet_get_layer_info(wfs = seabed_wfs_client, layers = habitats_directive_laye
 We are now ready to read the layers into R with `emodnet_get_layers()`. EMODnetWFS reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 ```{r}
-habitats_directive_layers <- emodnet_get_layers(wfs = seabed_wfs_client, 
-                                                layers = habitats_directive_layer_names, 
-                                                reduce_layers = TRUE)  
+habitats_directive_layers <- emodnet_get_layers(wfs = seabed_wfs_client,
+                                                layers = habitats_directive_layer_names,
+                                                reduce_layers = TRUE) 
 
 class(habitats_directive_layers)
 
@@ -88,9 +88,9 @@ glimpse(habitats_directive_layers)
 Run the following code to have a quick look at the layers geometries
 ```{r, eval = TRUE}
 # Transform to Polygon geometry type from Multisurface
-if(unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE"){
-  habitats_directive_layers <- habitats_directive_layers %>% 
-    st_cast(to = "GEOMETRYCOLLECTION") %>% 
+if (unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE") {
+  habitats_directive_layers <- habitats_directive_layers %>%
+    st_cast(to = "GEOMETRYCOLLECTION") %>%
     st_collection_extract(type = "POLYGON")
 }
 
@@ -116,8 +116,8 @@ The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-an
 The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
 
 ```{r}
-maritime_boundaries <- emodnet_get_layers(service = "human_activities", 
-                                          layers = "maritimebnds", 
+maritime_boundaries <- emodnet_get_layers(service = "human_activities",
+                                          layers = "maritimebnds",
                                           reduce_layers = TRUE,
                                           cql_filter = "sitename='Territory sea (12 nm)'")
 
@@ -129,12 +129,12 @@ glimpse(maritime_boundaries)
 Add the maritime boundaries to the previous map with this line. To do so, cats to `MULTILINESTRING` geometry type, transform to the same crs as the habitats directive `sf` (only required because of the next step), and crop using the bounding box of the habitats directive `sf`.
 ```{r, eval = TRUE}
 
-maritime_boundaries <- maritime_boundaries %>% 
+maritime_boundaries <- maritime_boundaries %>%
   st_cast(to = "MULTILINESTRING") %>%
   st_transform(st_crs(habitats_directive_layers)) %>%
   st_crop(st_bbox(habitats_directive_layers))
 
-map + mapview(maritime_boundaries )
+map + mapview(maritime_boundaries)
 ```
 
 
