@@ -7,14 +7,14 @@ test_that("get layers works on server", {
   )
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(l_crs, 4326)
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 4326)
   expect_type(l_data, "list")
-  expect_length(l_data, 2)
+  expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
   expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
-  expect_gt(nrow(l_data[[1]]), 0)
-  expect_gt(nrow(l_data[[2]]), 0)
+  expect_gt(nrow(l_data[[1]]), 0L)
+  expect_gt(nrow(l_data[[2]]), 0L)
 })
 
 test_that("crs transform works from server", {
@@ -27,8 +27,8 @@ test_that("crs transform works from server", {
   )
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(l_crs, 4326)
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 4326)
 })
 
 test_that("get layers works on wfs object", {
@@ -38,14 +38,14 @@ test_that("get layers works on wfs object", {
   l_data <- emodnet_get_layers(wfs = wfs, layers = layers)
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(l_crs, 4326)
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 4326)
   expect_type(l_data, "list")
-  expect_length(l_data, 2)
+  expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
   expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
-  expect_gt(nrow(l_data[[1]]), 0)
-  expect_gt(nrow(l_data[[2]]), 0)
+  expect_gt(nrow(l_data[[1]]), 0L)
+  expect_gt(nrow(l_data[[2]]), 0L)
 })
 
 test_that("crs transform works from wfs object", {
@@ -55,8 +55,8 @@ test_that("crs transform works from wfs object", {
   l_data <- emodnet_get_layers(wfs = wfs, layers = layers, crs = 3857)
   l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
 
-  expect_length(l_crs, 1)
-  expect_equal(l_crs, 3857)
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 3857)
 })
 
 test_that("crs checking from wfs service works correctly", {
@@ -68,7 +68,7 @@ test_that("crs checking from wfs service works correctly", {
     cql_filter = "country='Grecia'"
   )
 
-  expect_equal(sf::st_crs(l_data[[1]])$input, "epsg:4326")
+  expect_identical(sf::st_crs(l_data[[1]])$input, "epsg:4326")
 })
 
 test_that("reduce layers on single layer returns sf", {
@@ -105,7 +105,7 @@ test_that("reduce works", {
   )
 
   expect_s3_class(sf_data, class = c("sf", "data.frame"))
-  expect_gt(nrow(sf_data), 0)
+  expect_gt(nrow(sf_data), 0L)
 })
 
 test_that("works when data.frame layer", {
