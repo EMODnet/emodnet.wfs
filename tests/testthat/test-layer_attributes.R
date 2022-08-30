@@ -10,30 +10,30 @@ test_that("layer attributes stuff works", {
     crs1 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.text")
     crs2 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.num")
   })
-  expect_equal(layer_attr, c("id", "country", "the_geom"))
+  expect_identical(layer_attr, c("id", "country", "the_geom"))
   expect_snapshot_output(layer_attr_desc)
-  expect_equal(class(country), c("tabyl", "data.frame"))
-  expect_equal(names(country), c(".", "n", "percent"))
-  expect_true(nrow(country) > 1)
+  expect_s3_class(country, c("tabyl", "data.frame"))
+  expect_named(country, c(".", "n", "percent"))
+  expect_gt(nrow(country), 1L)
 
-  expect_equal(class(id), c("summaryDefault", "table"))
-  expect_equal(names(id), c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max."))
+  expect_s3_class(id, c("summaryDefault", "table"))
+  expect_named(id, c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max."))
   expect_length(id, 6L)
 
-  expect_equal(class(attr_summary), "table")
-  expect_equal(
+  expect_s3_class(attr_summary, "table")
+  expect_identical(
     attr_summary[, "  country"][2:3],
     structure(c("Class :character  ", "Mode  :character  "), .Names = c(
       "",
       ""
     ))
   )
-  expect_equal(
+  expect_identical(
     attr_summary[, 2][1],
     structure("Min.   :0  ", .Names = "")
   )
 
 
-  expect_equal(crs1, "epsg:4326")
-  expect_equal(crs2, 4326)
+  expect_identical(crs1, "epsg:4326")
+  expect_identical(crs2, 4326)
 })

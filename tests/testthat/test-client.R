@@ -1,7 +1,7 @@
 test_that("Specified connection works", {
   wfs <- create_biology_wfs()
-  expect_equal(class(wfs), c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
-  expect_equal(wfs$getUrl(), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
+  expect_s3_class(wfs, c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
+  expect_identical(wfs$getUrl(), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
 })
 
 test_that("Error when wrong service", {
