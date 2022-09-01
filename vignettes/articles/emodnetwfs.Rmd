@@ -26,7 +26,7 @@ remotes::install_github("EMODnet/EMODnetWFS")
 
 ### Explore the EMODnet WFS services with R
 
-For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magickr`'s pipe operator `%>%`, which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
+For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magrittr`'s pipe operator `%>%` (you could also use the [base pipe](https://r4ds.hadley.nz/workflow-pipes.html)), which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
 
 Run this line to install these packages:
 
@@ -38,7 +38,7 @@ install.packages(c("sf", "dplyr", "mapview"))
 
 With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS. 
 
-Imagine we are interested on seabed substrates. The first stop is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function. 
+Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function. 
 
 ```{r error = FALSE, warning = FALSE, message = FALSE}
 library(EMODnetWFS)
@@ -66,7 +66,10 @@ Each layer is explained in the `abstract` column. We can see several layers with
 ```{r}
 habitats_directive_layer_names <- c("art17_hab_1110", "art17_hab_1140", "art17_hab_1150")
 
-emodnet_get_layer_info(wfs = seabed_wfs_client, layers = habitats_directive_layer_names)
+emodnet_get_layer_info(
+	wfs = seabed_wfs_client, 
+	layers = habitats_directive_layer_names
+) 
 ```
 
 
@@ -74,9 +77,11 @@ emodnet_get_layer_info(wfs = seabed_wfs_client, layers = habitats_directive_laye
 We are now ready to read the layers into R with `emodnet_get_layers()`. EMODnetWFS reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 ```{r}
-habitats_directive_layers <- emodnet_get_layers(wfs = seabed_wfs_client, 
-                                                layers = habitats_directive_layer_names, 
-                                                reduce_layers = TRUE)  
+habitats_directive_layers <- emodnet_get_layers(
+	wfs = seabed_wfs_client, 
+	layers = habitats_directive_layer_names, 
+	reduce_layers = TRUE
+	)  
 
 class(habitats_directive_layers)
 
@@ -101,7 +106,7 @@ map
 ```
 
 
-Furthermore, we can get data from other EMODnet lots and combine them. The Human Activities portal provides the maritime boundaries of the European Union state members. This time we will not initiate a WFS client, but we will call the service directly. The WFS client will be generated on the fly.
+Furthermore, we can get data from other EMODnet lots and combine them. The Human Activities portal provides the maritime boundaries of the European Union state members. This time we will not initiate a WFS client, but we will use the service name. The WFS client will be generated on the fly.
 
 Same as before, we have a look at the layers available first.
 
@@ -109,17 +114,17 @@ Same as before, we have a look at the layers available first.
 emodnet_get_wfs_info(service = "human_activities")
 ```
 
-
-
 The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) seems to be `maritimebnds`. This dataset was developed based on the official [data provided by the European Environmental Agency](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) and the [Maritime Boundaries Database](https://marineregions.org/eez.php) compiled by MarineRegions.org (Flanders Marine Institute, 2019).
 
 The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
 
 ```{r}
-maritime_boundaries <- emodnet_get_layers(service = "human_activities", 
-                                          layers = "maritimebnds", 
-                                          reduce_layers = TRUE,
-                                          cql_filter = "sitename='Territory sea (12 nm)'")
+maritime_boundaries <- emodnet_get_layers(
+	service = "human_activities", 
+	layers = "maritimebnds", 
+	reduce_layers = TRUE,
+	cql_filter = "sitename='Territory sea (12 nm)'"
+	)
 
 glimpse(maritime_boundaries)
 ```
@@ -127,6 +132,7 @@ glimpse(maritime_boundaries)
 
 
 Add the maritime boundaries to the previous map with this line. To do so, cats to `MULTILINESTRING` geometry type, transform to the same crs as the habitats directive `sf` (only required because of the next step), and crop using the bounding box of the habitats directive `sf`.
+
 ```{r, eval = TRUE}
 
 maritime_boundaries <- maritime_boundaries %>% 
@@ -143,8 +149,6 @@ We have now combined data from the Seabed Habitats and Human Activities portals.
 ```{r, eval = FALSE}
 emodnet_get_all_wfs_info()
 ```
-
-
 
 ## More information
 
