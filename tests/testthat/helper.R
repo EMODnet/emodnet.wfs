@@ -1,5 +1,7 @@
 library(httptest)
 
+withr::local_envvar("EMODNET_IN_TESTS" = "bla")
+
 with_mock_dir <- function(name, ...) {
   httptest::with_mock_dir(file.path("../fixtures", name), ...)
 }
