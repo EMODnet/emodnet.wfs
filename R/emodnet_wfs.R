@@ -14,9 +14,9 @@
 #' @examples
 #' emodnet_wfs()
 #' @export
-emodnet_wfs <- function(...) {
+emodnet_wfs <- function() {
 	if (nzchar(Sys.getenv("EMODNET_IN_TESTS"))) {
-		return(.emodnet_wfs(...))
+		return(.emodnet_wfs())
 	}
-	memoise::memoise(.emodnet_wfs)(...)
+	memoise::memoise(.emodnet_wfs)()
 }
