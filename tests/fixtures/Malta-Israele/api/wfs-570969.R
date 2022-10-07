@@ -2,18 +2,18 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(server = "Apache-Coyote/1.1", 
         `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
         `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-        `transfer-encoding` = "chunked", date = "Wed, 27 Apr 2022 06:36:11 GMT"), class = c("insensitive", 
+        `transfer-encoding` = "chunked", date = "Fri, 07 Oct 2022 09:04:22 GMT"), class = c("insensitive", 
     "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(server = "Apache-Coyote/1.1", 
             `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
             `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-            `transfer-encoding` = "chunked", date = "Wed, 27 Apr 2022 06:36:11 GMT"), class = c("insensitive", 
+            `transfer-encoding` = "chunked", date = "Fri, 07 Oct 2022 09:04:22 GMT"), class = c("insensitive", 
         "list")))), cookies = structure(list(domain = logical(0), 
         flag = logical(0), path = logical(0), secure = logical(0), 
         expiration = structure(numeric(0), class = c("POSIXct", 
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = charToRaw("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xsd:schema xmlns:Emodnetbio=\"geo.vliz.be/Emodnetbio\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\" targetNamespace=\"geo.vliz.be/Emodnetbio\">\n  <xsd:import namespace=\"http://www.opengis.net/gml/3.2\" schemaLocation=\"http://geo.vliz.be:80/geoserver/schemas/gml/3.2.1/gml.xsd\"/>\n  <xsd:complexType name=\"OOPS_regionsType\">\n    <xsd:complexContent>\n      <xsd:extension base=\"gml:AbstractFeatureType\">\n        <xsd:sequence>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"id\" nillable=\"true\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"the_geom\" nillable=\"true\" type=\"gml:GeometryPropertyType\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"mrgid\" nillable=\"true\" type=\"xsd:int\"/>\n        </xsd:sequence>\n      </xsd:extension>\n    </xsd:complexContent>\n  </xsd:complexType>\n  <xsd:element name=\"OOPS_regions\" substitutionGroup=\"gml:AbstractFeature\" type=\"Emodnetbio:OOPS_regionsType\"/>\n</xsd:schema>\n"), 
-    date = structure(1651041371, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.7e-05, 
-    connect = 2.8e-05, pretransfer = 8e-05, starttransfer = 0.047732, 
-    total = 0.047845)), class = "response")
+    date = structure(1665133462, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 3.7e-05, 
+    connect = 3.8e-05, pretransfer = 9.9e-05, starttransfer = 0.02908, 
+    total = 0.029163)), class = "response")
