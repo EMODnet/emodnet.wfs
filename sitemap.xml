@@ -4,6 +4,9 @@
     <loc>https://emodnet.github.io/EMODnetWFS/404.html</loc>
   </url>
   <url>
+    <loc>https://emodnet.github.io/EMODnetWFS/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://emodnet.github.io/EMODnetWFS/LICENSE-text.html</loc>
   </url>
   <url>
@@ -29,6 +32,9 @@
   </url>
   <url>
     <loc>https://emodnet.github.io/EMODnetWFS/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://emodnet.github.io/EMODnetWFS/reference/EMODnetWFS-package.html</loc>
   </url>
   <url>
     <loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_get_layers.html</loc>
