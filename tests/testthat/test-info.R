@@ -1,4 +1,5 @@
 test_that("wfs all info works", {
+  forget_all()
   skip_if_offline()
   all_info <- emodnet_get_all_wfs_info()
   expect_s3_class(all_info, class = c("tbl_df", "tbl", "data.frame"))
@@ -7,6 +8,7 @@ test_that("wfs all info works", {
 })
 
 test_that("wfs info works on wfs object", {
+  forget_all()
   wfs <- create_biology_wfs()
   with_mock_dir("biology-info", {
     layer_info_all <- emodnet_get_wfs_info(wfs)
