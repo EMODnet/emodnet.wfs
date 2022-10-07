@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main, master]
   schedule:
-    - cron:  '0 0 * * *'
+    - cron:  '0 0 * * 2'
 
 name: R-CMD-check
 
@@ -45,7 +45,7 @@ jobs:
         with:
           extra-packages: any::rcmdcheck, any::XML
           needs: check
-          cache-version: 4
+          cache-version: 5
 
       - uses: r-lib/actions/check-r-package@v2
         with:
