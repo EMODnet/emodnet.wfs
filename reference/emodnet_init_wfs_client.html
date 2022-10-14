@@ -59,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">emodnet_init_wfs_client</span><span class="op">(</span><span class="va">service</span>, service_version <span class="op">=</span> <span class="st">"2.0.0"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">emodnet_init_wfs_client</span><span class="op">(</span><span class="va">service</span>, service_version <span class="op">=</span> <span class="st">"2.0.0"</span>, logger <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -71,6 +71,11 @@ For available services, see <code><a href="emodnet_wfs.html">emodnet_wfs()</a></
 
 <dt>service_version</dt>
 <dd><p>the WFS service version. Defaults to "2.0.0".</p></dd>
+
+
+<dt>logger</dt>
+<dd><p>the logger. Either <code>NULL</code> (no logging info), <code>"INFO"</code> (log about ows4R requests)
+or <code>"DEBUG"</code> (including curl details).</p></dd>
 
 </dl></div>
     <div class="section level2">
