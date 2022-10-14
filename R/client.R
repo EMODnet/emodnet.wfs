@@ -26,8 +26,7 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
             service_url,
             serviceVersion = service_version,
             headers = c("User-Agent" = emodnetwfs_user_agent()),
-        	logger = logger,
-            config = config
+        	logger = logger
         )
     )
 
