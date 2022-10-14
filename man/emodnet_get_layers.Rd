@@ -27,16 +27,22 @@ For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 \item{layers}{a character vector of layer names. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
-\item{crs}{integer. EPSG code for the output crs. If \code{NULL} (default), layers are returned with original crs.}
+\item{crs}{integer. EPSG code for the output crs. If \code{NULL} (default), layers
+are returned with original crs.}
 
-\item{cql_filter}{character. Features returned can be filtered using valid Extended Common Query Language (ECQL)
-filtering statements (\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}). Should be one of:
+\item{cql_filter}{character. Features returned can be filtered using valid
+Extended Common Query Language (ECQL) filtering statements
+(\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}). Should be one of:
 \itemize{
-\item{character string or character vector of length 1. Filter will be recycled across all layers requested}
-\item{character vector of length equal to the length of layers. Filter will be matched to layers sequentially.
+\item{character string or character vector of length 1.
+Filter will be recycled across all layers requested}
+\item{character vector of length equal to the length of layers.
+Filter will be matched to layers sequentially.
 Elements containing \code{NA} are ignored}
-\item{named character vector. Each filter will be applied to the layer corresponding to the filter name.
-Filters with names that do not correspond to any layers are ignored. Layers without corresponding filters are returned whole }
+\item{named character vector. Each filter will be applied to the layer
+corresponding to the filter name.
+Filters with names that do not correspond to any layers are ignored.
+Layers without corresponding filters are returned whole }
 }}
 
 \item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.}
@@ -56,7 +62,8 @@ reduced (if possible) to a single \code{sf} containing data for all layers.
 an \code{sf} out of a single layer request instead of a list of length 1.
 }
 \description{
-Performs an WFS getFeature request for layers from a \code{wfs} object or specified EMODnet Service. Filtering
+Performs an WFS getFeature request for layers from a \code{wfs} object or
+specified EMODnet Service. Filtering
 of layer features can also be handled via ECQL language filters.
 }
 \examples{

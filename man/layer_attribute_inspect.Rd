@@ -2,7 +2,7 @@
 % Please edit documentation in R/layer_attributes.R
 \name{layer_attribute_inspect}
 \alias{layer_attribute_inspect}
-\title{Inspect layer attribute}
+\title{Inspect layer attributes}
 \usage{
 layer_attribute_inspect(
   wfs = NULL,
@@ -31,7 +31,7 @@ Detailed summary of individual attribute (variable). Particularly useful for ins
 factor or character variable levels or unique values.
 }
 \description{
-Inspect layer attribute
+Inspect layer attributes
 }
 \examples{
 \dontrun{

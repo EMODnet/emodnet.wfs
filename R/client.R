@@ -3,6 +3,8 @@
 #' @param service the EMODnet OGC WFS service name.
 #' For available services, see [`emodnet_wfs()`].
 #' @param service_version the WFS service version. Defaults to "2.0.0".
+#' @param logger the logger. Either `NULL` (no logging info), `"INFO"` (log about ows4R requests)
+#' or `"DEBUG"` (including curl details).
 #'
 #' @return An [`ows4R::WFSClient`] R6 object with methods for interfacing an OGC Web Feature Service.
 #' @export
@@ -12,7 +14,7 @@
 #' \dontrun{
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 #' }
-emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
+emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger = NULL) {
   check_service_name(service)
 
   service_url <- get_service_url(service)
@@ -23,7 +25,8 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0") {
         ows4R::WFSClient$new(
             service_url,
             serviceVersion = service_version,
-            headers = c("User-Agent" = emodnetwfs_user_agent())
+            headers = c("User-Agent" = emodnetwfs_user_agent()),
+        	logger = logger
         )
     )
 
