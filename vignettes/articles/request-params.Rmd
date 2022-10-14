@@ -35,7 +35,7 @@ We can restrict the query to a single feature using `featureID` and providing th
 emodnet_get_layers(
     wfs = wfs,
     layers = "maritimebnds",
-    featureID="maritimebnds.861",
+    featureID = "maritimebnds.861",
     reduce_layers = TRUE)
 
 ```
@@ -48,7 +48,7 @@ If the ID of the feature is unknown but we still want to limit the number of fea
 emodnet_get_layers(
     wfs = wfs,
     layers = "maritimebnds",
-    count = 1,
+    count = 1L,
     reduce_layers = TRUE)
 ```
 
@@ -63,7 +63,7 @@ emodnet_get_layers(
     wfs = wfs,
     layers = "maritimebnds",
     sortBy = "legalfound",
-    count = 5,
+    count = 5L,
     reduce_layers = TRUE)
 
 
@@ -94,10 +94,10 @@ n_features
 Setting the `startIndex` to `n_features - 4` (`r n_features - 4`) returns the last 4 features.
 
 ```{r}
-startIndex <- n_features - 4
+startIndex <- n_features - 4L
 startIndex
 
-emodnet_get_layers(    
+emodnet_get_layers(   
     wfs = wfs,
     layers = "maritimebnds",
     startIndex = startIndex,
@@ -110,11 +110,11 @@ We can also combine `startIndex` and `count` to return specific blocks of featur
 Note that `startIndex` uses `0` as a starting index (0 indicates the first feature), hence we set it to `4` in order to start at the 5th feature.
 
 ```{r}
-emodnet_get_layers(    
+emodnet_get_layers(   
     wfs = wfs,
     layers = "maritimebnds",
-    startIndex = 4,
-    count = 6,
+    startIndex = 4L,
+    count = 6L,
     reduce_layers = TRUE)
 ```
 
@@ -135,7 +135,7 @@ emodnet_get_layers(
     wfs = wfs,
     layers = "maritimebnds",
     propertyName = "country",
-    count = 3,
+    count = 3L,
     reduce_layers = TRUE)
 
 ```
@@ -148,7 +148,7 @@ emodnet_get_layers(
     wfs = wfs,
     layers = "maritimebnds",
     propertyName = "country,the_geom",
-    count = 3,
+    count = 3L,
     reduce_layers = TRUE)
 
 ```
@@ -162,14 +162,14 @@ In the following example, we specify the bounding box by proving coordinates in 
 
 ```{r}
 bbox_response <- emodnet_get_layers(
-    service = "biology", 
+    service = "biology",
     layers = "mediseh_posidonia_nodata",
     bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
-    reduce_layers = TRUE 
-) 
+    reduce_layers = TRUE
+)
 
-bbox_response %>% 
-  sf::st_cast(to = "MULTILINESTRING") %>% 
+bbox_response %>%
+  sf::st_cast(to = "MULTILINESTRING") %>%
   mapview::mapview(burst = TRUE, legend = FALSE)
 ```
 

@@ -14,7 +14,7 @@
     service_url = get_service_name(wfs$getUrl()),
     layer_name = purrr::map_chr(wfs_layers, ~ .x$getName()),
     title = purrr::map_chr(wfs_layers, ~ .x$getTitle()),
-    abstract = purrr::map_chr(wfs_layers, ~ getAbstractNull(.x)),
+    abstract = purrr::map_chr(wfs_layers, ~ get_abstract_null(.x)),
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
   ) %>%
@@ -37,7 +37,7 @@
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
 .emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
-  if (is.null(wfs) & is.null(service)) {
+  if (is.null(wfs) && is.null(service)) {
     usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
                          Both cannot be {usethis::ui_value('NULL')}")
   }
@@ -53,7 +53,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     service_url = capabilities$getUrl(),
     layer_name = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getName()),
     title = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getTitle()),
-    abstract = purrr::map_chr(capabilities$getFeatureTypes(), ~ getAbstractNull(.x)),
+    abstract = purrr::map_chr(capabilities$getFeatureTypes(), ~ get_abstract_null(.x)),
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
   ) %>%
@@ -94,7 +94,7 @@ emodnet_get_all_wfs_info <- function() {
   )
 }
 
-getAbstractNull <- function(x) {
+get_abstract_null <- function(x) {
   abstract <- x$getAbstract()
   abstract %||% ""
 }

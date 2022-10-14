@@ -22,14 +22,8 @@ options(timeout = 2000)
 [![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=main)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation of and access to EMODnet geographic vector data in R though the [EMODnet Web Feature Services](https://www.emodnet.eu/en/data). [Web Feature services (WFS)](https://www.ogc.org/standards/wfs) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. This package was developed by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020.
-
-You can read the product story on the EMODnet-Biology portal following [this link](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r), or read the vignette directly in R after installing the package.
-
-```{r, eval=FALSE}
-vignette("emodnetwfs")
-```
-
+The goal of EMODnetWFS is to allow interrogation of and access to [EMODnet geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://www.emodnet.eu/en/data). [Web Feature services (WFS)](https://www.ogc.org/standards/wfs) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
+EMODnetWFS aims at offering an user-friendly interface to this rich data.
 
 ## Installation
 
@@ -56,7 +50,6 @@ To explore available services in Rstudio use:
 View(emodnet_wfs())
 ```
 
-
 ## Create Service Client
 
 Create new WFS Client.  Specify the service using the `service` argument. 
@@ -64,7 +57,7 @@ Create new WFS Client.  Specify the service using the `service` argument.
 ```{r}
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
 
-wfs_bio$getUrl()
+wfs_bio
 ```
 
 ## Get WFS Layer info
@@ -84,12 +77,11 @@ emodnet_get_wfs_info(wfs_bio)
 You can also get info for specific layers from wfs object:
 
 ```{r}
-wfs_cml <- emodnet_init_wfs_client("biology")
-emodnet_get_wfs_info(wfs_cml)
+emodnet_get_wfs_info(wfs_bio)
 
-layers <- c("mediseh_zostera_m_pnt","mediseh_posidonia_nodata")
+layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
-emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 ```
 
 
@@ -102,20 +94,21 @@ emodnet_get_all_wfs_info()
 
 ## Get WFS layers
 
-You can extract layers directly from a `wfs` object using layer names. All layers are downloaded as `sf` objects and output as a list with a named element for each layer requested.
+You can extract layers directly from a `wfs` object using layer names. 
+All layers are downloaded as `sf` objects and output as a list with a named element for each layer requested.
 
 ```{r}
-emodnet_get_layers(wfs = wfs_cml, layers = layers)
+emodnet_get_layers(wfs = wfs_bio, layers = layers)
 ```
 
-You can change the output `crs` through argument `crs`.
+You can change the output `crs` through the argument `crs`.
 
 ```{r}
-emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
+emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
 
 ```
 
-You can also extract layers directly from a WFS service.
+You can also extract layers using a WFS service name.
 
 ```{r}
 emodnet_get_layers(
@@ -126,13 +119,14 @@ emodnet_get_layers(
 ```
 
 
-Layers can also be returned to a single `sf` object through argument `reduce_layers`.  If `TRUE` the function will try to reduce all layers into a single `sf`.
+Layers can also be returned to a single `sf` object through argument `reduce_layers`.  
+If `TRUE` the function will try to reduce all layers into a single `sf`.
 
 If attempting to reduce fails, it will return a list with a warning:
  
 ```{r, error=TRUE}
 emodnet_get_layers(
-    wfs = wfs_cml, 
+    wfs = wfs_bio, 
     layers = layers,
     reduce_layers = TRUE
 )
@@ -148,9 +142,15 @@ emodnet_get_layers(
 )
 ```
 
-
 ## Citation
 
-Please cite this package as:
+To cite EMODnetWFS, please use the output from `citation(package = "EMODnetWFS")`.
 
-Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/EMODnetWFS. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
+```{r}
+citation(package = "EMODnetWFS")
+```
+
+## Acknowledgements
+
+This package was started by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020.
+You can read the [product story on the EMODnet-Biology portal](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r)

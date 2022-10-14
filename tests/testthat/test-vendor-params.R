@@ -4,8 +4,8 @@ test_that("vendor param count works", {
   l_data <- emodnet_get_layers(
     wfs = wfs,
     layers = "mediseh_zostera_m_pnt",
-    count = 1, reduce_layers = TRUE
+    count = 1L, reduce_layers = TRUE
   )
 
-  expect_true(nrow(l_data) == 1)
+  expect_identical(nrow(l_data), 1L)
 })

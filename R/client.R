@@ -21,16 +21,6 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
 
   create_client <- function() {
 
-    # TODO: remove this when the geology web services are fixed
-    # https://github.com/EMODnet/EMODnetWFS/issues/69
-    is_linux <- (Sys.info()[["sysname"]] == "Linux")
-    is_geology <- grepl("^geology_", service)
-    config <- if (is_linux && is_geology) {
-      httr::config(ssl_cipher_list = "DEFAULT@SECLEVEL=1")
-    } else {
-      httr::config()
-    }
-
     wfs <- suppressWarnings(
         ows4R::WFSClient$new(
             service_url,

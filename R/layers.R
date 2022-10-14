@@ -73,7 +73,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
   # check wfs ----------------------------------------------------------------
 
-  if (is.null(wfs) & is.null(service)) {
+  if (is.null(wfs) && is.null(service)) {
     usethis::ui_stop(
       "Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
          Both cannot be {usethis::ui_value('NULL')} at the same time."
@@ -103,9 +103,9 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
   # check filter vector -----------------------------------------
   cql_filter <- cql_filter %||% rep(NA, times = length(layers))
-  checkmate::assert_character(cql_filter, min.len = 1, any.missing = TRUE)
+  checkmate::assert_character(cql_filter, min.len = 1L, any.missing = TRUE)
 
-  if (length(cql_filter) == 1 & length(layers) > 1) {
+  if (length(cql_filter) == 1L && length(layers) > 1L) {
     cql_filter <- rep(cql_filter, times = length(layers))
     usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
   }
@@ -258,7 +258,7 @@ namespace_layer_names <- function(wfs, layers) {
     info$layer_name %in% layers,
     c("layer_namespace", "layer_name")
   ] %>%
-    apply(1, FUN = function(x) {
+    apply(1L, FUN = function(x) {
       paste0(x, collapse = ":")
     })
 }

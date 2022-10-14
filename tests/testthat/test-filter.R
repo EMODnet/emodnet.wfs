@@ -16,11 +16,12 @@ test_that("categorical filters work -- biology", {
       reduce_layers = TRUE
     )
   })
-  expect_equal(unique(simple_filter_sf$country), "Israele")
-  expect_equal(unique(or_filter_sf$country), c("Israele", "Malta"))
+  expect_identical(unique(simple_filter_sf$country), "Israele")
+  expect_identical(unique(or_filter_sf$country), c("Israele", "Malta"))
 })
 
 test_that("numeric filters work -- biology", {
+  forget_all()
   skip_if_offline()
   wfs <- create_biology_wfs()
   with_mock_dir("nodata", {
@@ -30,5 +31,5 @@ test_that("numeric filters work -- biology", {
       reduce_layers = TRUE
     )
   })
-  expect_true(min(num_filter_sf$km) > 400)
+  expect_gt(min(num_filter_sf$km), 400L)
 })

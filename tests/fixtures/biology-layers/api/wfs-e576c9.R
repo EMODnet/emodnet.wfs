@@ -2,18 +2,19 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(server = "Apache-Coyote/1.1", 
         `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
         `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-        `transfer-encoding` = "chunked", date = "Tue, 26 Apr 2022 18:33:37 GMT"), class = c("insensitive", 
-    "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
+        `transfer-encoding` = "chunked", date = "Fri, 07 Oct 2022 13:24:27 GMT", 
+        connection = "close"), class = c("insensitive", "list"
+    )), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(server = "Apache-Coyote/1.1", 
             `content-disposition` = "inline; filename=geoserver-DescribeFeatureType.text", 
             `content-encoding` = "gzip", `content-type` = "text/xml; subtype=gml/3.2", 
-            `transfer-encoding` = "chunked", date = "Tue, 26 Apr 2022 18:33:37 GMT"), class = c("insensitive", 
-        "list")))), cookies = structure(list(domain = logical(0), 
-        flag = logical(0), path = logical(0), secure = logical(0), 
-        expiration = structure(numeric(0), class = c("POSIXct", 
+            `transfer-encoding` = "chunked", date = "Fri, 07 Oct 2022 13:24:27 GMT", 
+            connection = "close"), class = c("insensitive", "list"
+        )))), cookies = structure(list(domain = logical(0), flag = logical(0), 
+        path = logical(0), secure = logical(0), expiration = structure(numeric(0), class = c("POSIXct", 
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = charToRaw("<?xml version=\"1.0\" encoding=\"UTF-8\"?><xsd:schema xmlns:Emodnetbio=\"geo.vliz.be/Emodnetbio\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\" targetNamespace=\"geo.vliz.be/Emodnetbio\">\n  <xsd:import namespace=\"http://www.opengis.net/gml/3.2\" schemaLocation=\"http://geo.vliz.be:80/geoserver/schemas/gml/3.2.1/gml.xsd\"/>\n  <xsd:complexType name=\"OOPS_productsType\">\n    <xsd:complexContent>\n      <xsd:extension base=\"gml:AbstractFeatureType\">\n        <xsd:sequence>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"1\" name=\"meta_id\" nillable=\"false\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"1\" name=\"geom_id\" nillable=\"false\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"measurementValue\" nillable=\"true\" type=\"xsd:float\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"errorValue\" nillable=\"true\" type=\"xsd:float\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"geom\" nillable=\"true\" type=\"gml:GeometryPropertyType\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"mrgid\" nillable=\"true\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"AphiaID\" nillable=\"true\" type=\"xsd:int\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"scientificName\" nillable=\"true\" type=\"xsd:string\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"season\" nillable=\"true\" type=\"xsd:short\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"startYearCollection\" nillable=\"true\" type=\"xsd:short\"/>\n          <xsd:element maxOccurs=\"1\" minOccurs=\"0\" name=\"endYearCollection\" nillable=\"true\" type=\"xsd:short\"/>\n        </xsd:sequence>\n      </xsd:extension>\n    </xsd:complexContent>\n  </xsd:complexType>\n  <xsd:element name=\"OOPS_products\" substitutionGroup=\"gml:AbstractFeature\" type=\"Emodnetbio:OOPS_productsType\"/>\n</xsd:schema>\n"), 
-    date = structure(1650998017, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 3.2e-05, 
-    connect = 3.3e-05, pretransfer = 0.000106, starttransfer = 0.035779, 
-    total = 0.035858)), class = "response")
+    date = structure(1665149067, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.6e-05, 
+    connect = 2.6e-05, pretransfer = 9.2e-05, starttransfer = 0.034152, 
+    total = 0.034213)), class = "response")

@@ -14,23 +14,15 @@ coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)]
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation of and access to
-EMODnet geographic vector data in R though the [EMODnet Web Feature
+[EMODnet geographic vector
+data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
+in R though the [EMODnet Web Feature
 Services](https://www.emodnet.eu/en/data). [Web Feature services
 (WFS)](https://www.ogc.org/standards/wfs) represent a change in the way
 geographic information is created, modified and exchanged on the
 Internet and offer direct fine-grained access to geographic information
-at the feature and feature property level. This package was developed by
-the Sheffield University during the EMODnet Biology WP4 data products
-workshop in June 2020.
-
-You can read the product story on the EMODnet-Biology portal following
-[this
-link](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r),
-or read the vignette directly in R after installing the package.
-
-``` r
-vignette("emodnetwfs")
-```
+at the feature and feature property level. EMODnetWFS aims at offering
+an user-friendly interface to this rich data.
 
 ## Installation
 
@@ -82,12 +74,63 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> Loading ISO 19115 codelists...
 #> Loading IANA mime types...
 #> No encoding supplied: defaulting to UTF-8.
-#> ✓ WFS client created succesfully
+#> ✔ WFS client created successfully
 #> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 
-wfs_bio$getUrl()
-#> [1] "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
+wfs_bio
+#> <WFSClient>
+#>   Inherits from: <OWSClient>
+#>   Public:
+#>     attrs: list
+#>     capabilities: WFSCapabilities, OWSCapabilities, OGCAbstractObject, R6
+#>     clone: function (deep = FALSE) 
+#>     defaults: list
+#>     describeFeatureType: function (typeName) 
+#>     element: AbstractObject
+#>     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE, 
+#>     ERROR: function (text) 
+#>     getCapabilities: function () 
+#>     getCASUrl: function () 
+#>     getClass: function () 
+#>     getClassName: function () 
+#>     getConfig: function () 
+#>     getFeatures: function (typeName, ...) 
+#>     getFeatureTypes: function (pretty = FALSE) 
+#>     getHeaders: function () 
+#>     getNamespaceDefinition: function (recursive = FALSE) 
+#>     getPwd: function () 
+#>     getToken: function () 
+#>     getUrl: function () 
+#>     getUser: function () 
+#>     getVersion: function () 
+#>     INFO: function (text) 
+#>     initialize: function (url, serviceVersion = NULL, user = NULL, pwd = NULL, 
+#>     isFieldInheritedFrom: function (field) 
+#>     logger: function (type, text) 
+#>     loggerType: NULL
+#>     namespace: OWSNamespace, R6
+#>     reloadCapabilities: function () 
+#>     url: https://geo.vliz.be/geoserver/Emodnetbio/wfs
+#>     verbose.debug: FALSE
+#>     verbose.info: FALSE
+#>     version: 2.0.0
+#>     WARN: function (text) 
+#>     wrap: FALSE
+#>   Private:
+#>     cas_url: NULL
+#>     config: request
+#>     fromComplexTypes: function (value) 
+#>     headers: EMODnetWFS R package https://github.com/EMODnet/EMODnetWFS
+#>     pwd: NULL
+#>     serviceName: WFS
+#>     system_fields: verbose.info verbose.debug loggerType wrap element names ...
+#>     token: NULL
+#>     user: NULL
+#>     xmlElement: AbstractObject
+#>     xmlExtraNamespaces: NULL
+#>     xmlNamespacePrefix: OWS
+#>     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")
 ```
 
 ## Get WFS Layer info
@@ -96,24 +139,24 @@ You can get metadata about the layers available from a service.
 
 ``` r
 emodnet_get_wfs_info(service = "biology")
-#> ✓ WFS client created succesfully
+#> ✔ WFS client created successfully
 #> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 #> # A tibble: 33 × 9
-#>    data_source service_name service_url         layer_namespace layer_name title
-#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
-#>  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…
-#>  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> # … with 23 more rows, and 3 more variables: abstract <chr>, class <chr>,
-#> #   format <chr>
+#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
+#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
+#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
+#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
+#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
+#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
 ```
 
 or you can pass a wfs client object.
@@ -121,55 +164,52 @@ or you can pass a wfs client object.
 ``` r
 emodnet_get_wfs_info(wfs_bio)
 #> # A tibble: 33 × 9
-#>    data_source service_name service_url         layer_namespace layer_name title
-#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
-#>  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…
-#>  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> # … with 23 more rows, and 3 more variables: abstract <chr>, class <chr>,
-#> #   format <chr>
+#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
+#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
+#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
+#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
+#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
+#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
 ```
 
 You can also get info for specific layers from wfs object:
 
 ``` r
-wfs_cml <- emodnet_init_wfs_client("biology")
-#> ✓ WFS client created succesfully
-#> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
-#> ℹ Version: '2.0.0'
-emodnet_get_wfs_info(wfs_cml)
+emodnet_get_wfs_info(wfs_bio)
 #> # A tibble: 33 × 9
-#>    data_source service_name service_url         layer_namespace layer_name title
-#>    <chr>       <chr>        <chr>               <chr>           <chr>      <chr>
-#>  1 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  2 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  3 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_c… EMOD…
-#>  4 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  5 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  6 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  7 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      Species_g… EMOD…
-#>  8 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_h… EMOD…
-#>  9 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> 10 emodnet_wfs biology      https://geo.vliz.b… Emodnetbio      mediseh_m… EMOD…
-#> # … with 23 more rows, and 3 more variables: abstract <chr>, class <chr>,
-#> #   format <chr>
+#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
+#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
+#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
+#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
+#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
+#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
+#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
+#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
+#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
 
-layers <- c("mediseh_zostera_m_pnt","mediseh_posidonia_nodata")
+layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
-emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 #> # A tibble: 2 × 9
-#>   data_source service_name service_url layer_namespace layer_name title abstract
-#>   <chr>       <chr>        <chr>       <chr>           <chr>      <chr> <chr>   
-#> 1 emodnet_wfs https://geo… biology     Emodnetbio      mediseh_p… EMOD… "Coastl…
-#> 2 emodnet_wfs https://geo… biology     Emodnetbio      mediseh_z… EMOD… "Zoster…
-#> # … with 2 more variables: class <chr>, format <chr>
+#>   data_source service_name    servi…¹ layer…² layer…³ title abstr…⁴ class format
+#>   <chr>       <chr>           <chr>   <chr>   <chr>   <chr> <chr>   <chr> <chr> 
+#> 1 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Coast… WFSF… sf    
+#> 2 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Zoste… WFSF… sf    
+#> # … with abbreviated variable names ¹​service_url, ²​layer_namespace,
+#> #   ³​layer_name, ⁴​abstract
 ```
 
 Finally, you can get details on all available services and layers from
@@ -186,7 +226,7 @@ All layers are downloaded as `sf` objects and output as a list with a
 named element for each layer requested.
 
 ``` r
-emodnet_get_layers(wfs = wfs_cml, layers = layers)
+emodnet_get_layers(wfs = wfs_bio, layers = layers)
 #> $mediseh_zostera_m_pnt
 #> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
@@ -226,10 +266,10 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers)
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
-You can change the output `crs` through argument `crs`.
+You can change the output `crs` through the argument `crs`.
 
 ``` r
-emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
+emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
 #> ℹ crs transformed to 3857.
 #> ℹ crs transformed to 3857.
 #> $mediseh_zostera_m_pnt
@@ -271,14 +311,14 @@ emodnet_get_layers(wfs = wfs_cml, layers = layers, crs = 3857)
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (169...
 ```
 
-You can also extract layers directly from a WFS service.
+You can also extract layers using a WFS service name.
 
 ``` r
 emodnet_get_layers(
     service = "biology",
     layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
-#> ✓ WFS client created succesfully
+#> ✔ WFS client created successfully
 #> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 #> $mediseh_zostera_m_pnt
@@ -321,14 +361,14 @@ emodnet_get_layers(
 ```
 
 Layers can also be returned to a single `sf` object through argument
-`reduce_layers`. If `TRUE` the function will try to reduce all layers
-into a single `sf`.
+`reduce_layers`.  
+If `TRUE` the function will try to reduce all layers into a single `sf`.
 
 If attempting to reduce fails, it will return a list with a warning:
 
 ``` r
 emodnet_get_layers(
-    wfs = wfs_cml, 
+    wfs = wfs_bio, 
     layers = layers,
     reduce_layers = TRUE
 )
@@ -345,7 +385,7 @@ emodnet_get_layers(
     layers = c("mediseh_posidonia_nodata"), 
     reduce_layers = TRUE
 )
-#> ✓ WFS client created succesfully
+#> ✔ WFS client created successfully
 #> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
 #> ℹ Version: '2.0.0'
 #> Simple feature collection with 465 features and 3 fields
@@ -369,13 +409,36 @@ emodnet_get_layers(
 
 ## Citation
 
-Please cite this package as:
+To cite EMODnetWFS, please use the output from
+`citation(package = "EMODnetWFS")`.
 
-Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service
-data through R. R package version 0.0.2.
-<https://github.com/EMODnet/EMODnetWFS>. Integrated data products
-created under the European Marine Observation Data Network (EMODnet)
-Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the
-by the European Union under Regulation (EU) No 508/2014 of the European
-Parliament and of the Council of 15 May 2014 on the European Maritime
-and Fisheries Fund.
+``` r
+citation(package = "EMODnetWFS")
+#> 
+#> To cite package 'EMODnetWFS' in publications use:
+#> 
+#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _EMODnetWFS:
+#>   Access EMODnet Web Feature Service data through R_. R package version
+#>   2.0.1.9001. Integrated data products created under the European
+#>   Marine Observation Data Network (EMODnet) Biology project
+#>   (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the
+#>   European Union under Regulation (EU) No 508/2014 of the European
+#>   Parliament and of the Council of 15 May 2014 on the European Maritime
+#>   and Fisheries Fund, <https://github.com/EMODnet/EMODnetWFS>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {{EMODnetWFS}: Access EMODnet Web Feature Service data through R},
+#>     author = {Anna Krystalli and Salvador Fernández-Bejarano and Maëlle Salmon},
+#>     note = {R package version 2.0.1.9001. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
+#>     url = {https://github.com/EMODnet/EMODnetWFS},
+#>   }
+```
+
+## Acknowledgements
+
+This package was started by the Sheffield University during the EMODnet
+Biology WP4 data products workshop in June 2020. You can read the
+[product story on the EMODnet-Biology
+portal](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r)

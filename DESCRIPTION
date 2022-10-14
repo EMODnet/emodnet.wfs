@@ -49,7 +49,8 @@ Suggests:
     withr
 Remotes: 
     eblondel/ows4R,
-    nealrichardson/httptest
+    nealrichardson/httptest,
+    r-spatial/mapview
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
