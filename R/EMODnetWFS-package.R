@@ -13,11 +13,12 @@ emodnetwfs_collaborators <- function() {
 emodnetwfs_user_agent <- function() {
   version <- as.character(packageVersion("EMODnetWFS"))
 
-  if (whoami::gh_username() %in% emodnetwfs_collaborators()) {
-  	return(sprintf("EMODnetWFS R package %s DEV https://github.com/EMODnet/EMODnetWFS", version))
-  }
   if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
   	return(sprintf("EMODnetWFS R package %s CI https://github.com/EMODnet/EMODnetWFS", version))
+  }
+
+  if (whoami::gh_username() %in% emodnetwfs_collaborators()) {
+  	return(sprintf("EMODnetWFS R package %s DEV https://github.com/EMODnet/EMODnetWFS", version))
   }
 
   sprintf("EMODnetWFS R package %s https://github.com/EMODnet/EMODnetWFS", version)
