@@ -34,7 +34,8 @@ Imports:
     tibble,
     tidyr,
     usethis,
-    utils
+    utils,
+    whoami
 Suggests: 
     covr,
     dplyr,
