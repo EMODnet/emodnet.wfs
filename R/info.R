@@ -18,11 +18,10 @@
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
   ) %>%
-    tidyr::separate(
-      .data$layer_name,
-      into = c("layer_namespace", "layer_name"),
-      sep = ":"
-    ) %>%
+  	dplyr::mutate(
+  		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
+  		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
+  	) %>%
     unique()
 }
 
