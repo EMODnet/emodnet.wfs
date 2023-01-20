@@ -21,6 +21,8 @@ Depends:
     R (>= 3.6.0)
 Imports: 
     checkmate,
+    cli,
+    crayon,
     curl,
     httr,
     janitor,
