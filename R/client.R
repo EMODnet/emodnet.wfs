@@ -32,8 +32,8 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
 
     check_wfs(wfs)
    ui_done("WFS client created successfully\n")
-   ui_cat("Service: %s", format_value(wfs$getUrl()))
-   ui_cat("Version: %s", format_value(wfs$getVersion()))
+   ui_info("Service: %s", format_value(wfs$getUrl()))
+   ui_info("Version: %s", format_value(wfs$getVersion()))
 
     wfs
   }
@@ -68,7 +68,7 @@ get_service_name <- function(service_url) {
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
  ui_oops("WFS client creation failed.")
- ui_cat("Service: %s", format_value(service_url))
+ ui_info("Service: %s", format_value(service_url))
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
