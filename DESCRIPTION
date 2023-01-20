@@ -32,7 +32,6 @@ Imports:
     rlang,
     sf,
     tibble,
-    tidyr,
     usethis,
     utils
 Suggests: 

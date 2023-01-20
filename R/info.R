@@ -22,6 +22,7 @@
   		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
   		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
   	) %>%
+  	dplyr::select(- later_name) %>%
     unique()
 }
 
