@@ -146,8 +146,10 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     tryCatch(
       out <- purrr::reduce(out, rbind),
       error = function(e) {
-        rlang::abort("Cannot reduce layers.
-                             Try again with {ui_code('reduce_layers = FALSE')}")
+      	abort(
+      		"Cannot reduce layers. Try again with %s",
+      		format_code('reduce_layers = FALSE')
+      	)
       }
     )
   }
