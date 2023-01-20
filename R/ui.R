@@ -38,10 +38,14 @@ ui_value <- function(text) {
 	ui_cat(format_value(text))
 }
 
-ui_code <- function(text) {
+format_code <- function(text) {
 	text <-  encodeString(text, quote = "`")
 	text <- crayon::silver(text)
-	ui_cat(text)
+	text
+}
+
+ui_code <- function(text) {
+	ui_cat(format_code(text))
 }
 
 abort <- function(message, ...) {

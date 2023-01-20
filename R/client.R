@@ -68,7 +68,7 @@ get_service_name <- function(service_url) {
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
  ui_oops("WFS client creation failed.")
- ui_info("Service: {ui_value(service_url)}")
+ ui_cat("Service: %s", format_value(service_url))
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
@@ -94,7 +94,12 @@ check_service <- function(request) {
   }
 
   if (httr::http_error(request)) {
-   ui_info("HTTP Status: {crayon::red(httr::http_status(request)$message)}")
+   ui_info(
+   	sprintf(
+   		"HTTP Status: %s",
+   		crayon::red(httr::http_status(request)$message)
+   		)
+   )
 
     is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
     if (interactive() && is_monitor_up) {
