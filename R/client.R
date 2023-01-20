@@ -112,7 +112,7 @@ check_service <- function(request) {
 
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
-  	ui_cat(
+  	ui_info(
   		sprintf(
   			"HTTP Status: %s",
   			crayon::green(httr::http_status(request)$message)
