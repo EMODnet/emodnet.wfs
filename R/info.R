@@ -38,8 +38,13 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
 .emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
   if (is.null(wfs) && is.null(service)) {
-    usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
-                         Both cannot be {usethis::ui_value('NULL')}")
+  	abort(
+  		"Please provide a valid %s name or %s object.
+         Both cannot be %s",
+  		format_field('service'),
+  		format_field('wfs'),
+  		format_value('NULL')
+  	)
   }
 
   wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)

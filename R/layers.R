@@ -74,9 +74,12 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
-    usethis::ui_stop(
-      "Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
-         Both cannot be {usethis::ui_value('NULL')} at the same time."
+    abort(
+      "Please provide a valid %s name or %s object.
+         Both cannot be %s at the same time.",
+    	format_field('service'),
+    	format_field('wfs'),
+    	format_value('NULL')
     )
   }
 
@@ -107,7 +110,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
   if (length(cql_filter) == 1L && length(layers) > 1L) {
     cql_filter <- rep(cql_filter, times = length(layers))
-    usethis::ui_info('{usethis::ui_field("cql_filter")} {usethis::ui_code(cql_filter)} recycled across all layers')
+    ui_info('{ui_field("cql_filter")} {ui_code(cql_filter)} recycled across all layers')
   }
 
   if (checkmate::test_named(cql_filter)) {
@@ -137,8 +140,8 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     tryCatch(
       out <- purrr::reduce(out, rbind),
       error = function(e) {
-        usethis::ui_stop("Cannot reduce layers.
-                             Try again with {usethis::ui_code('reduce_layers = FALSE')}")
+        rlang::abort("Cannot reduce layers.
+                             Try again with {ui_code('reduce_layers = FALSE')}")
       }
     )
   }
@@ -184,16 +187,29 @@ checkmate_crs <- function(sf, crs = NULL) {
   }
 
   if (is.na(sf::st_crs(sf)) || is.null(sf::st_crs(sf))) {
-    usethis::ui_warn("{usethis::ui_field('crs')} missing from `sf` object.")
+    rlang::warn(
+    	sprintf(
+    		"{%s missing from `sf` object.",
+    		format_field('crs')
+    		)
+    )
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
-      usethis::ui_info("{{usethis::ui_field('crs')} set to user specified CRS: {usethis::ui_value(crs)}.")
+      ui_cat(
+      	"%s set to user specified CRS: %s.",
+      	format_field("crs"),
+      	format_value(crs)
+      )
     }
   } else {
     if (!is.null(crs)) {
       sf <- sf::st_transform(sf, crs)
-      usethis::ui_info("{usethis::ui_field('crs')} transformed to {usethis::ui_value(crs)}.")
+      ui_cat(
+      	"%s transformed to %s.",
+      	format_field('crs'),
+      	format_value(crs)
+      	)
     }
   }
   return(sf)
@@ -227,7 +243,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
+        rlang::warn("Download of layer {ui_value(x)} failed: {ui_field(e)}")
       }
     )
   } else {
@@ -241,7 +257,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        usethis::ui_warn("Download of layer {usethis::ui_value(x)} failed: {usethis::ui_field(e)}")
+        rlang::warn("Download of layer {ui_value(x)} failed: {ui_field(e)}")
       }
     )
   }

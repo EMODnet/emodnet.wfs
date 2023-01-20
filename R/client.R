@@ -31,9 +31,9 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
     )
 
     check_wfs(wfs)
-    usethis::ui_done("WFS client created successfully")
-    usethis::ui_info("Service: {usethis::ui_value(wfs$getUrl())}")
-    usethis::ui_info("Version: {usethis::ui_value(wfs$getVersion())}")
+   ui_done("WFS client created successfully\n")
+   ui_cat(sprintf("Service: %s", crayon::blue(encodeString(wfs$getUrl(), quote = "'"))))
+   ui_cat(sprintf("Version: %s", crayon::blue(encodeString(wfs$getVersion(), quote = "'"))))
 
     wfs
   }
@@ -67,8 +67,8 @@ get_service_name <- function(service_url) {
 
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
-  usethis::ui_oops("WFS client creation failed.")
-  usethis::ui_info("Service: {usethis::ui_value(service_url)}")
+ ui_oops("WFS client creation failed.")
+ ui_info("Service: {ui_value(service_url)}")
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
@@ -78,7 +78,7 @@ perform_http_request <- function(service_url) {
   }
 
   if (!has_internet()) {
-    usethis::ui_info("Reason: There is no internet connection")
+   ui_info("Reason: There is no internet connection")
     return(NULL)
   }
 
@@ -94,12 +94,11 @@ check_service <- function(request) {
   }
 
   if (httr::http_error(request)) {
-    usethis::ui_info("HTTP Status: {crayon::red(httr::http_status(request)$message)}")
-    usethis::ui_line()
+   ui_info("HTTP Status: {crayon::red(httr::http_status(request)$message)}")
 
     is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
     if (interactive() && is_monitor_up) {
-      if (usethis::ui_yeah("Browse the EMODnet OGC monitor?")) {
+      if (utils::askYesNo("Browse the EMODnet OGC monitor?")) {
         utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
       }
     }
@@ -108,7 +107,16 @@ check_service <- function(request) {
 
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
-    usethis::ui_info("HTTP Status: {crayon::green(httr::http_status(request)$message)}")
-    usethis::ui_stop("An exception has occurred. Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}")
+  	ui_cat(
+  		sprintf(
+  			"HTTP Status: %s",
+  			crayon::green(httr::http_status(request)$message)
+  		)
+  	)
+
+  	abort(
+  		"An exception has occurred. Please raise an issue in %s",
+  		packageDescription('EMODnetWFS')$BugReports
+  	)
   }
 }

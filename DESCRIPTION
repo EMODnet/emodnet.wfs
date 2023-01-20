@@ -33,7 +33,6 @@ Imports:
     sf,
     tibble,
     tidyr,
-    usethis,
     utils
 Suggests: 
     covr,
