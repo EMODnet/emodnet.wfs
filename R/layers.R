@@ -209,7 +209,7 @@ checkmate_crs <- function(sf, crs = NULL) {
   } else {
     if (!is.null(crs)) {
       sf <- sf::st_transform(sf, crs)
-      ui_cat(
+      ui_info(
       	"%s transformed to %s.",
       	format_field('crs'),
       	format_value(crs)
