@@ -18,6 +18,7 @@
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
   ) %>%
+  	dplyr::rowwise() %>%
   	dplyr::mutate(
   		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
   		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
@@ -56,6 +57,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
   ) %>%
+  	dplyr::rowwise() %>%
   	dplyr::mutate(
   		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
   		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
