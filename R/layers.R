@@ -197,7 +197,7 @@ checkmate_crs <- function(sf, crs = NULL) {
   if (is.na(sf::st_crs(sf)) || is.null(sf::st_crs(sf))) {
     rlang::warn(
     	sprintf(
-    		"{%s missing from `sf` object.",
+    		"%s missing from `sf` object.",
     		format_field('crs')
     		)
     )
