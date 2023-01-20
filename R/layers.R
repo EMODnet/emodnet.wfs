@@ -195,12 +195,10 @@ checkmate_crs <- function(sf, crs = NULL) {
   }
 
   if (is.na(sf::st_crs(sf)) || is.null(sf::st_crs(sf))) {
-    rlang::warn(
-    	sprintf(
-    		"%s missing from `sf` object.",
-    		format_field('crs')
-    		)
-    )
+  	warn(
+  		"%s missing from `sf` object.",
+  		format_field('crs')
+  	)
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
@@ -251,7 +249,11 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        rlang::warn("Download of layer {ui_value(x)} failed: {ui_field(e)}")
+        warn(
+        	"Download of layer %s failed: %s",
+        	format_value(x),
+        	format_field(e)
+        )
       }
     )
   } else {
@@ -265,7 +267,11 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        rlang::warn("Download of layer {ui_value(x)} failed: {ui_field(e)}")
+        warn(
+        	"Download of layer %s failed: %s",
+        	format_value(x),
+        	format_field(e)
+        )
       }
     )
   }

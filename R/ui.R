@@ -51,3 +51,7 @@ ui_code <- function(text) {
 abort <- function(message, ...) {
 	rlang::abort(sprintf(message, ...))
 }
+
+warn <- function(message, ...) {
+	rlang::warn(sprintf(message, ...))
+}
