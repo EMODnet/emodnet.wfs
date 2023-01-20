@@ -32,8 +32,8 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
 
     check_wfs(wfs)
    ui_done("WFS client created successfully\n")
-   ui_cat(sprintf("Service: %s", crayon::blue(encodeString(wfs$getUrl(), quote = "'"))))
-   ui_cat(sprintf("Version: %s", crayon::blue(encodeString(wfs$getVersion(), quote = "'"))))
+   ui_cat("Service: %s", format_value(wfs$getUrl()))
+   ui_cat("Version: %s", format_value(wfs$getVersion()))
 
     wfs
   }
