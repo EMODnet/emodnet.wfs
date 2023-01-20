@@ -111,12 +111,10 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
   if (length(cql_filter) == 1L && length(layers) > 1L) {
     cql_filter <- rep(cql_filter, times = length(layers))
     ui_info(
-    	sprintf(
-    		'%s %s recycled across all layers',
-    		format_field("cql_filter"),
-    		format_code(cql_filter)
-    		)
-    	)
+    	'%s %s recycled across all layers',
+    	format_field("cql_filter"),
+    	format_code(cql_filter)
+    )
   }
 
   if (checkmate::test_named(cql_filter)) {
@@ -202,7 +200,7 @@ checkmate_crs <- function(sf, crs = NULL) {
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
-      ui_cat(
+      ui_info(
       	"%s set to user specified CRS: %s.",
       	format_field("crs"),
       	format_value(crs)

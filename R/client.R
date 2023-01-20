@@ -94,12 +94,10 @@ check_service <- function(request) {
   }
 
   if (httr::http_error(request)) {
-   ui_info(
-   	sprintf(
-   		"HTTP Status: %s",
-   		crayon::red(httr::http_status(request)$message)
-   		)
-   )
+  	ui_info(
+  		"HTTP Status: %s",
+  		crayon::red(httr::http_status(request)$message)
+  	)
 
     is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
     if (interactive() && is_monitor_up) {
@@ -113,10 +111,8 @@ check_service <- function(request) {
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
   	ui_info(
-  		sprintf(
-  			"HTTP Status: %s",
-  			crayon::green(httr::http_status(request)$message)
-  		)
+  		"HTTP Status: %s",
+  		crayon::green(httr::http_status(request)$message)
   	)
 
   	abort(

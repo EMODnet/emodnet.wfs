@@ -6,8 +6,12 @@ ui_cat <- function(message, ...) {
 	}
 }
 
-ui_info <- function(text) {
-	ui_cat("%s %s", crayon::yellow(cli::symbol$info), text)
+ui_info <- function(message, ...) {
+	ui_cat(
+		"%s %s",
+		crayon::yellow(cli::symbol$info),
+		sprintf(message, ...)
+		)
 }
 
 ui_done <- function(text) {
