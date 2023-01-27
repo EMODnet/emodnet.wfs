@@ -31,9 +31,9 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
     )
 
     check_wfs(wfs)
-   ui_done("WFS client created successfully\n")
-   ui_info("Service: %s", format_value(wfs$getUrl()))
-   ui_info("Version: %s", format_value(wfs$getVersion()))
+    cli_alert_success("WFS client created successfully")
+    cli_alert_info("Service: {.val {wfs$getUrl()}}")
+    cli_alert_info("Version: {.val {wfs$getVersion()}}")
 
     wfs
   }
@@ -67,8 +67,8 @@ get_service_name <- function(service_url) {
 
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
- ui_oops("WFS client creation failed.")
- ui_info("Service: %s", format_value(service_url))
+ cli_alert_danger("WFS client creation failed.")
+ cli_alert_info("Service: {.val service_url}")
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
@@ -78,7 +78,7 @@ perform_http_request <- function(service_url) {
   }
 
   if (!has_internet()) {
-   ui_info("Reason: There is no internet connection")
+    cli_alert_info("Reason: There is no internet connection")
     return(NULL)
   }
 
@@ -90,14 +90,11 @@ perform_http_request <- function(service_url) {
 # Checks if there is internet connection and HTTP status of the service
 check_service <- function(request) {
   if (is.null(request)) {
-    rlang::abort("WFS client creation failed.")
+    cli::cli_abort("WFS client creation failed.")
   }
 
   if (httr::http_error(request)) {
-  	ui_info(
-  		"HTTP Status: %s",
-  		crayon::red(httr::http_status(request)$message)
-  	)
+  	cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
 
     is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
     if (interactive() && is_monitor_up) {
@@ -106,18 +103,17 @@ check_service <- function(request) {
       }
     }
 
-    rlang::abort("Service creation failed")
+    cli::cli_abort("Service creation failed")
 
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
-  	ui_info(
-  		"HTTP Status: %s",
-  		crayon::green(httr::http_status(request)$message)
-  	)
+  	cli_alert_info("HTTP Status: {.val {httr::http_status(request)$message}}")
 
-  	abort(
-  		"An exception has occurred. Please raise an issue in %s",
-  		packageDescription('EMODnetWFS')$BugReports
+  	cli::cli_abort(
+  		c(
+  			"An exception has occurred.",
+  			i = "Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}"
+  		)
   	)
   }
 }

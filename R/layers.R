@@ -74,13 +74,12 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
-    abort(
-      "Please provide a valid %s name or %s object.
-         Both cannot be %s at the same time.",
-    	format_field('service'),
-    	format_field('wfs'),
-    	format_value('NULL')
-    )
+		cli::cli_abort(
+			c(
+				"Please provide a valid {.field service} name or {.field wfs} object.",
+				x = "Both cannot be {.val NULL}"
+			)
+		)
   }
 
   wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
@@ -96,10 +95,10 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
   formats <- purrr::map_chr(layers, get_layer_format, wfs)
   if (any(formats != "sf") && reduce_layers) {
-    rlang::abort(
+    cli::cli_abort(
       c(
         "Can't reduce layers when one is a data.frame",
-        i = sprintf("data.frame layer(s): %s", toString(layers[formats == "data.frame"]))
+        i = 'data.frame layer(s): {.val {toString(layers[formats == "data.frame"])}}'
       )
     )
   }
@@ -110,10 +109,8 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 
   if (length(cql_filter) == 1L && length(layers) > 1L) {
     cql_filter <- rep(cql_filter, times = length(layers))
-    ui_info(
-    	'%s %s recycled across all layers',
-    	format_field("cql_filter"),
-    	format_code(cql_filter)
+    cli_alert_info(
+    	"{.field cql_filter} {.code {cql_filter}} recycled across all layers"
     )
   }
 
@@ -144,9 +141,11 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     tryCatch(
       out <- purrr::reduce(out, rbind),
       error = function(e) {
-      	abort(
-      		"Cannot reduce layers. Try again with %s",
-      		format_code('reduce_layers = FALSE')
+      	cli::cli_abort(
+      		c(
+      			"Cannot reduce layers.",
+      			i = "Try again with {.code reduce_layers = FALSE}"
+      		)
       	)
       }
     )
@@ -193,27 +192,16 @@ checkmate_crs <- function(sf, crs = NULL) {
   }
 
   if (is.na(sf::st_crs(sf)) || is.null(sf::st_crs(sf))) {
-  	warn(
-  		"%s missing from `sf` object.",
-  		format_field('crs')
-  	)
+  	cli::cli_warn("{.field crs} missing from `sf` object.")
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
-      ui_info(
-      	"%s set to user specified CRS: %s.",
-      	format_field("crs"),
-      	format_value(crs)
-      )
+      cli_alert_info("{.field crs} set to user specified CRS: {.val crs}.")
     }
   } else {
     if (!is.null(crs)) {
       sf <- sf::st_transform(sf, crs)
-      ui_info(
-      	"%s transformed to %s.",
-      	format_field('crs'),
-      	format_value(crs)
-      	)
+      cli_alert_info("{.field crs} transformed to {.val {crs}}.")
     }
   }
   return(sf)
@@ -247,11 +235,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        warn(
-        	"Download of layer %s failed: %s",
-        	format_value(x),
-        	format_field(e)
-        )
+        cli::cli_warn("Download of layer {.val x} failed: {.field e}")
       }
     )
   } else {
@@ -265,11 +249,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        warn(
-        	"Download of layer %s failed: %s",
-        	format_value(x),
-        	format_field(e)
-        )
+        cli::cli_warn("Download of layer {.val x} failed: {.field e}")
       }
     )
   }
