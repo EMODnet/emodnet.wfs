@@ -196,7 +196,7 @@ checkmate_crs <- function(sf, crs = NULL) {
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
-      cli_alert_info("{.field crs} set to user specified CRS: {.val crs}.")
+      cli_alert_info("{.field crs} set to user specified CRS: {.val {crs}}.")
     }
   } else {
     if (!is.null(crs)) {
