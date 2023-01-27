@@ -41,7 +41,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 		cli::cli_abort(
 			c(
 				"Please provide a valid {.field service} name or {.field wfs} object.",
-				x = "Both cannot be {.val NULL}"
+				x = "Both cannot be {.val NULL} at the same time."
 			)
 		)
   }

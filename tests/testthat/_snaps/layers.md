@@ -1,7 +1,7 @@
 # emodnet_get_layers errors well when no service nor wfs
 
     Please provide a valid service name or wfs object.
-    x Both cannot be "NULL"
+    x Both cannot be "NULL" at the same time.
 
 # emodnet_get_layers errors well when bad wfs
 

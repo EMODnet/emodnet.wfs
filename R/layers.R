@@ -77,7 +77,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
 		cli::cli_abort(
 			c(
 				"Please provide a valid {.field service} name or {.field wfs} object.",
-				x = "Both cannot be {.val NULL}"
+				x = "Both cannot be {.val NULL} at the same time."
 			)
 		)
   }
