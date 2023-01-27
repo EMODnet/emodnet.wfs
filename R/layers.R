@@ -235,7 +235,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        cli::cli_warn("Download of layer {.val x} failed: {.field e}")
+        cli::cli_warn("Download of layer {.val {x}} failed: {.field {e}}")
       }
     )
   } else {
@@ -249,7 +249,7 @@ ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, 
         }
       },
       error = function(e) {
-        cli::cli_warn("Download of layer {.val x} failed: {.field e}")
+        cli::cli_warn("Download of layer {.val {x}} failed: {.field {e}}")
       }
     )
   }
