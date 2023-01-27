@@ -22,6 +22,7 @@ Depends:
 Imports: 
     checkmate,
     curl,
+    dplyr,
     httr,
     janitor,
     magrittr,
@@ -36,7 +37,6 @@ Imports:
     utils
 Suggests: 
     covr,
-    dplyr,
     httptest,
     knitr,
     mapview,
