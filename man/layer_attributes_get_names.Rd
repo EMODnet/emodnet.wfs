@@ -4,7 +4,12 @@
 \alias{layer_attributes_get_names}
 \title{Get names of layer attributes}
 \usage{
-layer_attributes_get_names(wfs = NULL, service = NULL, service_version, layer)
+layer_attributes_get_names(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+)
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}

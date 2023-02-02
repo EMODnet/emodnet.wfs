@@ -4,7 +4,12 @@
 \alias{layer_attributes_summarise}
 \title{Get summaries of layer attributes (variables)}
 \usage{
-layer_attributes_summarise(wfs = NULL, service = NULL, service_version, layer)
+layer_attributes_summarise(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+)
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}

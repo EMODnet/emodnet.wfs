@@ -4,7 +4,7 @@
 \alias{emodnet_init_wfs_client}
 \title{Initialise an EMODnet WFS client}
 \usage{
-emodnet_init_wfs_client(service, service_version, logger = NULL)
+emodnet_init_wfs_client(service, service_version = NULL, logger = NULL)
 }
 \arguments{
 \item{service}{the EMODnet OGC WFS service name.

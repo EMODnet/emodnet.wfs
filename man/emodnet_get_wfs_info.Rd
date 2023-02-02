@@ -8,7 +8,7 @@
 \usage{
 emodnet_get_layer_info(wfs, layers)
 
-emodnet_get_wfs_info(wfs = NULL, service = NULL, service_version)
+emodnet_get_wfs_info(wfs = NULL, service = NULL, service_version = NULL)
 
 emodnet_get_all_wfs_info()
 }

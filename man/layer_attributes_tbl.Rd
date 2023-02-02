@@ -4,12 +4,7 @@
 \alias{layer_attributes_tbl}
 \title{Get layer attribute values tibble}
 \usage{
-layer_attributes_tbl(
-  wfs = NULL,
-  service = NULL,
-  service_version = "2.0.0",
-  layer
-)
+layer_attributes_tbl(wfs = NULL, service = NULL, service_version = NULL, layer)
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}

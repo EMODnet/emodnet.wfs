@@ -7,7 +7,7 @@
 emodnet_get_layers(
   wfs = NULL,
   service = NULL,
-  service_version,
+  service_version = NULL,
   layers,
   crs = NULL,
   cql_filter = NULL,

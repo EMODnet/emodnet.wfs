@@ -7,7 +7,7 @@
 layer_attribute_inspect(
   wfs = NULL,
   service = NULL,
-  service_version,
+  service_version = NULL,
   layer,
   attribute
 )
