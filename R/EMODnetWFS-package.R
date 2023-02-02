@@ -17,7 +17,8 @@ emodnetwfs_user_agent <- function() {
   	return(sprintf("EMODnetWFS R package %s CI https://github.com/EMODnet/EMODnetWFS", version))
   }
 
-  if (whoami::gh_username(fallback = "not-an-emodnetwfs-dev") %in% emodnetwfs_collaborators()) {
+  gh_username <- try(whoami::gh_username(), silent = TRUE)
+  if (!inherits(gh_username, "try-error") && gh_username %in% emodnetwfs_collaborators()) {
   	return(sprintf("EMODnetWFS R package %s DEV https://github.com/EMODnet/EMODnetWFS", version))
   }
 
