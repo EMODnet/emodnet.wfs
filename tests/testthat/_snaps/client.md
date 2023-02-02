@@ -8,7 +8,8 @@
 
 ---
 
-    An exception has occurred. Please raise an issue in https://github.com/EMODnet/EMODnetWFS/issues
+    An exception has occurred.
+    i Please raise an issue in https://github.com/EMODnet/EMODnetWFS/issues
 
 # No internet challenge
 
