@@ -93,20 +93,19 @@ check_service <- function(request) {
     cli::cli_abort("WFS client creation failed.")
   }
 
-  if (httr::http_error(request)) {
-  	cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
+	if (httr::http_error(request)) {
+		cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
 
-    is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
-    if (interactive() && is_monitor_up) {
-      browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
-      if (is.na(browse_monitor)) browse_monitor <- FALSE
-        if (browse_monitor) {
-          utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
-          }
-      }
-    }
+		is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
+		if (interactive() && is_monitor_up) {
+			browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
+			if (is.na(browse_monitor)) browse_monitor <- FALSE
+			if (browse_monitor) {
+				utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+			}
+		}
 
-    cli::cli_abort("Service creation failed")
+		cli::cli_abort("Service creation failed")
 
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
