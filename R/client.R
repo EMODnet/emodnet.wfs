@@ -98,8 +98,11 @@ check_service <- function(request) {
 
     is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
     if (interactive() && is_monitor_up) {
-      if (utils::askYesNo("Browse the EMODnet OGC monitor?")) {
-        utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+      browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
+      if (is.na(browse_monitor)) browse_monitor <- FALSE
+        if (browse_monitor) {
+          utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+          }
       }
     }
 
