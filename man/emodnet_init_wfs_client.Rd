@@ -4,13 +4,13 @@
 \alias{emodnet_init_wfs_client}
 \title{Initialise an EMODnet WFS client}
 \usage{
-emodnet_init_wfs_client(service, service_version = "2.0.0", logger = NULL)
+emodnet_init_wfs_client(service, service_version, logger = NULL)
 }
 \arguments{
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{the WFS service version. Defaults to "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
 
 \item{logger}{the logger. Either \code{NULL} (no logging info), \code{"INFO"} (log about ows4R requests)
 or \code{"DEBUG"} (including curl details).}

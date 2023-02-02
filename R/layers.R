@@ -66,11 +66,11 @@
 #'   reduce_layers = TRUE
 #' )
 #' }
-emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.0.0",
+emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NULL,
                                layers, crs = NULL, cql_filter = NULL,
                                reduce_layers = FALSE, suppress_warnings = FALSE,
                                ...) {
-
+  deprecate_message_service_version(service_version, "emodnet_get_layers")
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
@@ -80,7 +80,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = "2.
     )
   }
 
-  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+  wfs <- wfs %||% emodnet_init_wfs_client(service)
 
   check_wfs(wfs)
 

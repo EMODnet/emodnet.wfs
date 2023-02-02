@@ -4,12 +4,7 @@
 \alias{layer_attributes_get_names}
 \title{Get names of layer attributes}
 \usage{
-layer_attributes_get_names(
-  wfs = NULL,
-  service = NULL,
-  service_version = "2.0.0",
-  layer
-)
+layer_attributes_get_names(wfs = NULL, service = NULL, service_version, layer)
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
@@ -17,7 +12,7 @@ layer_attributes_get_names(
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{the WFS service version. Defaults to "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
 
 \item{layer}{character sting of layer name. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}

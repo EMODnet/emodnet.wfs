@@ -2,7 +2,7 @@
 #'
 #' @param service the EMODnet OGC WFS service name.
 #' For available services, see [`emodnet_wfs()`].
-#' @param service_version the WFS service version. Defaults to "2.0.0".
+#' @param service_version `r lifecycle::badge('deprecated')` the WFS service version. Now always "2.0.0".
 #' @param logger the logger. Either `NULL` (no logging info), `"INFO"` (log about ows4R requests)
 #' or `"DEBUG"` (including curl details).
 #'
@@ -14,8 +14,11 @@
 #' \dontrun{
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 #' }
-emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger = NULL) {
-  check_service_name(service)
+emodnet_init_wfs_client <- function(service, service_version = NULL, logger = NULL) {
+
+	deprecate_message_service_version(service_version, "deprecate_message_service_version")
+
+	check_service_name(service)
 
   service_url <- get_service_url(service)
 
@@ -24,7 +27,7 @@ emodnet_init_wfs_client <- function(service, service_version = "2.0.0", logger =
     wfs <- suppressWarnings(
         ows4R::WFSClient$new(
             service_url,
-            serviceVersion = service_version,
+            serviceVersion = "2.0.0",
             headers = c("User-Agent" = emodnetwfs_user_agent()),
         	logger = logger
         )
