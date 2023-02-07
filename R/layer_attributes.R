@@ -14,13 +14,15 @@
 #' }
 layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
-                                       service_version = "2.0.0", layer) {
+                                       service_version = NULL,
+	                                   layer) {
+
+	deprecate_message_service_version(service_version, "layer_attributes_summarise")
     summary(
         layer_attributes_tbl(
             wfs = wfs,
             service = service,
-            service_version = service_version,
-            layer
+            layer = layer
         )
     )
 }
@@ -40,8 +42,11 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' }
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
-                                         service_version = "2.0.0", layer) {
-  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+                                         service_version = NULL, layer) {
+
+  deprecate_message_service_version(service_version, "layer_attribute_descriptions")
+
+  wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
   get_layer_metadata(layer, wfs)$getDescription(pretty = TRUE)
@@ -63,11 +68,14 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #' }
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
-                                       service_version = "2.0.0", layer) {
+                                       service_version = NULL,
+	                                   layer) {
+
+	deprecate_message_service_version(service_version, "layer_attributes_get_names")
+
     layer_attribute_descriptions(
         wfs = wfs,
         service = service,
-        service_version = service_version,
         layer = layer
     )$name
 }
@@ -92,9 +100,12 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' }
 layer_attribute_inspect <- function(wfs = NULL,
                                     service = NULL,
-                                    service_version = "2.0.0",
+	                                service_version = NULL,
                                     layer, attribute) {
-  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+
+	deprecate_message_service_version(service_version, "layer_attribute_inspect")
+
+  wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
   layer <- match.arg(layer,
@@ -147,8 +158,11 @@ layer_attribute_inspect <- function(wfs = NULL,
 #' }
 layer_attributes_tbl <- function(wfs = NULL,
                                  service = NULL,
-                                 service_version = "2.0.0", layer) {
-  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+                                 service_version = NULL, layer) {
+
+  deprecate_message_service_version(service_version, "layer_attributes_tbl")
+
+  wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
   layer <- match.arg(layer,

@@ -1,7 +1,7 @@
 # emodnet_get_layers errors well when no service nor wfs
 
     Please provide a valid service name or wfs object.
-    Both cannot be 'NULL' at the same time.
+    x Both cannot be "NULL" at the same time.
 
 # emodnet_get_layers errors well when bad wfs
 
@@ -14,5 +14,5 @@
 # works when data.frame layer
 
     Can't reduce layers when one is a data.frame
-    i data.frame layer(s): OOPS_summaries, OOPS_metadata
+    i data.frame layer(s): "OOPS_summaries, OOPS_metadata"
 
