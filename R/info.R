@@ -36,13 +36,17 @@
 #' @export
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
-.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = NULL) {
+.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
 
-	deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
+  deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
 
-  if (is.null(wfs) && is.null(service)) {
-    usethis::ui_stop("Please provide a valid {usethis::ui_field('service')} name or {usethis::ui_field('wfs')} object.
-                         Both cannot be {usethis::ui_value('NULL')}")
+	if (is.null(wfs) && is.null(service)) {
+		cli::cli_abort(
+			c(
+				"Please provide a valid {.field service} name or {.field wfs} object.",
+				x = "Both cannot be {.val NULL} at the same time."
+			)
+		)
   }
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)

@@ -1,1 +1,2 @@
-pre_test_options <- options(usethis.quiet = TRUE)
+pre_test_options <- options(EMODnetWFS.quiet = TRUE)
+

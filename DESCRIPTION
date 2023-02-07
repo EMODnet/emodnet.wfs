@@ -21,6 +21,7 @@ Depends:
     R (>= 3.6.0)
 Imports: 
     checkmate,
+    cli,
     curl,
     httr,
     janitor,
@@ -34,7 +35,6 @@ Imports:
     sf,
     tibble,
     tidyr,
-    usethis,
     utils
 Suggests: 
     covr,
