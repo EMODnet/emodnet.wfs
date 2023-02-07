@@ -34,7 +34,6 @@ Imports:
     rlang,
     sf,
     tibble,
-    usethis,
     tidyr,
     utils,
     whoami
