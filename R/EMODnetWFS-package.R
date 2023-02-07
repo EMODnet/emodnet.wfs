@@ -7,6 +7,21 @@
 ## usethis namespace: end
 NULL
 
+emodnetwfs_collaborators <- function() {
+  readLines(system.file("collaborators.txt", package = "EMODnetWFS"))
+}
+
 emodnetwfs_user_agent <- function() {
-  "EMODnetWFS R package https://github.com/EMODnet/EMODnetWFS"
+  version <- as.character(packageVersion("EMODnetWFS"))
+
+  if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
+  	return(sprintf("EMODnetWFS R package %s CI https://github.com/EMODnet/EMODnetWFS", version))
+  }
+
+  gh_username <- try(whoami::gh_username(), silent = TRUE)
+  if (!inherits(gh_username, "try-error") && gh_username %in% emodnetwfs_collaborators()) {
+  	return(sprintf("EMODnetWFS R package %s DEV https://github.com/EMODnet/EMODnetWFS", version))
+  }
+
+  sprintf("EMODnetWFS R package %s https://github.com/EMODnet/EMODnetWFS", version)
 }

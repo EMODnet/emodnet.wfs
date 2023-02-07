@@ -35,7 +35,8 @@ Imports:
     sf,
     tibble,
     tidyr,
-    utils
+    utils,
+    whoami
 Suggests: 
     covr,
     dplyr,
