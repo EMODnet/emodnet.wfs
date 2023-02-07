@@ -1,10 +1,7 @@
 .emodnet_wfs <- function() {
-	readr::read_csv(
+	read.csv(
 		system.file("services.csv", package = "EMODnetWFS"),
-		col_types = readr::cols(
-			service_name = readr::col_character(),
-			service_url = readr::col_character()
-		)
+		stringsAsFactors = FALSE
 	)
 }
 #' Available EMODnet Web Feature Services

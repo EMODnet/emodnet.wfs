@@ -130,8 +130,8 @@ layer_attribute_inspect <- function(wfs = NULL,
 
   switch(
     attribute_type,
-    character = attribute_vector %>% janitor::tabyl(),
-    factor = attribute_vector %>% janitor::tabyl(),
+    character = attribute_vector %>% tabyl(),
+    factor = attribute_vector %>% tabyl(),
     numeric = summary(attribute_vector),
     integer = summary(attribute_vector),
     double = summary(attribute_vector),
