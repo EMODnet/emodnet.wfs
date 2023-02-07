@@ -68,7 +68,7 @@ get_service_name <- function(service_url) {
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
  cli_alert_danger("WFS client creation failed.")
- cli_alert_info("Service: {.val {service_url}}")
+ cli_alert_info("Service: {.val {service_url}}", .envir = parent.frame(n = 2))
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
