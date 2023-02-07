@@ -36,7 +36,10 @@
 #' @export
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
-.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = "2.0.0") {
+.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = NULL) {
+
+  deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
+
 	if (is.null(wfs) && is.null(service)) {
 		cli::cli_abort(
 			c(
@@ -46,7 +49,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 		)
   }
 
-  wfs <- wfs %||% emodnet_init_wfs_client(service, service_version)
+  wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
   capabilities <- wfs$getCapabilities()
@@ -105,7 +108,7 @@ get_abstract_null <- function(x) {
 }
 
 guess_layer_format <- function(layer) {
-  if (any(layer$getDescription(pretty = TRUE)$type == "geometry")) {
+  if (any(layer$getDescription(pretty = TRUE)$geometry)) {
     "sf"
   } else {
     "data.frame"

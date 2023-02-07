@@ -37,3 +37,7 @@ If you’ve found a bug, please file an issue that illustrates the bug with a mi
 
 *  We use [testthat](https://cran.r-project.org/package=testthat) and [httptest](https://books.ropensci.org/http-testing/httptest.html) for unit tests. 
    Contributions with test cases included are easier to accept.  
+
+## Collaborators
+
+Regular contributors should be listed in inst/collaborators.txt to ensure the user-agent used by the package flags them as developers.
