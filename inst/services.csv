@@ -13,6 +13,6 @@ geology_sea_floor_bedrock,https://drive.emodnet-geology.eu/geoserver/bgr/wfs
 geology_seabed_substrate_maps,https://drive.emodnet-geology.eu/geoserver/gtk/wfs
 geology_submerged_landscapes,https://drive.emodnet-geology.eu/geoserver/bgs/wfs
 human_activities,https://ows.emodnet-humanactivities.eu/wfs
-physics,https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs
+physics,https://prod-geoserver.emodnet-physics.eu/geoserver/ows
 seabed_habitats_general_datasets_and_products,https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs
 seabed_habitats_individual_habitat_map_and_model_datasets,https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs
