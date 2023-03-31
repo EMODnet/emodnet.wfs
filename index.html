@@ -84,7 +84,7 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of EMODnetWFS is to allow interrogation of and access to <a href="https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3" class="external-link">EMODnet geographic vector data</a> in R though the <a href="https://www.emodnet.eu/en/data" class="external-link">EMODnet Web Feature Services</a>. <a href="https://www.ogc.org/standards/wfs" class="external-link">Web Feature services (WFS)</a> represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. EMODnetWFS aims at offering an user-friendly interface to this rich data.</p>
+<p>The goal of EMODnetWFS is to allow interrogation of and access to <a href="https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3" class="external-link">EMODnet geographic vector data</a> in R though the <a href="https://emodnet.ec.europa.eu/en/data" class="external-link">EMODnet Web Feature Services</a>. <a href="https://www.ogc.org/standard/wfs/" class="external-link">Web Feature services (WFS)</a> represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. EMODnetWFS aims at offering an user-friendly interface to this rich data.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -440,7 +440,7 @@
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....</span></span></code></pre></div>
 <p>Layers can also be returned to a single <code>sf</code> object through argument <code>reduce_layers</code>.<br>
 If <code>TRUE</code> the function will try to reduce all layers into a single <code>sf</code>.</p>
-<p>If attempting to reduce fails, it will return a list with a warning:</p>
+<p>If attempting to reduce fails, it will error:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>    wfs <span class="op">=</span> <span class="va">wfs_bio</span>, </span>
@@ -508,7 +508,7 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h2>
-<p>This package was started by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020. You can read the <a href="https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r" class="external-link">product story on the EMODnet-Biology portal</a></p>
+<p>This package was started by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020. You can read the <a href="https://emodnet.ec.europa.eu/geonetwork/" class="external-link">product story on the EMODnet-Biology portal</a></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -555,9 +555,9 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 <li><a href="https://github.com/EMODnet/EMODnetWFS/actions" class="external-link"><img src="https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/EMODnet/EMODnetWFS?branch=main" class="external-link"><img src="https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://app.codecov.io/gh/EMODnet/EMODnetWFS?branch=main" class="external-link"><img src="https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
