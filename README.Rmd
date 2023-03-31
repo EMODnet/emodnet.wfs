@@ -77,8 +77,6 @@ emodnet_get_wfs_info(wfs_bio)
 You can also get info for specific layers from wfs object:
 
 ```{r}
-emodnet_get_wfs_info(wfs_bio)
-
 layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_bio, layers = layers)

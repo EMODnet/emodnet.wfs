@@ -54,7 +54,7 @@ All available services are contained in the tibble returned by
 | geology_seabed_substrate_maps                                   | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                          |
 | geology_submerged_landscapes                                    | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                          |
 | human_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                                  |
-| physics                                                         | <https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs>                  |
+| physics                                                         | <https://prod-geoserver.emodnet-physics.eu/geoserver/ows>                     |
 | seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
 | seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
 
@@ -72,11 +72,9 @@ Create new WFS Client. Specify the service using the `service` argument.
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> Loading ISO 19139 XML schemas...
 #> Loading ISO 19115 codelists...
-#> Loading IANA mime types...
-#> No encoding supplied: defaulting to UTF-8.
 #> ✔ WFS client created successfully
-#> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
-#> ℹ Version: '2.0.0'
+#> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
+#> ℹ Version: "2.0.0"
 
 wfs_bio
 #> <WFSClient>
@@ -121,7 +119,7 @@ wfs_bio
 #>     cas_url: NULL
 #>     config: request
 #>     fromComplexTypes: function (value) 
-#>     headers: EMODnetWFS R package https://github.com/EMODnet/EMODnetWFS
+#>     headers: EMODnetWFS R package 2.0.1.9001 DEV https://github.com/E ...
 #>     pwd: NULL
 #>     serviceName: WFS
 #>     system_fields: verbose.info verbose.debug loggerType wrap element names ...
@@ -140,76 +138,61 @@ You can get metadata about the layers available from a service.
 ``` r
 emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
-#> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
-#> ℹ Version: '2.0.0'
-#> # A tibble: 33 × 9
-#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
-#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
-#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
-#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
-#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
-#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
+#> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
+#> ℹ Version: "2.0.0"
+#> # A tibble: 37 × 9
+#> # Rowwise: 
+#>    data_source service_name service_url   layer_name title abstract class format
+#>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> # ℹ 27 more rows
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 33 × 9
-#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
-#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
-#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
-#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
-#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
-#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
+#> # A tibble: 37 × 9
+#> # Rowwise: 
+#>    data_source service_name service_url   layer_name title abstract class format
+#>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> # ℹ 27 more rows
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 You can also get info for specific layers from wfs object:
 
 ``` r
-emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 33 × 9
-#>    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format
-#>    <chr>       <chr>        <chr>     <chr>   <chr>   <chr> <chr>   <chr> <chr> 
-#>  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    
-#>  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    
-#>  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    
-#>  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    
-#>  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    
-#> # … with 23 more rows, and abbreviated variable names ¹​service_url,
-#> #   ²​layer_namespace, ³​layer_name, ⁴​abstract
-
 layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 
 emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 #> # A tibble: 2 × 9
-#>   data_source service_name    servi…¹ layer…² layer…³ title abstr…⁴ class format
-#>   <chr>       <chr>           <chr>   <chr>   <chr>   <chr> <chr>   <chr> <chr> 
-#> 1 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Coast… WFSF… sf    
-#> 2 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Zoste… WFSF… sf    
-#> # … with abbreviated variable names ¹​service_url, ²​layer_namespace,
-#> #   ³​layer_name, ⁴​abstract
+#> # Rowwise: 
+#>   data_source service_name    service_url layer_name title abstract class format
+#>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
+#> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… sf    
+#> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 Finally, you can get details on all available services and layers from
@@ -231,7 +214,7 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers)
 #> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451
+#> Bounding box:  xmin: -4.167154 ymin: 33.07783 xmax: 15.35766 ymax: 45.72451
 #> Geodetic CRS:  WGS 84
 #> First 10 features:
 #>                      gml_id id country                   the_geom
@@ -241,7 +224,7 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers)
 #> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)
 #> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)
 #> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)
-#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)
+#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55796)
 #> 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)
 #> 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)
 #> 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)
@@ -276,16 +259,16 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
 #> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -463885.5 ymin: 3905638 xmax: 1709607 ymax: 5736311
+#> Bounding box:  xmin: -463885.4 ymin: 3905639 xmax: 1709607 ymax: 5736311
 #> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>                      gml_id id country                  the_geom
 #> 1   mediseh_zostera_m_pnt.1  0  Spagna POINT (-290893.4 4399707)
 #> 2   mediseh_zostera_m_pnt.2  0  Spagna POINT (-428201.3 4404494)
 #> 3   mediseh_zostera_m_pnt.3  0  Spagna POINT (-440578.6 4400520)
-#> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-449698.7 4403229)
-#> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-456430.2 4400610)
-#> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-463885.5 4399075)
+#> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-449698.6 4403229)
+#> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-456430.1 4400610)
+#> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-463885.4 4399075)
 #> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-141193.9 4517168)
 #> 8   mediseh_zostera_m_pnt.8  0 Francia  POINT (539748.1 5369436)
 #> 9   mediseh_zostera_m_pnt.9  0  Italia   POINT (1527115 5732431)
@@ -295,7 +278,7 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
 #> Simple feature collection with 465 features and 3 fields
 #> Geometry type: MULTICURVE
 #> Dimension:     XY
-#> Bounding box:  xmin: -242654.2 ymin: 3537818 xmax: 3852508 ymax: 5696879
+#> Bounding box:  xmin: -242654.3 ymin: 3537818 xmax: 3852508 ymax: 5696879
 #> Projected CRS: WGS 84 / Pseudo-Mercator
 #> First 10 features:
 #>                         gml_id id         km                       the_geom
@@ -319,13 +302,13 @@ emodnet_get_layers(
     layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
 #> ✔ WFS client created successfully
-#> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
-#> ℹ Version: '2.0.0'
+#> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
+#> ℹ Version: "2.0.0"
 #> $mediseh_zostera_m_pnt
 #> Simple feature collection with 54 features and 3 fields
 #> Geometry type: POINT
 #> Dimension:     XY
-#> Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451
+#> Bounding box:  xmin: -4.167154 ymin: 33.07783 xmax: 15.35766 ymax: 45.72451
 #> Geodetic CRS:  WGS 84
 #> First 10 features:
 #>                      gml_id id country                   the_geom
@@ -335,7 +318,7 @@ emodnet_get_layers(
 #> 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)
 #> 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)
 #> 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)
-#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)
+#> 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55796)
 #> 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)
 #> 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)
 #> 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)
@@ -372,8 +355,9 @@ emodnet_get_layers(
     layers = layers,
     reduce_layers = TRUE
 )
-#> Error: Cannot reduce layers.
-#> Try again with `reduce_layers = FALSE`
+#> Error in `value[[3L]]()`:
+#> ! Cannot reduce layers.
+#> ℹ Try again with `reduce_layers = FALSE`
 ```
 
 Using `reduce_layers = TRUE` is also useful for returning an `sf` object
@@ -386,8 +370,8 @@ emodnet_get_layers(
     reduce_layers = TRUE
 )
 #> ✔ WFS client created successfully
-#> ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'
-#> ℹ Version: '2.0.0'
+#> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
+#> ℹ Version: "2.0.0"
 #> Simple feature collection with 465 features and 3 fields
 #> Geometry type: MULTICURVE
 #> Dimension:     XY
