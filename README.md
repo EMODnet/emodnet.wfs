@@ -6,19 +6,19 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
 status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://codecov.io/gh/EMODnet/EMODnetWFS?branch=main)
+coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS?branch=main)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation of and access to
 [EMODnet geographic vector
 data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
 in R though the [EMODnet Web Feature
-Services](https://www.emodnet.eu/en/data). [Web Feature services
-(WFS)](https://www.ogc.org/standards/wfs) represent a change in the way
+Services](https://emodnet.ec.europa.eu/en/data). [Web Feature services
+(WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way
 geographic information is created, modified and exchanged on the
 Internet and offer direct fine-grained access to geographic information
 at the feature and feature property level. EMODnetWFS aims at offering
@@ -425,4 +425,4 @@ citation(package = "EMODnetWFS")
 This package was started by the Sheffield University during the EMODnet
 Biology WP4 data products workshop in June 2020. You can read the
 [product story on the EMODnet-Biology
-portal](https://www.emodnet-biology.eu/blog/emodnetwfs-access-emodnet-web-feature-service-data-through-r)
+portal](https://emodnet.ec.europa.eu/geonetwork/)
