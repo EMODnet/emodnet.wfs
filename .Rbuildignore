@@ -1,6 +1,7 @@
 ^EMODnetWFS\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
+^README\.md$
 ^LICENSE\.md$
 ^\.github$
 ^codecov\.yml$
