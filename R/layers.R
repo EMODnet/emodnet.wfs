@@ -24,8 +24,6 @@
 #'   Layers without corresponding filters are returned whole }
 #' }
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
-#' @param suppress_warnings logical. Whether to suppress messages of layer
-#' download failures.
 #' @param ... additional vendor parameter arguments passed to [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
 #' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
@@ -68,7 +66,7 @@
 #' }
 emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NULL,
                                layers, crs = NULL, cql_filter = NULL,
-                               reduce_layers = FALSE, suppress_warnings = FALSE,
+                               reduce_layers = FALSE,
                                ...) {
   deprecate_message_service_version(service_version, "emodnet_get_layers")
   # check wfs ----------------------------------------------------------------
@@ -126,13 +124,13 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
   # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r
   out <- purrr::map2(
     .x = layers, .y = cql_filter,
-    .f = function(x, y, wfs, suppress_warnings, ...) {
-      ews_get_layer(x,
-        wfs = wfs, cql_filter = y,
-        suppress_warnings = suppress_warnings, ...
+    .f = function(x, y, wfs, ...) {
+      ews_get_layer(
+      	x,
+        wfs = wfs, cql_filter = y, ...
       )
     },
-    wfs, suppress_warnings, ...
+    wfs, ...
   ) %>%
     stats::setNames(layers)
 
@@ -215,7 +213,7 @@ standardise_crs <- function(out, crs = NULL) {
   }
 }
 
-ews_get_layer <- function(x, wfs, suppress_warnings = FALSE, cql_filter = NULL, ...) {
+ews_get_layer <- function(x, wfs, cql_filter = NULL, ...) {
 
   # check and namespace layers -----------------------------------------------
   namespaced_x <- namespace_layer_names(wfs, x)
