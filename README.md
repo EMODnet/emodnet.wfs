@@ -347,7 +347,7 @@ Layers can also be returned to a single `sf` object through argument
 `reduce_layers`.  
 If `TRUE` the function will try to reduce all layers into a single `sf`.
 
-If attempting to reduce fails, it will return a list with a warning:
+If attempting to reduce fails, it will error:
 
 ``` r
 emodnet_get_layers(
