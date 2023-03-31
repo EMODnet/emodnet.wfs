@@ -163,22 +163,22 @@ range or distribution of values of each attributes of a given layer.</p>
 <p>Let’s look at existing layers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 33 × 9</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 37 × 9</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># Rowwise: </span></span></span>
-<span><span class="co">#&gt;    data_source service_name service…¹ layer…² title abstr…³ class format layer…⁴</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Coral… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Coral… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Cymod… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> emodnet_wfs biology      https://… Specie… EMOD… <span style="color: #949494;">"</span>This … WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> emodnet_wfs biology      https://… Specie… EMOD… <span style="color: #949494;">"</span>This … WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> emodnet_wfs biology      https://… Specie… EMOD… <span style="color: #949494;">"</span>This … WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> emodnet_wfs biology      https://… Specie… EMOD… <span style="color: #949494;">"</span>This … WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Halop… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Maërl… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> emodnet_wfs biology      https://… medise… EMOD… <span style="color: #949494;">"</span>Maërl… WFSF… sf     Emodne…</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 23 more rows, and abbreviated variable names ¹​service_url,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   ²​layer_name, ³​abstract, ⁴​layer_namespace</span></span></span></code></pre></div>
+<span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Cymodo… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> emodnet_wfs biology      https://geo.… mediseh_h… EMOD… <span style="color: #949494;">"</span>Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> emodnet_wfs biology      https://geo.… mediseh_m… EMOD… <span style="color: #949494;">"</span>Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> emodnet_wfs biology      https://geo.… mediseh_m… EMOD… <span style="color: #949494;">"</span>Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 27 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></span></code></pre></div>
 <div class="section level4">
 <h4 id="layer-attribute-names">Layer attribute names<a class="anchor" aria-label="anchor" href="#layer-attribute-names"></a>
 </h4>
@@ -272,7 +272,7 @@ filtering rules.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> mediseh_zostera_m_pnt.8      0 Francia</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> mediseh_zostera_m_pnt.9      0 Italia </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> mediseh_zostera_m_pnt.10     0 Italia </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 44 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 44 more rows</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html" class="external-link">skim</a></span><span class="op">(</span><span class="va">attr_tbl</span><span class="op">)</span></span></code></pre></div>
 <table class="table">

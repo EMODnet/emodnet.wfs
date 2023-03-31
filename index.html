@@ -165,7 +165,7 @@
 </tr>
 <tr class="odd">
 <td align="left">physics</td>
-<td align="left"><a href="https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs" class="external-link uri">https://geoserver.emodnet-physics.eu/geoserver/emodnet/wfs</a></td>
+<td align="left"><a href="https://prod-geoserver.emodnet-physics.eu/geoserver/ows" class="external-link uri">https://prod-geoserver.emodnet-physics.eu/geoserver/ows</a></td>
 </tr>
 <tr class="even">
 <td align="left">seabed_habitats_general_datasets_and_products</td>
@@ -189,11 +189,9 @@
 <code class="sourceCode R"><span><span class="va">wfs_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading ISO 19139 XML schemas...</span></span>
 <span><span class="co">#&gt; Loading ISO 19115 codelists...</span></span>
-<span><span class="co">#&gt; Loading IANA mime types...</span></span>
-<span><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
-<span><span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span></span>
-<span><span class="co">#&gt; ℹ Version: '2.0.0'</span></span>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
 <span></span>
 <span><span class="va">wfs_bio</span></span>
 <span><span class="co">#&gt; &lt;WFSClient&gt;</span></span>
@@ -238,7 +236,7 @@
 <span><span class="co">#&gt;     cas_url: NULL</span></span>
 <span><span class="co">#&gt;     config: request</span></span>
 <span><span class="co">#&gt;     fromComplexTypes: function (value) </span></span>
-<span><span class="co">#&gt;     headers: EMODnetWFS R package https://github.com/EMODnet/EMODnetWFS</span></span>
+<span><span class="co">#&gt;     headers: EMODnetWFS R package 2.0.1.9001 DEV https://github.com/E ...</span></span>
 <span><span class="co">#&gt;     pwd: NULL</span></span>
 <span><span class="co">#&gt;     serviceName: WFS</span></span>
 <span><span class="co">#&gt;     system_fields: verbose.info verbose.debug loggerType wrap element names ...</span></span>
@@ -256,70 +254,55 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
-<span><span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span></span>
-<span><span class="co">#&gt; ℹ Version: '2.0.0'</span></span>
-<span><span class="co">#&gt; # A tibble: 33 × 9</span></span>
-<span><span class="co">#&gt;    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # … with 23 more rows, and abbreviated variable names ¹​service_url,</span></span>
-<span><span class="co">#&gt; #   ²​layer_namespace, ³​layer_name, ⁴​abstract</span></span></code></pre></div>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
+<span><span class="co">#&gt; # A tibble: 37 × 9</span></span>
+<span><span class="co">#&gt; # Rowwise: </span></span>
+<span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 27 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>or you can pass a wfs client object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bio</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 33 × 9</span></span>
-<span><span class="co">#&gt;    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # … with 23 more rows, and abbreviated variable names ¹​service_url,</span></span>
-<span><span class="co">#&gt; #   ²​layer_namespace, ³​layer_name, ⁴​abstract</span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 37 × 9</span></span>
+<span><span class="co">#&gt; # Rowwise: </span></span>
+<span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 27 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>You can also get info for specific layers from wfs object:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bio</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 33 × 9</span></span>
-<span><span class="co">#&gt;    data_source service_name service…¹ layer…² layer…³ title abstr…⁴ class format</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Coral… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Cymod… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://… Emodne… Specie… EMOD… "This … WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Halop… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://… Emodne… medise… EMOD… "Maërl… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # … with 23 more rows, and abbreviated variable names ¹​service_url,</span></span>
-<span><span class="co">#&gt; #   ²​layer_namespace, ³​layer_name, ⁴​abstract</span></span>
-<span></span>
-<span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_layer_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 2 × 9</span></span>
-<span><span class="co">#&gt;   data_source service_name    servi…¹ layer…² layer…³ title abstr…⁴ class format</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; </span></span>
-<span><span class="co">#&gt; 1 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Coast… WFSF… sf    </span></span>
-<span><span class="co">#&gt; 2 emodnet_wfs https://geo.vl… biology Emodne… medise… EMOD… "Zoste… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # … with abbreviated variable names ¹​service_url, ²​layer_namespace,</span></span>
-<span><span class="co">#&gt; #   ³​layer_name, ⁴​abstract</span></span></code></pre></div>
+<span><span class="co">#&gt; # Rowwise: </span></span>
+<span><span class="co">#&gt;   data_source service_name    service_url layer_name title abstract class format</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… sf    </span></span>
+<span><span class="co">#&gt; 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>Finally, you can get details on all available services and layers from the server</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -334,7 +317,7 @@
 <span><span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -4.167154 ymin: 33.07783 xmax: 15.35766 ymax: 45.72451</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;                      gml_id id country                   the_geom</span></span>
@@ -344,7 +327,7 @@
 <span><span class="co">#&gt; 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)</span></span>
 <span><span class="co">#&gt; 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)</span></span>
 <span><span class="co">#&gt; 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)</span></span>
-<span><span class="co">#&gt; 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)</span></span>
+<span><span class="co">#&gt; 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55796)</span></span>
 <span><span class="co">#&gt; 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)</span></span>
 <span><span class="co">#&gt; 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)</span></span>
 <span><span class="co">#&gt; 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)</span></span>
@@ -376,16 +359,16 @@
 <span><span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -463885.5 ymin: 3905638 xmax: 1709607 ymax: 5736311</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -463885.4 ymin: 3905639 xmax: 1709607 ymax: 5736311</span></span>
 <span><span class="co">#&gt; Projected CRS: WGS 84 / Pseudo-Mercator</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;                      gml_id id country                  the_geom</span></span>
 <span><span class="co">#&gt; 1   mediseh_zostera_m_pnt.1  0  Spagna POINT (-290893.4 4399707)</span></span>
 <span><span class="co">#&gt; 2   mediseh_zostera_m_pnt.2  0  Spagna POINT (-428201.3 4404494)</span></span>
 <span><span class="co">#&gt; 3   mediseh_zostera_m_pnt.3  0  Spagna POINT (-440578.6 4400520)</span></span>
-<span><span class="co">#&gt; 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-449698.7 4403229)</span></span>
-<span><span class="co">#&gt; 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-456430.2 4400610)</span></span>
-<span><span class="co">#&gt; 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-463885.5 4399075)</span></span>
+<span><span class="co">#&gt; 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-449698.6 4403229)</span></span>
+<span><span class="co">#&gt; 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-456430.1 4400610)</span></span>
+<span><span class="co">#&gt; 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-463885.4 4399075)</span></span>
 <span><span class="co">#&gt; 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-141193.9 4517168)</span></span>
 <span><span class="co">#&gt; 8   mediseh_zostera_m_pnt.8  0 Francia  POINT (539748.1 5369436)</span></span>
 <span><span class="co">#&gt; 9   mediseh_zostera_m_pnt.9  0  Italia   POINT (1527115 5732431)</span></span>
@@ -395,7 +378,7 @@
 <span><span class="co">#&gt; Simple feature collection with 465 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTICURVE</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -242654.2 ymin: 3537818 xmax: 3852508 ymax: 5696879</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -242654.3 ymin: 3537818 xmax: 3852508 ymax: 5696879</span></span>
 <span><span class="co">#&gt; Projected CRS: WGS 84 / Pseudo-Mercator</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;                         gml_id id         km                       the_geom</span></span>
@@ -416,13 +399,13 @@
 <span>    layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
-<span><span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span></span>
-<span><span class="co">#&gt; ℹ Version: '2.0.0'</span></span>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
 <span><span class="co">#&gt; $mediseh_zostera_m_pnt</span></span>
 <span><span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: -4.167154 ymin: 33.07782 xmax: 15.35766 ymax: 45.72451</span></span>
+<span><span class="co">#&gt; Bounding box:  xmin: -4.167154 ymin: 33.07783 xmax: 15.35766 ymax: 45.72451</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
 <span><span class="co">#&gt; First 10 features:</span></span>
 <span><span class="co">#&gt;                      gml_id id country                   the_geom</span></span>
@@ -432,7 +415,7 @@
 <span><span class="co">#&gt; 4   mediseh_zostera_m_pnt.4  0  Spagna POINT (-4.039712 36.74217)</span></span>
 <span><span class="co">#&gt; 5   mediseh_zostera_m_pnt.5  0  Spagna POINT (-4.100182 36.72331)</span></span>
 <span><span class="co">#&gt; 6   mediseh_zostera_m_pnt.6  0  Spagna POINT (-4.167154 36.71226)</span></span>
-<span><span class="co">#&gt; 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55797)</span></span>
+<span><span class="co">#&gt; 7   mediseh_zostera_m_pnt.7  0  Spagna POINT (-1.268366 37.55796)</span></span>
 <span><span class="co">#&gt; 8   mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)</span></span>
 <span><span class="co">#&gt; 9   mediseh_zostera_m_pnt.9  0  Italia  POINT (13.71831 45.70017)</span></span>
 <span><span class="co">#&gt; 10 mediseh_zostera_m_pnt.10  0  Italia  POINT (13.16378 45.72451)</span></span>
@@ -464,8 +447,9 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span>    layers <span class="op">=</span> <span class="va">layers</span>,</span>
 <span>    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: Cannot reduce layers.</span></span>
-<span><span class="co">#&gt; Try again with `reduce_layers = FALSE`</span></span></code></pre></div>
+<span><span class="co">#&gt; Error in `value[[3L]]()`:</span></span>
+<span><span class="co">#&gt; ! Cannot reduce layers.</span></span>
+<span><span class="co">#&gt; ℹ Try again with `reduce_layers = FALSE`</span></span></code></pre></div>
 <p>Using <code>reduce_layers = TRUE</code> is also useful for returning an <code>sf</code> object rather than a list in single layer request.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
@@ -474,8 +458,8 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span>    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
-<span><span class="co">#&gt; ℹ Service: 'https://geo.vliz.be/geoserver/Emodnetbio/wfs'</span></span>
-<span><span class="co">#&gt; ℹ Version: '2.0.0'</span></span>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
 <span><span class="co">#&gt; Simple feature collection with 465 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTICURVE</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
