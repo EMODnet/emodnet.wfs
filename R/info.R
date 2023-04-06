@@ -18,11 +18,11 @@
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
   ) %>%
-  	dplyr::rowwise() %>%
-  	dplyr::mutate(
-  		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
-  		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
-  	) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
+      layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
+    ) %>%
     unique()
 }
 
@@ -37,16 +37,15 @@
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
 .emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = NULL) {
-
   deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
 
-	if (is.null(wfs) && is.null(service)) {
-		cli::cli_abort(
-			c(
-				"Please provide a valid {.field service} name or {.field wfs} object.",
-				x = "Both cannot be {.val NULL} at the same time."
-			)
-		)
+  if (is.null(wfs) && is.null(service)) {
+    cli::cli_abort(
+      c(
+        "Please provide a valid {.field service} name or {.field wfs} object.",
+        x = "Both cannot be {.val NULL} at the same time."
+      )
+    )
   }
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
@@ -64,11 +63,11 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
   ) %>%
-  	dplyr::rowwise() %>%
-  	dplyr::mutate(
-  		layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
-  		layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
-  	)
+    dplyr::rowwise() %>%
+    dplyr::mutate(
+      layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
+      layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
+    )
 }
 #' Get WFS available layer information
 #'
