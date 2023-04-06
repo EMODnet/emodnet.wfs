@@ -73,7 +73,6 @@ of layer features can also be handled via ECQL language filters.</p>
 <span>  crs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  reduce_layers <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  suppress_warnings <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -120,11 +119,6 @@ Layers without corresponding filters are returned whole</p></li>
 
 <dt>reduce_layers</dt>
 <dd><p>whether to reduce output layers to a single <code>sf</code> object.</p></dd>
-
-
-<dt>suppress_warnings</dt>
-<dd><p>logical. Whether to suppress messages of layer
-download failures.</p></dd>
 
 
 <dt>...</dt>
