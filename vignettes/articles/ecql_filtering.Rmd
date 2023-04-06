@@ -139,9 +139,9 @@ We can use the **name of the attribute** and the **value** we require to **const
 
 ```{r}
 emodnet_get_layers(
-    wfs,
-    layers = "mediseh_zostera_m_pnt",
-    cql_filter = "country = 'Francia'"
+  wfs,
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "country = 'Francia'"
 )
 ```
 
@@ -151,9 +151,9 @@ For example, to request both France and Spain, we could use the following filter
 
 ```{r}
 emodnet_get_layers(
-    wfs,
-    layers = "mediseh_zostera_m_pnt",
-    cql_filter = "country IN ('Francia', 'Spagna')"
+  wfs,
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "country IN ('Francia', 'Spagna')"
 )
 ```
 
@@ -161,9 +161,9 @@ It is the same as using the `OR` filter:
 
 ```{r}
 emodnet_get_layers(
-    wfs,
-    layers = "mediseh_zostera_m_pnt",
-    cql_filter = "country='Francia' OR country='Spagna'"
+  wfs,
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "country='Francia' OR country='Spagna'"
 )
 ```
 
@@ -173,10 +173,10 @@ Other text comparisons include text pattern matching using operator `LIKE`. For 
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "mediseh_zostera_m_pnt",
-    cql_filter = "country LIKE 'S%'",
-                       reduce_layers = TRUE
+  wfs = wfs,
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "country LIKE 'S%'",
+  reduce_layers = TRUE
 )
 ```
 
@@ -187,10 +187,10 @@ For example, we can request countries that contain `l` anywhere, including the f
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "mediseh_zostera_m_pnt",
-    cql_filter = "strToLowerCase(country) LIKE '%l%'",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "strToLowerCase(country) LIKE '%l%'",
+  reduce_layers = TRUE
 )
 ```
 
@@ -220,20 +220,20 @@ Let's say we are interested in values greater than `400`. We can use the operato
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "mediseh_posidonia_nodata",
-    cql_filter = "km > 400",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "mediseh_posidonia_nodata",
+  cql_filter = "km > 400",
+  reduce_layers = TRUE
 )
 ```
 
 To request a range we can use filter functions `between` and `and`.
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "mediseh_posidonia_nodata",
-    cql_filter = "km between 40 and 400",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "mediseh_posidonia_nodata",
+  cql_filter = "km between 40 and 400",
+  reduce_layers = TRUE
 )
 ```
 
@@ -248,10 +248,10 @@ For example, the following query returns features where country is either `Balti
 ```{r, eval=FALSE}
 wfs <- emodnet_init_wfs_client(service = "geology_seabed_substrate_maps")
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "seabed_substrate_1m",
-    cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "seabed_substrate_1m",
+  cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
+  reduce_layers = TRUE
 )
 ```
 
@@ -261,13 +261,12 @@ Let's say we also want to restrict the features returned those having `shape_len
 ```{r, eval=FALSE}
 
 filter_sf1 <- emodnet_get_layers(
-    wfs = wfs,
-    layers = "seabed_substrate_1m",
-    cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "seabed_substrate_1m",
+  cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
+  reduce_layers = TRUE
 )
 filter_sf1
-
 ```
 
 The query returns features where `country` is `Baltic Sea` or `Bulgaria` but we can see that the minimum value is below the minimum we set with our filter. That's because the `AND` filter is added only to the `country='Bulgaria'`, so while only features with `shape_length > 1` are returned where `country` is also `Bulgaria`, the filter is not applied to `shape_length` where `country` is `Baltic Sea`.
@@ -283,12 +282,11 @@ To add the `AND` filter to both `OR` filters, we can use a parenthesis:
 
 ```{r, eval=FALSE}
 filter_sf2 <- emodnet_get_layers(
-    wfs = wfs,
-    layers = "seabed_substrate_1m",
-    cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "seabed_substrate_1m",
+  cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
+  reduce_layers = TRUE
 )
-
 ```
 
 
@@ -304,12 +302,11 @@ Finally filtering for `shape_length < 1` returns features with `shape_length` va
 
 ```{r, eval=FALSE}
 filter_sf3 <- emodnet_get_layers(
-    wfs = wfs,
-    layers = "seabed_substrate_1m",
-    cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
-    reduce_layers = TRUE
+  wfs = wfs,
+  layers = "seabed_substrate_1m",
+  cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
+  reduce_layers = TRUE
 )
-
 ```
 
 
