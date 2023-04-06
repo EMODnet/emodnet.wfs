@@ -12,7 +12,7 @@ emodnetwfs_collaborators <- function() {
 }
 
 emodnetwfs_user_agent <- function() {
-  version <- as.character(packageVersion("EMODnetWFS"))
+  version <- as.character(utils::packageVersion("EMODnetWFS"))
 
   if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
   	return(sprintf("EMODnetWFS R package %s CI https://github.com/EMODnet/EMODnetWFS", version))
@@ -25,3 +25,5 @@ emodnetwfs_user_agent <- function() {
 
   sprintf("EMODnetWFS R package %s https://github.com/EMODnet/EMODnetWFS", version)
 }
+
+globalVariables(c("layer_name", "n"))

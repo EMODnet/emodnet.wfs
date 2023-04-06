@@ -1,5 +1,5 @@
 .emodnet_wfs <- function() {
-	read.csv(
+	utils::read.csv(
 		system.file("services.csv", package = "EMODnetWFS"),
 		stringsAsFactors = FALSE
 	)
