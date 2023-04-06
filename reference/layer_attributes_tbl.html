@@ -97,28 +97,9 @@ targeted and faster layer download.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">layer_attributes_tbl</span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span>, layer <span class="op">=</span> <span class="st">"maritimebnds"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-humanactivities.eu/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,047 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gml_id     objectid mblszotpid localid sitename legalfound legalfou_1 country</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> maritimeb…        1          7   <span style="text-decoration: underline;">49</span>469 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Germany</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> maritimeb…        2          7   <span style="text-decoration: underline;">49</span>471 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Bulgar…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> maritimeb…        3          7   <span style="text-decoration: underline;">49</span>472 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Croatia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> maritimeb…        4          7   <span style="text-decoration: underline;">49</span>473 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Denmark</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> maritimeb…        5          7   <span style="text-decoration: underline;">49</span>474 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> maritimeb…        6          7   <span style="text-decoration: underline;">49</span>475 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> maritimeb…        7          7   <span style="text-decoration: underline;">49</span>476 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         France </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> maritimeb…        8          7   <span style="text-decoration: underline;">49</span>478 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Ireland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> maritimeb…        9          7   <span style="text-decoration: underline;">49</span>479 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Italy  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> maritimeb…       10          7   <span style="text-decoration: underline;">49</span>480 Interna… <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>         Latvia </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,037 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: nationalle &lt;chr&gt;, nutscode &lt;chr&gt;, mblsds_mbl &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   shape_leng &lt;dbl&gt;</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

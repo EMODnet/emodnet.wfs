@@ -110,59 +110,18 @@ services from server.</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_wfs_info</span><span class="op">(</span>service <span class="op">=</span> <span class="st">"bathymetry"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-bathymetry.eu/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   data_source service_name service_url    layer_name title abstract class format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> emodnet_wfs bathymetry   https://ows.e… download_… Bath… <span style="color: #949494;">"</span>Downlo… WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> emodnet_wfs bathymetry   https://ows.e… contours   Dept… <span style="color: #949494;">"</span>Genera… WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> emodnet_wfs bathymetry   https://ows.e… hr_bathym… High… <span style="color: #949494;">"</span>Layer … WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> emodnet_wfs bathymetry   https://ows.e… quality_i… Qual… <span style="color: #949494;">"</span>Repres… WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> emodnet_wfs bathymetry   https://ows.e… sea_names  Sea … <span style="color: #949494;">"</span>Mainta… WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> emodnet_wfs bathymetry   https://ows.e… source_re… Sour… <span style="color: #949494;">"</span>Covera… WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> emodnet_wfs bathymetry   https://ows.e… undersea_… unde… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="co"># Query a wfs object</span></span></span>
 <span class="r-in"><span><span class="va">wfs_cml</span> <span class="op">&lt;-</span> <span class="fu"><a href="emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span><span class="st">"chemistry_marine_litter"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://www.ifremer.fr/services/wfs/emodnet_chemistry2"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_wfs_info</span><span class="op">(</span><span class="va">wfs_cml</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    data_source service_name   service_url layer_name title abstract class format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> emodnet_wfs chemistry_mar… https://ww… bl_beache… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> emodnet_wfs chemistry_mar… https://ww… bl_tempor… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> emodnet_wfs chemistry_mar… https://ww… bl_totala… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> emodnet_wfs chemistry_mar… https://ww… bl_tot_ab… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> emodnet_wfs chemistry_mar… https://ww… bl_materi… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> emodnet_wfs chemistry_mar… https://ww… bl_cigare… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> emodnet_wfs chemistry_mar… https://ww… bl_cigare… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> emodnet_wfs chemistry_mar… https://ww… bl_fishin… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> emodnet_wfs chemistry_mar… https://ww… bl_plasti… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> emodnet_wfs chemistry_mar… https://ww… bl_single… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="co"># Get info for specific layers from wfs object</span></span></span>
 <span class="r-in"><span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="st">"bl_fishing_monitoring"</span>,</span></span>
 <span class="r-in"><span>  <span class="st">"bl_beacheslocations_monitoring"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_layer_info</span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_cml</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   data_source service_name    service_url layer_name title abstract class format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> emodnet_wfs https://www.if… chemistry_… bl_beache… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> emodnet_wfs https://www.if… chemistry_… bl_fishin… Beac… <span style="color: #949494;">""</span>       WFSF… sf    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

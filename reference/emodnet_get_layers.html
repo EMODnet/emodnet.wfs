@@ -142,77 +142,12 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># Layers as character vector</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_layers</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  service <span class="op">=</span> <span class="st">"seabed_habitats_individual_habitat_map_and_model_datasets"</span>,</span></span>
 <span class="r-in"><span>  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading ISO 19139 XML schemas...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading ISO 19115 codelists...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dk003069</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 82 features and 8 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTISURFACE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 1065918 ymin: 7318084 xmax: 1140377 ymax: 7385447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS 84 / Pseudo-Mercator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  dk003069.39844 39844 DK003069      61   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  dk003069.39855 39855 DK003069      72   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  dk003069.39860 39860 DK003069      77   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  dk003069.39861 39861 DK003069      78   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  dk003069.39785 39785 DK003069       2   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  dk003069.39814 39814 DK003069      31   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  dk003069.39791 39791 DK003069       8   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  dk003069.39836 39836 DK003069      53   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  dk003069.39829 39829 DK003069      46   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 dk003069.39850 39850 DK003069      67   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    val_comm                           geom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      &lt;NA&gt; MULTISURFACE (POLYGON ((109...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10     &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dk003070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 30 features and 8 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTISURFACE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 1268645 ymin: 7276003 xmax: 1332262 ymax: 7290836</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS 84 / Pseudo-Mercator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  dk003070.39889 39889 DK003070      24   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  dk003070.39888 39888 DK003070      23   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  dk003070.39883 39883 DK003070      18   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  dk003070.39892 39892 DK003070      27   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  dk003070.39876 39876 DK003070      11   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  dk003070.39880 39880 DK003070      15   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  dk003070.39869 39869 DK003070       4   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  dk003070.39866 39866 DK003070       1   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  dk003070.39884 39884 DK003070      19   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 dk003070.39894 39894 DK003070      29   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    val_comm                           geom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      &lt;NA&gt; MULTISURFACE (POLYGON ((132...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      &lt;NA&gt; MULTISURFACE (POLYGON ((129...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      &lt;NA&gt; MULTISURFACE (POLYGON ((128...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      &lt;NA&gt; MULTISURFACE (POLYGON ((133...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      &lt;NA&gt; MULTISURFACE (POLYGON ((130...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      &lt;NA&gt; MULTISURFACE (POLYGON ((130...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      &lt;NA&gt; MULTISURFACE (POLYGON ((127...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      &lt;NA&gt; MULTISURFACE (POLYGON ((127...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      &lt;NA&gt; MULTISURFACE (POLYGON ((130...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10     &lt;NA&gt; MULTISURFACE (POLYGON ((132...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Layers as character vector, layers to be reduced</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_layers</span><span class="op">(</span></span></span>
@@ -220,37 +155,6 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
 <span class="r-in"><span>  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dk003069"</span>, <span class="st">"dk003070"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 112 features and 8 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTISURFACE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 1065918 ymin: 7276003 xmax: 1332262 ymax: 7385447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: WGS 84 / Pseudo-Mercator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            gml_id   gid      gui polygon annexi         subtype confidence</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  dk003069.39844 39844 DK003069      61   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  dk003069.39855 39855 DK003069      72   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  dk003069.39860 39860 DK003069      77   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  dk003069.39861 39861 DK003069      78   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  dk003069.39785 39785 DK003069       2   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  dk003069.39814 39814 DK003069      31   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  dk003069.39791 39791 DK003069       8   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  dk003069.39836 39836 DK003069      53   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  dk003069.39829 39829 DK003069      46   1170 Geogenic origin       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 dk003069.39850 39850 DK003069      67   1110            &lt;NA&gt;       High</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    val_comm                           geom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      &lt;NA&gt; MULTISURFACE (POLYGON ((109...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      &lt;NA&gt; MULTISURFACE (POLYGON ((108...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10     &lt;NA&gt; MULTISURFACE (POLYGON ((111...</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Usage of cql_filter</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_layers</span><span class="op">(</span></span></span>
@@ -259,48 +163,6 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
 <span class="r-in"><span>  cql_filter <span class="op">=</span> <span class="st">"sitename='Territory sea (12 nm)'"</span>,</span></span>
 <span class="r-in"><span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-humanactivities.eu/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 64 features and 12 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTICURVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: -178.3897 ymin: -50.21866 xmax: 169.1762 ymax: 83.8746</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             gml_id objectid mblszotpid localid              sitename legalfound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  maritimebnds.54       54          1   49036 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  maritimebnds.55       55          1   49042 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  maritimebnds.56       56          1   49063 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  maritimebnds.57       57          1   49064 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  maritimebnds.58       58          1   49065 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  maritimebnds.59       59          1   49066 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  maritimebnds.60       60          1   49087 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  maritimebnds.61       61          1   49099 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  maritimebnds.62       62          1   49101 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 maritimebnds.63       63          1   49102 Territory sea (12 nm)       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    legalfou_1        country nationalle nutscode               mblsds_mbl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        &lt;NA&gt; United Kingdom       &lt;NA&gt;       UK In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        &lt;NA&gt;         France       &lt;NA&gt;       FR In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        &lt;NA&gt;          Spain       &lt;NA&gt;       ES In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        &lt;NA&gt;         Cyprus       &lt;NA&gt;       CY In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        &lt;NA&gt; United Kingdom       &lt;NA&gt;       UK In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       &lt;NA&gt; United Kingdom       &lt;NA&gt;       UK In www.marineregions.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    shape_leng                       the_geom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  141.545470 MULTICURVE (LINESTRING (-13...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   70.017156 MULTICURVE (LINESTRING (169...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    5.116398 MULTICURVE (LINESTRING (55....</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    1.949563 MULTICURVE (LINESTRING (42....</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    2.072975 MULTICURVE (LINESTRING (39....</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    1.837879 MULTICURVE (LINESTRING (40....</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   27.878496 MULTICURVE (LINESTRING (-17...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   13.642806 MULTICURVE (LINESTRING (34....</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    2.046192 MULTICURVE (LINESTRING (-14...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   2.259654 MULTICURVE (LINESTRING (-5....</span>
 <span class="r-in"><span><span class="co"># Usage of vendor parameter</span></span></span>
 <span class="r-in"><span><span class="fu">emodnet_get_layers</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  service <span class="op">=</span> <span class="st">"human_activities"</span>,</span></span>
@@ -308,21 +170,7 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
 <span class="r-in"><span>  count <span class="op">=</span> <span class="fl">1</span>,</span></span>
 <span class="r-in"><span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-humanactivities.eu/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 1 feature and 12 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTICURVE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 6.6236 ymin: 52.87112 xmax: 14.04677 ymax: 55.0804</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           gml_id objectid mblszotpid localid        sitename legalfound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 maritimebnds.1        1          7   49469 Internal waters       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   legalfou_1 country nationalle nutscode               mblsds_mbl shape_leng</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt; Germany       &lt;NA&gt;       DE In www.marineregions.org    54.8404</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         the_geom</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 MULTICURVE (LINESTRING (11....</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

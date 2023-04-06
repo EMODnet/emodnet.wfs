@@ -103,29 +103,11 @@ factor or character variable levels or unique values.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://ows.emodnet-humanactivities.eu/wfs"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
 <span class="r-in"><span><span class="fu"><a href="layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"maritimebnds"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "objectid"   "mblszotpid" "localid"    "sitename"   "legalfound"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "legalfou_1" "country"    "nationalle" "nutscode"   "mblsds_mbl"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "shape_leng" "the_geom"  </span>
 <span class="r-in"><span><span class="fu">layer_attribute_inspect</span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"maritimebnds"</span>, attribute <span class="op">=</span> <span class="st">"sitename"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .                                                            n percent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Baseline                                                   486  0.464 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Contiguous zone (24 nm)                                     65  0.062<span style="text-decoration: underline;">1</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Continental Shelf                                           78  0.074<span style="text-decoration: underline;">5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Delimitation line between states                           211  0.202 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Exclusive Economic Zone (200 nm) EEZ                        68  0.064<span style="text-decoration: underline;">9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Exclusive Economic Zone (200 nm) EEZ - Median Line          23  0.022<span style="text-decoration: underline;">0</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Exclusive Economic Zone (200 nm) EEZ - Overlapping claim    14  0.013<span style="text-decoration: underline;">4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Internal waters                                             38  0.036<span style="text-decoration: underline;">3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> Territory sea (12 nm)                                       64  0.061<span style="text-decoration: underline;">1</span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
