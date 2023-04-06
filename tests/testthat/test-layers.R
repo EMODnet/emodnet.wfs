@@ -92,6 +92,7 @@ test_that("emodnet_get_layers errors well when bad wfs", {
 })
 
 test_that("emodnet_get_layers errors well when bad layer", {
+  skip_if_offline()
   wfs <- create_biology_wfs()
   expect_snapshot_error(emodnet_get_layers(wfs = wfs, layers = "blop"))
 })
