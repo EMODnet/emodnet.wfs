@@ -12,7 +12,6 @@ emodnet_get_layers(
   crs = NULL,
   cql_filter = NULL,
   reduce_layers = FALSE,
-  suppress_warnings = FALSE,
   ...
 )
 }
@@ -46,9 +45,6 @@ Layers without corresponding filters are returned whole }
 }}
 
 \item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.}
-
-\item{suppress_warnings}{logical. Whether to suppress messages of layer
-download failures.}
 
 \item{...}{additional vendor parameter arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.
 For example, including \code{count=1} returns the first available feature.}
