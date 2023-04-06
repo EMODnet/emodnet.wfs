@@ -1,4 +1,5 @@
 test_that("Specified connection works", {
+  skip_if_offline()
   wfs <- create_biology_wfs()
   expect_s3_class(wfs, c("WFSClient", "OWSClient", "OGCAbstractObject", "R6"))
   expect_identical(wfs$getUrl(), "https://geo.vliz.be/geoserver/Emodnetbio/wfs")
@@ -9,6 +10,7 @@ test_that("Error when wrong service", {
 })
 
 test_that("Services down handled", {
+  skip_if_offline()
   webmockr::httr_mock()
 
   test_url <- "https://demo.geo-solutions.it/geoserver/ows?request=GetCapabilities"

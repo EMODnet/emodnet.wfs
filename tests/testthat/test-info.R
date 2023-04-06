@@ -9,6 +9,7 @@ test_that("wfs all info works", {
 
 test_that("wfs info works on wfs object", {
   forget_all()
+  skip_if_offline()
   wfs <- create_biology_wfs()
   with_mock_dir("biology-info", {
     layer_info_all <- emodnet_get_wfs_info(wfs)
@@ -21,6 +22,7 @@ test_that("wfs info works on wfs object", {
 })
 
 test_that("emodnet_get_layer_info works", {
+  skip_if_offline()
   wfs <- create_biology_wfs()
   with_mock_dir("biology-info", {
     layers <- c("mediseh_zostera_m_pnt", "mediseh_cymodocea_pnt")

@@ -21,8 +21,8 @@ test_that("categorical filters work -- biology", {
 })
 
 test_that("numeric filters work -- biology", {
-  forget_all()
   skip_if_offline()
+  forget_all()
   wfs <- create_biology_wfs()
   with_mock_dir("nodata", {
     num_filter_sf <- emodnet_get_layers(
