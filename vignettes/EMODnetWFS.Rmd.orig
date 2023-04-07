@@ -1,5 +1,10 @@
 ---
 title: "EMODnetWFS Case Study: Accessing and mapping EMODnet data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API details}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -54,9 +59,7 @@ emodnet_wfs()
 The column `service_name` shows services available, while  `service_url` has the corresponding base url to perform a WFS request. The Seabed portal should have the data we are looking for. A WFS client can be created by passing the corresponding `service_name` to the function `emodnet_init_wfs_client()`. The layers available to this WFS client are consulted with `emodnet_get_wfs_info()`.
 
 ```{r}
-seabed_wfs_client <- emodnet_init_wfs_client(
-	service = "seabed_habitats_general_datasets_and_products"
-)
+seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_datasets_and_products")
 
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
 ```
@@ -66,11 +69,7 @@ emodnet_get_wfs_info(wfs = seabed_wfs_client)
 Each layer is explained in the `abstract` column. We can see several layers with the information provided by the EU member states for the [Habitats Directive 92/43/EEC reporting](https://www.eea.europa.eu/data-and-maps/data/article-17-database-habitats-directive-92-43-eec-2). We will select the layers about coastal lagoons, mudflats and sandbanks with their respective `layer_name`.
 
 ```{r}
-habitats_directive_layer_names <- c(
-	"art17_hab_1110", 
-	"art17_hab_1140", 
-	"art17_hab_1150"
-)
+habitats_directive_layer_names <- c("art17_hab_1110", "art17_hab_1140", "art17_hab_1150")
 
 emodnet_get_layer_info(
   wfs = seabed_wfs_client,
