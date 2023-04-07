@@ -107,7 +107,11 @@ You can also inspect individual attributes which, in the case of categorical var
 
 
 ```{r}
-layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
+layer_attribute_inspect(
+	wfs, 
+	layer = "mediseh_zostera_m_pnt", 
+	attribute = "country"
+)
 ```
 
 
@@ -209,9 +213,16 @@ This time we'll use the **mediseh_posidonia_nodata**.
 We can inspect again, using some of our interrogative functions to get information on layer attributes. 
 
 ```{r}
-layer_attributes_get_names(wfs, layer = "mediseh_posidonia_nodata")
+layer_attributes_get_names(
+	wfs, 
+	layer = "mediseh_posidonia_nodata"
+)
 
-layer_attribute_inspect(wfs, layer = "mediseh_posidonia_nodata", attribute = "km")
+layer_attribute_inspect(
+	wfs, 
+	layer = "mediseh_posidonia_nodata", 
+	attribute = "km"
+)
 ```
 
 We can see that values range between `0.23` and `~473` with a mean of `~40`. 

@@ -5,18 +5,23 @@
 #' @param layer character sting of layer name. To get info on layers, including
 #' `layer_name` use [emodnet_get_wfs_info()].
 #'
-#' @return output of `summary()` on the attributes (variables) in a given layer for a given service.
+#' @return output of `summary()` on the attributes (variables) in a given layer
+#' for a given service.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' layer_attributes_summarise(service = "human_activities", layer = "maritimebnds")
+#' layer_attributes_summarise(service = "human_activities",
+#' layer = "maritimebnds")
 #' }
 layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
-  deprecate_message_service_version(service_version, "layer_attributes_summarise")
+  deprecate_message_service_version(
+  	service_version,
+  	"layer_attributes_summarise"
+  )
   summary(
     layer_attributes_tbl(
       wfs = wfs,
@@ -37,12 +42,16 @@ layer_attributes_summarise <- function(wfs = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' layer_attribute_descriptions(service = "human_activities", layer = "maritimebnds")
+#' layer_attribute_descriptions(service = "human_activities",
+#' layer = "maritimebnds")
 #' }
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = NULL, layer) {
-  deprecate_message_service_version(service_version, "layer_attribute_descriptions")
+  deprecate_message_service_version(
+  	service_version,
+  	"layer_attribute_descriptions"
+  )
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
@@ -62,13 +71,17 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' layer_attributes_get_names(service = "human_activities", layer = "maritimebnds")
+#' layer_attributes_get_names(service = "human_activities",
+#' layer = "maritimebnds")
 #' }
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
-  deprecate_message_service_version(service_version, "layer_attributes_get_names")
+  deprecate_message_service_version(
+  	service_version,
+  	"layer_attributes_get_names"
+  )
 
   layer_attribute_descriptions(
     wfs = wfs,
@@ -85,7 +98,8 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #'
-#' @return Detailed summary of individual attribute (variable). Particularly useful for inspecting
+#' @return Detailed summary of individual attribute (variable). Particularly
+#' useful for inspecting
 #' factor or character variable levels or unique values.
 #' @export
 #'
@@ -116,7 +130,10 @@ layer_attribute_inspect <- function(wfs = NULL,
     choices = layer_attributes_get_names(wfs, layer = layer)
   )
 
-  attribute_vector <- wfs$getFeatures(namespaced_layer, PROPERTYNAME = attribute)[[attribute]]
+  attribute_vector <- wfs$getFeatures(
+  	namespaced_layer,
+  	PROPERTYNAME = attribute
+  )[[attribute]]
 
   if (inherits(attribute_vector, "sfc")) {
     attribute_type <- "geometry"
@@ -141,9 +158,12 @@ layer_attribute_inspect <- function(wfs = NULL,
 #' @inheritParams emodnet_get_wfs_info
 #' @inheritParams layer_attributes_summarise
 #'
-#' @return tibble of layer attribute (variable) values with geometry column removed.
-#' @details Request excluding spatial information can be significantly faster. Can be
-#' useful for inspecting attribute values and constructing feature filters for more
+#' @return tibble of layer attribute (variable) values
+#' with geometry column removed.
+#' @details Request excluding spatial information can be significantly faster.
+#' Can be
+#' useful for inspecting attribute values and constructing feature filters
+#' for more
 #' targeted and faster layer download.
 #' @export
 #'
@@ -168,9 +188,12 @@ layer_attributes_tbl <- function(wfs = NULL,
   attributes <- layer_attributes_get_names(wfs, layer = layer)
   attributes <- attributes[attributes != get_layer_geom_name(layer, wfs)]
 
-  wfs$getFeatures(namespaced_layer, PROPERTYNAME = paste(attributes, collapse = ",")) %>%
-    sf::st_drop_geometry() %>%
-    tibble::as_tibble()
+  wfs$getFeatures(
+  	namespaced_layer,
+  	PROPERTYNAME = paste(attributes, collapse = ",")
+  ) %>%
+  	sf::st_drop_geometry() %>%
+  	tibble::as_tibble()
 }
 
 get_layer_metadata <- function(layer, wfs) {
@@ -196,7 +219,9 @@ get_layer_geom_name <- function(layer, wfs) {
   desc$name[desc$type == "geometry"]
 }
 
-get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "epsg.num")) {
+get_layer_default_crs <- function(layer,
+	                              wfs,
+	                              output = c("crs", "epsg.text", "epsg.num")) {
   check_wfs(wfs)
   output <- match.arg(output, several.ok = FALSE)
 
@@ -211,7 +236,10 @@ get_layer_default_crs <- function(layer, wfs, output = c("crs", "epsg.text", "ep
     return(crs)
   }
 
-  epsg.text <- regmatches(crs$input, regexpr("epsg\\:[[:digit:]]{4}", crs$input))
+  epsg.text <- regmatches(
+  	crs$input,
+  	regexpr("epsg\\:[[:digit:]]{4}", crs$input)
+  )
   if (output == "epsg.text") {
     return(epsg.text)
   }
