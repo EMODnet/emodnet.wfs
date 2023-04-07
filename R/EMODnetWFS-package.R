@@ -41,3 +41,7 @@ emodnetwfs_user_agent <- function() {
 }
 
 globalVariables(c("layer_name", "n"))
+
+release_bullets <- function() {
+	c('update vignette with knitr::knit("vignettes/EMODnetWFS.Rmd.orig", output = "vignettes/EMODnetWFS.Rmd")')
+}
