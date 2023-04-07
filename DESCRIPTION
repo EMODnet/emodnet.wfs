@@ -31,9 +31,12 @@ Imports:
     memoise,
     ows4R (>= 0.3),
     purrr,
+    rappdirs,
     rlang,
     sf,
+    snakecase,
     tibble,
+    urltools,
     utils,
     whoami
 Suggests: 
