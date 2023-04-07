@@ -32,7 +32,9 @@ Get names of layer attributes
 }
 \examples{
 \dontrun{
-layer_attributes_get_names(service = "human_activities",
-layer = "maritimebnds")
+layer_attributes_get_names(
+  service = "human_activities",
+  layer = "maritimebnds"
+)
 }
 }
