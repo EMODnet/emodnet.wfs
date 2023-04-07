@@ -138,6 +138,35 @@ emodnet_get_layers(
 )
 ```
 
+## Other web services
+
+The EMODnet data are also published in an [ERDDAP server](https://erddap.emodnet.eu). You can access these data in R using the [rerddap R package](https://docs.ropensci.org/rerddap/):
+
+
+```{r rerddap}
+# install.packages("rerrdap")
+library(rerddap)
+
+# Set the URL of the EMODnet ERDDAP server.
+url <- "https://erddap.emodnet.eu/erddap/"
+
+# List all datasets
+ed_datasets(url = url)
+
+# Search for datasets with "vessel density" in their name
+ed_search("vessel density", url = url)
+
+# Get information about a specific dataset.
+out <- rerddap::info('humanactivities_9f8a_3389_f08a', url = url)
+out
+
+# Request data for a certain time range.
+res <- griddap(out, time = c('2020-03-18','2020-03-19'))
+head(res$data)
+
+```
+
+
 ## Citation
 
 To cite EMODnetWFS, please use the output from `citation(package = "EMODnetWFS")`.

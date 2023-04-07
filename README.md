@@ -119,7 +119,7 @@ wfs_bio
 #>     cas_url: NULL
 #>     config: request
 #>     fromComplexTypes: function (value) 
-#>     headers: EMODnetWFS R package 2.0.1.9001 DEV https://github.com/E ...
+#>     headers: EMODnetWFS R package 2.0.1.9001 https://github.com/EMODn ...
 #>     pwd: NULL
 #>     serviceName: WFS
 #>     system_fields: verbose.info verbose.debug loggerType wrap element names ...
@@ -144,18 +144,17 @@ emodnet_get_wfs_info(service = "biology")
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 27 more rows
-#> # ℹ 1 more variable: layer_namespace <chr>
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… data.…
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… data.…
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
 ```
 
 or you can pass a wfs client object.
@@ -166,18 +165,17 @@ emodnet_get_wfs_info(wfs_bio)
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 27 more rows
-#> # ℹ 1 more variable: layer_namespace <chr>
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… data.…
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… data.…
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
 ```
 
 You can also get info for specific layers from wfs object:
@@ -190,9 +188,9 @@ emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 #> # Rowwise: 
 #>   data_source service_name    service_url layer_name title abstract class format
 #>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… sf    
-#> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    
-#> # ℹ 1 more variable: layer_namespace <chr>
+#> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… data.…
+#> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… data.…
+#> # … with 1 more variable: layer_namespace <chr>
 ```
 
 Finally, you can get details on all available services and layers from
@@ -298,8 +296,8 @@ You can also extract layers using a WFS service name.
 
 ``` r
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+  service = "biology",
+  layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
@@ -351,13 +349,13 @@ If attempting to reduce fails, it will error:
 
 ``` r
 emodnet_get_layers(
-    wfs = wfs_bio, 
-    layers = layers,
-    reduce_layers = TRUE
+  wfs = wfs_bio,
+  layers = layers,
+  reduce_layers = TRUE
 )
-#> Error in `value[[3L]]()`:
-#> ! Cannot reduce layers.
-#> ℹ Try again with `reduce_layers = FALSE`
+#> Error in `emodnet_get_layers()`:
+#> ! Can't reduce layers when one is a data.frame
+#> ℹ data.frame layer(s): "mediseh_zostera_m_pnt, mediseh_posidonia_nodata"
 ```
 
 Using `reduce_layers = TRUE` is also useful for returning an `sf` object
@@ -365,9 +363,9 @@ rather than a list in single layer request.
 
 ``` r
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_posidonia_nodata"), 
-    reduce_layers = TRUE
+  service = "biology",
+  layers = c("mediseh_posidonia_nodata"),
+  reduce_layers = TRUE
 )
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
@@ -389,6 +387,93 @@ emodnet_get_layers(
 #> 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....
 #> 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
+```
+
+## Other web services
+
+The EMODnet data are also published in an [ERDDAP
+server](https://erddap.emodnet.eu). You can access these data in R using
+the [rerddap R package](https://docs.ropensci.org/rerddap/):
+
+``` r
+# install.packages("rerrdap")
+library(rerddap)
+#> Warning: package 'rerddap' was built under R version 4.2.3
+#> Registered S3 method overwritten by 'hoardr':
+#>   method           from
+#>   print.cache_info httr
+
+# Set the URL of the EMODnet ERDDAP server.
+url <- "https://erddap.emodnet.eu/erddap/"
+
+# List all datasets
+ed_datasets(url = url)
+#> # A tibble: 12 × 16
+#>    griddap Subset          tabledap Make.A.Graph wms   files Title Summary FGDC 
+#>    <chr>   <chr>           <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr>
+#>  1 ""      "https://erdda… https:/… https://erd… ""    ""    * Th… "This … ""   
+#>  2 ""      "https://erdda… https:/… https://erd… ""    "htt… Chin… "Chine… "htt…
+#>  3 ""      "https://erdda… https:/… https://erd… ""    ""    Chin… "Chine… "htt…
+#>  4 ""      ""              https:/… https://erd… ""    "htt… EMOD… "The d… ""   
+#>  5 ""      ""              https:/… https://erd… ""    "htt… EMOD… "The d… ""   
+#>  6 ""      "https://erdda… https:/… https://erd… ""    "htt… EMOD… "The d… "htt…
+#>  7 ""      "https://erdda… https:/… https://erd… ""    ""    INDI… "INDIA… "htt…
+#>  8 ""      ""              https:/… https://erd… ""    "htt… Pres… "The p… "htt…
+#>  9 ""      ""              https:/… https://erd… ""    "htt… Pres… "The p… "htt…
+#> 10 ""      ""              https:/… https://erd… ""    ""    PSMS… "Perma… ""   
+#> 11 ""      ""              https:/… https://erd… ""    "htt… PSMS… "Perma… ""   
+#> 12 ""      "https://erdda… https:/… https://erd… ""    "htt… TAO/… "This … "htt…
+#> # … with 7 more variables: ISO.19115 <chr>, Info <chr>, Background.Info <chr>,
+#> #   RSS <chr>, Email <chr>, Institution <chr>, Dataset.ID <chr>
+
+# Search for datasets with "vessel density" in their name
+ed_search("vessel density", url = url)
+#> # A tibble: 17 × 2
+#>    title                                                     dataset_id         
+#>    <chr>                                                     <chr>              
+#>  1 Vessel Density                                            humanactivities_9f…
+#>  2 Vessel Density                                            humanactivities_e9…
+#>  3 Vessel traffic density, 2019, All                         EMODPACE_VD_All    
+#>  4 Vessel traffic density, 2019, Cargo                       EMODPACE_VD_09_Car…
+#>  5 Vessel traffic density, 2019, Dredging or underwater ops  EMODPACE_VD_03_Dre…
+#>  6 Vessel traffic density, 2019, Fishing                     EMODPACE_VD_01_Fis…
+#>  7 Vessel traffic density, 2019, High Speed craft            EMODPACE_VD_06_High
+#>  8 Vessel traffic density, 2019, Miliary and law enforcement EMODPACE_VD_11_Mil…
+#>  9 Vessel traffic density, 2019, Other                       EMODPACE_VD_00_Oth…
+#> 10 Vessel traffic density, 2019, Passenger                   EMODPACE_VD_08_Pas…
+#> 11 Vessel traffic density, 2019, Pleasure craft              EMODPACE_VD_05_Ple…
+#> 12 Vessel traffic density, 2019, Sailing                     EMODPACE_VD_04_Sai…
+#> 13 Vessel traffic density, 2019, Service                     EMODPACE_VD_02_Ser…
+#> 14 Vessel traffic density, 2019, Tanker                      EMODPACE_VD_10_Tan…
+#> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
+#> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
+#> 17 Test PACE: HA Vessel density                              emodnet_pace_vesse…
+
+# Get information about a specific dataset.
+out <- rerddap::info('humanactivities_9f8a_3389_f08a', url = url)
+out
+#> <ERDDAP info> humanactivities_9f8a_3389_f08a 
+#>  Base URL: https://erddap.emodnet.eu/erddap 
+#>  Dataset Type: griddap 
+#>  Dimensions (range):  
+#>      time: (2017-01-01T00:00:00Z, 2021-12-01T00:00:00Z) 
+#>      y: (604500.0, 7034500.0) 
+#>      x: (-622500.0, 6884500.0) 
+#>  Variables:  
+#>      vd: 
+#>          Units: seconds
+
+# Request data for a certain time range.
+res <- griddap(out, time = c('2020-03-18','2020-03-19'))
+#> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
+head(res$data)
+#>         x       y                 time vd
+#> 1 -622500 7034500 2020-04-01T00:00:00Z NA
+#> 2 -621500 7034500 2020-04-01T00:00:00Z NA
+#> 3 -620500 7034500 2020-04-01T00:00:00Z NA
+#> 4 -619500 7034500 2020-04-01T00:00:00Z NA
+#> 5 -618500 7034500 2020-04-01T00:00:00Z NA
+#> 6 -617500 7034500 2020-04-01T00:00:00Z NA
 ```
 
 ## Citation
