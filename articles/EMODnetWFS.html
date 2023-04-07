@@ -195,19 +195,20 @@ client are consulted with <code><a href="../reference/emodnet_get_wfs_info.html"
 <span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">seabed_wfs_client</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 36 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
-<span><span class="co">#&gt;    data_source service_name        service_url layer_name title abstract class format layer_namespace</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;          </span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2018… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs seabed_habitats_ge… https://ow… biogenic_… Biog… "This l… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt; # ℹ 26 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;    data_source service_name   service_url layer_name title abstract class</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs seabed_habita… https://ow… art17_hab… 2018… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs seabed_habita… https://ow… biogenic_… Biog… "This l… WFSF…</span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: format &lt;chr&gt;, layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>Each layer is explained in the <code>abstract</code> column. We can
 see several layers with the information provided by the EU member states
 for the <a href="https://www.eea.europa.eu/data-and-maps/data/article-17-database-habitats-directive-92-43-eec-2" class="external-link">Habitats
@@ -223,11 +224,12 @@ coastal lagoons, mudflats and sandbanks with their respective
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
-<span><span class="co">#&gt;   data_source service_name         service_url layer_name title abstract class format layer_namespace</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;          </span></span>
-<span><span class="co">#&gt; 1 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt; 2 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
-<span><span class="co">#&gt; 3 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open</span></span></code></pre></div>
+<span><span class="co">#&gt;   data_source service_name    service_url layer_name title abstract class</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt; 2 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt; 3 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: format &lt;chr&gt;, layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>We are now ready to read the layers into R with
 <code><a href="../reference/emodnet_get_layers.html">emodnet_get_layers()</a></code>. EMODnetWFS reads the geometries as
 simple features (See <code>sf</code> package) transformed to <a href="https://epsg.io/4326" class="external-link">4326</a> by default. Specifying another map
@@ -249,15 +251,15 @@ layer.</p>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 221</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ gml_id              &lt;chr&gt; "art17_hab_1110.13", "art17_hab_1110.22", "art17_hab_1110.25", "art17_h…</span></span>
-<span><span class="co">#&gt; $ habitat_code        &lt;chr&gt; "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110",…</span></span>
-<span><span class="co">#&gt; $ ms                  &lt;chr&gt; "DK", "ES", "ES", "PT", "PT", "PL", "DK", "FR", "UK", "BE", "BE", "GR",…</span></span>
-<span><span class="co">#&gt; $ region              &lt;chr&gt; "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL", "MBAL", "MATL", "MATL", "…</span></span>
-<span><span class="co">#&gt; $ cs_ms               &lt;chr&gt; "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U1-", "U1x", "U1x", "U1x", "U…</span></span>
-<span><span class="co">#&gt; $ country_code        &lt;chr&gt; "Denmark", "Spain", "Spain", "Portugal", "Portugal", "Poland", "Denmark…</span></span>
-<span><span class="co">#&gt; $ habitat_code_uri    &lt;chr&gt; "http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110", "http…</span></span>
-<span><span class="co">#&gt; $ habitat_description &lt;chr&gt; "Sandbanks which are slightly covered by sea water all the time", "Sand…</span></span>
-<span><span class="co">#&gt; $ geom                &lt;MULTISURFACE [m]&gt; MULTISURFACE (POLYGON ((420..., MULTISURFACE (POLYGON ((19…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ gml_id              &lt;chr&gt; "art17_hab_1110.13", "art17_hab_1110.22", "…</span></span>
+<span><span class="co">#&gt; $ habitat_code        &lt;chr&gt; "1110", "1110", "1110", "1110", "1110", "11…</span></span>
+<span><span class="co">#&gt; $ ms                  &lt;chr&gt; "DK", "ES", "ES", "PT", "PT", "PL", "DK", "…</span></span>
+<span><span class="co">#&gt; $ region              &lt;chr&gt; "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL…</span></span>
+<span><span class="co">#&gt; $ cs_ms               &lt;chr&gt; "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U…</span></span>
+<span><span class="co">#&gt; $ country_code        &lt;chr&gt; "Denmark", "Spain", "Spain", "Portugal", "P…</span></span>
+<span><span class="co">#&gt; $ habitat_code_uri    &lt;chr&gt; "http://dd.eionet.europa.eu/vocabulary/art1…</span></span>
+<span><span class="co">#&gt; $ habitat_description &lt;chr&gt; "Sandbanks which are slightly covered by se…</span></span>
+<span><span class="co">#&gt; $ geom                &lt;MULTISURFACE [m]&gt; MULTISURFACE (POLYGON ((420...…</span></span></code></pre></div>
 <p>Run the following code to have a quick look at the layers
 geometries</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -273,7 +275,7 @@ geometries</p>
 <span></span>
 <span><span class="va">map</span></span></code></pre></div>
 <div class="figure">
-<img src="figure/unnamed-chunk-6-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-6</p>
+<img src="EMODnetWFS-unnamed-chunk-6-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-6</p>
 </div>
 <p>Furthermore, we can get data from other EMODnet lots and combine
 them. The Human Activities portal provides the maritime boundaries of
@@ -283,24 +285,22 @@ generated on the fly.</p>
 <p>Same as before, we have a look at the layers available first.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
-<span><span class="co">#&gt; ℹ Service: "https://ows.emodnet-humanactivities.eu/wfs"</span></span>
-<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
 <span><span class="co">#&gt; # A tibble: 99 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
-<span><span class="co">#&gt;    data_source service_name     service_url    layer_name title abstract class format layer_namespace</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;          </span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs human_activities https://ows.e… activelic… Acti… The dat… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs human_activities https://ows.e… advisoryc… Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs human_activities https://ows.e… aquacultu… Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs human_activities https://ows.e… baltic     Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs human_activities https://ows.e… blacksea   Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs human_activities https://ows.e… longdista… Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs human_activities https://ows.e… market     Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs human_activities https://ows.e… mediterra… Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs human_activities https://ows.e… northsea   Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs human_activities https://ows.e… northwest… Advi… This sh… WFSF… sf     emodnet        </span></span>
-<span><span class="co">#&gt; # ℹ 89 more rows</span></span></code></pre></div>
+<span><span class="co">#&gt;    data_source service_name   service_url layer_name title abstract class</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs human_activit… https://ow… activelic… Acti… The dat… WFSF…</span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs human_activit… https://ow… advisoryc… Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs human_activit… https://ow… aquacultu… Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs human_activit… https://ow… baltic     Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs human_activit… https://ow… blacksea   Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs human_activit… https://ow… longdista… Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs human_activit… https://ow… market     Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs human_activit… https://ow… mediterra… Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs human_activit… https://ow… northsea   Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs human_activit… https://ow… northwest… Advi… This sh… WFSF…</span></span>
+<span><span class="co">#&gt; # ℹ 89 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 2 more variables: format &lt;chr&gt;, layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>The <code>layer_name</code> for the <a href="https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries" class="external-link">maritime
 boundaries</a> seems to be <code>maritimebnds</code>. This dataset was
 developed based on the official <a href="https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries" class="external-link">data
@@ -325,19 +325,19 @@ Seas</a>.</p>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">maritime_boundaries</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 64</span></span>
 <span><span class="co">#&gt; Columns: 13</span></span>
-<span><span class="co">#&gt; $ gml_id     &lt;chr&gt; "maritimebnds.54", "maritimebnds.55", "maritimebnds.56", "maritimebnds.57", "mar…</span></span>
-<span><span class="co">#&gt; $ objectid   &lt;dbl&gt; 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 39, 40, 41, 42, 44, 45, …</span></span>
-<span><span class="co">#&gt; $ mblszotpid &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></span>
-<span><span class="co">#&gt; $ localid    &lt;dbl&gt; 49036, 49042, 49063, 49064, 49065, 49066, 49087, 49099, 49101, 49102, 49104, 491…</span></span>
-<span><span class="co">#&gt; $ sitename   &lt;chr&gt; "Territory sea (12 nm)", "Territory sea (12 nm)", "Territory sea (12 nm)", "Terr…</span></span>
-<span><span class="co">#&gt; $ legalfound &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
-<span><span class="co">#&gt; $ legalfou_1 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
-<span><span class="co">#&gt; $ country    &lt;chr&gt; "United Kingdom", "France", "France", "France", "France", "France", "Spain", "Cy…</span></span>
-<span><span class="co">#&gt; $ nationalle &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
-<span><span class="co">#&gt; $ nutscode   &lt;chr&gt; "UK", "FR", "FR", "FR", "FR", "FR", "ES", "CY", "UK", "UK", "UK", "FR", "FR", "F…</span></span>
-<span><span class="co">#&gt; $ mblsds_mbl &lt;chr&gt; "In www.marineregions.org", "In www.marineregions.org", "In www.marineregions.or…</span></span>
-<span><span class="co">#&gt; $ shape_leng &lt;dbl&gt; 141.545470, 70.017156, 5.116398, 1.949563, 2.072975, 1.837879, 27.878496, 13.642…</span></span>
-<span><span class="co">#&gt; $ the_geom   &lt;MULTICURVE [°]&gt; MULTICURVE (LINESTRING (-13..., MULTICURVE (LINESTRING (169..., MULTI…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ gml_id     &lt;chr&gt; "maritimebnds.54", "maritimebnds.55", "maritimebnds.…</span></span>
+<span><span class="co">#&gt; $ objectid   &lt;dbl&gt; 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, …</span></span>
+<span><span class="co">#&gt; $ mblszotpid &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></span>
+<span><span class="co">#&gt; $ localid    &lt;dbl&gt; 49036, 49042, 49063, 49064, 49065, 49066, 49087, 490…</span></span>
+<span><span class="co">#&gt; $ sitename   &lt;chr&gt; "Territory sea (12 nm)", "Territory sea (12 nm)", "T…</span></span>
+<span><span class="co">#&gt; $ legalfound &lt;date&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ legalfou_1 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ country    &lt;chr&gt; "United Kingdom", "France", "France", "France", "Fra…</span></span>
+<span><span class="co">#&gt; $ nationalle &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …</span></span>
+<span><span class="co">#&gt; $ nutscode   &lt;chr&gt; "UK", "FR", "FR", "FR", "FR", "FR", "ES", "CY", "UK"…</span></span>
+<span><span class="co">#&gt; $ mblsds_mbl &lt;chr&gt; "In www.marineregions.org", "In www.marineregions.or…</span></span>
+<span><span class="co">#&gt; $ shape_leng &lt;dbl&gt; 141.545470, 70.017156, 5.116398, 1.949563, 2.072975,…</span></span>
+<span><span class="co">#&gt; $ the_geom   &lt;MULTICURVE [°]&gt; MULTICURVE (LINESTRING (-13..., MULTICURV…</span></span></code></pre></div>
 <p>Add the maritime boundaries to the previous map with this line. To do
 so, cats to <code>MULTILINESTRING</code> geometry type, transform to the
 same crs as the habitats directive <code>sf</code> (only required
@@ -352,7 +352,7 @@ habitats directive <code>sf</code>.</p>
 <span></span>
 <span><span class="va">map</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/mapview/man/mapView.html" class="external-link">mapview</a></span><span class="op">(</span><span class="va">maritime_boundaries</span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="figure/unnamed-chunk-9-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-9</p>
+<img src="EMODnetWFS-unnamed-chunk-9-1.png" alt=""><p class="caption">plot of chunk unnamed-chunk-9</p>
 </div>
 <p>We have now combined data from the Seabed Habitats and Human
 Activities portals. However, there is more! EMODnet provides also

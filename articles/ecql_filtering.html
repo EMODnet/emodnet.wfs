@@ -235,7 +235,11 @@ with <code><a href="../reference/layer_attribute_descriptions.html">layer_attrib
 categorical variables, can give more detailed information on the names
 and distribution of categories.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attribute_inspect.html">layer_attribute_inspect</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>, attribute <span class="op">=</span> <span class="st">"country"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attribute_inspect.html">layer_attribute_inspect</a></span><span class="op">(</span></span>
+<span>  <span class="va">wfs</span>,</span>
+<span>  layer <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
+<span>  attribute <span class="op">=</span> <span class="st">"country"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 3</span></span></span>
 <span><span class="co">#&gt;   .            n percent</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -567,10 +571,17 @@ functions</strong> can be used for filtering numeric variables.</p>
 <p>We can inspect again, using some of our interrogative functions to
 get information on layer attributes.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span></span>
+<span>  <span class="va">wfs</span>,</span>
+<span>  layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "id"       "km"       "the_geom"</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/layer_attribute_inspect.html">layer_attribute_inspect</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>, attribute <span class="op">=</span> <span class="st">"km"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/layer_attribute_inspect.html">layer_attribute_inspect</a></span><span class="op">(</span></span>
+<span>  <span class="va">wfs</span>,</span>
+<span>  layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
+<span>  attribute <span class="op">=</span> <span class="st">"km"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. </span></span>
 <span><span class="co">#&gt;   0.2371   6.0306  16.6190  40.1771  42.8958 472.9613</span></span></code></pre></div>
 <p>We can see that values range between <code>0.23</code> and

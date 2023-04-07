@@ -72,7 +72,8 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>wfs</dt>
-<dd><p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p></dd>
+<dd><p>A <code>WFSClient</code> R6 object with methods for interfacing an
+OGC Web Feature Service.</p></dd>
 
 
 <dt>service</dt>
@@ -81,7 +82,8 @@ For available services, see <code><a href="emodnet_wfs.html">emodnet_wfs()</a></
 
 
 <dt>service_version</dt>
-<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> the WFS service version. Now always "2.0.0".</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>
+the WFS service version. Now always "2.0.0".</p></dd>
 
 
 <dt>layer</dt>
@@ -93,13 +95,17 @@ For available services, see <code><a href="emodnet_wfs.html">emodnet_wfs()</a></
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>output of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the attributes (variables) in a given layer for a given service.</p>
+<p>output of <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> on the attributes (variables) in a given layer
+for a given service.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu">layer_attributes_summarise</span><span class="op">(</span>service <span class="op">=</span> <span class="st">"human_activities"</span>, layer <span class="op">=</span> <span class="st">"maritimebnds"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">layer_attributes_summarise</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  service <span class="op">=</span> <span class="st">"human_activities"</span>,</span></span>
+<span class="r-in"><span>  layer <span class="op">=</span> <span class="st">"maritimebnds"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>

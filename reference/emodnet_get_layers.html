@@ -82,7 +82,8 @@ of layer features can also be handled via ECQL language filters.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>wfs</dt>
-<dd><p>A <code>WFSClient</code> R6 object with methods for interfacing an OGC Web Feature Service.</p></dd>
+<dd><p>A <code>WFSClient</code> R6 object with methods for interfacing an
+OGC Web Feature Service.</p></dd>
 
 
 <dt>service</dt>
@@ -91,11 +92,13 @@ For available services, see <code><a href="emodnet_wfs.html">emodnet_wfs()</a></
 
 
 <dt>service_version</dt>
-<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a> the WFS service version. Now always "2.0.0".</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>
+the WFS service version. Now always "2.0.0".</p></dd>
 
 
 <dt>layers</dt>
-<dd><p>a character vector of layer names. To get info on layers, including
+<dd><p>a character vector of layer names. To get info on layers,
+including
 <code>layer_name</code> use <code><a href="emodnet_get_wfs_info.html">emodnet_get_wfs_info()</a></code>.</p></dd>
 
 
@@ -107,7 +110,8 @@ are returned with original crs.</p></dd>
 <dt>cql_filter</dt>
 <dd><p>character. Features returned can be filtered using valid
 Extended Common Query Language (ECQL) filtering statements
-(<a href="https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html" class="external-link">https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html</a>). Should be one of:</p><ul><li><p>character string or character vector of length 1.
+(<a href="https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html" class="external-link">https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html</a>).
+Should be one of:</p><ul><li><p>character string or character vector of length 1.
 Filter will be recycled across all layers requested</p></li>
 <li><p>character vector of length equal to the length of layers.
 Filter will be matched to layers sequentially.
@@ -124,7 +128,8 @@ Layers without corresponding filters are returned whole</p></li>
 
 
 <dt>...</dt>
-<dd><p>additional vendor parameter arguments passed to <a href="https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature" class="external-link"><code>ows4R::GetFeature()</code></a>.
+<dd><p>additional vendor parameter arguments passed to
+<a href="https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature" class="external-link"><code>ows4R::GetFeature()</code></a>.# nolint
 For example, including <code>count=1</code> returns the first available feature.</p></dd>
 
 </dl></div>
