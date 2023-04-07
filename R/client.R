@@ -15,22 +15,20 @@
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 #' }
 emodnet_init_wfs_client <- function(service, service_version = NULL, logger = NULL) {
+  deprecate_message_service_version(service_version, "deprecate_message_service_version")
 
-	deprecate_message_service_version(service_version, "deprecate_message_service_version")
-
-	check_service_name(service)
+  check_service_name(service)
 
   service_url <- get_service_url(service)
 
   create_client <- function() {
-
     wfs <- suppressWarnings(
-        ows4R::WFSClient$new(
-            service_url,
-            serviceVersion = "2.0.0",
-            headers = c("User-Agent" = emodnetwfs_user_agent()),
-        	logger = logger
-        )
+      ows4R::WFSClient$new(
+        service_url,
+        serviceVersion = "2.0.0",
+        headers = c("User-Agent" = emodnetwfs_user_agent()),
+        logger = logger
+      )
     )
 
     check_wfs(wfs)
@@ -70,8 +68,8 @@ get_service_name <- function(service_url) {
 
 # Checks if there is internet and performs an HTTP GET request
 perform_http_request <- function(service_url) {
- cli_alert_danger("WFS client creation failed.")
- cli_alert_info("Service: {.val {service_url}}", .envir = parent.frame(n = 2))
+  cli_alert_danger("WFS client creation failed.")
+  cli_alert_info("Service: {.val {service_url}}", .envir = parent.frame(n = 2))
 
   has_internet <- function() {
     if (nzchar(Sys.getenv("NO_INTERNET_TEST_EMODNET"))) {
@@ -96,29 +94,29 @@ check_service <- function(request) {
     cli::cli_abort("WFS client creation failed.")
   }
 
-	if (httr::http_error(request)) {
-		cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
+  if (httr::http_error(request)) {
+    cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
 
-		is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
-		if (interactive() && is_monitor_up) {
-			browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
-			if (is.na(browse_monitor)) browse_monitor <- FALSE
-			if (browse_monitor) {
-				utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
-			}
-		}
+    is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
+    if (interactive() && is_monitor_up) {
+      browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
+      if (is.na(browse_monitor)) browse_monitor <- FALSE
+      if (browse_monitor) {
+        utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+      }
+    }
 
-		cli::cli_abort("Service creation failed")
+    cli::cli_abort("Service creation failed")
 
     # If no HTTP status, something else is wrong
   } else if (!httr::http_error(request)) {
-  	cli_alert_info("HTTP Status: {.val {httr::http_status(request)$message}}")
+    cli_alert_info("HTTP Status: {.val {httr::http_status(request)$message}}")
 
-  	cli::cli_abort(
-  		c(
-  			"An exception has occurred.",
-  			i = "Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}"
-  		)
-  	)
+    cli::cli_abort(
+      c(
+        "An exception has occurred.",
+        i = "Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}"
+      )
+    )
   }
 }

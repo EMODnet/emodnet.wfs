@@ -72,12 +72,12 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
-		cli::cli_abort(
-			c(
-				"Please provide a valid {.field service} name or {.field wfs} object.",
-				x = "Both cannot be {.val NULL} at the same time."
-			)
-		)
+    cli::cli_abort(
+      c(
+        "Please provide a valid {.field service} name or {.field wfs} object.",
+        x = "Both cannot be {.val NULL} at the same time."
+      )
+    )
   }
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
@@ -108,7 +108,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
   if (length(cql_filter) == 1L && length(layers) > 1L) {
     cql_filter <- rep(cql_filter, times = length(layers))
     cli_alert_info(
-    	"{.field cql_filter} {.code {cql_filter}} recycled across all layers"
+      "{.field cql_filter} {.code {cql_filter}} recycled across all layers"
     )
   }
 
@@ -126,7 +126,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
     .x = layers, .y = cql_filter,
     .f = function(x, y, wfs, ...) {
       ews_get_layer(
-      	x,
+        x,
         wfs = wfs, cql_filter = y, ...
       )
     },
@@ -139,12 +139,12 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
     tryCatch(
       out <- purrr::reduce(out, rbind),
       error = function(e) {
-      	cli::cli_abort(
-      		c(
-      			"Cannot reduce layers.",
-      			i = "Try again with {.code reduce_layers = FALSE}"
-      		)
-      	)
+        cli::cli_abort(
+          c(
+            "Cannot reduce layers.",
+            i = "Try again with {.code reduce_layers = FALSE}"
+          )
+        )
       }
     )
   }
@@ -190,7 +190,7 @@ checkmate_crs <- function(sf, crs = NULL) {
   }
 
   if (is.na(sf::st_crs(sf)) || is.null(sf::st_crs(sf))) {
-  	cli::cli_warn("{.field crs} missing from `sf` object.")
+    cli::cli_warn("{.field crs} missing from `sf` object.")
 
     if (!is.null(crs)) {
       sf::st_crs(sf) <- crs
@@ -214,7 +214,6 @@ standardise_crs <- function(out, crs = NULL) {
 }
 
 ews_get_layer <- function(x, wfs, cql_filter = NULL, ...) {
-
   # check and namespace layers -----------------------------------------------
   namespaced_x <- namespace_layer_names(wfs, x)
 

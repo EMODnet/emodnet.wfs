@@ -103,17 +103,15 @@ You can change the output `crs` through the argument `crs`.
 
 ```{r}
 emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
-
 ```
 
 You can also extract layers using a WFS service name.
 
 ```{r}
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+  service = "biology",
+  layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
-
 ```
 
 
@@ -124,9 +122,9 @@ If attempting to reduce fails, it will error:
  
 ```{r, error=TRUE}
 emodnet_get_layers(
-    wfs = wfs_bio, 
-    layers = layers,
-    reduce_layers = TRUE
+  wfs = wfs_bio,
+  layers = layers,
+  reduce_layers = TRUE
 )
 ```
 
@@ -134,9 +132,9 @@ Using `reduce_layers = TRUE` is also useful for returning an `sf` object rather 
 
 ```{r}
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_posidonia_nodata"), 
-    reduce_layers = TRUE
+  service = "biology",
+  layers = c("mediseh_posidonia_nodata"),
+  reduce_layers = TRUE
 )
 ```
 

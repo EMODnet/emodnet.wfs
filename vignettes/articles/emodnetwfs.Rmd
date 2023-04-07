@@ -67,9 +67,9 @@ Each layer is explained in the `abstract` column. We can see several layers with
 habitats_directive_layer_names <- c("art17_hab_1110", "art17_hab_1140", "art17_hab_1150")
 
 emodnet_get_layer_info(
-	wfs = seabed_wfs_client, 
-	layers = habitats_directive_layer_names
-) 
+  wfs = seabed_wfs_client,
+  layers = habitats_directive_layer_names
+)
 ```
 
 
@@ -77,9 +77,11 @@ emodnet_get_layer_info(
 We are now ready to read the layers into R with `emodnet_get_layers()`. EMODnetWFS reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 ```{r}
-habitats_directive_layers <- emodnet_get_layers(wfs = seabed_wfs_client,
-                                                layers = habitats_directive_layer_names,
-                                                reduce_layers = TRUE) 
+habitats_directive_layers <- emodnet_get_layers(
+  wfs = seabed_wfs_client,
+  layers = habitats_directive_layer_names,
+  reduce_layers = TRUE
+)
 
 class(habitats_directive_layers)
 
@@ -117,10 +119,12 @@ The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-an
 The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
 
 ```{r}
-maritime_boundaries <- emodnet_get_layers(service = "human_activities",
-                                          layers = "maritimebnds",
-                                          reduce_layers = TRUE,
-                                          cql_filter = "sitename='Territory sea (12 nm)'")
+maritime_boundaries <- emodnet_get_layers(
+  service = "human_activities",
+  layers = "maritimebnds",
+  reduce_layers = TRUE,
+  cql_filter = "sitename='Territory sea (12 nm)'"
+)
 
 glimpse(maritime_boundaries)
 ```

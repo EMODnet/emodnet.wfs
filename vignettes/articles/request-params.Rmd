@@ -33,11 +33,11 @@ We can restrict the query to a single feature using `featureID` and providing th
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "maritimebnds",
-    featureID = "maritimebnds.861",
-    reduce_layers = TRUE)
-
+  wfs = wfs,
+  layers = "maritimebnds",
+  featureID = "maritimebnds.861",
+  reduce_layers = TRUE
+)
 ```
 
 ## Return specific number of features 
@@ -46,10 +46,11 @@ If the ID of the feature is unknown but we still want to limit the number of fea
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "maritimebnds",
-    count = 1L,
-    reduce_layers = TRUE)
+  wfs = wfs,
+  layers = "maritimebnds",
+  count = 1L,
+  reduce_layers = TRUE
+)
 ```
 
 ## Order features
@@ -60,13 +61,12 @@ Say we wanted to return 5 of the earliest maritime boundaries. In the following 
 
 ```{r}
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "maritimebnds",
-    sortBy = "legalfound",
-    count = 5L,
-    reduce_layers = TRUE)
-
-
+  wfs = wfs,
+  layers = "maritimebnds",
+  sortBy = "legalfound",
+  count = 5L,
+  reduce_layers = TRUE
+)
 ```
 
 
@@ -97,11 +97,12 @@ Setting the `startIndex` to `n_features - 4` (`r n_features - 4`) returns the la
 startIndex <- n_features - 4L
 startIndex
 
-emodnet_get_layers(   
-    wfs = wfs,
-    layers = "maritimebnds",
-    startIndex = startIndex,
-    reduce_layers = TRUE)
+emodnet_get_layers(
+  wfs = wfs,
+  layers = "maritimebnds",
+  startIndex = startIndex,
+  reduce_layers = TRUE
+)
 ```
 
 
@@ -110,12 +111,13 @@ We can also combine `startIndex` and `count` to return specific blocks of featur
 Note that `startIndex` uses `0` as a starting index (0 indicates the first feature), hence we set it to `4` in order to start at the 5th feature.
 
 ```{r}
-emodnet_get_layers(   
-    wfs = wfs,
-    layers = "maritimebnds",
-    startIndex = 4L,
-    count = 6L,
-    reduce_layers = TRUE)
+emodnet_get_layers(
+  wfs = wfs,
+  layers = "maritimebnds",
+  startIndex = 4L,
+  count = 6L,
+  reduce_layers = TRUE
+)
 ```
 
 This in combination with, for example, a `for` loop, can be used to download and process large layer which might not be able to be handled in R in smaller, more manageable blocks of features.
@@ -132,12 +134,12 @@ Note that when limiting data to specific attributes, all other columns are retur
 ```{r}
 
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "maritimebnds",
-    propertyName = "country",
-    count = 3L,
-    reduce_layers = TRUE)
-
+  wfs = wfs,
+  layers = "maritimebnds",
+  propertyName = "country",
+  count = 3L,
+  reduce_layers = TRUE
+)
 ```
 
 To limit to multiple attributes, separate each attribute name in the character string supplied to `propertyName` by a comma.
@@ -145,12 +147,12 @@ To limit to multiple attributes, separate each attribute name in the character s
 ```{r}
 
 emodnet_get_layers(
-    wfs = wfs,
-    layers = "maritimebnds",
-    propertyName = "country,the_geom",
-    count = 3L,
-    reduce_layers = TRUE)
-
+  wfs = wfs,
+  layers = "maritimebnds",
+  propertyName = "country,the_geom",
+  count = 3L,
+  reduce_layers = TRUE
+)
 ```
 
 
@@ -162,10 +164,10 @@ In the following example, we specify the bounding box by proving coordinates in 
 
 ```{r}
 bbox_response <- emodnet_get_layers(
-    service = "biology",
-    layers = "mediseh_posidonia_nodata",
-    bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
-    reduce_layers = TRUE
+  service = "biology",
+  layers = "mediseh_posidonia_nodata",
+  bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
+  reduce_layers = TRUE
 )
 
 bbox_response %>%
