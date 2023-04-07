@@ -16,11 +16,12 @@ test_that("Services down handled", {
   test_url <- "https://demo.geo-solutions.it/geoserver/ows?request=GetCapabilities" # nolint
 
   webmockr::stub_request("get", uri = test_url) %>%
-  	webmockr::wi_th(headers =
-  			list(
-  				"Accept" = "application/json, text/xml, application/xml, */*"
-  			)
-  	) %>%
+    webmockr::wi_th(
+      headers =
+        list(
+          "Accept" = "application/json, text/xml, application/xml, */*"
+        )
+    ) %>%
     webmockr::to_return(status = 500) %>%
     webmockr::to_return(status = 200)
 

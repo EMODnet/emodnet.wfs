@@ -68,11 +68,11 @@
 #' )
 #' }
 emodnet_get_layers <- function(wfs = NULL,
-	                           service = NULL,
-	                           service_version = NULL,
+                               service = NULL,
+                               service_version = NULL,
                                layers,
-	                           crs = NULL,
-	                           cql_filter = NULL,
+                               crs = NULL,
+                               cql_filter = NULL,
                                reduce_layers = FALSE,
                                ...) {
   deprecate_message_service_version(service_version, "emodnet_get_layers")
@@ -248,9 +248,9 @@ ews_get_layer <- function(x, wfs, cql_filter = NULL, ...) {
     tryCatch(
       {
         layer <- wfs$getFeatures(
-        	namespaced_x,
-        	cql_filter = utils::URLencode(cql_filter),
-        	...
+          namespaced_x,
+          cql_filter = utils::URLencode(cql_filter),
+          ...
         )
 
         if (inherits(layer, "sf")) {

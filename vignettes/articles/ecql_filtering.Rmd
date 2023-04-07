@@ -108,9 +108,9 @@ You can also inspect individual attributes which, in the case of categorical var
 
 ```{r}
 layer_attribute_inspect(
-	wfs, 
-	layer = "mediseh_zostera_m_pnt", 
-	attribute = "country"
+  wfs,
+  layer = "mediseh_zostera_m_pnt",
+  attribute = "country"
 )
 ```
 
@@ -214,14 +214,14 @@ We can inspect again, using some of our interrogative functions to get informati
 
 ```{r}
 layer_attributes_get_names(
-	wfs, 
-	layer = "mediseh_posidonia_nodata"
+  wfs,
+  layer = "mediseh_posidonia_nodata"
 )
 
 layer_attribute_inspect(
-	wfs, 
-	layer = "mediseh_posidonia_nodata", 
-	attribute = "km"
+  wfs,
+  layer = "mediseh_posidonia_nodata",
+  attribute = "km"
 )
 ```
 

@@ -5,8 +5,8 @@ testthis::use_testdata(attr_desc, overwrite = TRUE)
 
 
 maritime_crs <- EMODnetWFS:::get_layer_default_crs(
-	layer = "maritimebnds",
-	wfs,
-	output = "crs"
+  layer = "maritimebnds",
+  wfs,
+  output = "crs"
 )
 testthis::use_testdata(maritime_crs, overwrite = TRUE)

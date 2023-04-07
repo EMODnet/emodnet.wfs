@@ -11,16 +11,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' layer_attributes_summarise(service = "human_activities",
-#' layer = "maritimebnds")
+#' layer_attributes_summarise(
+#'   service = "human_activities",
+#'   layer = "maritimebnds"
+#' )
 #' }
 layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
   deprecate_message_service_version(
-  	service_version,
-  	"layer_attributes_summarise"
+    service_version,
+    "layer_attributes_summarise"
   )
   summary(
     layer_attributes_tbl(
@@ -42,15 +44,17 @@ layer_attributes_summarise <- function(wfs = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' layer_attribute_descriptions(service = "human_activities",
-#' layer = "maritimebnds")
+#' layer_attribute_descriptions(
+#'   service = "human_activities",
+#'   layer = "maritimebnds"
+#' )
 #' }
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = NULL, layer) {
   deprecate_message_service_version(
-  	service_version,
-  	"layer_attribute_descriptions"
+    service_version,
+    "layer_attribute_descriptions"
   )
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
@@ -71,16 +75,18 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' layer_attributes_get_names(service = "human_activities",
-#' layer = "maritimebnds")
+#' layer_attributes_get_names(
+#'   service = "human_activities",
+#'   layer = "maritimebnds"
+#' )
 #' }
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
   deprecate_message_service_version(
-  	service_version,
-  	"layer_attributes_get_names"
+    service_version,
+    "layer_attributes_get_names"
   )
 
   layer_attribute_descriptions(
@@ -131,8 +137,8 @@ layer_attribute_inspect <- function(wfs = NULL,
   )
 
   attribute_vector <- wfs$getFeatures(
-  	namespaced_layer,
-  	PROPERTYNAME = attribute
+    namespaced_layer,
+    PROPERTYNAME = attribute
   )[[attribute]]
 
   if (inherits(attribute_vector, "sfc")) {
@@ -189,11 +195,11 @@ layer_attributes_tbl <- function(wfs = NULL,
   attributes <- attributes[attributes != get_layer_geom_name(layer, wfs)]
 
   wfs$getFeatures(
-  	namespaced_layer,
-  	PROPERTYNAME = paste(attributes, collapse = ",")
+    namespaced_layer,
+    PROPERTYNAME = paste(attributes, collapse = ",")
   ) %>%
-  	sf::st_drop_geometry() %>%
-  	tibble::as_tibble()
+    sf::st_drop_geometry() %>%
+    tibble::as_tibble()
 }
 
 get_layer_metadata <- function(layer, wfs) {
@@ -220,8 +226,8 @@ get_layer_geom_name <- function(layer, wfs) {
 }
 
 get_layer_default_crs <- function(layer,
-	                              wfs,
-	                              output = c("crs", "epsg.text", "epsg.num")) {
+                                  wfs,
+                                  output = c("crs", "epsg.text", "epsg.num")) {
   check_wfs(wfs)
   output <- match.arg(output, several.ok = FALSE)
 
@@ -237,8 +243,8 @@ get_layer_default_crs <- function(layer,
   }
 
   epsg.text <- regmatches(
-  	crs$input,
-  	regexpr("epsg\\:[[:digit:]]{4}", crs$input)
+    crs$input,
+    regexpr("epsg\\:[[:digit:]]{4}", crs$input)
   )
   if (output == "epsg.text") {
     return(epsg.text)
