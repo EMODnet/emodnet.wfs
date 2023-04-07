@@ -41,7 +41,11 @@ emodnet_cache_file <- function() {
     if (y == "Data Products") {
       return(tolower(x))
     }
-    snakecase::to_snake_case(paste(x, y, collapse = " "))
+    name <- snakecase::to_snake_case(paste(x, y, collapse = " "))
+    if (name == "human_activities_data_and_data_products") {
+    	name = "human_activities"
+    }
+    return(name)
   }
   services[["service_name"]] <- purrr::map2_chr(
     services[["service_name"]], services[["Thematic"]],
@@ -49,6 +53,7 @@ emodnet_cache_file <- function() {
   )
 
   services[["service_url"]] <- sub("\\?.*", "", services[["service_url"]])
+
 
   # TODO explore this one
   services <- services[services[["service_name"]] != "biology_new_data_products",]
