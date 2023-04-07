@@ -2,15 +2,16 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(`access-control-allow-origin` = "*", 
         `x-frame-options` = "SAMEORIGIN", `content-disposition` = "inline; filename=Emodnetbio-grey_seal.xsd", 
         `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-        `transfer-encoding` = "chunked", date = "Thu, 06 Apr 2023 13:32:42 GMT"), class = c("insensitive", 
-    "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
+        `transfer-encoding` = "chunked", date = "Fri, 07 Apr 2023 13:50:56 GMT", 
+        connection = "close"), class = c("insensitive", "list"
+    )), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(`access-control-allow-origin` = "*", 
             `x-frame-options` = "SAMEORIGIN", `content-disposition` = "inline; filename=Emodnetbio-grey_seal.xsd", 
             `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-            `transfer-encoding` = "chunked", date = "Thu, 06 Apr 2023 13:32:42 GMT"), class = c("insensitive", 
-        "list")))), cookies = structure(list(domain = logical(0), 
-        flag = logical(0), path = logical(0), secure = logical(0), 
-        expiration = structure(numeric(0), class = c("POSIXct", 
+            `transfer-encoding` = "chunked", date = "Fri, 07 Apr 2023 13:50:56 GMT", 
+            connection = "close"), class = c("insensitive", "list"
+        )))), cookies = structure(list(domain = logical(0), flag = logical(0), 
+        path = logical(0), secure = logical(0), expiration = structure(numeric(0), class = c("POSIXct", 
         "POSIXt")), name = logical(0), value = logical(0)), row.names = integer(0), class = "data.frame"), 
     content = as.raw(c(0x3c, 0x3f, 0x78, 0x6d, 0x6c, 0x20, 0x76, 
     0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x3d, 0x22, 0x31, 0x2e, 
@@ -206,7 +207,7 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     0x72, 0x65, 0x79, 0x5f, 0x73, 0x65, 0x61, 0x6c, 0x54, 0x79, 
     0x70, 0x65, 0x22, 0x2f, 0x3e, 0x0a, 0x3c, 0x2f, 0x78, 0x73, 
     0x64, 0x3a, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x3e, 0x0a
-    )), date = structure(1680787962, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 3.2e-05, 
-    connect = 0.025799, pretransfer = 0.063556, starttransfer = 0.099466, 
-    total = 0.099532)), class = "response")
+    )), date = structure(1680875456, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.1e-05, 
+    connect = 2.2e-05, pretransfer = 7.5e-05, starttransfer = 0.033761, 
+    total = 0.033824)), class = "response")

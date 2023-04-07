@@ -36,7 +36,6 @@ Imports:
     sf,
     snakecase,
     tibble,
-    urltools,
     utils,
     whoami
 Suggests: 
