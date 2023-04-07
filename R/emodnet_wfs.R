@@ -37,9 +37,6 @@ emodnet_cache_file <- function() {
   }
   names(services) <- c("service_name", "Thematic", "service_url")
 
-  # TODO explore this one
-  services <- services[services[["service_name"]] != "biology_new_data_products",]
-
   create_name <- function(x, y) {
     if (y == "Data Products") {
       return(tolower(x))
@@ -53,6 +50,8 @@ emodnet_cache_file <- function() {
 
   services[["service_url"]] <- sub("\\?.*", "", services[["service_url"]])
 
+  # TODO explore this one
+  services <- services[services[["service_name"]] != "biology_new_data_products",]
   # update local cache ----
   services <- services[, c("service_name", "service_url")]
   utils::write.csv(services, cache_file)
