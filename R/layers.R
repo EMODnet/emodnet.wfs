@@ -5,13 +5,15 @@
 #' of layer features can also be handled via ECQL language filters.
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
-#' @param layers a character vector of layer names. To get info on layers, including
+#' @param layers a character vector of layer names. To get info on layers,
+#' including
 #' `layer_name` use [emodnet_get_wfs_info()].
 #' @param crs integer. EPSG code for the output crs. If `NULL` (default), layers
 #' are returned with original crs.
 #' @param cql_filter character. Features returned can be filtered using valid
 #' Extended Common Query Language (ECQL) filtering statements
-#' (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>). Should be one of:
+#' (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>).
+#' Should be one of:
 #'  \itemize{
 #'   \item{character string or character vector of length 1.
 #'   Filter will be recycled across all layers requested}
@@ -24,7 +26,8 @@
 #'   Layers without corresponding filters are returned whole }
 #' }
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
-#' @param ... additional vendor parameter arguments passed to [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
+#' @param ... additional vendor parameter arguments passed to
+#' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).# nolint
 #' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
@@ -64,8 +67,12 @@
 #'   reduce_layers = TRUE
 #' )
 #' }
-emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NULL,
-                               layers, crs = NULL, cql_filter = NULL,
+emodnet_get_layers <- function(wfs = NULL,
+                               service = NULL,
+                               service_version = NULL,
+                               layers,
+                               crs = NULL,
+                               cql_filter = NULL,
                                reduce_layers = FALSE,
                                ...) {
   deprecate_message_service_version(service_version, "emodnet_get_layers")
@@ -96,7 +103,7 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
     cli::cli_abort(
       c(
         "Can't reduce layers when one is a data.frame",
-        i = 'data.frame layer(s): {.val {toString(layers[formats == "data.frame"])}}'
+        i = 'data.frame layer(s): {.val {toString(layers[formats == "data.frame"])}}' # nolint
       )
     )
   }
@@ -119,9 +126,10 @@ emodnet_get_layers <- function(wfs = NULL, service = NULL, service_version = NUL
 
 
   # get features -------------------------------------------------------------
-  # unnamed function and explicit passing of ellipses used because of idiosyncratic use of ...
+  # unnamed function and explicit passing of ellipses used
+  # because of idiosyncratic use of ...
   # within purrr::map2 function.
-  # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r
+  # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r # nolint
   out <- purrr::map2(
     .x = layers, .y = cql_filter,
     .f = function(x, y, wfs, ...) {
@@ -164,14 +172,14 @@ check_layer_crs <- function(layer_sf, layer, wfs) {
   wfs_crs <- get_layer_default_crs(layer, wfs)
 
   if (is.na(wfs_crs) || is.null(wfs_crs)) {
-    # If full crs object not available, try to get epsg number from identifier of
-    # the default CRS for this feature type in service description CRS
+    # If full crs object not available, try to get epsg number from identifier
+    #  ofthe default CRS for this feature type in service description CRS
     wfs_crs <- get_layer_default_crs(layer, wfs, output = "epsg.num")
   }
 
   if (!is.na(wfs_crs) && !is.null(wfs_crs)) {
-    # If full crs object not available, try to get epsg number from identifier of
-    # the default CRS for this feature type in service description CRS
+    # If full crs object not available, try to get epsg number from identifier
+    #  ofthe default CRS for this feature type in service description CRS
     sf::st_crs(layer_sf) <- wfs_crs
   }
 
@@ -239,7 +247,11 @@ ews_get_layer <- function(x, wfs, cql_filter = NULL, ...) {
     # get layer using cql_filter
     tryCatch(
       {
-        layer <- wfs$getFeatures(namespaced_x, cql_filter = utils::URLencode(cql_filter), ...)
+        layer <- wfs$getFeatures(
+          namespaced_x,
+          cql_filter = utils::URLencode(cql_filter),
+          ...
+        )
 
         if (inherits(layer, "sf")) {
           layer <- check_layer_crs(layer, layer = x, wfs = wfs)

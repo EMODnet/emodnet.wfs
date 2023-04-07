@@ -32,11 +32,15 @@
 #' @importFrom memoise memoise
 #' @details To minimize the number of requests sent to webservices,
 #' these functions use `memoise` to cache results inside the active R session.
-#' To clear the cache, re-start R or run `memoise::forget(emodnet_get_wfs_info)`/`memoise::forget(emodnet_get_layer_info)`.
+#' To clear the cache, re-start R or
+#' run `memoise::forget(emodnet_get_wfs_info)`/
+#' `memoise::forget(emodnet_get_layer_info)`.
 #' @export
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
-.emodnet_get_wfs_info <- function(wfs = NULL, service = NULL, service_version = NULL) {
+.emodnet_get_wfs_info <- function(wfs = NULL,
+                                  service = NULL,
+                                  service_version = NULL) {
   deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
 
   if (is.null(wfs) && is.null(service)) {
@@ -59,7 +63,10 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     service_url = capabilities$getUrl(),
     layer_name = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getName()),
     title = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getTitle()),
-    abstract = purrr::map_chr(capabilities$getFeatureTypes(), ~ get_abstract_null(.x)),
+    abstract = purrr::map_chr(
+      capabilities$getFeatureTypes(),
+      ~ get_abstract_null(.x)
+    ),
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
   ) %>%
@@ -71,11 +78,14 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 }
 #' Get WFS available layer information
 #'
-#' @param wfs A `WFSClient` R6 object with methods for interfacing an OGC Web Feature Service.
+#' @param wfs A `WFSClient` R6 object with methods for interfacing an
+#'  OGC Web Feature Service.
 #' @inheritParams emodnet_init_wfs_client
-#' @return a tibble containing metadata on each layer available from the service.
+#' @return a tibble containing metadata on each layer available from the
+#'  service.
 #' @export
-#' @describeIn emodnet_get_wfs_info Get info on all layers from am EMODnet WFS service.
+#' @describeIn emodnet_get_wfs_info Get info on all layers from
+#' an EMODnet WFS service.
 #' @examples
 #' \dontrun{
 #' emodnet_get_wfs_info(service = "bathymetry")

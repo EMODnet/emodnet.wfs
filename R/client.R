@@ -2,11 +2,14 @@
 #'
 #' @param service the EMODnet OGC WFS service name.
 #' For available services, see [`emodnet_wfs()`].
-#' @param service_version `r lifecycle::badge('deprecated')` the WFS service version. Now always "2.0.0".
-#' @param logger the logger. Either `NULL` (no logging info), `"INFO"` (log about ows4R requests)
+#' @param service_version `r lifecycle::badge('deprecated')`
+#' the WFS service version. Now always "2.0.0".
+#' @param logger the logger. Either `NULL` (no logging info), `"INFO"`
+#' (log about ows4R requests)
 #' or `"DEBUG"` (including curl details).
 #'
-#' @return An [`ows4R::WFSClient`] R6 object with methods for interfacing an OGC Web Feature Service.
+#' @return An [`ows4R::WFSClient`] R6 object with methods for interfacing an
+#' OGC Web Feature Service.
 #' @export
 #'
 #' @seealso `WFSClient` in package `ows4R`.
@@ -14,8 +17,13 @@
 #' \dontrun{
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 #' }
-emodnet_init_wfs_client <- function(service, service_version = NULL, logger = NULL) {
-  deprecate_message_service_version(service_version, "deprecate_message_service_version")
+emodnet_init_wfs_client <- function(service,
+                                    service_version = NULL,
+                                    logger = NULL) {
+  deprecate_message_service_version(
+    service_version,
+    "deprecate_message_service_version"
+  )
 
   check_service_name(service)
 
@@ -97,12 +105,18 @@ check_service <- function(request) {
   if (httr::http_error(request)) {
     cli_alert_danger("HTTP Status: {httr::http_status(request)$message}")
 
-    is_monitor_up <- !is.null(curl::nslookup("monitor.emodnet.eu", error = FALSE))
+    is_monitor_up <- !is.null(
+      curl::nslookup("monitor.emodnet.eu", error = FALSE)
+    )
     if (interactive() && is_monitor_up) {
-      browse_monitor <- utils::askYesNo("Browse the EMODnet OGC monitor?", FALSE, prompts = "yes/no/cancel")
+      browse_monitor <- utils::askYesNo(
+        "Browse the EMODnet OGC monitor?",
+        FALSE,
+        prompts = "yes/no/cancel"
+      )
       if (is.na(browse_monitor)) browse_monitor <- FALSE
       if (browse_monitor) {
-        utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS")
+        utils::browseURL("https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS") # nolint
       }
     }
 
@@ -115,7 +129,7 @@ check_service <- function(request) {
     cli::cli_abort(
       c(
         "An exception has occurred.",
-        i = "Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}"
+        i = "Please raise an issue in {packageDescription('EMODnetWFS')$BugReports}" # nolint
       )
     )
   }

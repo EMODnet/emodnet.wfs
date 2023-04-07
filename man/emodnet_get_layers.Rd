@@ -16,14 +16,17 @@ emodnet_get_layers(
 )
 }
 \arguments{
-\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
+\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an
+OGC Web Feature Service.}
 
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+the WFS service version. Now always "2.0.0".}
 
-\item{layers}{a character vector of layer names. To get info on layers, including
+\item{layers}{a character vector of layer names. To get info on layers,
+including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
 \item{crs}{integer. EPSG code for the output crs. If \code{NULL} (default), layers
@@ -31,7 +34,8 @@ are returned with original crs.}
 
 \item{cql_filter}{character. Features returned can be filtered using valid
 Extended Common Query Language (ECQL) filtering statements
-(\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}). Should be one of:
+(\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}).
+Should be one of:
 \itemize{
 \item{character string or character vector of length 1.
 Filter will be recycled across all layers requested}
@@ -46,7 +50,8 @@ Layers without corresponding filters are returned whole }
 
 \item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.}
 
-\item{...}{additional vendor parameter arguments passed to \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.
+\item{...}{additional vendor parameter arguments passed to
+\href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.# nolint
 For example, including \code{count=1} returns the first available feature.}
 }
 \value{

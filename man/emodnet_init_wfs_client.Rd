@@ -10,13 +10,16 @@ emodnet_init_wfs_client(service, service_version = NULL, logger = NULL)
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+the WFS service version. Now always "2.0.0".}
 
-\item{logger}{the logger. Either \code{NULL} (no logging info), \code{"INFO"} (log about ows4R requests)
+\item{logger}{the logger. Either \code{NULL} (no logging info), \code{"INFO"}
+(log about ows4R requests)
 or \code{"DEBUG"} (including curl details).}
 }
 \value{
-An \code{\link[ows4R:WFSClient]{ows4R::WFSClient}} R6 object with methods for interfacing an OGC Web Feature Service.
+An \code{\link[ows4R:WFSClient]{ows4R::WFSClient}} R6 object with methods for interfacing an
+OGC Web Feature Service.
 }
 \description{
 Initialise an EMODnet WFS client

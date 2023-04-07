@@ -1,12 +1,18 @@
 ---
 title: "EMODnetWFS Case Study: Accessing and mapping EMODnet data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API details}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  echo = TRUE, eval = TRUE, warning = FALSE
+	collapse = TRUE,
+	comment = "#>",
+	echo = TRUE, eval = TRUE, warning = FALSE,
+	fig.path = "EMODnetWFS-"
 )
 ```
 
