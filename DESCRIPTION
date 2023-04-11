@@ -28,7 +28,7 @@ Imports:
     lifecycle,
     magrittr,
     memoise,
-    ows4R (>= 0.3),
+    ows4R (>= 0.3-4),
     purrr,
     rlang,
     sf,
