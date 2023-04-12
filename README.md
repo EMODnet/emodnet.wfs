@@ -144,16 +144,16 @@ emodnet_get_wfs_info(service = "biology")
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
-#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… data.…
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… data.…
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
 ```
 
@@ -165,16 +165,16 @@ emodnet_get_wfs_info(wfs_bio)
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
-#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… data.…
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… data.…
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… data.…
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… data.…
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… data.…
+#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
 ```
 
@@ -188,8 +188,8 @@ emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 #> # Rowwise: 
 #>   data_source service_name    service_url layer_name title abstract class format
 #>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… data.…
-#> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… data.…
+#> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… sf    
+#> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    
 #> # … with 1 more variable: layer_namespace <chr>
 ```
 
@@ -353,9 +353,9 @@ emodnet_get_layers(
   layers = layers,
   reduce_layers = TRUE
 )
-#> Error in `emodnet_get_layers()`:
-#> ! Can't reduce layers when one is a data.frame
-#> ℹ data.frame layer(s): "mediseh_zostera_m_pnt, mediseh_posidonia_nodata"
+#> Error in `value[[3L]]()`:
+#> ! Cannot reduce layers.
+#> ℹ Try again with `reduce_layers = FALSE`
 ```
 
 Using `reduce_layers = TRUE` is also useful for returning an `sf` object
@@ -390,6 +390,8 @@ emodnet_get_layers(
 ```
 
 ## Other web services
+
+### EMODnet ERDDAP server
 
 The EMODnet data are also published in an [ERDDAP
 server](https://erddap.emodnet.eu). You can access these data in R using
@@ -475,6 +477,15 @@ head(res$data)
 #> 5 -618500 7034500 2020-04-01T00:00:00Z NA
 #> 6 -617500 7034500 2020-04-01T00:00:00Z NA
 ```
+
+### EMODnetWCS: Access EMODnet Web Coverage Service data
+
+This package EMODnetWFS uses [Web Feature
+Services](https://www.ogc.org/standard/wfs/), hence it is limited to
+getting vector data. EMODnet also hosts raster data that can be accessed
+via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/).
+The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes
+these data available in R.
 
 ## Citation
 
