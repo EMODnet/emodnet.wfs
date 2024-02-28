@@ -51,10 +51,6 @@ Suggests:
 Config/Needs/readme: rerddap
 VignetteBuilder: 
     knitr
-Remotes: 
-    eblondel/ows4R,
-    nealrichardson/httptest,
-    r-spatial/mapview
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
