@@ -45,7 +45,6 @@ All available services are contained in the tibble returned by
 | biology_occurrence_data                                         | <https://geo.vliz.be/geoserver/Dataportal/wfs>                                |
 | chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                          |
 | chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>                      |
-| chemistry_contaminants                                          | <https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs>                      |
 | chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>                      |
 | geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                          |
 | geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>                        |
@@ -343,11 +342,23 @@ emodnet_get_layers(
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
+## Help needed?
+
+If you get an unexpected error,
+
+- Look up the [EMODnet
+  monitor](https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS);
+- Open an issue in this
+  [repository](https://github.com/EMODnet/EMODnetWFS/issues).
+
 ## Other web services
+
+There are three ways to access EMODnet data at the moment, that
+complement each other.
 
 ### EMODnet ERDDAP server
 
-The EMODnet data are also published in an [ERDDAP
+Some EMODnet data are also published in an [ERDDAP
 server](https://erddap.emodnet.eu). You can access these data in R using
 the [rerddap R package](https://docs.ropensci.org/rerddap/):
 
