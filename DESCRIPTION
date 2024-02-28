@@ -42,13 +42,13 @@ Suggests:
     knitr,
     mapview,
     readr,
-    rerddap,
     rmarkdown,
     skimr,
     testthat (>= 3.1.2),
     testthis,
     webmockr,
     withr
+Config/Needs/readme: rerddap
 VignetteBuilder: 
     knitr
 Remotes: 
