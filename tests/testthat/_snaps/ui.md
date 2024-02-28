@@ -2,20 +2,20 @@
 
     Code
       cli_alert_success("hihihi")
-    Message <cliMessage>
+    Message
       v hihihi
 
 # cli_alert_info() works
 
     Code
       cli_alert_info("hihihi")
-    Message <cliMessage>
+    Message
       i hihihi
 
 # cli_alert_danger() works
 
     Code
       cli_alert_danger("hihihi")
-    Message <cliMessage>
+    Message
       x hihihi
 
