@@ -78,57 +78,9 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 
 wfs_bio
 #> <WFSClient>
-#>   Inherits from: <OWSClient>
-#>   Public:
-#>     attrs: list
-#>     capabilities: WFSCapabilities, OWSCapabilities, OGCAbstractObject, R6
-#>     clone: function (deep = FALSE) 
-#>     defaults: list
-#>     describeFeatureType: function (typeName) 
-#>     element: AbstractObject
-#>     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE, 
-#>     ERROR: function (text) 
-#>     getCapabilities: function () 
-#>     getCASUrl: function () 
-#>     getClass: function () 
-#>     getClassName: function () 
-#>     getConfig: function () 
-#>     getFeatures: function (typeName, ...) 
-#>     getFeatureTypes: function (pretty = FALSE) 
-#>     getHeaders: function () 
-#>     getNamespaceDefinition: function (recursive = FALSE) 
-#>     getPwd: function () 
-#>     getToken: function () 
-#>     getUrl: function () 
-#>     getUser: function () 
-#>     getVersion: function () 
-#>     INFO: function (text) 
-#>     initialize: function (url, serviceVersion = NULL, user = NULL, pwd = NULL, 
-#>     isFieldInheritedFrom: function (field) 
-#>     logger: function (type, text) 
-#>     loggerType: NULL
-#>     namespace: OWSNamespace, R6
-#>     reloadCapabilities: function () 
-#>     url: https://geo.vliz.be/geoserver/Emodnetbio/wfs
-#>     verbose.debug: FALSE
-#>     verbose.info: FALSE
-#>     version: 2.0.0
-#>     WARN: function (text) 
-#>     wrap: FALSE
-#>   Private:
-#>     cas_url: NULL
-#>     config: request
-#>     fromComplexTypes: function (value) 
-#>     headers: EMODnetWFS R package 2.0.1.9001 https://github.com/EMODn ...
-#>     pwd: NULL
-#>     serviceName: WFS
-#>     system_fields: verbose.info verbose.debug loggerType wrap element names ...
-#>     token: NULL
-#>     user: NULL
-#>     xmlElement: AbstractObject
-#>     xmlExtraNamespaces: NULL
-#>     xmlNamespacePrefix: OWS
-#>     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")
+#> ....|-- url: https://geo.vliz.be/geoserver/Emodnetbio/wfs
+#> ....|-- version: 2.0.0
+#> ....|-- capabilities <WFSCapabilities>
 ```
 
 ## Get WFS Layer info
@@ -154,7 +106,8 @@ emodnet_get_wfs_info(service = "biology")
 #>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
+#> # ℹ 28 more rows
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 or you can pass a wfs client object.
@@ -175,7 +128,8 @@ emodnet_get_wfs_info(wfs_bio)
 #>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # … with 27 more rows, and 1 more variable: layer_namespace <chr>
+#> # ℹ 28 more rows
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 You can also get info for specific layers from wfs object:
@@ -190,7 +144,7 @@ emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 #>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
 #> 1 emodnet_wfs https://geo.vl… biology     mediseh_p… EMOD… "Coastl… WFSF… sf    
 #> 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    
-#> # … with 1 more variable: layer_namespace <chr>
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 Finally, you can get details on all available services and layers from
@@ -400,37 +354,31 @@ the [rerddap R package](https://docs.ropensci.org/rerddap/):
 ``` r
 # install.packages("rerrdap")
 library(rerddap)
-#> Warning: package 'rerddap' was built under R version 4.2.3
 #> Registered S3 method overwritten by 'hoardr':
 #>   method           from
 #>   print.cache_info httr
 
 # Set the URL of the EMODnet ERDDAP server.
-url <- "https://erddap.emodnet.eu/erddap/"
+erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
-# List all datasets
-ed_datasets(url = url)
-#> # A tibble: 12 × 16
-#>    griddap Subset          tabledap Make.A.Graph wms   files Title Summary FGDC 
-#>    <chr>   <chr>           <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr>
-#>  1 ""      "https://erdda… https:/… https://erd… ""    ""    * Th… "This … ""   
-#>  2 ""      "https://erdda… https:/… https://erd… ""    "htt… Chin… "Chine… "htt…
-#>  3 ""      "https://erdda… https:/… https://erd… ""    ""    Chin… "Chine… "htt…
-#>  4 ""      ""              https:/… https://erd… ""    "htt… EMOD… "The d… ""   
-#>  5 ""      ""              https:/… https://erd… ""    "htt… EMOD… "The d… ""   
-#>  6 ""      "https://erdda… https:/… https://erd… ""    "htt… EMOD… "The d… "htt…
-#>  7 ""      "https://erdda… https:/… https://erd… ""    ""    INDI… "INDIA… "htt…
-#>  8 ""      ""              https:/… https://erd… ""    "htt… Pres… "The p… "htt…
-#>  9 ""      ""              https:/… https://erd… ""    "htt… Pres… "The p… "htt…
-#> 10 ""      ""              https:/… https://erd… ""    ""    PSMS… "Perma… ""   
-#> 11 ""      ""              https:/… https://erd… ""    "htt… PSMS… "Perma… ""   
-#> 12 ""      "https://erdda… https:/… https://erd… ""    "htt… TAO/… "This … "htt…
-#> # … with 7 more variables: ISO.19115 <chr>, Info <chr>, Background.Info <chr>,
-#> #   RSS <chr>, Email <chr>, Institution <chr>, Dataset.ID <chr>
+rerddap::ed_datasets(url = erddap_url)
+#> # A tibble: 9 × 16
+#>   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115
+#>   <chr>   <chr>  <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr> <chr>    
+#> 1 ""      "http… https:/… https://erd… ""    ""    * Th… "This … ""    ""       
+#> 2 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       
+#> 3 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       
+#> 4 ""      "http… https:/… https://erd… ""    "htt… EMOD… "The d… "htt… "https:/…
+#> 5 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…
+#> 6 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…
+#> 7 ""      ""     https:/… https://erd… ""    ""    PSMS… "Perma… ""    ""       
+#> 8 ""      ""     https:/… https://erd… ""    "htt… PSMS… "Perma… ""    ""       
+#> 9 ""      "http… https:/… https://erd… ""    "htt… TAO/… "This … "htt… "https:/…
+#> # ℹ 6 more variables: Info <chr>, Background.Info <chr>, RSS <chr>,
+#> #   Email <chr>, Institution <chr>, Dataset.ID <chr>
 
-# Search for datasets with "vessel density" in their name
-ed_search("vessel density", url = url)
-#> # A tibble: 17 × 2
+rerddap::ed_search(query = "vessel density", url = erddap_url)
+#> # A tibble: 16 × 2
 #>    title                                                     dataset_id         
 #>    <chr>                                                     <chr>              
 #>  1 Vessel Density                                            humanactivities_9f…
@@ -449,11 +397,12 @@ ed_search("vessel density", url = url)
 #> 14 Vessel traffic density, 2019, Tanker                      EMODPACE_VD_10_Tan…
 #> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
-#> 17 Test PACE: HA Vessel density                              emodnet_pace_vesse…
 
-# Get information about a specific dataset.
-out <- rerddap::info('humanactivities_9f8a_3389_f08a', url = url)
-out
+human_activities_data_info <- rerddap::info(
+    datasetid = "humanactivities_9f8a_3389_f08a", 
+    url = erddap_url
+)
+human_activities_data_info
 #> <ERDDAP info> humanactivities_9f8a_3389_f08a 
 #>  Base URL: https://erddap.emodnet.eu/erddap 
 #>  Dataset Type: griddap 
@@ -465,10 +414,12 @@ out
 #>      vd: 
 #>          Units: seconds
 
-# Request data for a certain time range.
-res <- griddap(out, time = c('2020-03-18','2020-03-19'))
+year_2020_gridded_data <- griddap(
+    datasetx = human_activities_data_info, 
+    time = c("2020-03-18", "2020-03-19")
+)
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
-head(res$data)
+head(year_2020_gridded_data$data)
 #>         x       y                 time vd
 #> 1 -622500 7034500 2020-04-01T00:00:00Z NA
 #> 2 -621500 7034500 2020-04-01T00:00:00Z NA

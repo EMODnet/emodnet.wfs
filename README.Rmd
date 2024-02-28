@@ -157,10 +157,16 @@ rerddap::ed_datasets(url = erddap_url)
 
 rerddap::ed_search(query = "vessel density", url = erddap_url)
 
-human_activities_data_info <- rerddap::info(datasetid = 'humanactivities_9f8a_3389_f08a', url = erddap_url)
-out
+human_activities_data_info <- rerddap::info(
+	datasetid = "humanactivities_9f8a_3389_f08a", 
+	url = erddap_url
+)
+human_activities_data_info
 
-year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c('2020-03-18', '2020-03-19'))
+year_2020_gridded_data <- griddap(
+	datasetx = human_activities_data_info, 
+	time = c("2020-03-18", "2020-03-19")
+)
 head(year_2020_gridded_data$data)
 
 ```
