@@ -151,21 +151,17 @@ The EMODnet data are also published in an [ERDDAP server](https://erddap.emodnet
 library(rerddap)
 
 # Set the URL of the EMODnet ERDDAP server.
-url <- "https://erddap.emodnet.eu/erddap/"
+erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
-# List all datasets
-ed_datasets(url = url)
+rerddap::ed_datasets(url = erddap_url)
 
-# Search for datasets with "vessel density" in their name
-ed_search("vessel density", url = url)
+rerddap::ed_search(query = "vessel density", url = erddap_url)
 
-# Get information about a specific dataset.
-out <- rerddap::info('humanactivities_9f8a_3389_f08a', url = url)
+human_activities_data_info <- rerddap::info(datasetid = 'humanactivities_9f8a_3389_f08a', url = erddap_url)
 out
 
-# Request data for a certain time range.
-res <- griddap(out, time = c('2020-03-18','2020-03-19'))
-head(res$data)
+year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c('2020-03-18', '2020-03-19'))
+head(year_2020_gridded_data$data)
 
 ```
 
