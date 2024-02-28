@@ -139,6 +139,39 @@ emodnet_get_layers(
 )
 ```
 
+## Other web services
+
+### EMODnet ERDDAP server
+
+The EMODnet data are also published in an [ERDDAP server](https://erddap.emodnet.eu). You can access these data in R using the [rerddap R package](https://docs.ropensci.org/rerddap/):
+
+
+```{r rerddap}
+# install.packages("rerrdap")
+library(rerddap)
+
+erddap_url <- "https://erddap.emodnet.eu/erddap/"
+
+rerddap::ed_datasets(url = erddap_url)
+
+rerddap::ed_search(query = "vessel density", url = erddap_url)
+
+human_activities_data_info <- rerddap::info(datasetid = 'humanactivities_9f8a_3389_f08a', url = erddap_url)
+out
+
+year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c('2020-03-18', '2020-03-19'))
+head(year_2020_gridded_data$data)
+
+```
+
+
+### EMODnetWCS: Access EMODnet Web Coverage Service data
+
+This package EMODnetWFS uses [Web Feature Services](https://www.ogc.org/standard/wfs/), hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/). The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data available in R.
+
+
+
+
 ## Citation
 
 To cite EMODnetWFS, please use the output from `citation(package = "EMODnetWFS")`.

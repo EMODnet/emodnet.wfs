@@ -48,6 +48,7 @@ Suggests:
     testthis,
     webmockr,
     withr
+Config/Needs/readme: rerddap
 VignetteBuilder: 
     knitr
 Remotes: 
