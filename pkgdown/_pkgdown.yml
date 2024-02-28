@@ -12,7 +12,7 @@ reference:
   - '`emodnet_wfs`'
   - '`emodnet_init_wfs_client`'
   - '`emodnet_get_wfs_info`'
- 
+
 - title: Download layers, or information about layers
   contents:
   - '`emodnet_get_layers`'
@@ -21,3 +21,17 @@ reference:
   - '`layer_attributes_get_names`'
   - '`layer_attributes_summarise`'
   - '`layer_attributes_tbl`'
+
+authors:
+  Anna Krystalli:
+    href: "https://www.r-rse.eu/"
+  Salvador Fernández-Bejarano:
+    href: "https://github.com/salvafern"
+  Thomas J Webb:
+    href: "https://www.sheffield.ac.uk/biosciences/people/academic-staff/tom-webb"
+  European Marine Observation Data Network (EMODnet) Biology project European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE):
+    href: "https://emodnet.ec.europa.eu/en/biology"
+  VLIZ (VLAAMS INSTITUUT VOOR DE ZEE):
+    href: "https://www.vliz.be/"
+  Maëlle Salmon:
+    href: "https://masalmon.eu"

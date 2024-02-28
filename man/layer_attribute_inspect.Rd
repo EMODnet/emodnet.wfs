@@ -13,12 +13,14 @@ layer_attribute_inspect(
 )
 }
 \arguments{
-\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
+\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an
+OGC Web Feature Service.}
 
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+the WFS service version. Now always "2.0.0".}
 
 \item{layer}{character sting of layer name. To get info on layers, including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
@@ -27,7 +29,8 @@ For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 \code{\link[=layer_attributes_get_names]{layer_attributes_get_names()}} to get layer attribute names.}
 }
 \value{
-Detailed summary of individual attribute (variable). Particularly useful for inspecting
+Detailed summary of individual attribute (variable). Particularly
+useful for inspecting
 factor or character variable levels or unique values.
 }
 \description{

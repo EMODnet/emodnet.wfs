@@ -4,7 +4,7 @@ Version: 2.0.1.9001
 Authors@R: c(
     person("Anna", "Krystalli", , "annakrystalli@googlemail.com", role = "aut",
            comment = c(ORCID = "0000-0002-2378-4915")),
-    person("Salvador", "Fernández-Bejarano", , "salvador.fernandez@vliz.be", role = c("ctb", "cre"),
+    person("Salvador", "Fernández-Bejarano", , "salvador.fernandez@vliz.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0535-7677")),
     person("Thomas J", "Webb", , "t.j.webb@sheffield.ac.uk", role = "ctb"),
     person("European Marine Observation Data Network (EMODnet) Biology project", "European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE)", , "bio@emodnet.eu", role = "cph"),
@@ -15,7 +15,8 @@ Authors@R: c(
 Description: Access and interrogate EMODnet Web Feature Service data
     through R.
 License: MIT + file LICENSE
-URL: https://emodnet.github.io/EMODnetWFS/, https://github.com/EMODnet/EMODnetWFS
+URL: https://emodnet.github.io/EMODnetWFS/,
+    https://github.com/EMODnet/EMODnetWFS
 BugReports: https://github.com/EMODnet/EMODnetWFS/issues
 Depends: 
     R (>= 3.6.0)
@@ -28,7 +29,7 @@ Imports:
     lifecycle,
     magrittr,
     memoise,
-    ows4R (>= 0.3),
+    ows4R (>= 0.3-4),
     purrr,
     rlang,
     sf,
@@ -48,6 +49,8 @@ Suggests:
     testthis,
     webmockr,
     withr
+VignetteBuilder: 
+    knitr
 Remotes: 
     eblondel/ows4R,
     nealrichardson/httptest,
@@ -55,7 +58,6 @@ Remotes:
 Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=

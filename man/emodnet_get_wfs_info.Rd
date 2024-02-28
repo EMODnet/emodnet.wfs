@@ -13,18 +13,22 @@ emodnet_get_wfs_info(wfs = NULL, service = NULL, service_version = NULL)
 emodnet_get_all_wfs_info()
 }
 \arguments{
-\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an OGC Web Feature Service.}
+\item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an
+OGC Web Feature Service.}
 
-\item{layers}{a character vector of layer names. To get info on layers, including
+\item{layers}{a character vector of layer names. To get info on layers,
+including
 \code{layer_name} use \code{\link[=emodnet_get_wfs_info]{emodnet_get_wfs_info()}}.}
 
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}
 
-\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} the WFS service version. Now always "2.0.0".}
+\item{service_version}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+the WFS service version. Now always "2.0.0".}
 }
 \value{
-a tibble containing metadata on each layer available from the service.
+a tibble containing metadata on each layer available from the
+service.
 }
 \description{
 Get WFS available layer information
@@ -32,14 +36,17 @@ Get WFS available layer information
 \details{
 To minimize the number of requests sent to webservices,
 these functions use \code{memoise} to cache results inside the active R session.
-To clear the cache, re-start R or run \code{memoise::forget(emodnet_get_wfs_info)}/\code{memoise::forget(emodnet_get_layer_info)}.
+To clear the cache, re-start R or
+run \code{memoise::forget(emodnet_get_wfs_info)}/
+\code{memoise::forget(emodnet_get_layer_info)}.
 }
 \section{Functions}{
 \itemize{
 \item \code{emodnet_get_layer_info()}: Get metadata for specific layers. Requires a
 \code{wfs} object as input.
 
-\item \code{emodnet_get_wfs_info()}: Get info on all layers from am EMODnet WFS service.
+\item \code{emodnet_get_wfs_info()}: Get info on all layers from
+an EMODnet WFS service.
 
 \item \code{emodnet_get_all_wfs_info()}: Get metadata on all layers and all available
 services from server.

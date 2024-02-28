@@ -3,12 +3,40 @@ test_that("layer attributes stuff works", {
   wfs <- create_biology_wfs()
   with_mock_dir("biology-layers", {
     layer_attr <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
-    layer_attr_desc <- layer_attribute_descriptions(wfs, layer = "mediseh_zostera_m_pnt")
-    country <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
-    id <- layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "id")
-    attr_summary <- layer_attributes_summarise(wfs, layer = "mediseh_zostera_m_pnt")
-    crs1 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.text")
-    crs2 <- get_layer_default_crs(layer = "mediseh_zostera_m_pnt", wfs, output = "epsg.num")
+
+    layer_attr_desc <- layer_attribute_descriptions(
+      wfs,
+      layer = "mediseh_zostera_m_pnt"
+    )
+
+    country <- layer_attribute_inspect(
+      wfs,
+      layer = "mediseh_zostera_m_pnt",
+      attribute = "country"
+    )
+
+    id <- layer_attribute_inspect(
+      wfs,
+      layer = "mediseh_zostera_m_pnt",
+      attribute = "id"
+    )
+
+    attr_summary <- layer_attributes_summarise(
+      wfs,
+      layer = "mediseh_zostera_m_pnt"
+    )
+
+    crs1 <- get_layer_default_crs(
+      layer = "mediseh_zostera_m_pnt",
+      wfs,
+      output = "epsg.text"
+    )
+
+    crs2 <- get_layer_default_crs(
+      layer = "mediseh_zostera_m_pnt",
+      wfs,
+      output = "epsg.num"
+    )
   })
   expect_identical(layer_attr, c("id", "country", "the_geom"))
   expect_snapshot_output(layer_attr_desc)

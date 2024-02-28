@@ -18,4 +18,3 @@ test_that("cli_alert_danger() works", {
   withr::local_options(EMODnetWFS.quiet = FALSE)
   expect_snapshot(cli_alert_danger("hihihi"))
 })
-

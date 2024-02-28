@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![R build
 status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS?branch=main)
+coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation of and access to
@@ -29,8 +29,8 @@ an user-friendly interface to this rich data.
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("EMODnet/EMODnetWFS")
+# install.packages("pak")
+pak::pak("EMODnet/EMODnetWFS")
 ```
 
 ## Available services
@@ -58,7 +58,7 @@ All available services are contained in the tibble returned by
 | seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
 | seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
 
-To explore available services in Rstudio use:
+To explore available services you can use:
 
 ``` r
 View(emodnet_wfs())
@@ -66,7 +66,7 @@ View(emodnet_wfs())
 
 ## Create Service Client
 
-Create new WFS Client. Specify the service using the `service` argument.
+Specify the service using the `service` argument.
 
 ``` r
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
@@ -140,7 +140,7 @@ emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-#> # A tibble: 37 × 9
+#> # A tibble: 38 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -161,7 +161,7 @@ or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 37 × 9
+#> # A tibble: 38 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
