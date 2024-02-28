@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Salvador Fernández-Bejarano \email{salvador.fernandez@vliz.be} (\href{https://orcid.org/0000-0003-0535-7677}{ORCID}) [contributor]
+\strong{Maintainer}: Salvador Fernández-Bejarano \email{salvador.fernandez@vliz.be} (\href{https://orcid.org/0000-0003-0535-7677}{ORCID})
 
 Authors:
 \itemize{

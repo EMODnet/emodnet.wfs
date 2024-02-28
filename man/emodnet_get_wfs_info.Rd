@@ -56,13 +56,10 @@ services from server.
 \dontrun{
 emodnet_get_wfs_info(service = "bathymetry")
 # Query a wfs object
-wfs_cml <- emodnet_init_wfs_client("chemistry_marine_litter")
-emodnet_get_wfs_info(wfs_cml)
+wfs_bio <- emodnet_init_wfs_client("biology")
+emodnet_get_wfs_info(wfs_bio)
 # Get info for specific layers from wfs object
-layers <- c(
-  "bl_fishing_monitoring",
-  "bl_beacheslocations_monitoring"
-)
-emodnet_get_layer_info(wfs = wfs_cml, layers = layers)
+layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+emodnet_get_layer_info(wfs = wfs_bio, layers = layers)
 }
 }

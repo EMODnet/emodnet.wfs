@@ -33,8 +33,8 @@ Get layer attribute description
 \examples{
 \dontrun{
 layer_attribute_descriptions(
-  service = "human_activities",
-  layer = "maritimebnds"
+  service = "biology",
+  layer = "mediseh_zostera_m_pnt"
 )
 }
 }

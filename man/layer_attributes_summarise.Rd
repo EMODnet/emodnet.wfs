@@ -34,8 +34,8 @@ Get summaries of layer attributes (variables)
 \examples{
 \dontrun{
 layer_attributes_summarise(
-  service = "human_activities",
-  layer = "maritimebnds"
+  service = "biology",
+  layer = "mediseh_zostera_m_pnt"
 )
 }
 }

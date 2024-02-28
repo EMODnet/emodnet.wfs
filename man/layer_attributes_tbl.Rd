@@ -35,6 +35,6 @@ targeted and faster layer download.
 }
 \examples{
 \dontrun{
-layer_attributes_tbl(service = "human_activities", layer = "maritimebnds")
+layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
 }
 }

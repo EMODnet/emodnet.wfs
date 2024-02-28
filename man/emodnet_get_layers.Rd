@@ -71,30 +71,22 @@ of layer features can also be handled via ECQL language filters.
 \dontrun{
 # Layers as character vector
 emodnet_get_layers(
-  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-  layers = c("dk003069", "dk003070")
+  service = "biology",
+  layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
 
-# Layers as character vector, layers to be reduced
-emodnet_get_layers(
-  service = "seabed_habitats_individual_habitat_map_and_model_datasets",
-  layers = c("dk003069", "dk003070"),
-  reduce_layers = TRUE
-)
 
 # Usage of cql_filter
 emodnet_get_layers(
-  service = "human_activities",
-  layers = "maritimebnds",
-  cql_filter = "sitename='Territory sea (12 nm)'",
-  reduce_layers = TRUE
+  service = "biology",
+  layers = "mediseh_zostera_m_pnt",
+  cql_filter = "country = 'Francia'"
 )
 # Usage of vendor parameter
 emodnet_get_layers(
-  service = "human_activities",
-  layers = "maritimebnds",
-  count = 1,
-  reduce_layers = TRUE
+  service = "biology",
+  layers = "mediseh_zostera_m_pnt",
+  count = 1
 )
 }
 }
