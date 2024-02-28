@@ -150,7 +150,6 @@ The EMODnet data are also published in an [ERDDAP server](https://erddap.emodnet
 # install.packages("rerrdap")
 library(rerddap)
 
-# Set the URL of the EMODnet ERDDAP server.
 erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
 rerddap::ed_datasets(url = erddap_url)
