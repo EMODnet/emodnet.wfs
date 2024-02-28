@@ -24,13 +24,21 @@ Internet and offer direct fine-grained access to geographic information
 at the feature and feature property level. EMODnetWFS aims at offering
 an user-friendly interface to this rich data.
 
-## Installation
+## Installation and setup
 
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
 # install.packages("pak")
 pak::pak("EMODnet/EMODnetWFS")
+```
+
+If you want to avoid reading messages from EMODnetWFS such as “WFS
+client created successfully”, set the `"EMODnetWFS.quiet"` option to
+`TRUE`.
+
+``` r
+options("EMODnetWFS.quiet" = TRUE)
 ```
 
 ## Available services
