@@ -9,7 +9,8 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
 status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
-[![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
+[![Codecov test
+coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
 <!-- badges: end -->
 
 The goal of EMODnetWFS is to allow interrogation of and access to
@@ -28,8 +29,8 @@ an user-friendly interface to this rich data.
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("EMODnet/EMODnetWFS")
+# install.packages("pak")
+pak::pak("EMODnet/EMODnetWFS")
 ```
 
 ## Available services
@@ -57,7 +58,7 @@ All available services are contained in the tibble returned by
 | seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
 | seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
 
-To explore available services in Rstudio use:
+To explore available services you can use:
 
 ``` r
 View(emodnet_wfs())
@@ -65,7 +66,7 @@ View(emodnet_wfs())
 
 ## Create Service Client
 
-Create new WFS Client. Specify the service using the `service` argument.
+Specify the service using the `service` argument.
 
 ``` r
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
@@ -77,57 +78,9 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 
 wfs_bio
 #> <WFSClient>
-#>   Inherits from: <OWSClient>
-#>   Public:
-#>     attrs: list
-#>     capabilities: WFSCapabilities, OWSCapabilities, OGCAbstractObject, R6
-#>     clone: function (deep = FALSE) 
-#>     defaults: list
-#>     describeFeatureType: function (typeName) 
-#>     element: AbstractObject
-#>     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE, 
-#>     ERROR: function (text) 
-#>     getCapabilities: function () 
-#>     getCASUrl: function () 
-#>     getClass: function () 
-#>     getClassName: function () 
-#>     getConfig: function () 
-#>     getFeatures: function (typeName, ...) 
-#>     getFeatureTypes: function (pretty = FALSE) 
-#>     getHeaders: function () 
-#>     getNamespaceDefinition: function (recursive = FALSE) 
-#>     getPwd: function () 
-#>     getToken: function () 
-#>     getUrl: function () 
-#>     getUser: function () 
-#>     getVersion: function () 
-#>     INFO: function (text) 
-#>     initialize: function (url, serviceVersion = NULL, user = NULL, pwd = NULL, 
-#>     isFieldInheritedFrom: function (field) 
-#>     logger: function (type, text) 
-#>     loggerType: NULL
-#>     namespace: OWSNamespace, R6
-#>     reloadCapabilities: function () 
-#>     url: https://geo.vliz.be/geoserver/Emodnetbio/wfs
-#>     verbose.debug: FALSE
-#>     verbose.info: FALSE
-#>     version: 2.0.0
-#>     WARN: function (text) 
-#>     wrap: FALSE
-#>   Private:
-#>     cas_url: NULL
-#>     config: request
-#>     fromComplexTypes: function (value) 
-#>     headers: EMODnetWFS R package 2.0.1.9001 DEV https://github.com/E ...
-#>     pwd: NULL
-#>     serviceName: WFS
-#>     system_fields: verbose.info verbose.debug loggerType wrap element names ...
-#>     token: NULL
-#>     user: NULL
-#>     xmlElement: AbstractObject
-#>     xmlExtraNamespaces: NULL
-#>     xmlNamespacePrefix: OWS
-#>     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")
+#> ....|-- url: https://geo.vliz.be/geoserver/Emodnetbio/wfs
+#> ....|-- version: 2.0.0
+#> ....|-- capabilities <WFSCapabilities>
 ```
 
 ## Get WFS Layer info
@@ -139,7 +92,7 @@ emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-#> # A tibble: 37 × 9
+#> # A tibble: 38 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -153,7 +106,7 @@ emodnet_get_wfs_info(service = "biology")
 #>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 27 more rows
+#> # ℹ 28 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -161,7 +114,7 @@ or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 37 × 9
+#> # A tibble: 38 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -175,7 +128,7 @@ emodnet_get_wfs_info(wfs_bio)
 #>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 27 more rows
+#> # ℹ 28 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -297,8 +250,8 @@ You can also extract layers using a WFS service name.
 
 ``` r
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
+  service = "biology",
+  layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
 )
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
@@ -350,9 +303,9 @@ If attempting to reduce fails, it will error:
 
 ``` r
 emodnet_get_layers(
-    wfs = wfs_bio, 
-    layers = layers,
-    reduce_layers = TRUE
+  wfs = wfs_bio,
+  layers = layers,
+  reduce_layers = TRUE
 )
 #> Error in `value[[3L]]()`:
 #> ! Cannot reduce layers.
@@ -364,9 +317,9 @@ rather than a list in single layer request.
 
 ``` r
 emodnet_get_layers(
-    service = "biology",
-    layers = c("mediseh_posidonia_nodata"), 
-    reduce_layers = TRUE
+  service = "biology",
+  layers = c("mediseh_posidonia_nodata"),
+  reduce_layers = TRUE
 )
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"

@@ -22,7 +22,8 @@ options(timeout = 2000)
 [![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation of and access to [EMODnet geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data). [Web Feature services (WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
+The goal of EMODnetWFS is to allow interrogation of and access to [EMODnet geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data). 
+[Web Feature services (WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
 EMODnetWFS aims at offering an user-friendly interface to this rich data.
 
 ## Installation
@@ -30,8 +31,8 @@ EMODnetWFS aims at offering an user-friendly interface to this rich data.
 You can install the development version of EMODnetWFS from GitHub with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("EMODnet/EMODnetWFS")
+# install.packages("pak")
+pak::pak("EMODnet/EMODnetWFS")
 ```
 
 ## Available services
@@ -44,7 +45,7 @@ library(EMODnetWFS)
 knitr::kable(emodnet_wfs())
 ```
 
-To explore available services in Rstudio use:
+To explore available services you can use:
 
 ```r
 View(emodnet_wfs())
@@ -52,7 +53,7 @@ View(emodnet_wfs())
 
 ## Create Service Client
 
-Create new WFS Client.  Specify the service using the `service` argument. 
+Specify the service using the `service` argument. 
 
 ```{r}
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
