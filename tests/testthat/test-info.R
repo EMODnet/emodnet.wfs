@@ -1,4 +1,4 @@
-test_that("wfs all info works", {
+test_that("emodnet_get_all_wfs_info() works", {
   forget_all()
   skip_if_offline()
   all_info <- emodnet_get_all_wfs_info()
@@ -7,7 +7,7 @@ test_that("wfs all info works", {
   expect_setequal(unique(all_info$service_name), emodnet_wfs()$service_name)
 })
 
-test_that("wfs info works on wfs object", {
+test_that("emodnet_get_wfs_info() works on wfs object", {
   forget_all()
   skip_if_offline()
   wfs <- create_biology_wfs()
@@ -21,7 +21,7 @@ test_that("wfs info works on wfs object", {
   expect_identical(unique(layer_info_all$service_url), "https://geo.vliz.be/geoserver/Emodnetbio/wfs") # nolint
 })
 
-test_that("emodnet_get_layer_info works", {
+test_that("emodnet_get_layer_info() works", {
   skip_if_offline()
   wfs <- create_biology_wfs()
   with_mock_dir("biology-info", {
@@ -36,4 +36,8 @@ test_that("emodnet_get_layer_info works", {
   expect_s3_class(layer_info_cml,
     class = c("tbl_df", "tbl", "data.frame")
   )
+})
+
+test_that("emodnet_get_wfs_info() errors well", {
+	expect_snapshot(emodnet_get_wfs_info(), error = TRUE)
 })
