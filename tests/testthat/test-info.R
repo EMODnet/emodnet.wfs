@@ -39,5 +39,5 @@ test_that("emodnet_get_layer_info() works", {
 })
 
 test_that("emodnet_get_wfs_info() errors well", {
-	expect_snapshot(emodnet_get_wfs_info(), error = TRUE)
+  expect_snapshot(emodnet_get_wfs_info(), error = TRUE)
 })

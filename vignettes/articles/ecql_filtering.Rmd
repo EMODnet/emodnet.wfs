@@ -270,7 +270,6 @@ emodnet_get_layers(
 Let's say we also want to restrict the features returned those having `shape_length` > 1. We can include an additional condition which must be met using an `AND` statement.
 
 ```{r, eval=FALSE}
-
 filter_sf1 <- emodnet_get_layers(
   wfs = wfs,
   layers = "seabed_substrate_1m",

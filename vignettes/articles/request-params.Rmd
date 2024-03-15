@@ -132,7 +132,6 @@ To limit data returned to the single attribute `"country"` from just 3 features,
 Note that when limiting data to specific attributes, all other columns are returned as `NA` (including any spatial, in this case `the_geom`, column).
 
 ```{r}
-
 emodnet_get_layers(
   wfs = wfs,
   layers = "maritimebnds",
@@ -145,7 +144,6 @@ emodnet_get_layers(
 To limit to multiple attributes, separate each attribute name in the character string supplied to `propertyName` by a comma.
 
 ```{r}
-
 emodnet_get_layers(
   wfs = wfs,
   layers = "maritimebnds",
