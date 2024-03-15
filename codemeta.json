@@ -182,18 +182,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "webmockr",
-      "name": "webmockr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=webmockr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "withr",
       "name": "withr",
       "provider": {
@@ -238,18 +226,6 @@
     },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
-    },
-    "5": {
-      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -260,19 +236,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    "6": {
-      "@type": "SoftwareApplication",
-      "identifier": "httr",
-      "name": "httr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr"
-    },
-    "7": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "lifecycle",
       "name": "lifecycle",
@@ -284,7 +248,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lifecycle"
     },
-    "8": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -296,7 +260,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "9": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "memoise",
       "name": "memoise",
@@ -308,20 +272,20 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=memoise"
     },
-    "10": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "ows4R",
       "name": "ows4R",
-      "version": ">= 0.3-4",
+      "version": ">= 0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ows4R"
+      "sameAs": "https://github.com/eblondel/ows4R"
     },
-    "11": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -333,7 +297,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "12": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -345,7 +309,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "13": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "sf",
       "name": "sf",
@@ -357,7 +321,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sf"
     },
-    "14": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -369,12 +333,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "15": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    "16": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "whoami",
       "name": "whoami",
@@ -388,7 +352,7 @@
     },
     "SystemRequirements": "C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=\n    4.8.0)"
   },
-  "fileSize": "3464.878KB",
+  "fileSize": "3461.033KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

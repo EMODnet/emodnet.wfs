@@ -23,9 +23,7 @@ Depends:
 Imports: 
     checkmate,
     cli,
-    curl,
     dplyr,
-    httr,
     lifecycle,
     magrittr,
     memoise,
