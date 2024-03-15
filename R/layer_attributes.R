@@ -20,7 +20,7 @@ layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
-  deprecate_message_service_version(
+  deprecate_msg_service_version(
     service_version,
     "layer_attributes_summarise"
   )
@@ -52,7 +52,7 @@ layer_attributes_summarise <- function(wfs = NULL,
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = NULL, layer) {
-  deprecate_message_service_version(
+  deprecate_msg_service_version(
     service_version,
     "layer_attribute_descriptions"
   )
@@ -84,7 +84,7 @@ layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
                                        layer) {
-  deprecate_message_service_version(
+  deprecate_msg_service_version(
     service_version,
     "layer_attributes_get_names"
   )
@@ -113,13 +113,16 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' \dontrun{
 #' wfs <- emodnet_init_wfs_client(service = "biology")
 #' layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
-#' layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
+#' layer_attribute_inspect(
+#'   wfs, layer = "mediseh_zostera_m_pnt",
+#'   attribute = "country"
+#' )
 #' }
 layer_attribute_inspect <- function(wfs = NULL,
                                     service = NULL,
                                     service_version = NULL,
                                     layer, attribute) {
-  deprecate_message_service_version(service_version, "layer_attribute_inspect")
+  deprecate_msg_service_version(service_version, "layer_attribute_inspect")
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
@@ -180,7 +183,7 @@ layer_attribute_inspect <- function(wfs = NULL,
 layer_attributes_tbl <- function(wfs = NULL,
                                  service = NULL,
                                  service_version = NULL, layer) {
-  deprecate_message_service_version(service_version, "layer_attributes_tbl")
+  deprecate_msg_service_version(service_version, "layer_attributes_tbl")
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
@@ -237,12 +240,12 @@ get_layer_default_crs <- function(layer,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
 
-  crs <- get_layer_metadata(layer, wfs)$getDefaultCRS()
+  crs <- get_layer_metadata(layer, wfs)$getDefaultCRS() # nolint: object_name_linter
   if (output == "crs") {
     return(crs)
   }
 
-  epsg.text <- regmatches(
+  epsg.text <- regmatches( # nolint: object_name_linter
     crs$input,
     regexpr("epsg\\:[[:digit:]]{4}", crs$input)
   )

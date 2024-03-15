@@ -20,9 +20,9 @@
 emodnet_init_wfs_client <- function(service,
                                     service_version = NULL,
                                     logger = NULL) {
-  deprecate_message_service_version(
+  deprecate_msg_service_version(
     service_version,
-    "deprecate_message_service_version"
+    "emodnet_init_wfs_client"
   )
 
   check_service_name(service)

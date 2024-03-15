@@ -67,7 +67,7 @@ emodnet_get_layers <- function(wfs = NULL,
                                cql_filter = NULL,
                                reduce_layers = FALSE,
                                ...) {
-  deprecate_message_service_version(service_version, "emodnet_get_layers")
+  deprecate_msg_service_version(service_version, "emodnet_get_layers")
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {

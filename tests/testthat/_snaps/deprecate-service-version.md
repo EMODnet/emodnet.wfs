@@ -1,7 +1,7 @@
-# deprecate_message_service_version() works
+# deprecate_msg_service_version() works
 
     Code
-      deprecate_message_service_version("1.1", "blop")
+      deprecate_msg_service_version("1.1", "blop")
     Condition
       Warning:
       The `service_version` argument of `blop()` is deprecated as of EMODnetWFS 2.0.1.

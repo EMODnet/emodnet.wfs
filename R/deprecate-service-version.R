@@ -1,4 +1,4 @@
-deprecate_message_service_version <- function(service_version, function_name) {
+deprecate_msg_service_version <- function(service_version, function_name) {
   if (!is.null(service_version)) {
     lifecycle::deprecate_soft(
       sprintf("%s(service_version)", function_name),

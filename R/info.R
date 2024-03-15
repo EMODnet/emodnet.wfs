@@ -41,7 +41,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 .emodnet_get_wfs_info <- function(wfs = NULL,
                                   service = NULL,
                                   service_version = NULL) {
-  deprecate_message_service_version(service_version, "emodnet_get_wfs_info")
+  deprecate_msg_service_version(service_version, "emodnet_get_wfs_info")
 
   if (is.null(wfs) && is.null(service)) {
     cli::cli_abort(
