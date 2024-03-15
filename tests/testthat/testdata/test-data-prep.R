@@ -4,7 +4,7 @@ attr_desc <- layer_attribute_descriptions(wfs, layer = "maritimebnds")
 testthis::use_testdata(attr_desc, overwrite = TRUE)
 
 
-maritime_crs <- EMODnetWFS:::get_layer_default_crs(
+maritime_crs <- get_layer_default_crs(
   layer = "maritimebnds",
   wfs,
   output = "crs"

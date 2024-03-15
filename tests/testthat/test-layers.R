@@ -84,7 +84,7 @@ test_that("reduce layers on single layer returns sf", {
 })
 
 test_that("emodnet_get_layers errors well when no service nor wfs", {
-  expect_snapshot_error(emodnet_get_layers(layers = c("randomlayer")))
+  expect_snapshot_error(emodnet_get_layers(layers = "randomlayer"))
 })
 
 test_that("emodnet_get_layers errors well when bad wfs", {

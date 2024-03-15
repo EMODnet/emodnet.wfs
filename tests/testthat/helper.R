@@ -1,4 +1,4 @@
-library(httptest)
+library(httptest) # nolint: undesirable_function_linter
 
 forget_all <- function() {
   memoise::forget(emodnet_wfs)
@@ -7,7 +7,7 @@ forget_all <- function() {
 }
 
 with_mock_dir <- function(name, ...) {
-  httptest::with_mock_dir(file.path("../fixtures", name), ...)
+  httptest::with_mock_dir(file.path("../fixtures", name), ...)  # nolint: nonportable_path_linter
 }
 
 create_biology_wfs <- function() {
