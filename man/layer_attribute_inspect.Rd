@@ -40,6 +40,9 @@ Inspect layer attributes
 \dontrun{
 wfs <- emodnet_init_wfs_client(service = "biology")
 layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
-layer_attribute_inspect(wfs, layer = "mediseh_zostera_m_pnt", attribute = "country")
+layer_attribute_inspect(
+  wfs, layer = "mediseh_zostera_m_pnt",
+  attribute = "country"
+)
 }
 }
