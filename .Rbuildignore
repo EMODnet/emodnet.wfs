@@ -17,3 +17,4 @@
 ^attic$
 ^codemeta\.json$
 ^vignettes/EMODnetWFS\.Rmd\.orig$
+^\.lintr$
