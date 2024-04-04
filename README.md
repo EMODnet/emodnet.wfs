@@ -99,7 +99,7 @@ emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-#> # A tibble: 38 × 9
+#> # A tibble: 35 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -109,11 +109,11 @@ emodnet_get_wfs_info(service = "biology")
 #>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 28 more rows
+#> 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    
+#> # ℹ 25 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -121,7 +121,7 @@ or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 38 × 9
+#> # A tibble: 35 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -131,11 +131,11 @@ emodnet_get_wfs_info(wfs_bio)
 #>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 28 more rows
+#> 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    
+#> # ℹ 25 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -380,7 +380,7 @@ library(rerddap)
 erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
 rerddap::ed_datasets(url = erddap_url)
-#> # A tibble: 9 × 16
+#> # A tibble: 8 × 16
 #>   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115
 #>   <chr>   <chr>  <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr> <chr>    
 #> 1 ""      "http… https:/… https://erd… ""    ""    * Th… "This … ""    ""       
@@ -388,10 +388,9 @@ rerddap::ed_datasets(url = erddap_url)
 #> 3 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       
 #> 4 ""      "http… https:/… https://erd… ""    "htt… EMOD… "The d… "htt… "https:/…
 #> 5 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…
-#> 6 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…
-#> 7 ""      ""     https:/… https://erd… ""    ""    PSMS… "Perma… ""    ""       
-#> 8 ""      ""     https:/… https://erd… ""    "htt… PSMS… "Perma… ""    ""       
-#> 9 ""      "http… https:/… https://erd… ""    "htt… TAO/… "This … "htt… "https:/…
+#> 6 ""      ""     https:/… https://erd… ""    ""    PSMS… "Perma… ""    ""       
+#> 7 ""      ""     https:/… https://erd… ""    "htt… PSMS… "Perma… ""    ""       
+#> 8 ""      "http… https:/… https://erd… ""    "htt… TAO/… "This … "htt… "https:/…
 #> # ℹ 6 more variables: Info <chr>, Background.Info <chr>, RSS <chr>,
 #> #   Email <chr>, Institution <chr>, Dataset.ID <chr>
 
@@ -416,7 +415,7 @@ rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
 
-human_activities_data_info <- rerddap::info(datasetid = 'humanactivities_9f8a_3389_f08a', url = erddap_url)
+human_activities_data_info <- rerddap::info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
 human_activities_data_info
 #> <ERDDAP info> humanactivities_9f8a_3389_f08a 
 #>  Base URL: https://erddap.emodnet.eu/erddap 
@@ -429,7 +428,7 @@ human_activities_data_info
 #>      vd: 
 #>          Units: seconds
 
-year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c('2020-03-18', '2020-03-19'))
+year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
 head(year_2020_gridded_data$data)
 #>         x       y                 time vd
