@@ -34,8 +34,8 @@ We can restrict the query to a single feature using `featureID` and providing th
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
-  featureID = "maritimebnds.861",
+  layers = "pipelines",
+  featureID = "pipelines.1",
   reduce_layers = TRUE
 )
 ```
@@ -47,7 +47,7 @@ If the ID of the feature is unknown but we still want to limit the number of fea
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
+  layers = "pipelines",
   count = 1L,
   reduce_layers = TRUE
 )
@@ -57,35 +57,36 @@ emodnet_get_layers(
 
 Exactly which features will be returned depends in the internal structure of the data. However, we can sort the returned selection based on an attribute value using the `sortBy` parameter. 
 
-Say we wanted to return 5 of the earliest maritime boundaries. In the following example, we sort by the `"legalfound"` attribute (which contains the date the boundary was legally founded) and combine it with the `count` parameter to restrict the number of features returned. This returns the first 5 features after the data has been ordered by `"legalfound"`.
+Say we wanted to return 5 of the longest marine pipelines. In the following example, we sort by the `"length_m"` attribute and combine it with the `count` parameter to restrict the number of features returned. This returns the first 5 features after the data has been ordered by `"length_m"`. Some pipelines do not have their lengths recorded, we will skip them with a CQL Filter.
 
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
-  sortBy = "legalfound",
+  layers = "pipelines",
+  sortBy = "length_m+D",
   count = 5L,
-  reduce_layers = TRUE
+  reduce_layers = TRUE,
+  cql_filter = "length_m IS NOT NULL"
 )
 ```
 
 
-The default sort operation is to sort in ascending order. Some WFS servers require the sort order to be specified. In this case, append a `+A` to the attribute character string passed to `sortBy`. Conversely, add a `+D` to sort in descending order.
+The default sort operation is to sort in ascending order. Some WFS servers require the sort order to be specified. In this case, append a `+A` to the attribute character string passed to `sortBy`. Conversely, here we add a `+D` to sort in descending order.
 
 ## Return blocks of features from specific starting point
 
 Finally in WFS version 2.0.0 (and also available in earlier versions on GeoServer) a `startIndex` parameter was introduced, allowing users to specify the starting index of features to be returned.
 
 ```{r, echo=FALSE}
-n_features <- layer_attributes_tbl(wfs = wfs, layer = "maritimebnds") %>% nrow()
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
 
 n_features
 ```
 
-For example, the full `"maritimebnds"` layer contains `r n_features` features. 
+For example, the full `"pipelines"` layer contains `r n_features` features. 
 
 ```{r, eval=FALSE}
-n_features <- layer_attributes_tbl(wfs = wfs, layer = "maritimebnds") %>% nrow()
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
 
 n_features
 ```
@@ -99,7 +100,7 @@ startIndex
 
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
+  layers = "pipelines",
   startIndex = startIndex,
   reduce_layers = TRUE
 )
@@ -113,7 +114,7 @@ Note that `startIndex` uses `0` as a starting index (0 indicates the first featu
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
+  layers = "pipelines",
   startIndex = 4L,
   count = 6L,
   reduce_layers = TRUE
@@ -134,7 +135,7 @@ Note that when limiting data to specific attributes, all other columns are retur
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
+  layers = "pipelines",
   propertyName = "country",
   count = 3L,
   reduce_layers = TRUE
@@ -146,7 +147,7 @@ To limit to multiple attributes, separate each attribute name in the character s
 ```{r}
 emodnet_get_layers(
   wfs = wfs,
-  layers = "maritimebnds",
+  layers = "pipelines",
   propertyName = "country,the_geom",
   count = 3L,
   reduce_layers = TRUE
