@@ -5,8 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Access and interrogate EMODnet Web Feature Service data
-    through R.">
+<meta name="description" content="Access and interrogate EMODnet Web Feature Service data through R.">
 <title>Access EMODnet Web Feature Service data through R • EMODnetWFS</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -15,12 +14,11 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Access EMODnet Web Feature Service data through R">
-<meta property="og:description" content="Access and interrogate EMODnet Web Feature Service data
-    through R.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Access EMODnet Web Feature Service data through R">
+<meta property="og:description" content="Access and interrogate EMODnet Web Feature Service data through R.">
 <meta property="og:image" content="https://emodnet.github.io/EMODnetWFS/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -31,7 +29,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">EMODnetWFS</a>
 
@@ -88,12 +86,15 @@
 
 <p>The goal of EMODnetWFS is to allow interrogation of and access to <a href="https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3" class="external-link">EMODnet geographic vector data</a> in R though the <a href="https://emodnet.ec.europa.eu/en/data" class="external-link">EMODnet Web Feature Services</a>. <a href="https://www.ogc.org/standard/wfs/" class="external-link">Web Feature services (WFS)</a> represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. EMODnetWFS aims at offering an user-friendly interface to this rich data.</p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="installation-and-setup">Installation and setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
 </h2>
 <p>You can install the development version of EMODnetWFS from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"EMODnet/EMODnetWFS"</span><span class="op">)</span></span></code></pre></div>
+<p>If you want to avoid reading messages from EMODnetWFS such as “WFS client created successfully”, set the <code>"EMODnetWFS.quiet"</code> option to <code>TRUE</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"EMODnetWFS.quiet"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="available-services">Available services<a class="anchor" aria-label="anchor" href="#available-services"></a>
@@ -130,64 +131,60 @@
 <td align="left"><a href="https://geo-service.maris.nl/emodnet_chemistry_p36/wfs" class="external-link uri">https://geo-service.maris.nl/emodnet_chemistry_p36/wfs</a></td>
 </tr>
 <tr class="even">
-<td align="left">chemistry_contaminants</td>
-<td align="left"><a href="https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs" class="external-link uri">https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs</a></td>
-</tr>
-<tr class="odd">
 <td align="left">chemistry_marine_litter</td>
 <td align="left"><a href="https://www.ifremer.fr/services/wfs/emodnet_chemistry2" class="external-link uri">https://www.ifremer.fr/services/wfs/emodnet_chemistry2</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">geology_coastal_behavior</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/tno/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/tno/wfs</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">geology_events_and_probabilities</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/ispra/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/ispra/wfs</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">geology_marine_minerals</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/gsi/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/gsi/wfs</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">geology_sea_floor_bedrock</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/bgr/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/bgr/wfs</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">geology_seabed_substrate_maps</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/gtk/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/gtk/wfs</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">geology_submerged_landscapes</td>
 <td align="left"><a href="https://drive.emodnet-geology.eu/geoserver/bgs/wfs" class="external-link uri">https://drive.emodnet-geology.eu/geoserver/bgs/wfs</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">human_activities</td>
 <td align="left"><a href="https://ows.emodnet-humanactivities.eu/wfs" class="external-link uri">https://ows.emodnet-humanactivities.eu/wfs</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">physics</td>
 <td align="left"><a href="https://prod-geoserver.emodnet-physics.eu/geoserver/ows" class="external-link uri">https://prod-geoserver.emodnet-physics.eu/geoserver/ows</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">seabed_habitats_general_datasets_and_products</td>
 <td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">seabed_habitats_individual_habitat_map_and_model_datasets</td>
 <td align="left"><a href="https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs" class="external-link uri">https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs</a></td>
 </tr>
 </tbody>
 </table>
-<p>To explore available services in Rstudio use:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>To explore available services you can use:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="fu"><a href="reference/emodnet_wfs.html">emodnet_wfs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-service-client">Create Service Client<a class="anchor" aria-label="anchor" href="#create-service-client"></a>
 </h2>
-<p>Create new WFS Client. Specify the service using the <code>service</code> argument.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>Specify the service using the <code>service</code> argument.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wfs_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading ISO 19139 XML schemas...</span></span>
 <span><span class="co">#&gt; Loading ISO 19115 codelists...</span></span>
@@ -197,68 +194,20 @@
 <span></span>
 <span><span class="va">wfs_bio</span></span>
 <span><span class="co">#&gt; &lt;WFSClient&gt;</span></span>
-<span><span class="co">#&gt;   Inherits from: &lt;OWSClient&gt;</span></span>
-<span><span class="co">#&gt;   Public:</span></span>
-<span><span class="co">#&gt;     attrs: list</span></span>
-<span><span class="co">#&gt;     capabilities: WFSCapabilities, OWSCapabilities, OGCAbstractObject, R6</span></span>
-<span><span class="co">#&gt;     clone: function (deep = FALSE) </span></span>
-<span><span class="co">#&gt;     defaults: list</span></span>
-<span><span class="co">#&gt;     describeFeatureType: function (typeName) </span></span>
-<span><span class="co">#&gt;     element: AbstractObject</span></span>
-<span><span class="co">#&gt;     encode: function (addNS = TRUE, geometa_validate = TRUE, geometa_inspire = FALSE, </span></span>
-<span><span class="co">#&gt;     ERROR: function (text) </span></span>
-<span><span class="co">#&gt;     getCapabilities: function () </span></span>
-<span><span class="co">#&gt;     getCASUrl: function () </span></span>
-<span><span class="co">#&gt;     getClass: function () </span></span>
-<span><span class="co">#&gt;     getClassName: function () </span></span>
-<span><span class="co">#&gt;     getConfig: function () </span></span>
-<span><span class="co">#&gt;     getFeatures: function (typeName, ...) </span></span>
-<span><span class="co">#&gt;     getFeatureTypes: function (pretty = FALSE) </span></span>
-<span><span class="co">#&gt;     getHeaders: function () </span></span>
-<span><span class="co">#&gt;     getNamespaceDefinition: function (recursive = FALSE) </span></span>
-<span><span class="co">#&gt;     getPwd: function () </span></span>
-<span><span class="co">#&gt;     getToken: function () </span></span>
-<span><span class="co">#&gt;     getUrl: function () </span></span>
-<span><span class="co">#&gt;     getUser: function () </span></span>
-<span><span class="co">#&gt;     getVersion: function () </span></span>
-<span><span class="co">#&gt;     INFO: function (text) </span></span>
-<span><span class="co">#&gt;     initialize: function (url, serviceVersion = NULL, user = NULL, pwd = NULL, </span></span>
-<span><span class="co">#&gt;     isFieldInheritedFrom: function (field) </span></span>
-<span><span class="co">#&gt;     logger: function (type, text) </span></span>
-<span><span class="co">#&gt;     loggerType: NULL</span></span>
-<span><span class="co">#&gt;     namespace: OWSNamespace, R6</span></span>
-<span><span class="co">#&gt;     reloadCapabilities: function () </span></span>
-<span><span class="co">#&gt;     url: https://geo.vliz.be/geoserver/Emodnetbio/wfs</span></span>
-<span><span class="co">#&gt;     verbose.debug: FALSE</span></span>
-<span><span class="co">#&gt;     verbose.info: FALSE</span></span>
-<span><span class="co">#&gt;     version: 2.0.0</span></span>
-<span><span class="co">#&gt;     WARN: function (text) </span></span>
-<span><span class="co">#&gt;     wrap: FALSE</span></span>
-<span><span class="co">#&gt;   Private:</span></span>
-<span><span class="co">#&gt;     cas_url: NULL</span></span>
-<span><span class="co">#&gt;     config: request</span></span>
-<span><span class="co">#&gt;     fromComplexTypes: function (value) </span></span>
-<span><span class="co">#&gt;     headers: EMODnetWFS R package 2.0.1.9001 DEV https://github.com/E ...</span></span>
-<span><span class="co">#&gt;     pwd: NULL</span></span>
-<span><span class="co">#&gt;     serviceName: WFS</span></span>
-<span><span class="co">#&gt;     system_fields: verbose.info verbose.debug loggerType wrap element names ...</span></span>
-<span><span class="co">#&gt;     token: NULL</span></span>
-<span><span class="co">#&gt;     user: NULL</span></span>
-<span><span class="co">#&gt;     xmlElement: AbstractObject</span></span>
-<span><span class="co">#&gt;     xmlExtraNamespaces: NULL</span></span>
-<span><span class="co">#&gt;     xmlNamespacePrefix: OWS</span></span>
-<span><span class="co">#&gt;     xmlNodeToCharacter: function (x, ..., indent = "", tagSeparator = "\n")</span></span></code></pre></div>
+<span><span class="co">#&gt; ....|-- url: https://geo.vliz.be/geoserver/Emodnetbio/wfs</span></span>
+<span><span class="co">#&gt; ....|-- version: 2.0.0</span></span>
+<span><span class="co">#&gt; ....|-- capabilities &lt;WFSCapabilities&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-wfs-layer-info">Get WFS Layer info<a class="anchor" aria-label="anchor" href="#get-wfs-layer-info"></a>
 </h2>
 <p>You can get metadata about the layers available from a service.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
 <span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
-<span><span class="co">#&gt; # A tibble: 37 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 35 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
 <span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
@@ -268,16 +217,16 @@
 <span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
 <span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; # ℹ 27 more rows</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>or you can pass a wfs client object.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bio</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 37 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 35 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
 <span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
@@ -287,14 +236,14 @@
 <span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
 <span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; # ℹ 27 more rows</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>You can also get info for specific layers from wfs object:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_layer_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span>
@@ -306,14 +255,14 @@
 <span><span class="co">#&gt; 2 emodnet_wfs https://geo.vl… biology     mediseh_z… EMOD… "Zoster… WFSF… sf    </span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>Finally, you can get details on all available services and layers from the server</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="get-wfs-layers">Get WFS layers<a class="anchor" aria-label="anchor" href="#get-wfs-layers"></a>
 </h2>
 <p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $mediseh_zostera_m_pnt</span></span>
 <span><span class="co">#&gt; Simple feature collection with 54 features and 3 fields</span></span>
@@ -353,7 +302,7 @@
 <span><span class="co">#&gt; 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....</span></span>
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....</span></span></code></pre></div>
 <p>You can change the output <code>crs</code> through the argument <code>crs</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ crs transformed to 3857.</span></span>
 <span><span class="co">#&gt; ℹ crs transformed to 3857.</span></span>
@@ -395,10 +344,10 @@
 <span><span class="co">#&gt; 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (169...</span></span>
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (169...</span></span></code></pre></div>
 <p>You can also extract layers using a WFS service name.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
-<span>    service <span class="op">=</span> <span class="st">"biology"</span>,</span>
-<span>    layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
+<span>  service <span class="op">=</span> <span class="st">"biology"</span>,</span>
+<span>  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_zostera_m_pnt"</span>, <span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
@@ -443,21 +392,21 @@
 <p>Layers can also be returned to a single <code>sf</code> object through argument <code>reduce_layers</code>.<br>
 If <code>TRUE</code> the function will try to reduce all layers into a single <code>sf</code>.</p>
 <p>If attempting to reduce fails, it will error:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
-<span>    wfs <span class="op">=</span> <span class="va">wfs_bio</span>, </span>
-<span>    layers <span class="op">=</span> <span class="va">layers</span>,</span>
-<span>    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  wfs <span class="op">=</span> <span class="va">wfs_bio</span>,</span>
+<span>  layers <span class="op">=</span> <span class="va">layers</span>,</span>
+<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `value[[3L]]()`:</span></span>
 <span><span class="co">#&gt; ! Cannot reduce layers.</span></span>
 <span><span class="co">#&gt; ℹ Try again with `reduce_layers = FALSE`</span></span></code></pre></div>
 <p>Using <code>reduce_layers = TRUE</code> is also useful for returning an <code>sf</code> object rather than a list in single layer request.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
-<span>    service <span class="op">=</span> <span class="st">"biology"</span>,</span>
-<span>    layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>, </span>
-<span>    reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  service <span class="op">=</span> <span class="st">"biology"</span>,</span>
+<span>  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>,</span>
+<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
@@ -481,10 +430,102 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="help-needed">Help needed?<a class="anchor" aria-label="anchor" href="#help-needed"></a>
+</h2>
+<p>If you get an unexpected error,</p>
+<ul>
+<li>Look up the <a href="https://monitor.emodnet.eu/resources?lang=en&amp;resource_type=OGC:WFS" class="external-link">EMODnet monitor</a>;</li>
+<li>Open an issue in this <a href="https://github.com/EMODnet/EMODnetWFS/issues" class="external-link">repository</a>.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="other-web-services">Other web services<a class="anchor" aria-label="anchor" href="#other-web-services"></a>
+</h2>
+<p>There are three ways to access EMODnet data at the moment, that complement each other.</p>
+<div class="section level3">
+<h3 id="emodnet-erddap-server">EMODnet ERDDAP server<a class="anchor" aria-label="anchor" href="#emodnet-erddap-server"></a>
+</h3>
+<p>Some EMODnet data are also published in an <a href="https://erddap.emodnet.eu" class="external-link">ERDDAP server</a>. You can access these data in R using the <a href="https://docs.ropensci.org/rerddap/" class="external-link">rerddap R package</a>:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("rerrdap")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rerddap/" class="external-link">rerddap</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'hoardr':</span></span>
+<span><span class="co">#&gt;   method           from</span></span>
+<span><span class="co">#&gt;   print.cache_info httr</span></span>
+<span></span>
+<span><span class="va">erddap_url</span> <span class="op">&lt;-</span> <span class="st">"https://erddap.emodnet.eu/erddap/"</span></span>
+<span></span>
+<span><span class="fu">rerddap</span><span class="fu">::</span><span class="fu">ed_datasets</span><span class="op">(</span>url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 8 × 16</span></span>
+<span><span class="co">#&gt;   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    </span></span>
+<span><span class="co">#&gt; 1 ""      "http… https:/… https://erd… ""    ""    * Th… "This … ""    ""       </span></span>
+<span><span class="co">#&gt; 2 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       </span></span>
+<span><span class="co">#&gt; 3 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       </span></span>
+<span><span class="co">#&gt; 4 ""      "http… https:/… https://erd… ""    "htt… EMOD… "The d… "htt… "https:/…</span></span>
+<span><span class="co">#&gt; 5 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…</span></span>
+<span><span class="co">#&gt; 6 ""      ""     https:/… https://erd… ""    ""    PSMS… "Perma… ""    ""       </span></span>
+<span><span class="co">#&gt; 7 ""      ""     https:/… https://erd… ""    "htt… PSMS… "Perma… ""    ""       </span></span>
+<span><span class="co">#&gt; 8 ""      "http… https:/… https://erd… ""    "htt… TAO/… "This … "htt… "https:/…</span></span>
+<span><span class="co">#&gt; # ℹ 6 more variables: Info &lt;chr&gt;, Background.Info &lt;chr&gt;, RSS &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   Email &lt;chr&gt;, Institution &lt;chr&gt;, Dataset.ID &lt;chr&gt;</span></span>
+<span></span>
+<span><span class="fu">rerddap</span><span class="fu">::</span><span class="fu">ed_search</span><span class="op">(</span>query <span class="op">=</span> <span class="st">"vessel density"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 16 × 2</span></span>
+<span><span class="co">#&gt;    title                                                     dataset_id         </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                                                     &lt;chr&gt;              </span></span>
+<span><span class="co">#&gt;  1 Vessel Density                                            humanactivities_9f…</span></span>
+<span><span class="co">#&gt;  2 Vessel Density                                            humanactivities_e9…</span></span>
+<span><span class="co">#&gt;  3 Vessel traffic density, 2019, All                         EMODPACE_VD_All    </span></span>
+<span><span class="co">#&gt;  4 Vessel traffic density, 2019, Cargo                       EMODPACE_VD_09_Car…</span></span>
+<span><span class="co">#&gt;  5 Vessel traffic density, 2019, Dredging or underwater ops  EMODPACE_VD_03_Dre…</span></span>
+<span><span class="co">#&gt;  6 Vessel traffic density, 2019, Fishing                     EMODPACE_VD_01_Fis…</span></span>
+<span><span class="co">#&gt;  7 Vessel traffic density, 2019, High Speed craft            EMODPACE_VD_06_High</span></span>
+<span><span class="co">#&gt;  8 Vessel traffic density, 2019, Miliary and law enforcement EMODPACE_VD_11_Mil…</span></span>
+<span><span class="co">#&gt;  9 Vessel traffic density, 2019, Other                       EMODPACE_VD_00_Oth…</span></span>
+<span><span class="co">#&gt; 10 Vessel traffic density, 2019, Passenger                   EMODPACE_VD_08_Pas…</span></span>
+<span><span class="co">#&gt; 11 Vessel traffic density, 2019, Pleasure craft              EMODPACE_VD_05_Ple…</span></span>
+<span><span class="co">#&gt; 12 Vessel traffic density, 2019, Sailing                     EMODPACE_VD_04_Sai…</span></span>
+<span><span class="co">#&gt; 13 Vessel traffic density, 2019, Service                     EMODPACE_VD_02_Ser…</span></span>
+<span><span class="co">#&gt; 14 Vessel traffic density, 2019, Tanker                      EMODPACE_VD_10_Tan…</span></span>
+<span><span class="co">#&gt; 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug </span></span>
+<span><span class="co">#&gt; 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…</span></span>
+<span></span>
+<span><span class="va">human_activities_data_info</span> <span class="op">&lt;-</span> <span class="fu">rerddap</span><span class="fu">::</span><span class="fu">info</span><span class="op">(</span>datasetid <span class="op">=</span> <span class="st">"humanactivities_9f8a_3389_f08a"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="va">human_activities_data_info</span></span>
+<span><span class="co">#&gt; &lt;ERDDAP info&gt; humanactivities_9f8a_3389_f08a </span></span>
+<span><span class="co">#&gt;  Base URL: https://erddap.emodnet.eu/erddap </span></span>
+<span><span class="co">#&gt;  Dataset Type: griddap </span></span>
+<span><span class="co">#&gt;  Dimensions (range):  </span></span>
+<span><span class="co">#&gt;      time: (2017-01-01T00:00:00Z, 2021-12-01T00:00:00Z) </span></span>
+<span><span class="co">#&gt;      y: (604500.0, 7034500.0) </span></span>
+<span><span class="co">#&gt;      x: (-622500.0, 6884500.0) </span></span>
+<span><span class="co">#&gt;  Variables:  </span></span>
+<span><span class="co">#&gt;      vd: </span></span>
+<span><span class="co">#&gt;          Units: seconds</span></span>
+<span></span>
+<span><span class="va">year_2020_gridded_data</span> <span class="op">&lt;-</span> <span class="fu">griddap</span><span class="op">(</span>datasetx <span class="op">=</span> <span class="va">human_activities_data_info</span>, time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-03-18"</span>, <span class="st">"2020-03-19"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">year_2020_gridded_data</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         x       y                 time vd</span></span>
+<span><span class="co">#&gt; 1 -622500 7034500 2020-04-01T00:00:00Z NA</span></span>
+<span><span class="co">#&gt; 2 -621500 7034500 2020-04-01T00:00:00Z NA</span></span>
+<span><span class="co">#&gt; 3 -620500 7034500 2020-04-01T00:00:00Z NA</span></span>
+<span><span class="co">#&gt; 4 -619500 7034500 2020-04-01T00:00:00Z NA</span></span>
+<span><span class="co">#&gt; 5 -618500 7034500 2020-04-01T00:00:00Z NA</span></span>
+<span><span class="co">#&gt; 6 -617500 7034500 2020-04-01T00:00:00Z NA</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="emodnetwcs-access-emodnet-web-coverage-service-data">EMODnetWCS: Access EMODnet Web Coverage Service data<a class="anchor" aria-label="anchor" href="#emodnetwcs-access-emodnet-web-coverage-service-data"></a>
+</h3>
+<p>This package EMODnetWFS uses <a href="https://www.ogc.org/standard/wfs/" class="external-link">Web Feature Services</a>, hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via <a href="https://www.ogc.org/standard/wcs/" class="external-link">Web Coverage Services (WCS)</a>. The R package <a href="https://github.com/EMODnet/EMODnetWCS" class="external-link">EMODnetWCS</a> makes these data available in R.</p>
+</div>
+</div>
+<div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>To cite EMODnetWFS, please use the output from <code>citation(package = "EMODnetWFS")</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"EMODnetWFS"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; To cite package 'EMODnetWFS' in publications use:</span></span>
@@ -546,10 +587,14 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Anna Krystalli <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2378-4915" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Salvador Fernández-Bejarano <br><small class="roles"> Contributor, maintainer </small> <a href="https://orcid.org/0000-0003-0535-7677" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>VLIZ (VLAAMS INSTITUUT VOOR DE ZEE) <br><small class="roles"> Funder </small>  </li>
-<li>Maëlle Salmon <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2815-0399" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.r-rse.eu/" class="external-link">Anna Krystalli</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2378-4915" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://github.com/salvafern" class="external-link">Salvador Fernández-Bejarano</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-0535-7677" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.vliz.be/" class="external-link">VLIZ (VLAAMS INSTITUUT VOOR DE ZEE)</a> <br><small class="roles"> Funder </small>  </li>
+<li>
+<a href="https://masalmon.eu" class="external-link">Maëlle Salmon</a> <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-2815-0399" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -568,13 +613,11 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Anna Krystalli, Salvador Fernández-Bejarano, VLIZ (VLAAMS INSTITUUT VOOR DE ZEE), Maëlle Salmon.</p>
+  <p>Developed by <a href="https://www.r-rse.eu/" class="external-link">Anna Krystalli</a>, <a href="https://github.com/salvafern" class="external-link">Salvador Fernández-Bejarano</a>, <a href="https://www.vliz.be/" class="external-link">VLIZ (VLAAMS INSTITUUT VOOR DE ZEE)</a>, <a href="https://masalmon.eu" class="external-link">Maëlle Salmon</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
     </footer>
