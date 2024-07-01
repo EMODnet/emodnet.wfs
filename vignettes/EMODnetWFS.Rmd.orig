@@ -42,9 +42,9 @@ install.packages(c("sf", "dplyr", "mapview"))
 
 
 
-With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS. 
+With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
-Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function. 
+Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
 
 ```{r error = FALSE, warning = FALSE, message = FALSE}
 library(EMODnetWFS)
@@ -111,46 +111,7 @@ map <- mapview(habitats_directive_layers, zcol = "habitat_description", burst = 
 map
 ```
 
-
-Furthermore, we can get data from other EMODnet lots and combine them. The Human Activities portal provides the maritime boundaries of the European Union state members. This time we will not initiate a WFS client, but we will use the service name. The WFS client will be generated on the fly.
-
-Same as before, we have a look at the layers available first.
-
-```{r}
-emodnet_get_wfs_info(service = "human_activities")
-```
-
-The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) seems to be `maritimebnds`. This dataset was developed based on the official [data provided by the European Environmental Agency](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) and the [Maritime Boundaries Database](https://marineregions.org/eez.php) compiled by MarineRegions.org (Flanders Marine Institute, 2019).
-
-The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
-
-```{r}
-maritime_boundaries <- emodnet_get_layers(
-  service = "human_activities",
-  layers = "maritimebnds",
-  reduce_layers = TRUE,
-  cql_filter = "sitename='Territory sea (12 nm)'"
-)
-
-glimpse(maritime_boundaries)
-```
-
-
-
-Add the maritime boundaries to the previous map with this line. To do so, cats to `MULTILINESTRING` geometry type, transform to the same crs as the habitats directive `sf` (only required because of the next step), and crop using the bounding box of the habitats directive `sf`.
-
-```{r, eval = TRUE}
-
-maritime_boundaries <- maritime_boundaries %>%
-  st_cast(to = "MULTILINESTRING") %>%
-  st_transform(st_crs(habitats_directive_layers)) %>%
-  st_crop(st_bbox(habitats_directive_layers))
-
-map + mapview(maritime_boundaries)
-```
-
-
-We have now combined data from the Seabed Habitats and Human Activities portals. However, there is more! EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
+EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
 
 ```{r, eval = FALSE}
 emodnet_get_all_wfs_info()
@@ -166,7 +127,7 @@ Flanders Marine Institute (2019). Maritime Boundaries Geodatabase, version 11. A
 
 Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A Grammar of Data Manipulation. R package version 1.0.2.https://CRAN.R-project.org/package=dplyr
 
-Pebesma E (2018). “Simple Features for R: Standardized Support for Spatial Vector Data.” The R Journal, 10(1), 439–446. doi: 10.32614/RJ-2018-009, https://doi.org/10.32614/RJ-2018-009. 
+Pebesma E (2018). “Simple Features for R: Standardized Support for Spatial Vector Data.” The R Journal, 10(1), 439–446. doi: 10.32614/RJ-2018-009, https://doi.org/10.32614/RJ-2018-009.
 
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
@@ -174,6 +135,6 @@ Tim Appelhans, Florian Detsch, Christoph Reudenbach and Stefan Woellauer (2020).
 
 ### Code
 
-Please cite this package as: 
+Please cite this package as:
 
 Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/EMODnetWFS. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.

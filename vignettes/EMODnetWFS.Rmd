@@ -20,7 +20,7 @@ The package was designed to make EMODnet vector data layers easily accessible in
 You can install the development version of `EMODnetWFS` from GitHub with:
 
 
-```r
+``` r
 remotes::install_github("EMODnet/EMODnetWFS")
 ```
 
@@ -31,18 +31,18 @@ For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages
 Run this line to install these packages:
 
 
-```r
+``` r
 install.packages(c("sf", "dplyr", "mapview"))
 ```
 
 
 
-With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS. 
+With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
-Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function. 
+Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
 
 
-```r
+``` r
 library(EMODnetWFS)
 library(mapview)
 library(dplyr)
@@ -73,7 +73,7 @@ emodnet_wfs()
 #> 3                                 https://geo.vliz.be/geoserver/Dataportal/wfs
 #> 4                           https://geo-service.maris.nl/emodnet_chemistry/wfs
 #> 5                       https://geo-service.maris.nl/emodnet_chemistry_p36/wfs
-#> 6                       https://nodc.ogs.trieste.it/geoserver/Contaminants/wfs
+#> 6                       https://geoserver.hcmr.gr/geoserver/EMODNET_SHARED/wfs
 #> 7                       https://www.ifremer.fr/services/wfs/emodnet_chemistry2
 #> 8                           https://drive.emodnet-geology.eu/geoserver/tno/wfs
 #> 9                         https://drive.emodnet-geology.eu/geoserver/ispra/wfs
@@ -92,29 +92,35 @@ emodnet_wfs()
 The column `service_name` shows services available, while  `service_url` has the corresponding base url to perform a WFS request. The Seabed portal should have the data we are looking for. A WFS client can be created by passing the corresponding `service_name` to the function `emodnet_init_wfs_client()`. The layers available to this WFS client are consulted with `emodnet_get_wfs_info()`.
 
 
-```r
+``` r
 seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_datasets_and_products")
+#> Loading ISO 19139 XML schemas...
+#> Loading ISO 19115 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs"
 #> ℹ Version: "2.0.0"
+```
+
+``` r
 
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
-#> # A tibble: 36 × 9
+#> # A tibble: 71 × 9
 #> # Rowwise: 
-#>    data_source service_name   service_url layer_name title abstract class
-#>    <chr>       <chr>          <chr>       <chr>      <chr> <chr>    <chr>
-#>  1 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  2 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  3 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  4 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  5 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  6 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  7 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  8 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF…
-#>  9 emodnet_wfs seabed_habita… https://ow… art17_hab… 2018… "Gridde… WFSF…
-#> 10 emodnet_wfs seabed_habita… https://ow… biogenic_… Biog… "This l… WFSF…
-#> # ℹ 26 more rows
-#> # ℹ 2 more variables: format <chr>, layer_namespace <chr>
+#>    data_source service_name        service_url layer_name title
+#>    <chr>       <chr>               <chr>       <chr>      <chr>
+#>  1 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  2 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  3 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  4 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  5 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  6 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  7 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  8 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…
+#>  9 emodnet_wfs seabed_habitats_ge… https://ow… carib_eus… 2023…
+#> 10 emodnet_wfs seabed_habitats_ge… https://ow… biogenic_… Biog…
+#> # ℹ 61 more rows
+#> # ℹ 4 more variables: abstract <chr>, class <chr>,
+#> #   format <chr>, layer_namespace <chr>
 ```
 
 
@@ -122,7 +128,7 @@ emodnet_get_wfs_info(wfs = seabed_wfs_client)
 Each layer is explained in the `abstract` column. We can see several layers with the information provided by the EU member states for the [Habitats Directive 92/43/EEC reporting](https://www.eea.europa.eu/data-and-maps/data/article-17-database-habitats-directive-92-43-eec-2). We will select the layers about coastal lagoons, mudflats and sandbanks with their respective `layer_name`.
 
 
-```r
+``` r
 habitats_directive_layer_names <- c("art17_hab_1110", "art17_hab_1140", "art17_hab_1150")
 
 emodnet_get_layer_info(
@@ -131,12 +137,13 @@ emodnet_get_layer_info(
 )
 #> # A tibble: 3 × 9
 #> # Rowwise: 
-#>   data_source service_name    service_url layer_name title abstract class
-#>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr>
-#> 1 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…
-#> 2 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…
-#> 3 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF…
-#> # ℹ 2 more variables: format <chr>, layer_namespace <chr>
+#>   data_source service_name         service_url layer_name title
+#>   <chr>       <chr>                <chr>       <chr>      <chr>
+#> 1 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…
+#> 2 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…
+#> 3 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…
+#> # ℹ 4 more variables: abstract <chr>, class <chr>,
+#> #   format <chr>, layer_namespace <chr>
 ```
 
 
@@ -144,7 +151,7 @@ emodnet_get_layer_info(
 We are now ready to read the layers into R with `emodnet_get_layers()`. EMODnetWFS reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 
-```r
+``` r
 habitats_directive_layers <- emodnet_get_layers(
   wfs = seabed_wfs_client,
   layers = habitats_directive_layer_names,
@@ -153,26 +160,29 @@ habitats_directive_layers <- emodnet_get_layers(
 
 class(habitats_directive_layers)
 #> [1] "sf"         "data.frame"
+```
+
+``` r
 
 glimpse(habitats_directive_layers)
 #> Rows: 221
 #> Columns: 9
-#> $ gml_id              <chr> "art17_hab_1110.13", "art17_hab_1110.22", "…
-#> $ habitat_code        <chr> "1110", "1110", "1110", "1110", "1110", "11…
-#> $ ms                  <chr> "DK", "ES", "ES", "PT", "PT", "PL", "DK", "…
-#> $ region              <chr> "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL…
-#> $ cs_ms               <chr> "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U…
-#> $ country_code        <chr> "Denmark", "Spain", "Spain", "Portugal", "P…
-#> $ habitat_code_uri    <chr> "http://dd.eionet.europa.eu/vocabulary/art1…
-#> $ habitat_description <chr> "Sandbanks which are slightly covered by se…
-#> $ geom                <MULTISURFACE [m]> MULTISURFACE (POLYGON ((420...…
+#> $ gml_id              <chr> "art17_hab_1110.13", "art17_hab_1110.22", "art17_hab_1110.25", "ar…
+#> $ habitat_code        <chr> "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1…
+#> $ ms                  <chr> "DK", "ES", "ES", "PT", "PT", "PL", "DK", "FR", "UK", "BE", "BE", …
+#> $ region              <chr> "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL", "MBAL", "MATL", "MAT…
+#> $ cs_ms               <chr> "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U1-", "U1x", "U1x", "U1x…
+#> $ country_code        <chr> "Denmark", "Spain", "Spain", "Portugal", "Portugal", "Poland", "De…
+#> $ habitat_code_uri    <chr> "http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110", …
+#> $ habitat_description <chr> "Sandbanks which are slightly covered by sea water all the time", …
+#> $ geom                <MULTISURFACE [m]> MULTISURFACE (POLYGON ((420..., MULTISURFACE (POLYGON…
 ```
 
 
 
 Run the following code to have a quick look at the layers geometries
 
-```r
+``` r
 # Transform to Polygon geometry type from Multisurface
 if (unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE") {
   habitats_directive_layers <- habitats_directive_layers %>%
@@ -184,92 +194,13 @@ if (unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE") {
 map <- mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
 
 map
+#> Error in loadNamespace(name): there is no package called 'webshot'
 ```
 
-![plot of chunk unnamed-chunk-6](EMODnetWFS-unnamed-chunk-6-1.png)
+EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
 
 
-Furthermore, we can get data from other EMODnet lots and combine them. The Human Activities portal provides the maritime boundaries of the European Union state members. This time we will not initiate a WFS client, but we will use the service name. The WFS client will be generated on the fly.
-
-Same as before, we have a look at the layers available first.
-
-
-```r
-emodnet_get_wfs_info(service = "human_activities")
-#> # A tibble: 99 × 9
-#> # Rowwise: 
-#>    data_source service_name   service_url layer_name title abstract class
-#>    <chr>       <chr>          <chr>       <chr>      <chr> <chr>    <chr>
-#>  1 emodnet_wfs human_activit… https://ow… activelic… Acti… The dat… WFSF…
-#>  2 emodnet_wfs human_activit… https://ow… advisoryc… Advi… This sh… WFSF…
-#>  3 emodnet_wfs human_activit… https://ow… aquacultu… Advi… This sh… WFSF…
-#>  4 emodnet_wfs human_activit… https://ow… baltic     Advi… This sh… WFSF…
-#>  5 emodnet_wfs human_activit… https://ow… blacksea   Advi… This sh… WFSF…
-#>  6 emodnet_wfs human_activit… https://ow… longdista… Advi… This sh… WFSF…
-#>  7 emodnet_wfs human_activit… https://ow… market     Advi… This sh… WFSF…
-#>  8 emodnet_wfs human_activit… https://ow… mediterra… Advi… This sh… WFSF…
-#>  9 emodnet_wfs human_activit… https://ow… northsea   Advi… This sh… WFSF…
-#> 10 emodnet_wfs human_activit… https://ow… northwest… Advi… This sh… WFSF…
-#> # ℹ 89 more rows
-#> # ℹ 2 more variables: format <chr>, layer_namespace <chr>
-```
-
-The `layer_name` for the [maritime boundaries](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) seems to be `maritimebnds`. This dataset was developed based on the official [data provided by the European Environmental Agency](https://www.eea.europa.eu/data-and-maps/data/maritime-boundaries) and the [Maritime Boundaries Database](https://marineregions.org/eez.php) compiled by MarineRegions.org (Flanders Marine Institute, 2019).
-
-The `sitename` variable specifies the type of boundary each feature represents. For illustration purposes, we will filter our request to return only [Territorial Seas](https://www.un.org/depts/los/convention_agreements/texts/unclos/part2.htm). 
-
-
-```r
-maritime_boundaries <- emodnet_get_layers(
-  service = "human_activities",
-  layers = "maritimebnds",
-  reduce_layers = TRUE,
-  cql_filter = "sitename='Territory sea (12 nm)'"
-)
-#> ✔ WFS client created successfully
-#> ℹ Service: "https://ows.emodnet-humanactivities.eu/wfs"
-#> ℹ Version: "2.0.0"
-
-glimpse(maritime_boundaries)
-#> Rows: 64
-#> Columns: 13
-#> $ gml_id     <chr> "maritimebnds.54", "maritimebnds.55", "maritimebnds.…
-#> $ objectid   <dbl> 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, …
-#> $ mblszotpid <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
-#> $ localid    <dbl> 49036, 49042, 49063, 49064, 49065, 49066, 49087, 490…
-#> $ sitename   <chr> "Territory sea (12 nm)", "Territory sea (12 nm)", "T…
-#> $ legalfound <date> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#> $ legalfou_1 <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-#> $ country    <chr> "United Kingdom", "France", "France", "France", "Fra…
-#> $ nationalle <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
-#> $ nutscode   <chr> "UK", "FR", "FR", "FR", "FR", "FR", "ES", "CY", "UK"…
-#> $ mblsds_mbl <chr> "In www.marineregions.org", "In www.marineregions.or…
-#> $ shape_leng <dbl> 141.545470, 70.017156, 5.116398, 1.949563, 2.072975,…
-#> $ the_geom   <MULTICURVE [°]> MULTICURVE (LINESTRING (-13..., MULTICURV…
-```
-
-
-
-Add the maritime boundaries to the previous map with this line. To do so, cats to `MULTILINESTRING` geometry type, transform to the same crs as the habitats directive `sf` (only required because of the next step), and crop using the bounding box of the habitats directive `sf`.
-
-
-```r
-
-maritime_boundaries <- maritime_boundaries %>%
-  st_cast(to = "MULTILINESTRING") %>%
-  st_transform(st_crs(habitats_directive_layers)) %>%
-  st_crop(st_bbox(habitats_directive_layers))
-
-map + mapview(maritime_boundaries)
-```
-
-![plot of chunk unnamed-chunk-9](EMODnetWFS-unnamed-chunk-9-1.png)
-
-
-We have now combined data from the Seabed Habitats and Human Activities portals. However, there is more! EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
-
-
-```r
+``` r
 emodnet_get_all_wfs_info()
 ```
 
@@ -283,7 +214,7 @@ Flanders Marine Institute (2019). Maritime Boundaries Geodatabase, version 11. A
 
 Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020). dplyr: A Grammar of Data Manipulation. R package version 1.0.2.https://CRAN.R-project.org/package=dplyr
 
-Pebesma E (2018). “Simple Features for R: Standardized Support for Spatial Vector Data.” The R Journal, 10(1), 439–446. doi: 10.32614/RJ-2018-009, https://doi.org/10.32614/RJ-2018-009. 
+Pebesma E (2018). “Simple Features for R: Standardized Support for Spatial Vector Data.” The R Journal, 10(1), 439–446. doi: 10.32614/RJ-2018-009, https://doi.org/10.32614/RJ-2018-009.
 
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
@@ -291,6 +222,6 @@ Tim Appelhans, Florian Detsch, Christoph Reudenbach and Stefan Woellauer (2020).
 
 ### Code
 
-Please cite this package as: 
+Please cite this package as:
 
 Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/EMODnetWFS. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
