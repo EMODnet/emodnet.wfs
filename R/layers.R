@@ -267,9 +267,7 @@ namespace_layer_names <- function(wfs, layers) {
     info$layer_name %in% layers,
     c("layer_namespace", "layer_name")
   ] %>%
-    apply(1L, FUN = function(x) {
-      paste0(x, collapse = ":")
-    })
+    apply(1L, FUN = paste0, collapse = ":")
 }
 
 get_layer_format <- function(layer, wfs) {
