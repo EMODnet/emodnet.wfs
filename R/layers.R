@@ -70,6 +70,7 @@
 #'
 #' @section Big downloads:
 #'
+# nolint start: line_length_linter
 #' If a layer is really big (like `"abiotic_observations"` of the
 #' `"biology_occurrence_data"` service),
 #' you might consider a combination of these ideas:
@@ -78,6 +79,7 @@
 #' [bounding boxes](https://emodnet.github.io/EMODnetWFS/articles/request-params.html#limit-spatial-extent-using-a-boundary-box)
 #' (possibly splitting the area of interests into several requests);
 #' - Using [EMODnet's download toolbox](https://emodnet.ec.europa.eu/geoviewer/).
+# nolint end
 emodnet_get_layers <- function(wfs = NULL,
                                service = NULL,
                                service_version = NULL,
