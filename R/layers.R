@@ -207,7 +207,7 @@ checkmate_crs <- function(sf, crs = NULL) {
 
 standardise_crs <- function(out, crs = NULL) {
   if (checkmate::test_class(out, "list")) {
-    purrr::map(out, ~ checkmate_crs(.x, crs = crs))
+    purrr::map(out, checkmate_crs, crs = crs)
   } else {
     checkmate_crs(out, crs = crs)
   }
