@@ -51,7 +51,7 @@ Layers without corresponding filters are returned whole }
 \item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.}
 
 \item{...}{additional vendor parameter arguments passed to
-\href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.# nolint
+\href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.
 For example, including \code{count=1} returns the first available feature.}
 }
 \value{
