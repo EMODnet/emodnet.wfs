@@ -17,7 +17,7 @@ options(timeout = 2000)
 # EMODnetWFS: Access EMODnet Web Feature Service data through R
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R build status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
 <!-- badges: end -->

@@ -5,8 +5,9 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R build
 status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
 [![Codecov test
@@ -53,6 +54,7 @@ All available services are contained in the tibble returned by
 | biology_occurrence_data                                         | <https://geo.vliz.be/geoserver/Dataportal/wfs>                                |
 | chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                          |
 | chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>                      |
+| chemistry_contaminants                                          | <https://geoserver.hcmr.gr/geoserver/EMODNET_SHARED/wfs>                      |
 | chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>                      |
 | geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                          |
 | geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>                        |
@@ -82,6 +84,9 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
+```
+
+``` r
 
 wfs_bio
 #> <WFSClient>
@@ -376,6 +381,9 @@ library(rerddap)
 #> Registered S3 method overwritten by 'hoardr':
 #>   method           from
 #>   print.cache_info httr
+```
+
+``` r
 
 erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
@@ -383,16 +391,19 @@ rerddap::ed_datasets(url = erddap_url)
 #> # A tibble: 8 × 16
 #>   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115
 #>   <chr>   <chr>  <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr> <chr>    
-#> 1 ""      "http… https:/… https://erd… ""    ""    * Th… "This … ""    ""       
-#> 2 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       
-#> 3 ""      ""     https:/… https://erd… ""    "htt… EMOD… "The d… ""    ""       
-#> 4 ""      "http… https:/… https://erd… ""    "htt… EMOD… "The d… "htt… "https:/…
-#> 5 ""      ""     https:/… https://erd… ""    "htt… Pres… "The p… "htt… "https:/…
-#> 6 ""      ""     https:/… https://erd… ""    ""    PSMS… "Perma… ""    ""       
-#> 7 ""      ""     https:/… https://erd… ""    "htt… PSMS… "Perma… ""    ""       
-#> 8 ""      "http… https:/… https://erd… ""    "htt… TAO/… "This … "htt… "https:/…
+#> 1 ""      "/erd… /erddap… /erddap/tab… ""    ""    * Th… "This … ""    ""       
+#> 2 ""      ""     /erddap… /erddap/tab… ""    "/er… EMOD… "The d… ""    ""       
+#> 3 ""      ""     /erddap… /erddap/tab… ""    "/er… EMOD… "The d… ""    ""       
+#> 4 ""      "/erd… /erddap… /erddap/tab… ""    "/er… EMOD… "The d… "/er… "/erddap…
+#> 5 ""      ""     /erddap… /erddap/tab… ""    "/er… Pres… "The p… "/er… "/erddap…
+#> 6 ""      ""     /erddap… /erddap/tab… ""    ""    PSMS… "Perma… ""    ""       
+#> 7 ""      ""     /erddap… /erddap/tab… ""    "/er… PSMS… "Perma… ""    ""       
+#> 8 ""      "/erd… /erddap… /erddap/tab… ""    "/er… TAO/… "This … "/er… "/erddap…
 #> # ℹ 6 more variables: Info <chr>, Background.Info <chr>, RSS <chr>,
 #> #   Email <chr>, Institution <chr>, Dataset.ID <chr>
+```
+
+``` r
 
 rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> # A tibble: 16 × 2
@@ -414,6 +425,9 @@ rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> 14 Vessel traffic density, 2019, Tanker                      EMODPACE_VD_10_Tan…
 #> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
+```
+
+``` r
 
 human_activities_data_info <- rerddap::info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
 human_activities_data_info
@@ -427,9 +441,15 @@ human_activities_data_info
 #>  Variables:  
 #>      vd: 
 #>          Units: seconds
+```
+
+``` r
 
 year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
+```
+
+``` r
 head(year_2020_gridded_data$data)
 #>         x       y                 time vd
 #> 1 -622500 7034500 2020-04-01T00:00:00Z NA
@@ -456,7 +476,6 @@ To cite EMODnetWFS, please use the output from
 
 ``` r
 citation(package = "EMODnetWFS")
-#> 
 #> To cite package 'EMODnetWFS' in publications use:
 #> 
 #>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _EMODnetWFS:
