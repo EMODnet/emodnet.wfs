@@ -26,11 +26,13 @@
 #'   Layers without corresponding filters are returned whole }
 #' }
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
+# nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
-#' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).# nolint
+#' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
 #' For example, including `count = 1` returns the first available feature.
 #' Or `outputFormat = "CSV"` (or `outputFormat = "JSON"`) might help downloading
 #' bigger datasets.
+# nolint end
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
