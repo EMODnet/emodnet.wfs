@@ -1,12 +1,11 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
-  ecql_filtering: ecql_filtering.html
+  articles/ecql_filtering: ecql_filtering.html
   EMODnetWFS: EMODnetWFS.html
-  request-params: request-params.html
-last_built: 2024-07-01T14:08Z
+  articles/request-params: request-params.html
+last_built: 2024-08-12T12:47Z
 urls:
   reference: https://emodnet.github.io/EMODnetWFS/reference
   article: https://emodnet.github.io/EMODnetWFS/articles
-

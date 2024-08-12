@@ -1,72 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/404.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/articles/EMODnetWFS.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/articles/ecql_filtering.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/articles/request-params.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/index.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/EMODnetWFS-package.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_get_layers.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_get_wfs_info.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_init_wfs_client.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_wfs.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attribute_descriptions.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attribute_inspect.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_get_names.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_summarise.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_tbl.html</loc>
-  </url>
-  <url>
-    <loc>https://emodnet.github.io/EMODnetWFS/reference/pipe.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://emodnet.github.io/EMODnetWFS/404.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/CONTRIBUTING.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/LICENSE-text.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/LICENSE.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/articles/EMODnetWFS.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/articles/ecql_filtering.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/articles/index.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/articles/request-params.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/authors.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/index.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/news/index.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/EMODnetWFS-package.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_get_layers.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_get_wfs_info.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_init_wfs_client.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/emodnet_wfs.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/index.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attribute_descriptions.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attribute_inspect.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_get_names.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_summarise.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/layer_attributes_tbl.html</loc></url>
+<url><loc>https://emodnet.github.io/EMODnetWFS/reference/pipe.html</loc></url>
 </urlset>
+
