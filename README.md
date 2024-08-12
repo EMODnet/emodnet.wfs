@@ -8,8 +8,7 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R build
-status](https://github.com/EMODnet/emodnet.wfs/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions)
+[![R-CMD-check](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
 <!-- badges: end -->
