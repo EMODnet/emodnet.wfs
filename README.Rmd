@@ -14,32 +14,32 @@ knitr::opts_chunk$set(
 options(timeout = 2000)
 ```
 
-# EMODnetWFS: Access EMODnet Web Feature Service data through R
+# emodnet.wfs: Access EMODnet Web Feature Service data through R
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![R build status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
-[![Codecov test coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
+[![R build status](https://github.com/EMODnet/emodnet.wfs/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions)
+[![Codecov test coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation of and access to [EMODnet geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data). 
+The goal of emodnet.wfs is to allow interrogation of and access to [EMODnet geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data). 
 [Web Feature services (WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
-EMODnetWFS aims at offering an user-friendly interface to this rich data.
+emodnet.wfs aims at offering an user-friendly interface to this rich data.
 
 ## Installation and setup
 
-You can install the development version of EMODnetWFS from GitHub with:
+You can install the development version of emodnet.wfs from GitHub with:
 
 ``` r
 # install.packages("pak")
-pak::pak("EMODnet/EMODnetWFS")
+pak::pak("EMODnet/emodnet.wfs")
 ```
 
-If you want to avoid reading messages from EMODnetWFS such as "WFS client created successfully", 
-set the `"EMODnetWFS.quiet"` option to `TRUE`.
+If you want to avoid reading messages from emodnet.wfs such as "WFS client created successfully", 
+set the `"emodnet.wfs.quiet"` option to `TRUE`.
 
 ```r
-options("EMODnetWFS.quiet" = TRUE)
+options("emodnet.wfs.quiet" = TRUE)
 ```
 
 ## Available services
@@ -48,7 +48,7 @@ All available services are contained in the tibble returned by `emodnet_wfs()`.
 
 
 ```{r, echo=FALSE}
-library(EMODnetWFS)
+library(emodnet.wfs)
 knitr::kable(emodnet_wfs())
 ```
 
@@ -151,7 +151,7 @@ emodnet_get_layers(
 If you get an unexpected error,
 
 - Look up the [EMODnet monitor](https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS);
-- Open an issue in this [repository](https://github.com/EMODnet/EMODnetWFS/issues).
+- Open an issue in this [repository](https://github.com/EMODnet/emodnet.wfs/issues).
 
 ## Other web services
 
@@ -182,14 +182,14 @@ head(year_2020_gridded_data$data)
 
 ### EMODnetWCS: Access EMODnet Web Coverage Service data
 
-This package EMODnetWFS uses [Web Feature Services](https://www.ogc.org/standard/wfs/), hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/). The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data available in R.
+This package emodnet.wfs uses [Web Feature Services](https://www.ogc.org/standard/wfs/), hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/). The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data available in R.
 
 ## Citation
 
-To cite EMODnetWFS, please use the output from `citation(package = "EMODnetWFS")`.
+To cite emodnet.wfs, please use the output from `citation(package = "emodnet.wfs")`.
 
 ```{r}
-citation(package = "EMODnetWFS")
+citation(package = "emodnet.wfs")
 ```
 
 ## Acknowledgements

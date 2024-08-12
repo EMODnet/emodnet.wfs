@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EMODnetWFS: Access EMODnet Web Feature Service data through R
+# emodnet.wfs: Access EMODnet Web Feature Service data through R
 
 <!-- badges: start -->
 
@@ -9,12 +9,12 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R build
-status](https://github.com/EMODnet/EMODnetWFS/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/EMODnetWFS/actions)
+status](https://github.com/EMODnet/emodnet.wfs/workflows/R-CMD-check/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/EMODnet/EMODnetWFS/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/EMODnetWFS/tree/main)
+coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
 <!-- badges: end -->
 
-The goal of EMODnetWFS is to allow interrogation of and access to
+The goal of emodnet.wfs is to allow interrogation of and access to
 [EMODnet geographic vector
 data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
 in R though the [EMODnet Web Feature
@@ -22,24 +22,24 @@ Services](https://emodnet.ec.europa.eu/en/data). [Web Feature services
 (WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way
 geographic information is created, modified and exchanged on the
 Internet and offer direct fine-grained access to geographic information
-at the feature and feature property level. EMODnetWFS aims at offering
+at the feature and feature property level. emodnet.wfs aims at offering
 an user-friendly interface to this rich data.
 
 ## Installation and setup
 
-You can install the development version of EMODnetWFS from GitHub with:
+You can install the development version of emodnet.wfs from GitHub with:
 
 ``` r
 # install.packages("pak")
-pak::pak("EMODnet/EMODnetWFS")
+pak::pak("EMODnet/emodnet.wfs")
 ```
 
-If you want to avoid reading messages from EMODnetWFS such as “WFS
-client created successfully”, set the `"EMODnetWFS.quiet"` option to
+If you want to avoid reading messages from emodnet.wfs such as “WFS
+client created successfully”, set the `"emodnet.wfs.quiet"` option to
 `TRUE`.
 
 ``` r
-options("EMODnetWFS.quiet" = TRUE)
+options("emodnet.wfs.quiet" = TRUE)
 ```
 
 ## Available services
@@ -84,9 +84,6 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-```
-
-``` r
 
 wfs_bio
 #> <WFSClient>
@@ -362,7 +359,7 @@ If you get an unexpected error,
 - Look up the [EMODnet
   monitor](https://monitor.emodnet.eu/resources?lang=en&resource_type=OGC:WFS);
 - Open an issue in this
-  [repository](https://github.com/EMODnet/EMODnetWFS/issues).
+  [repository](https://github.com/EMODnet/emodnet.wfs/issues).
 
 ## Other web services
 
@@ -381,9 +378,6 @@ library(rerddap)
 #> Registered S3 method overwritten by 'hoardr':
 #>   method           from
 #>   print.cache_info httr
-```
-
-``` r
 
 erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
@@ -401,9 +395,6 @@ rerddap::ed_datasets(url = erddap_url)
 #> 8 ""      "/erd… /erddap… /erddap/tab… ""    "/er… TAO/… "This … "/er… "/erddap…
 #> # ℹ 6 more variables: Info <chr>, Background.Info <chr>, RSS <chr>,
 #> #   Email <chr>, Institution <chr>, Dataset.ID <chr>
-```
-
-``` r
 
 rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> # A tibble: 16 × 2
@@ -425,9 +416,6 @@ rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> 14 Vessel traffic density, 2019, Tanker                      EMODPACE_VD_10_Tan…
 #> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
-```
-
-``` r
 
 human_activities_data_info <- rerddap::info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
 human_activities_data_info
@@ -441,15 +429,9 @@ human_activities_data_info
 #>  Variables:  
 #>      vd: 
 #>          Units: seconds
-```
-
-``` r
 
 year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
-```
-
-``` r
 head(year_2020_gridded_data$data)
 #>         x       y                 time vd
 #> 1 -622500 7034500 2020-04-01T00:00:00Z NA
@@ -462,7 +444,7 @@ head(year_2020_gridded_data$data)
 
 ### EMODnetWCS: Access EMODnet Web Coverage Service data
 
-This package EMODnetWFS uses [Web Feature
+This package emodnet.wfs uses [Web Feature
 Services](https://www.ogc.org/standard/wfs/), hence it is limited to
 getting vector data. EMODnet also hosts raster data that can be accessed
 via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/).
@@ -471,12 +453,12 @@ these data available in R.
 
 ## Citation
 
-To cite EMODnetWFS, please use the output from
-`citation(package = "EMODnetWFS")`.
+To cite emodnet.wfs, please use the output from
+`citation(package = "emodnet.wfs")`.
 
 ``` r
-citation(package = "EMODnetWFS")
-#> To cite package 'EMODnetWFS' in publications use:
+citation(package = "emodnet.wfs")
+#> To cite package 'emodnet.wfs' in publications use:
 #> 
 #>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _EMODnetWFS:
 #>   Access EMODnet Web Feature Service data through R_. R package version

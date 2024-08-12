@@ -1,4 +1,4 @@
-Package: EMODnetWFS
+Package: emodnet.wfs
 Title: Access EMODnet Web Feature Service data through R
 Version: 2.0.1.9001
 Authors@R: c(
@@ -15,9 +15,9 @@ Authors@R: c(
 Description: Access and interrogate EMODnet Web Feature Service data
     through R.
 License: MIT + file LICENSE
-URL: https://emodnet.github.io/EMODnetWFS/,
-    https://github.com/EMODnet/EMODnetWFS
-BugReports: https://github.com/EMODnet/EMODnetWFS/issues
+URL: https://emodnet.github.io/emdonet.wfs/,
+    https://github.com/EMODnet/emdonet.wfs
+BugReports: https://github.com/EMODnet/emdonet.wfs/issues
 Depends: 
     R (>= 3.6.0)
 Imports: 
