@@ -12,8 +12,8 @@ Authors@R: c(
     person("Maëlle", "Salmon", , "msmaellesalmon@gmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-2815-0399"))
   )
-Description: Access and interrogate EMODnet Web Feature Service data
-    through R.
+Description: Access and interrogate EMODnet (European Marine Observation and Data Network) 
+    Web Feature Service data through R.
 License: MIT + file LICENSE
 URL: https://emodnet.github.io/emdonet.wfs/,
     https://github.com/EMODnet/emdonet.wfs
