@@ -29,8 +29,10 @@
 # nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
 #' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
+#' For example, including `count = 1` returns the first available feature.
+#' Or `outputFormat = "CSV"` (or `outputFormat = "JSON"`) might help downloading
+#' bigger datasets.
 # nolint end
-#' For example, including `count=1` returns the first available feature.
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
@@ -39,8 +41,7 @@
 #' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' # Layers as character vector
 #' emodnet_get_layers(
 #'   service = "biology",
@@ -60,7 +61,27 @@
 #'   layers = "mediseh_zostera_m_pnt",
 #'   count = 1
 #' )
-#' }
+#'
+#' # Usage of csv output
+#' data <- emodnet_get_layers(
+#'     service = "biology_occurrence_data",
+#'     layers = "abiotic_observations",
+#'     outputFormat = "CSV"
+#' )
+#' str(data[["abiotic_observations"]])
+#'
+#' @section Big downloads:
+#'
+# nolint start: line_length_linter
+#' If a layer is really big (like `"abiotic_observations"` of the
+#' `"biology_occurrence_data"` service),
+#' you might consider a combination of these ideas:
+#' - using [`outputFormat = "CSV"`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature);
+#' - filtering using [`cql_filters`](https://emodnet.github.io/EMODnetWFS/articles/ecql_filtering.html) or
+#' [bounding boxes](https://emodnet.github.io/EMODnetWFS/articles/request-params.html#limit-spatial-extent-using-a-boundary-box)
+#' (possibly splitting the area of interests into several requests);
+#' - Using [EMODnet's download toolbox](https://emodnet.ec.europa.eu/geoviewer/).
+# nolint end
 emodnet_get_layers <- function(wfs = NULL,
                                service = NULL,
                                service_version = NULL,
