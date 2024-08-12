@@ -3,7 +3,7 @@
 specified EMODnet Service. Filtering
 of layer features can also be handled via ECQL language filters."><meta property="og:description" content="Performs an WFS getFeature request for layers from a wfs object or
 specified EMODnet Service. Filtering
-of layer features can also be handled via ECQL language filters."><meta property="og:image" content="https://emodnet.github.io/EMODnetWFS/logo.svg"></head><body>
+of layer features can also be handled via ECQL language filters."><meta property="og:image" content="https://emodnet.github.io/emodnet.wfs/logo.svg"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -23,7 +23,7 @@ of layer features can also be handled via ECQL language filters."><meta property
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ecql_filtering.html">EQCL feature filtering</a></li>
-    <li><a class="dropdown-item" href="../articles/EMODnetWFS.html">EMODnetWFS Case Study: Accessing and mapping EMODnet data</a></li>
+    <li><a class="dropdown-item" href="../articles/emodnet.wfs.html">emodnet.wfs Case Study: Accessing and mapping EMODnet data</a></li>
     <li><a class="dropdown-item" href="../articles/request-params.html">Using request parameters to limit query results</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -137,8 +137,8 @@ an <code>sf</code> out of a single layer request instead of a list of length 1.<
 <p>If a layer is really big (like <code>"abiotic_observations"</code> of the
 <code>"biology_occurrence_data"</code> service),
 you might consider a combination of these ideas:</p><ul><li><p>using <a href="https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature" class="external-link"><code>outputFormat = "CSV"</code></a>;</p></li>
-<li><p>filtering using <a href="https://emodnet.github.io/EMODnetWFS/articles/ecql_filtering.html"><code>cql_filters</code></a> or
-<a href="https://emodnet.github.io/EMODnetWFS/articles/request-params.html#limit-spatial-extent-using-a-boundary-box">bounding boxes</a>
+<li><p>filtering using <a href="https://emodnet.github.io/emodnet.wfs/articles/ecql_filtering.html"><code>cql_filters</code></a> or
+<a href="https://emodnet.github.io/emodnet.wfs/articles/request-params.html#limit-spatial-extent-using-a-boundary-box">bounding boxes</a>
 (possibly splitting the area of interests into several requests);</p></li>
 <li><p>Using <a href="https://emodnet.ec.europa.eu/geoviewer/" class="external-link">EMODnet's download toolbox</a>.</p></li>
 </ul></div>

@@ -40,7 +40,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/ecql_filtering.html">EQCL feature filtering</a></li>
-    <li><a class="dropdown-item" href="../articles/EMODnetWFS.html">EMODnetWFS Case Study: Accessing and mapping EMODnet data</a></li>
+    <li><a class="dropdown-item" href="../articles/emodnet.wfs.html">emodnet.wfs Case Study: Accessing and mapping EMODnet data</a></li>
     <li><a class="dropdown-item" href="../articles/request-params.html">Using request parameters to limit query results</a></li>
   </ul>
 </li>
@@ -72,8 +72,8 @@
 
     
     
-<p>So far, we’ve demonstrated using <code>EMODnetWFS</code> to request
-complete layers.</p>
+<p>So far, we’ve demonstrated using emodnet.wfs to request complete
+layers.</p>
 <p>However, WFS services allows us to be selective with what features
 are returned from the EMODnet servers. For example: using <a href="https://docs.geoserver.org/stable/en/user/tutorials/cql/cql_tutorial.html" class="external-link">CQL
 filters</a>, we can send a query including a filtering clause that will
@@ -128,7 +128,7 @@ and ECQL Tutorial</a> shows examples of defining filters.</p></li>
 <p>First, let’s load the library and start a new WFS client with
 <code>emodnet_init_wfs_client</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emodnet.github.io/EMODnetWFS/">EMODnetWFS</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emodnet.github.io/emdonet.wfs/" class="external-link">emodnet.wfs</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading ISO 19139 XML schemas...</span></span>
@@ -689,8 +689,8 @@ features with <code>shape_length</code> values smaller than 1 for both
 <h3 id="advanced-use">Advanced use<a class="anchor" aria-label="anchor" href="#advanced-use"></a>
 </h3>
 <p>There is more that can accomplished by using the EMODnet WFS services
-than downloading data. The EMODnetWFS package is built on top of the <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> library, meaning that
-all the functionalities of this package are available for EMODnetWFS.
+than downloading data. The emodnet.wfs package is built on top of the <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> library, meaning that
+all the functionalities of this package are available for emodnet.wfs.
 The ows4R returns a special type of R object called R6. You can learn
 more in Hadley Wickham’s chapter on R6 Objects of the <a href="https://adv-r.hadley.nz/r6.html" class="external-link">Advance R book</a>.</p>
 <p>For instance: it is not efficient to read a large dataset into R just
