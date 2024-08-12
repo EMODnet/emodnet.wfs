@@ -1,14 +1,14 @@
-# EMODnetWFS (development version)
+# emodnet.wfs (development version)
 
-* Added ability to pass vendor parameter to `EMODnetWFS::emodnet_get_layers()` queries (#88).
+* Added ability to pass vendor parameter to `emodnet.wfs::emodnet_get_layers()` queries (#88).
 * Added memoising (caching during each R session) of the functions getting services
  and layers information (#52).
 
-# EMODnetWFS 2.0.1
+# emodnet.wfs 2.0.1
 
 * Introduced better handling of server response errors.
 
-# EMODnetWFS 2.0.0
+# emodnet.wfs 2.0.0
 
 
 * NEW FEATURE: Added `ecql` filtering capability and ability to interrogate feature attribute (see relevant vignette).

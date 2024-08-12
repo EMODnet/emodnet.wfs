@@ -1,4 +1,4 @@
-url: "https://emodnet.github.io/EMODnetWFS/"
+url: "https://emodnet.github.io/emodnet.wfs/"
 
 home:
   title: Access EMODnet Web Feature Service data through R

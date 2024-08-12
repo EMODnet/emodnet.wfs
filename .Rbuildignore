@@ -1,4 +1,4 @@
-^EMODnetWFS\.Rproj$
+^emodnet.wfs\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README\.md$
@@ -16,5 +16,5 @@
 ^Meta$
 ^attic$
 ^codemeta\.json$
-^vignettes/EMODnetWFS\.Rmd\.orig$
+^vignettes/emodnet.wfs\.Rmd\.orig$
 ^\.lintr$

@@ -1,6 +1,6 @@
-# Contributing to EMODnetWFS
+# Contributing to emodnet.wfs
 
-This outlines how to propose a change to EMODnetWFS. 
+This outlines how to propose a change to emodnet.wfs. 
 
 ## Fixing typos
 
@@ -16,7 +16,7 @@ If you’ve found a bug, please file an issue that illustrates the bug with a mi
 
 ### Pull request process
 
-*   Fork the package and clone onto your computer. If you haven't done this before, we recommend using `usethis::create_from_github("EMODnet/EMODnetWFS", fork = TRUE)`.
+*   Fork the package and clone onto your computer. If you haven't done this before, we recommend using `usethis::create_from_github("EMODnet/emodnet.wfs", fork = TRUE)`.
 
 *   Install all development dependencies with `pak::pak()`, and then make sure the package passes R CMD check by running `devtools::check()`. 
     If R CMD check doesn't pass cleanly, it's a good idea to ask for help before continuing. 

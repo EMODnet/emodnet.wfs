@@ -68,6 +68,6 @@ jobs:
         run: |
           options(crayon.enabled = TRUE)
           install.packages(".", repos = NULL, type="source")
-          test_service <- lapply(EMODnetWFS::emodnet_wfs()$service_name, EMODnetWFS::emodnet_init_wfs_client);
+          test_service <- lapply(emodnet.wfs::emodnet_wfs()$service_name, emodnet.wfs::emodnet_init_wfs_client);
           testthat::test_that("All services work", {testthat::expect_equal(class(test_service), "list")})
         shell: Rscript {0}

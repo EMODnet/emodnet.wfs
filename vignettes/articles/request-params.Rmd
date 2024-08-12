@@ -18,10 +18,10 @@ knitr::opts_chunk$set(
 
 ## Initialise a WFS client
 
-Let's start by loading `EMODnetWFS` and initialising a WFS client to the `human_activities` WFS service.
+Let's start by loading emodnet.wfs and initialising a WFS client to the `human_activities` WFS service.
 
 ```{r setup}
-library(EMODnetWFS)
+library(emodnet.wfs)
 
 wfs <- emodnet_init_wfs_client("human_activities")
 ```
@@ -181,7 +181,7 @@ WFS vendor parameters are additonal, non-standard request parameters defined by 
 
 The majority of EMODnet services are GeoServer WFS implementations which support a variety of vendor-specific WFS parameters.
 
-One of these are **`cql_filters`**. These are handled explicitly through the `EMODnetWFS` package through the `cql_filter` argument in `emodnet_get_layers()` and are documented in detail in `article("ecql_filtering")`.
+One of these are **`cql_filters`**. These are handled explicitly through the emodnet.wfs package through the `cql_filter` argument in `emodnet_get_layers()` and are documented in detail in `article("ecql_filtering")`.
 
 For additional vendor parameters available through GeoServer implementations please refer to the [WFS vendor parameters documentatio](https://docs.geoserver.org/latest/en/user/services/wfs/vendor.html)
 

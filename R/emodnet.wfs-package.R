@@ -8,16 +8,16 @@
 NULL
 
 emodnetwfs_collaborators <- function() {
-  readLines(system.file("collaborators.txt", package = "EMODnetWFS"))
+  readLines(system.file("collaborators.txt", package = "emodnet.wfs"))
 }
 
 emodnetwfs_user_agent <- function() {
-  version <- as.character(utils::packageVersion("EMODnetWFS"))
+  version <- as.character(utils::packageVersion("emodnet.wfs"))
 
   if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
     return(
       sprintf(
-        "EMODnetWFS R package %s CI https://github.com/EMODnet/EMODnetWFS",
+        "emodnet.wfs R package %s CI https://github.com/EMODnet/emodnet.wfs",
         version
       )
     )
@@ -28,14 +28,14 @@ emodnetwfs_user_agent <- function() {
     gh_username %in% emodnetwfs_collaborators()) {
     return(
       sprintf(
-        "EMODnetWFS R package %s DEV https://github.com/EMODnet/EMODnetWFS",
+        "emodnet.wfs R package %s DEV https://github.com/EMODnet/emodnet.wfs",
         version
       )
     )
   }
 
   sprintf(
-    "EMODnetWFS R package %s https://github.com/EMODnet/EMODnetWFS",
+    "emodnet.wfs R package %s https://github.com/EMODnet/emodnet.wfs",
     version
   )
 }
@@ -43,5 +43,5 @@ emodnetwfs_user_agent <- function() {
 globalVariables(c("layer_name", "n"))
 
 release_bullets <- function() { # nocov start
-  c('update vignette with knitr::knit("vignettes/EMODnetWFS.Rmd.orig", output = "vignettes/EMODnetWFS.Rmd")') # nolint: line_length_linter
+  c('update vignette with knitr::knit("vignettes/emodnet.wfs.Rmd.orig", output = "vignettes/emodnet.wfs.Rmd")') # nolint: line_length_linter
 } # nocov end
