@@ -5,16 +5,16 @@ test_that("get layers works on server", {
     wfs = wfs,
     layers = c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
   )
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
-
-  expect_length(l_crs, 1L)
-  expect_identical(l_crs, 4326L)
   expect_type(l_data, "list")
   expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
   expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
   expect_gt(nrow(l_data[[1]]), 0L)
   expect_gt(nrow(l_data[[2]]), 0L)
+
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 4326L)
 })
 
 test_that("crs transform works from server", {
@@ -36,16 +36,17 @@ test_that("get layers works on wfs object", {
   wfs <- create_biology_wfs()
   layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
   l_data <- emodnet_get_layers(wfs = wfs, layers = layers)
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
-
-  expect_length(l_crs, 1L)
-  expect_identical(l_crs, 4326L)
   expect_type(l_data, "list")
   expect_length(l_data, 2L)
   expect_s3_class(l_data[[1]], class = c("sf", "data.frame"))
   expect_s3_class(l_data[[2]], class = c("sf", "data.frame"))
   expect_gt(nrow(l_data[[1]]), 0L)
   expect_gt(nrow(l_data[[2]]), 0L)
+
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+
+  expect_length(l_crs, 1L)
+  expect_identical(l_crs, 4326L)
 })
 
 test_that("crs transform works from wfs object", {
