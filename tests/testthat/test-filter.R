@@ -8,6 +8,7 @@ test_that("categorical filters work -- biology", {
       cql_filter = "country='Israele'",
       reduce_layers = TRUE
     )
+  expect_identical(unique(simple_filter_sf$country), "Israele")
 
     or_filter_sf <- emodnet_get_layers(
       wfs = wfs,
@@ -16,7 +17,6 @@ test_that("categorical filters work -- biology", {
       reduce_layers = TRUE
     )
   })
-  expect_identical(unique(simple_filter_sf$country), "Israele")
   expect_identical(unique(or_filter_sf$country), c("Israele", "Malta"))
 })
 
