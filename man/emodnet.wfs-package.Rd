@@ -6,14 +6,14 @@
 \alias{emodnet.wfs-package}
 \title{emodnet.wfs: Access EMODnet Web Feature Service data through R}
 \description{
-Access and interrogate EMODnet Web Feature Service data through R.
+Access and interrogate EMODnet (European Marine Observation and Data Network) Web Feature Service data through R.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://emodnet.github.io/emdonet.wfs/}
-  \item \url{https://github.com/EMODnet/emdonet.wfs}
-  \item Report bugs at \url{https://github.com/EMODnet/emdonet.wfs/issues}
+  \item \url{https://emodnet.github.io/emodnet.wfs/}
+  \item \url{https://github.com/EMODnet/emodnet.wfs}
+  \item Report bugs at \url{https://github.com/EMODnet/emodnet.wfs/issues}
 }
 
 }
