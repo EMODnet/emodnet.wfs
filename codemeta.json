@@ -4,7 +4,7 @@
   "identifier": "emodnet.wfs",
   "description": "Access and interrogate EMODnet (European Marine Observation and Data Network) Web Feature Service data through R.",
   "name": "emodnet.wfs: Access EMODnet Web Feature Service data through R",
-  "relatedLink": ["https://emodnet.github.io/emodnet.wfs/", "https://github.com/EMODnet/emodnet.wfs"],
+  "relatedLink": "https://emodnet.github.io/emodnet.wfs/",
   "codeRepository": "https://github.com/EMODnet/emodnet.wfs",
   "issueTracker": "https://github.com/EMODnet/emodnet.wfs/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "author": [
     {
       "@type": "Person",
@@ -352,7 +352,7 @@
     },
     "SystemRequirements": "C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=\n    4.8.0)"
   },
-  "fileSize": "3359.586KB",
+  "fileSize": "3359.592KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -373,8 +373,8 @@
           "familyName": "Salmon"
         }
       ],
-      "name": "{EMODnetWFS}: Access EMODnet Web Feature Service data through R",
-      "url": "https://github.com/EMODnet/EMODnetWFS",
+      "name": "{emodnet.wfs}: Access EMODnet Web Feature Service data through R",
+      "url": "https://github.com/EMODnet/emodnet.wfs",
       "description": "R package version 2.0.1.9001. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund"
     }
   ],
