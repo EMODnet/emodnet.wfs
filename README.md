@@ -11,6 +11,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![R-CMD-check](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
+[![Codecov test
+coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to
