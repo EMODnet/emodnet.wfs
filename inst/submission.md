@@ -109,7 +109,8 @@ The package allow interrogation of and access to EMODnet’s, European Marine Ob
 
 -   Who is the target audience and what are scientific applications of this package?
 
-The target audience of the package are researchers like marine ecologists, that might need EMODnet geographic vector data.
+The target audience of the package are EMODnet users that might need programmatic access to EMODnet's geographic vector data. 
+The package allows to include EMODnet vector data into scientific pipelines without needing to manually explore and download data from the [EMODnet Geographic Viewer](https://emodnet.ec.europa.eu/geoviewer/).
 The data covers seven disciplinary themes (bathymetry, geology, physics, chemistry, biology, seabed habitats and human activities).
 
 -   Are there other R packages that accomplish the same thing? If so, how does yours differ or meet [our criteria for best-in-category](https://ropensci.github.io/dev_guide/policies.html#overlap)?
