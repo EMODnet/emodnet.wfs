@@ -1,4 +1,4 @@
-# emodnet.wfs (development version)
+# emodnet.wfs 2.0.2
 
 * Added ability to pass vendor parameter to `emodnet.wfs::emodnet_get_layers()` queries (#88).
 * Added memoising (caching during each R session) of the functions getting services
