@@ -10,4 +10,5 @@ bibentry(bibtype = "Manual",
          ),
          year = year,
          note = note,
-         url = "https://github.com/EMODnet/emodnet.wfs")
+         url = "https://github.com/EMODnet/emodnet.wfs",
+         doi = "10.14284/679")
