@@ -18,3 +18,4 @@
 ^codemeta\.json$
 ^vignettes/emodnet.wfs\.Rmd\.orig$
 ^\.lintr$
+^inst/submission\.md$
