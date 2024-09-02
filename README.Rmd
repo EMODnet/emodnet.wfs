@@ -196,4 +196,3 @@ citation(package = "emodnet.wfs")
 ## Acknowledgements
 
 This package was started by the Sheffield University during the EMODnet Biology WP4 data products workshop in June 2020.
-You can read the [product story on the EMODnet-Biology portal](https://emodnet.ec.europa.eu/geonetwork/)

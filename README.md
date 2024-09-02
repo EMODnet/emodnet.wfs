@@ -11,6 +11,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![R-CMD-check](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EMODnet/emodnet.wfs/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
+[![Codecov test
+coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to
@@ -460,28 +462,26 @@ To cite emodnet.wfs, please use the output from
 citation(package = "emodnet.wfs")
 #> To cite package 'emodnet.wfs' in publications use:
 #> 
-#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _EMODnetWFS:
+#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs:
 #>   Access EMODnet Web Feature Service data through R_. R package version
 #>   2.0.1.9001. Integrated data products created under the European
 #>   Marine Observation Data Network (EMODnet) Biology project
 #>   (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the
 #>   European Union under Regulation (EU) No 508/2014 of the European
 #>   Parliament and of the Council of 15 May 2014 on the European Maritime
-#>   and Fisheries Fund, <https://github.com/EMODnet/EMODnetWFS>.
+#>   and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
-#>     title = {{EMODnetWFS}: Access EMODnet Web Feature Service data through R},
+#>     title = {{emodnet.wfs}: Access EMODnet Web Feature Service data through R},
 #>     author = {Anna Krystalli and Salvador Fernández-Bejarano and Maëlle Salmon},
 #>     note = {R package version 2.0.1.9001. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
-#>     url = {https://github.com/EMODnet/EMODnetWFS},
+#>     url = {https://github.com/EMODnet/emodnet.wfs},
 #>   }
 ```
 
 ## Acknowledgements
 
 This package was started by the Sheffield University during the EMODnet
-Biology WP4 data products workshop in June 2020. You can read the
-[product story on the EMODnet-Biology
-portal](https://emodnet.ec.europa.eu/geonetwork/)
+Biology WP4 data products workshop in June 2020.
