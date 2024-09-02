@@ -13,6 +13,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs/tree/main)
 [![Codecov test
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs)
+[![DOI](https://zenodo.org/badge/DOI/10.14284/679.svg)](https://doi.org/10.14284/679)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to
@@ -463,9 +464,10 @@ citation(package = "emodnet.wfs")
 #> To cite package 'emodnet.wfs' in publications use:
 #> 
 #>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs:
-#>   Access EMODnet Web Feature Service data through R_. R package version
-#>   2.0.1.9001. Integrated data products created under the European
-#>   Marine Observation Data Network (EMODnet) Biology project
+#>   Access EMODnet Web Feature Service data through R_. doi:10.14284/679
+#>   <https://doi.org/10.14284/679>, R package version 2.0.2.9000.
+#>   Integrated data products created under the European Marine
+#>   Observation Data Network (EMODnet) Biology project
 #>   (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the
 #>   European Union under Regulation (EU) No 508/2014 of the European
 #>   Parliament and of the Council of 15 May 2014 on the European Maritime
@@ -476,8 +478,9 @@ citation(package = "emodnet.wfs")
 #>   @Manual{,
 #>     title = {{emodnet.wfs}: Access EMODnet Web Feature Service data through R},
 #>     author = {Anna Krystalli and Salvador Fernández-Bejarano and Maëlle Salmon},
-#>     note = {R package version 2.0.1.9001. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
+#>     note = {R package version 2.0.2.9000. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
 #>     url = {https://github.com/EMODnet/emodnet.wfs},
+#>     doi = {10.14284/679},
 #>   }
 ```
 
