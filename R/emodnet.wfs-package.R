@@ -40,7 +40,7 @@ emodnetwfs_user_agent <- function() {
   )
 }
 
-globalVariables(c("layer_name", "n"))
+utils::globalVariables(c("layer_name", "n"))
 
 release_bullets <- function() { # nocov start
   c('update vignette with knitr::knit("vignettes/emodnet.wfs.Rmd.orig", output = "vignettes/emodnet.wfs.Rmd")') # nolint: line_length_linter
