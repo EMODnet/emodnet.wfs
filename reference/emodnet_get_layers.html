@@ -97,14 +97,14 @@ are returned with original crs.</p></dd>
 Extended Common Query Language (ECQL) filtering statements
 (<a href="https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html" class="external-link">https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html</a>).
 Should be one of:</p><ul><li><p>character string or character vector of length 1.
-Filter will be recycled across all layers requested</p></li>
+Filter will be recycled across all layers requested.</p></li>
 <li><p>character vector of length equal to the length of layers.
 Filter will be matched to layers sequentially.
 Elements containing <code>NA</code> are ignored</p></li>
 <li><p>named character vector. Each filter will be applied to the layer
 corresponding to the filter name.
 Filters with names that do not correspond to any layers are ignored.
-Layers without corresponding filters are returned whole</p></li>
+Layers without corresponding filters are returned whole.</p></li>
 </ul></dd>
 
 
