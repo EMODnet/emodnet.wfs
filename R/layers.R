@@ -14,17 +14,17 @@
 #' Extended Common Query Language (ECQL) filtering statements
 #' (<https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html>).
 #' Should be one of:
-#'  \itemize{
-#'   \item{character string or character vector of length 1.
-#'   Filter will be recycled across all layers requested}
-#'   \item{character vector of length equal to the length of layers.
+#'
+#'  - character string or character vector of length 1.
+#'   Filter will be recycled across all layers requested.
+#'  - character vector of length equal to the length of layers.
 #'   Filter will be matched to layers sequentially.
-#'   Elements containing `NA` are ignored}
-#'   \item{named character vector. Each filter will be applied to the layer
+#'   Elements containing `NA` are ignored
+#'   - named character vector. Each filter will be applied to the layer
 #'   corresponding to the filter name.
 #'   Filters with names that do not correspond to any layers are ignored.
-#'   Layers without corresponding filters are returned whole }
-#' }
+#'   Layers without corresponding filters are returned whole.
+#'
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
 # nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
