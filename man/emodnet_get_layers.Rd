@@ -37,15 +37,15 @@ Extended Common Query Language (ECQL) filtering statements
 (\url{https://docs.geoserver.org/stable/en/user/filter/ecql_reference.html}).
 Should be one of:
 \itemize{
-\item{character string or character vector of length 1.
-Filter will be recycled across all layers requested}
-\item{character vector of length equal to the length of layers.
+\item character string or character vector of length 1.
+Filter will be recycled across all layers requested.
+\item character vector of length equal to the length of layers.
 Filter will be matched to layers sequentially.
-Elements containing \code{NA} are ignored}
-\item{named character vector. Each filter will be applied to the layer
+Elements containing \code{NA} are ignored
+\item named character vector. Each filter will be applied to the layer
 corresponding to the filter name.
 Filters with names that do not correspond to any layers are ignored.
-Layers without corresponding filters are returned whole }
+Layers without corresponding filters are returned whole.
 }}
 
 \item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.}
