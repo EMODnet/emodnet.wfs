@@ -1,5 +1,5 @@
 ---
-title: "EMODnetWFS Case Study: Accessing and mapping EMODnet data"
+title: "Accessing and mapping EMODnet data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{API details}
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 	collapse = TRUE,
 	comment = "#>",
 	echo = TRUE, eval = TRUE, warning = FALSE,
-	fig.path = "EMODnetWFS-"
+	fig.path = "emodnet.wfs-"
 )
 ```
 
@@ -24,10 +24,10 @@ The package was designed to make EMODnet vector data layers easily accessible in
 ## Data Product
 ### Installation
 
-You can install the development version of `EMODnetWFS` from GitHub with:
+You can install the development version of emodnet.wfs from GitHub with:
 
 ```{r install, eval = FALSE}
-remotes::install_github("EMODnet/EMODnetWFS")
+pak::pak("EMODnet/emodnet.wfs")
 ```
 
 ### Explore the EMODnet WFS services with R
@@ -42,12 +42,12 @@ install.packages(c("sf", "dplyr", "mapview"))
 
 
 
-With the `EMODnetWFS` package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
+With the emodnet.wfs package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
 Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
 
 ```{r error = FALSE, warning = FALSE, message = FALSE}
-library(EMODnetWFS)
+library(emodnet.wfs)
 library(mapview)
 library(dplyr)
 library(sf)
@@ -80,7 +80,7 @@ emodnet_get_layer_info(
 
 
 
-We are now ready to read the layers into R with `emodnet_get_layers()`. EMODnetWFS reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
+We are now ready to read the layers into R with `emodnet_get_layers()`. emodnet.wfs reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")`. The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 ```{r}
 habitats_directive_layers <- emodnet_get_layers(
@@ -137,4 +137,4 @@ Tim Appelhans, Florian Detsch, Christoph Reudenbach and Stefan Woellauer (2020).
 
 Please cite this package as:
 
-Anna Krystalli (2020). EMODnetWFS: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/EMODnetWFS. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
+Anna Krystalli (2020). emodnet.wfs: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/emodnet.wfs. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
