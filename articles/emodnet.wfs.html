@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>emodnet.wfs Case Study: Accessing and mapping EMODnet data • emodnet.wfs</title>
+<title>Accessing and mapping EMODnet data • emodnet.wfs</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="emodnet.wfs Case Study: Accessing and mapping EMODnet data">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Accessing and mapping EMODnet data">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -40,7 +40,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/ecql_filtering.html">EQCL feature filtering</a></li>
-    <li><a class="dropdown-item" href="../articles/emodnet.wfs.html">emodnet.wfs Case Study: Accessing and mapping EMODnet data</a></li>
+    <li><a class="dropdown-item" href="../articles/emodnet.wfs.html">Accessing and mapping EMODnet data</a></li>
     <li><a class="dropdown-item" href="../articles/request-params.html">Using request parameters to limit query results</a></li>
   </ul>
 </li>
@@ -63,7 +63,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.svg" class="logo" alt=""><h1>emodnet.wfs Case Study: Accessing and mapping EMODnet data</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Accessing and mapping EMODnet data</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/EMODnet/emodnet.wfs/blob/main/vignettes/emodnet.wfs.Rmd" class="external-link"><code>vignettes/emodnet.wfs.Rmd</code></a></small>
@@ -170,38 +170,33 @@ WFS client can be created by passing the corresponding
 client are consulted with <code><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">seabed_wfs_client</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"seabed_habitats_general_datasets_and_products"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading ISO 19139 XML schemas...</span></span>
-<span><span class="co">#&gt; Loading ISO 19115 codelists...</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs"</span></span>
-<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
+<span></span>
 <span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">seabed_wfs_client</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 71 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 72 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
-<span><span class="co">#&gt;    data_source service_name        service_url layer_name title</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;               &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;</span></span>
-<span><span class="co">#&gt;  1 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  2 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  3 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  4 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  5 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  6 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs seabed_habitats_ge… https://ow… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt;  9 emodnet_wfs seabed_habitats_ge… https://ow… carib_eus… 2023…</span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs seabed_habitats_ge… https://ow… biogenic_… Biog…</span></span>
-<span><span class="co">#&gt; # ℹ 61 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 4 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   format &lt;chr&gt;, layer_namespace &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt;    data_source service_name             service_url layer_name title abstract class format layer_namespace</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;                    &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;          </span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs seabed_habitats_general… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs seabed_habitats_general… https://ow… carib_eus… 2023… "Output… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs seabed_habitats_general… https://ow… biogenic_… Biog… "This l… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt; # ℹ 62 more rows</span></span></code></pre></div>
 <p>Each layer is explained in the <code>abstract</code> column. We can
 see several layers with the information provided by the EU member states
 for the <a href="https://www.eea.europa.eu/data-and-maps/data/article-17-database-habitats-directive-92-43-eec-2" class="external-link">Habitats
 Directive 92/43/EEC reporting</a>. We will select the layers about
 coastal lagoons, mudflats and sandbanks with their respective
 <code>layer_name</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">habitats_directive_layer_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"art17_hab_1110"</span>, <span class="st">"art17_hab_1140"</span>, <span class="st">"art17_hab_1150"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_layer_info</a></span><span class="op">(</span></span>
@@ -210,13 +205,11 @@ coastal lagoons, mudflats and sandbanks with their respective
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
-<span><span class="co">#&gt;   data_source service_name         service_url layer_name title</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;</span></span>
-<span><span class="co">#&gt; 1 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt; 2 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt; 3 emodnet_wfs https://ows.emodnet… seabed_hab… art17_hab… 2013…</span></span>
-<span><span class="co">#&gt; # ℹ 4 more variables: abstract &lt;chr&gt;, class &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   format &lt;chr&gt;, layer_namespace &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt;   data_source service_name              service_url layer_name title abstract class format layer_namespace</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;                     &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;          </span></span>
+<span><span class="co">#&gt; 1 emodnet_wfs https://ows.emodnet-seab… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt; 2 emodnet_wfs https://ows.emodnet-seab… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   </span></span>
+<span><span class="co">#&gt; 3 emodnet_wfs https://ows.emodnet-seab… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open</span></span></code></pre></div>
 <p>We are now ready to read the layers into R with
 <code><a href="../reference/emodnet_get_layers.html">emodnet_get_layers()</a></code>. emodnet.wfs reads the geometries as
 simple features (See <code>sf</code> package) transformed to <a href="https://epsg.io/4326" class="external-link">4326</a> by default. Specifying another map
@@ -225,7 +218,7 @@ projection is possible by passing a EPGS code or projection string with
 <code>reduce_layers = TRUE</code> stack all the layers in one single
 tibble. Default is FALSE and returns a list of sf objects, one per
 layer.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">habitats_directive_layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">seabed_wfs_client</span>,</span>
 <span>  layers <span class="op">=</span> <span class="va">habitats_directive_layer_names</span>,</span>
@@ -233,24 +226,23 @@ layer.</p>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "sf"         "data.frame"</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] "sf"         "data.frame"</span></span>
+<span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 221</span></span>
 <span><span class="co">#&gt; Columns: 9</span></span>
-<span><span class="co">#&gt; $ gml_id              &lt;chr&gt; "art17_hab_1110.13", "art17_hab_1110.22", "art17_hab_1110.25", "ar…</span></span>
-<span><span class="co">#&gt; $ habitat_code        &lt;chr&gt; "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1…</span></span>
-<span><span class="co">#&gt; $ ms                  &lt;chr&gt; "DK", "ES", "ES", "PT", "PT", "PL", "DK", "FR", "UK", "BE", "BE", …</span></span>
-<span><span class="co">#&gt; $ region              &lt;chr&gt; "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL", "MBAL", "MATL", "MAT…</span></span>
-<span><span class="co">#&gt; $ cs_ms               &lt;chr&gt; "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U1-", "U1x", "U1x", "U1x…</span></span>
-<span><span class="co">#&gt; $ country_code        &lt;chr&gt; "Denmark", "Spain", "Spain", "Portugal", "Portugal", "Poland", "De…</span></span>
-<span><span class="co">#&gt; $ habitat_code_uri    &lt;chr&gt; "http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110", …</span></span>
-<span><span class="co">#&gt; $ habitat_description &lt;chr&gt; "Sandbanks which are slightly covered by sea water all the time", …</span></span>
-<span><span class="co">#&gt; $ geom                &lt;MULTISURFACE [m]&gt; MULTISURFACE (POLYGON ((420..., MULTISURFACE (POLYGON…</span></span></code></pre></div>
+<span><span class="co">#&gt; $ gml_id              &lt;chr&gt; "art17_hab_1110.13", "art17_hab_1110.22", "art17_hab_1110.25", "art17_hab_11…</span></span>
+<span><span class="co">#&gt; $ habitat_code        &lt;chr&gt; "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110", "1110", "111…</span></span>
+<span><span class="co">#&gt; $ ms                  &lt;chr&gt; "DK", "ES", "ES", "PT", "PT", "PL", "DK", "FR", "UK", "BE", "BE", "GR", "DE"…</span></span>
+<span><span class="co">#&gt; $ region              &lt;chr&gt; "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL", "MBAL", "MATL", "MATL", "ATL",…</span></span>
+<span><span class="co">#&gt; $ cs_ms               &lt;chr&gt; "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U1-", "U1x", "U1x", "U1x", "U1x", …</span></span>
+<span><span class="co">#&gt; $ country_code        &lt;chr&gt; "Denmark", "Spain", "Spain", "Portugal", "Portugal", "Poland", "Denmark", "F…</span></span>
+<span><span class="co">#&gt; $ habitat_code_uri    &lt;chr&gt; "http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110", "http://dd…</span></span>
+<span><span class="co">#&gt; $ habitat_description &lt;chr&gt; "Sandbanks which are slightly covered by sea water all the time", "Sandbanks…</span></span>
+<span><span class="co">#&gt; $ geom                &lt;MULTISURFACE [m]&gt; MULTISURFACE (POLYGON ((420..., MULTISURFACE (POLYGON ((195...,…</span></span></code></pre></div>
 <p>Run the following code to have a quick look at the layers
 geometries</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Transform to Polygon geometry type from Multisurface</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry_type.html" class="external-link">st_geometry_type</a></span><span class="op">(</span><span class="va">habitats_directive_layers</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="st">"MULTISURFACE"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">habitats_directive_layers</span> <span class="op">&lt;-</span> <span class="va">habitats_directive_layers</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
@@ -265,7 +257,7 @@ geometries</p>
 <span><span class="co">#&gt; Error in loadNamespace(name): there is no package called 'webshot'</span></span></code></pre></div>
 <p>EMODnet provides also physics, chemistry, biological or bathymetry
 data. Explore all the layers available with.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
