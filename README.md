@@ -14,6 +14,8 @@ coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)
 [![Codecov test
 coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs)
 [![DOI](https://zenodo.org/badge/DOI/10.14284/679.svg)](https://doi.org/10.14284/679)
+[![Status at rOpenSci Software Peer
+Review](https://badges.ropensci.org/653_status.svg)](https://github.com/ropensci/software-review/issues/653)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to
