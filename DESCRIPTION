@@ -41,7 +41,6 @@ Suggests:
     mapview,
     readr,
     rmarkdown,
-    skimr,
     testthat (>= 3.1.2),
     testthis,
     withr
@@ -50,7 +49,7 @@ VignetteBuilder:
 Remotes: 
     eblondel/ows4R
 Config/Needs/readme: rerddap
-Config/Needs/website: webshot
+Config/Needs/website: webshot, skimr
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
