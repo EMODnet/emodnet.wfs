@@ -1,0 +1,478 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "emodnet.wfs" in publications use:'
+type: software
+license: MIT
+title: 'emodnet.wfs: Access EMODnet Web Feature Service data through R'
+version: 2.0.2.9000
+doi: 10.14284/679
+abstract: Access and interrogate EMODnet (European Marine Observation and Data Network)
+  Web Feature Service data through R.
+authors:
+- family-names: Krystalli
+  given-names: Anna
+  email: annakrystalli@googlemail.com
+  orcid: https://orcid.org/0000-0002-2378-4915
+- family-names: Fernández-Bejarano
+  given-names: Salvador
+  email: salvador.fernandez@vliz.be
+  orcid: https://orcid.org/0000-0003-0535-7677
+- family-names: Salmon
+  given-names: Maëlle
+  email: msmaellesalmon@gmail.com
+  orcid: https://orcid.org/0000-0002-2815-0399
+preferred-citation:
+  type: manual
+  title: 'emodnet.wfs: Access EMODnet Web Feature Service data through R'
+  authors:
+  - family-names: Krystalli
+    given-names: Anna
+    email: annakrystalli@googlemail.com
+    orcid: https://orcid.org/0000-0002-2378-4915
+  - family-names: Fernández-Bejarano
+    given-names: Salvador
+    email: salvador.fernandez@vliz.be
+    orcid: https://orcid.org/0000-0003-0535-7677
+  - family-names: Salmon
+    given-names: Maëlle
+    email: msmaellesalmon@gmail.com
+    orcid: https://orcid.org/0000-0002-2815-0399
+  notes: R package version 2.0.2.9000. Integrated data products created under the
+    European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013),
+    funded by the by the European Union under Regulation (EU) No 508/2014 of the European
+    Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries
+    Fund
+  url: https://github.com/EMODnet/emodnet.wfs
+  doi: 10.14284/679
+repository-code: https://github.com/EMODnet/emodnet.wfs
+url: https://emodnet.github.io/emodnet.wfs/
+contact:
+- family-names: Fernández-Bejarano
+  given-names: Salvador
+  email: salvador.fernandez@vliz.be
+  orcid: https://orcid.org/0000-0003-0535-7677
+keywords:
+- biology
+- dataproducts
+- emodnet
+- marine-data
+- rstats
+- wfs
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  version: '>= 3.6.0'
+- type: software
+  title: checkmate
+  abstract: 'checkmate: Fast and Versatile Argument Checks'
+  notes: Imports
+  url: https://mllg.github.io/checkmate/
+  repository: https://CRAN.R-project.org/package=checkmate
+  authors:
+  - family-names: Lang
+    given-names: Michel
+    email: michellang@gmail.com
+    orcid: https://orcid.org/0000-0001-9754-0393
+  year: '2024'
+  doi: 10.32614/CRAN.package.checkmate
+- type: software
+  title: cli
+  abstract: 'cli: Helpers for Developing Command Line Interfaces'
+  notes: Imports
+  url: https://cli.r-lib.org
+  repository: https://CRAN.R-project.org/package=cli
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.cli
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Imports
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2024'
+  doi: 10.32614/CRAN.package.dplyr
+- type: software
+  title: lifecycle
+  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  notes: Imports
+  url: https://lifecycle.r-lib.org/
+  repository: https://CRAN.R-project.org/package=lifecycle
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2024'
+  doi: 10.32614/CRAN.package.lifecycle
+- type: software
+  title: magrittr
+  abstract: 'magrittr: A Forward-Pipe Operator for R'
+  notes: Imports
+  url: https://magrittr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=magrittr
+  authors:
+  - family-names: Bache
+    given-names: Stefan Milton
+    email: stefan@stefanbache.dk
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.magrittr
+- type: software
+  title: memoise
+  abstract: 'memoise: ''Memoisation'' of Functions'
+  notes: Imports
+  url: https://memoise.r-lib.org
+  repository: https://CRAN.R-project.org/package=memoise
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Cook
+    given-names: Daniel
+    email: danielecook@gmail.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.memoise
+- type: software
+  title: ows4R
+  abstract: 'ows4R: Interface to OGC Web-Services (OWS)'
+  notes: Imports
+  url: https://eblondel.github.io/ows4R/
+  repository: https://CRAN.R-project.org/package=ows4R
+  authors:
+  - family-names: Blondel
+    given-names: Emmanuel
+    email: emmanuel.blondel1@gmail.com
+    orcid: https://orcid.org/0000-0002-5870-5762
+  year: '2024'
+  doi: 10.32614/CRAN.package.ows4R
+  version: '>= 0.4'
+- type: software
+  title: purrr
+  abstract: 'purrr: Functional Programming Tools'
+  notes: Imports
+  url: https://purrr.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=purrr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.purrr
+- type: software
+  title: rlang
+  abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
+  notes: Imports
+  url: https://rlang.r-lib.org
+  repository: https://CRAN.R-project.org/package=rlang
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+  doi: 10.32614/CRAN.package.rlang
+- type: software
+  title: sf
+  abstract: 'sf: Simple Features for R'
+  notes: Imports
+  url: https://r-spatial.github.io/sf/
+  repository: https://r-spatial.r-universe.dev
+  authors:
+  - family-names: Pebesma
+    given-names: Edzer
+    email: edzer.pebesma@uni-muenster.de
+    orcid: https://orcid.org/0000-0001-8049-7069
+  year: '2024'
+  doi: 10.32614/CRAN.package.sf
+- type: software
+  title: tibble
+  abstract: 'tibble: Simple Data Frames'
+  notes: Imports
+  url: https://tibble.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=tibble
+  authors:
+  - family-names: Müller
+    given-names: Kirill
+    email: kirill@cynkra.com
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.tibble
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+- type: software
+  title: whoami
+  abstract: 'whoami: Username, Full Name, Email Address, ''GitHub'' Username of the
+    Current User'
+  notes: Imports
+  url: https://github.com/r-lib/whoami#readme
+  repository: https://CRAN.R-project.org/package=whoami
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.whoami
+- type: software
+  title: covr
+  abstract: 'covr: Test Coverage for Packages'
+  notes: Suggests
+  url: https://covr.r-lib.org
+  repository: https://CRAN.R-project.org/package=covr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    email: james.f.hester@gmail.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.covr
+- type: software
+  title: httptest
+  abstract: 'httptest: A Test Environment for HTTP Requests'
+  notes: Suggests
+  url: https://enpiar.com/r/httptest/
+  repository: https://CRAN.R-project.org/package=httptest
+  authors:
+  - family-names: Richardson
+    given-names: Neal
+    email: neal.p.richardson@gmail.com
+    orcid: https://orcid.org/0009-0002-7992-3520
+  year: '2024'
+  doi: 10.32614/CRAN.package.httptest
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2024'
+  doi: 10.32614/CRAN.package.knitr
+- type: software
+  title: mapview
+  abstract: 'mapview: Interactive Viewing of Spatial Data in R'
+  notes: Suggests
+  url: https://github.com/r-spatial/mapview
+  repository: https://CRAN.R-project.org/package=mapview
+  authors:
+  - family-names: Appelhans
+    given-names: Tim
+    email: tim.appelhans@gmail.com
+  - family-names: Detsch
+    given-names: Florian
+    email: fdetsch@web.de
+  - family-names: Reudenbach
+    given-names: Christoph
+    email: reudenbach@geo.uni-marburg.de
+  - family-names: Woellauer
+    given-names: Stefan
+    email: stephan.woellauer@geo.uni-marburg.de
+  year: '2024'
+  doi: 10.32614/CRAN.package.mapview
+- type: software
+  title: readr
+  abstract: 'readr: Read Rectangular Text Data'
+  notes: Suggests
+  url: https://readr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=readr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2024'
+  doi: 10.32614/CRAN.package.readr
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@posit.co
+  - family-names: Luraschi
+    given-names: Javier
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@posit.co
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@posit.co
+  - family-names: Chang
+    given-names: Winston
+    email: winston@posit.co
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@posit.co
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2024'
+  doi: 10.32614/CRAN.package.rmarkdown
+- type: software
+  title: skimr
+  abstract: 'skimr: Compact and Flexible Summaries of Data'
+  notes: Suggests
+  url: https://docs.ropensci.org/skimr/
+  repository: https://CRAN.R-project.org/package=skimr
+  authors:
+  - family-names: Waring
+    given-names: Elin
+    email: elin.waring@gmail.com
+  - family-names: Quinn
+    given-names: Michael
+    email: msquinn@google.com
+  - family-names: McNamara
+    given-names: Amelia
+    email: amcnamara@smith.edu
+  - family-names: Rubia
+    given-names: Eduardo
+    name-particle: Arino de la
+    email: earino@gmail.com
+  - family-names: Zhu
+    given-names: Hao
+    email: haozhu233@gmail.com
+  - family-names: Ellis
+    given-names: Shannon
+    email: sellis18@jhmi.edu
+  year: '2024'
+  doi: 10.32614/CRAN.package.skimr
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+  doi: 10.32614/CRAN.package.testthat
+  version: '>= 3.1.2'
+- type: software
+  title: testthis
+  abstract: 'testthis: Utils and ''RStudio'' Addins to Make Testing Even More Fun'
+  notes: Suggests
+  url: https://s-fleck.github.io/testthis
+  repository: https://CRAN.R-project.org/package=testthis
+  authors:
+  - family-names: Fleck
+    given-names: Stefan
+    email: stefan.b.fleck@gmail.com
+    orcid: https://orcid.org/0000-0003-3344-9851
+  year: '2024'
+  doi: 10.32614/CRAN.package.testthis
+- type: software
+  title: withr
+  abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+  notes: Suggests
+  url: https://withr.r-lib.org
+  repository: https://CRAN.R-project.org/package=withr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevinushey@gmail.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Chang
+    given-names: Winston
+  year: '2024'
+  doi: 10.32614/CRAN.package.withr
+

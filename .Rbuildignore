@@ -14,8 +14,8 @@
 ^logo\.svg$
 ^doc$
 ^Meta$
-^attic$
 ^codemeta\.json$
 ^vignettes/emodnet.wfs\.Rmd\.orig$
 ^\.lintr$
 ^inst/submission\.md$
+^CITATION\.cff$
