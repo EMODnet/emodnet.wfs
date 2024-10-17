@@ -26,7 +26,7 @@ pak::pak("EMODnet/emodnet.wfs")
 
 ### Explore the EMODnet WFS services with R
 
-For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magrittr`'s pipe operator `%>%` (you could also use the [base pipe](https://r4ds.hadley.nz/workflow-pipes.html)), which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
+For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magrittr`'s pipe operator `%>%` (you could also use the [base pipe](https://r4ds.hadley.nz/workflow-style.html#sec-pipes)), which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
 
 Run this line to install these packages:
 
@@ -37,7 +37,7 @@ install.packages(c("sf", "dplyr", "mapview"))
 
 
 
-With the emodnet.wfs package, we can explore and combine the data served by the [EMODnet lots ](https://www.emodnet.eu/en/portals) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
+With the emodnet.wfs package, we can explore and combine the data served by the [EMODnet lots ](https://emodnet.ec.europa.eu/en/emodnet-themes) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
 Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
 

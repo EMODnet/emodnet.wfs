@@ -25,7 +25,7 @@ options(timeout = 2000)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to [EMODnet's, European Marine Observation and Data Network, geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R though the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data). 
-[Web Feature services (WFS)](https://www.ogc.org/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
+[Web Feature services (WFS)](https://www.ogc.org/publications/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
 emodnet.wfs aims at offering an user-friendly interface to this rich data.
 
 ## Installation and setup
@@ -184,7 +184,7 @@ head(year_2020_gridded_data$data)
 
 ### EMODnetWCS: Access EMODnet Web Coverage Service data
 
-This package emodnet.wfs uses [Web Feature Services](https://www.ogc.org/standard/wfs/), hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via [Web Coverage Services (WCS)](https://www.ogc.org/standard/wcs/). The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data available in R.
+This package emodnet.wfs uses [Web Feature Services](https://www.ogc.org/publications/standard/wfs/), hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via [Web Coverage Services (WCS)](https://www.ogc.org/publications/standard/wcs/). The R package [EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data available in R.
 
 ## Citation
 
