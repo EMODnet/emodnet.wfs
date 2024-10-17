@@ -104,16 +104,16 @@ features <code>sf</code> package is a well known standard for dealing
 with geospatial vector data. The package <code>dplyr</code> is a strong
 library for data manipulation. This package also loads
 <code>magrittr</code>’s pipe operator <code>%&gt;%</code> (you could
-also use the <a href="https://r4ds.hadley.nz/workflow-pipes.html" class="external-link">base
+also use the <a href="https://r4ds.hadley.nz/workflow-style.html#sec-pipes" class="external-link">base
 pipe</a>), which allows to write pipelines in R. To visualize
 geometries, <code>mapview</code> will create quick interactive maps.</p>
 <p>Run this line to install these packages:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sf"</span>, <span class="st">"dplyr"</span>, <span class="st">"mapview"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>With the emodnet.wfs package, we can explore and combine the data
-served by the <a href="https://www.emodnet.eu/en/portals" class="external-link">EMODnet
-lots</a> through <a href="https://en.wikipedia.org/wiki/Web_Feature_Service" class="external-link">OGC Web Feature
-Services</a> or WFS.</p>
+served by the <a href="https://emodnet.ec.europa.eu/en/emodnet-themes" class="external-link">EMODnet lots</a>
+through <a href="https://en.wikipedia.org/wiki/Web_Feature_Service" class="external-link">OGC
+Web Feature Services</a> or WFS.</p>
 <p>Imagine we are interested in seabed substrates. The first step is to
 choose what EMODnet lot can provide with these data. For that, we can
 check the services available with the <code><a href="../reference/emodnet_wfs.html">emodnet_wfs()</a></code>
