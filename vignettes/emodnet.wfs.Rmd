@@ -94,8 +94,6 @@ The column `service_name` shows services available, while  `service_url` has the
 
 ``` r
 seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_datasets_and_products")
-#> Loading ISO 19139 XML schemas...
-#> Loading ISO 19115 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs"
 #> ℹ Version: "2.0.0"
@@ -200,7 +198,7 @@ emodnet_get_all_wfs_info()
 
 ### References
 
-Blondel, Emmanuel. (2020, May 27). ows4R: R Interface to OGC Web-Services (Version 0.1-5). Zenodo. http://doi.org/10.5281/zenodo.3860330
+Blondel, Emmanuel. (2020, May 27). ows4R: R Interface to OGC Web-Services (Version 0.1-5). Zenodo. https://doi.org/10.5281/zenodo.3860330
 
 Flanders Marine Institute (2019). Maritime Boundaries Geodatabase, version 11. Available online at https://www.marineregions.org/. https://doi.org/10.14284/382.
 
