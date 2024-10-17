@@ -50,6 +50,7 @@ VignetteBuilder:
 Remotes: 
     eblondel/ows4R
 Config/Needs/readme: rerddap
+Config/Needs/website: webshot
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
