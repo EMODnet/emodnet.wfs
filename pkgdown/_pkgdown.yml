@@ -3,6 +3,11 @@ url: "https://emodnet.github.io/emodnet.wfs/"
 home:
   title: Access EMODnet Web Feature Service data through R
 
+navbar:
+ components:
+   intro:
+    text: Get started
+    href: articles/emodnet.wfs.html
 template:
   bootstrap: 5
 
