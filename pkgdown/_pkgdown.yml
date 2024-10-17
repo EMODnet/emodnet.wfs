@@ -8,8 +8,24 @@ navbar:
    intro:
     text: Get started
     href: articles/emodnet.wfs.html
+   articles:
+    text: Articles
+    menu:
+    - text: EQCL feature filtering
+      href: articles/ecql_filtering.html
+    - text: Using request parameters to limit query results
+      href: articles/request-params.html
+
 template:
   bootstrap: 5
+
+articles:
+- title: All vignettes
+  desc: ~
+  contents:
+  - emodnet.wfs
+  - '`articles/ecql_filtering`'
+  - '`articles/request-params`'
 
 reference:
 - title: Download information about web services
