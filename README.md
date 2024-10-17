@@ -51,25 +51,25 @@ options("emodnet.wfs.quiet" = TRUE)
 All available services are contained in the tibble returned by
 `emodnet_wfs()`.
 
-| service_name                                                    | service_url                                                                   |
-|:----------------------------------------------------------------|:------------------------------------------------------------------------------|
-| bathymetry                                                      | <https://ows.emodnet-bathymetry.eu/wfs>                                       |
-| biology                                                         | <https://geo.vliz.be/geoserver/Emodnetbio/wfs>                                |
-| biology_occurrence_data                                         | <https://geo.vliz.be/geoserver/Dataportal/wfs>                                |
-| chemistry_cdi_data_discovery_and_access_service                 | <https://geo-service.maris.nl/emodnet_chemistry/wfs>                          |
-| chemistry_cdi_distribution_observations_per_category_and_region | <https://geo-service.maris.nl/emodnet_chemistry_p36/wfs>                      |
-| chemistry_contaminants                                          | <https://geoserver.hcmr.gr/geoserver/EMODNET_SHARED/wfs>                      |
-| chemistry_marine_litter                                         | <https://www.ifremer.fr/services/wfs/emodnet_chemistry2>                      |
-| geology_coastal_behavior                                        | <https://drive.emodnet-geology.eu/geoserver/tno/wfs>                          |
-| geology_events_and_probabilities                                | <https://drive.emodnet-geology.eu/geoserver/ispra/wfs>                        |
-| geology_marine_minerals                                         | <https://drive.emodnet-geology.eu/geoserver/gsi/wfs>                          |
-| geology_sea_floor_bedrock                                       | <https://drive.emodnet-geology.eu/geoserver/bgr/wfs>                          |
-| geology_seabed_substrate_maps                                   | <https://drive.emodnet-geology.eu/geoserver/gtk/wfs>                          |
-| geology_submerged_landscapes                                    | <https://drive.emodnet-geology.eu/geoserver/bgs/wfs>                          |
-| human_activities                                                | <https://ows.emodnet-humanactivities.eu/wfs>                                  |
-| physics                                                         | <https://prod-geoserver.emodnet-physics.eu/geoserver/ows>                     |
-| seabed_habitats_general_datasets_and_products                   | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs>            |
-| seabed_habitats_individual_habitat_map_and_model_datasets       | <https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs> |
+    #> [1] "data.frame"
+    #> [1] "service_name" "service_url"
+    #>  [1] "bathymetry"                                                     
+    #>  [2] "biology"                                                        
+    #>  [3] "biology_occurrence_data"                                        
+    #>  [4] "chemistry_cdi_data_discovery_and_access_service"                
+    #>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
+    #>  [6] "chemistry_contaminants"                                         
+    #>  [7] "chemistry_marine_litter"                                        
+    #>  [8] "geology_coastal_behavior"                                       
+    #>  [9] "geology_events_and_probabilities"                               
+    #> [10] "geology_marine_minerals"                                        
+    #> [11] "geology_sea_floor_bedrock"                                      
+    #> [12] "geology_seabed_substrate_maps"                                  
+    #> [13] "geology_submerged_landscapes"                                   
+    #> [14] "human_activities"                                               
+    #> [15] "physics"                                                        
+    #> [16] "seabed_habitats_general_datasets_and_products"                  
+    #> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
 
 To explore available services you can use:
 

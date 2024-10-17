@@ -51,7 +51,10 @@ All available services are contained in the tibble returned by `emodnet_wfs()`.
 
 ```{r, echo=FALSE}
 library(emodnet.wfs)
-knitr::kable(emodnet_wfs())
+services <- emodnet_wfs()
+class(services)
+names(services)
+services$service_name
 ```
 
 To explore available services you can use:
