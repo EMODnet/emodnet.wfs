@@ -79,7 +79,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' Get WFS available layer information
 #'
 #' @param wfs A `WFSClient` R6 object with methods for interfacing an
-#'  OGC Web Feature Service.
+#'  OGC Web Feature Service. From [`emodnet_init_wfs_client()`].
 #' @inheritParams emodnet_init_wfs_client
 #' @return a tibble containing metadata on each layer available from the
 #'  service.
