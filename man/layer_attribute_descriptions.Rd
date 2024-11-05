@@ -38,3 +38,11 @@ layer_attribute_descriptions(
 )
 \dontshow{\}) # examplesIf}
 }
+\seealso{
+Attributes metadata:
+\code{\link{layer_attribute_inspect}()},
+\code{\link{layer_attributes_get_names}()},
+\code{\link{layer_attributes_summarise}()},
+\code{\link{layer_attributes_tbl}()}
+}
+\concept{attributes}

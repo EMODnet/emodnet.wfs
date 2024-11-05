@@ -2,7 +2,8 @@
 % Please edit documentation in R/layer_attributes.R
 \name{layer_attributes_get_names}
 \alias{layer_attributes_get_names}
-\title{Get names of layer attributes}
+\title{Names of variables (attributes) available from a dataset (layer)
+in a data source (service).}
 \usage{
 layer_attributes_get_names(
   wfs = NULL,
@@ -28,13 +29,22 @@ the WFS service version. Now always "2.0.0".}
 character vector of layer attribute (variable) names.
 }
 \description{
-Get names of layer attributes
+Names of variables (attributes) available from a dataset (layer)
+in a data source (service).
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_get_names(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"
 )
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Attributes metadata:
+\code{\link{layer_attribute_descriptions}()},
+\code{\link{layer_attribute_inspect}()},
+\code{\link{layer_attributes_summarise}()},
+\code{\link{layer_attributes_tbl}()}
 }
+\concept{attributes}
