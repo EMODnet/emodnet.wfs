@@ -31,7 +31,10 @@ a tibble containing metadata on each layer available from the
 service.
 }
 \description{
-Get WFS available layer information
+Metadata about data available from the different services:
+data (layers) from a data source (service),
+metadata on layers from a service,
+metadata on layers from all services.
 }
 \details{
 To minimize the number of requests sent to webservices,
