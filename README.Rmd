@@ -44,6 +44,16 @@ set the `"emodnet.wfs.quiet"` option to `TRUE`.
 options("emodnet.wfs.quiet" = TRUE)
 ```
 
+## Pre-requisites
+
+For users not familiar yet with geospatial data in R, we recommend the following resources:
+
+- [Spatial Data Science With Applications in R](https://r-spatial.org/book/) by Edzer Pebesma and Roger Bivand.
+
+- [Geocomputation with R](https://r.geocompx.org/) by Robin Lovelace, Jakub Nowosad and Jannes Muenchow.
+
+In the documentation we assume a basic familiarity with spatial data: knowing about coordinates and about projections / [coordinate reference systems (CRS)](https://r.geocompx.org/spatial-class#crs-intro).
+
 ## Available services
 
 All available services are contained in the tibble returned by `emodnet_wfs()`.
