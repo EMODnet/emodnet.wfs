@@ -35,6 +35,8 @@ layer_attributes_summarise <- function(wfs = NULL,
 
 #' Get layer attribute description
 #'
+#' Variables available in a dataset (layer) from a data source (service).
+#'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #' @inheritParams layer_attributes_summarise
@@ -42,13 +44,11 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' @return data.frame containing layer attribute descriptions (metadata).
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' layer_attribute_descriptions(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-#' }
 layer_attribute_descriptions <- function(wfs = NULL,
                                          service = NULL,
                                          service_version = NULL, layer) {
