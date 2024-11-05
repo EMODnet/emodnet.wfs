@@ -57,11 +57,7 @@ names(services)
 services$service_name
 ```
 
-To explore available services you can use:
-
-```r
-View(emodnet_wfs())
-```
+To explore available services you can use `View()` or your usual way to explore `data.frames`.
 
 ## Create Service Client
 

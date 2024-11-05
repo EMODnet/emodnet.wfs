@@ -71,11 +71,8 @@ All available services are contained in the tibble returned by
     #> [16] "seabed_habitats_general_datasets_and_products"                  
     #> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
 
-To explore available services you can use:
-
-``` r
-View(emodnet_wfs())
-```
+To explore available services you can use `View()` or your usual way to
+explore `data.frames`.
 
 ## Create Service Client
 
