@@ -126,11 +126,6 @@ attr_tbl
 ```
 
 
-```{r}
-skimr::skim(attr_tbl)
-```
-
-
 ## Filtering by attributes
 
 ### Filtering categorical attributes values using text comparisons
