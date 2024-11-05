@@ -26,6 +26,7 @@ options(timeout = 2000)
 
 The goal of emodnet.wfs is to allow interrogation of and access to [EMODnet's, European Marine Observation and Data Network, geographic vector data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3) in R through the [EMODnet Web Feature Services](https://emodnet.ec.europa.eu/en/data-0). 
 [Web Feature services (WFS)](https://www.ogc.org/publications/standard/wfs/) represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. 
+Features are _observations_ and feature properties are _variables_.
 emodnet.wfs aims at offering an user-friendly interface to this rich data.
 
 ## Installation and setup
@@ -60,8 +61,7 @@ In the documentation we assume a basic familiarity with spatial data: knowing ab
 
 All available data sources, called services, are contained in the [tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`.
 
-
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 library(emodnet.wfs)
 services <- emodnet_wfs()
 class(services)
@@ -83,7 +83,7 @@ wfs_bio
 
 ## List contents of a data source: Get layer information from a service client
 
-You can get metadata about the layers available from a service. 
+You can get metadata about the datasets, called layers, available from a service. 
 
 ```{r}
 emodnet_get_wfs_info(service = "biology")
@@ -115,8 +115,10 @@ emodnet_get_all_wfs_info()
 
 You can extract layers directly from a `wfs` object using layer names. 
 All layers are downloaded as `sf` objects and output as a list with a named element for each layer requested.
-The argument `reduce_layers = TRUE` stack all the layers in one single tibble. 
-Default is `FALSE` and returns a list of sf objects, one per layer.
+The argument `reduce_layers = TRUE` stack all the layers in one single tibble, if possible (for instance if all column names are the same, otherwise it fails).
+
+By default, `emodnet_get_layers()` returns a list of sf objects, one per layer.
+
 
 ```{r}
 emodnet_get_layers(wfs = wfs_bio, layers = layers)
