@@ -28,13 +28,13 @@ the WFS service version. Now always "2.0.0".}
 data.frame containing layer attribute descriptions (metadata).
 }
 \description{
-Get layer attribute description
+Variables available in a dataset (layer) from a data source (service).
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attribute_descriptions(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"
 )
-}
+\dontshow{\}) # examplesIf}
 }
