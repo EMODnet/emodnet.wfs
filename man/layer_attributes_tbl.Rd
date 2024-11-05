@@ -8,7 +8,7 @@ layer_attributes_tbl(wfs = NULL, service = NULL, service_version = NULL, layer)
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an
-OGC Web Feature Service.}
+OGC Web Feature Service. From \code{\link[=emodnet_init_wfs_client]{emodnet_init_wfs_client()}}.}
 
 \item{service}{the EMODnet OGC WFS service name.
 For available services, see \code{\link[=emodnet_wfs]{emodnet_wfs()}}.}

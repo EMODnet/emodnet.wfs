@@ -14,7 +14,7 @@ emodnet_get_all_wfs_info()
 }
 \arguments{
 \item{wfs}{A \code{WFSClient} R6 object with methods for interfacing an
-OGC Web Feature Service.}
+OGC Web Feature Service. From \code{\link[=emodnet_init_wfs_client]{emodnet_init_wfs_client()}}.}
 
 \item{layers}{a character vector of layer names. To get info on layers,
 including
