@@ -20,7 +20,7 @@ The goal of emodnet.wfs is to allow interrogation of and access to
 [EMODnet’s, European Marine Observation and Data Network, geographic
 vector
 data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
-in R though the [EMODnet Web Feature
+in R through the [EMODnet Web Feature
 Services](https://emodnet.ec.europa.eu/en/data-0). [Web Feature services
 (WFS)](https://www.ogc.org/publications/standard/wfs/) represent a
 change in the way geographic information is created, modified and
