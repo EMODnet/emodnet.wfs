@@ -46,6 +46,8 @@ options("emodnet.wfs.quiet" = TRUE)
 
 ## Pre-requisites
 
+The emodnet.wfs is designed to be compatible with the modern R geospatial stack, in particular output geospatial objects are [`sf`](https://r-spatial.github.io/sf/) objects, that is to say, a tibble with a geometry list-column.
+
 For users not familiar yet with geospatial data in R, we recommend the following resources:
 
 - [Spatial Data Science With Applications in R](https://r-spatial.org/book/) by Edzer Pebesma and Roger Bivand.
@@ -54,9 +56,9 @@ For users not familiar yet with geospatial data in R, we recommend the following
 
 In the documentation we assume a basic familiarity with spatial data: knowing about coordinates and about projections / [coordinate reference systems (CRS)](https://r.geocompx.org/spatial-class#crs-intro).
 
-## Available services
+## Available data sources (services)
 
-All available services are contained in the tibble returned by `emodnet_wfs()`.
+All available data sources, called services, are contained in the [tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`.
 
 
 ```{r, echo=FALSE}
@@ -69,7 +71,7 @@ services$service_name
 
 To explore available services you can use `View()` or your usual way to explore `data.frames`.
 
-## Create Service Client
+## Connect to a data source: Create a service client
 
 Specify the service using the `service` argument. 
 
@@ -79,7 +81,7 @@ wfs_bio <- emodnet_init_wfs_client(service = "biology")
 wfs_bio
 ```
 
-## Get WFS Layer info
+## List contents of a data source: Get layer information from a service client
 
 You can get metadata about the layers available from a service. 
 
@@ -109,16 +111,18 @@ emodnet_get_all_wfs_info()
 ```
 
 
-## Get WFS layers
+## Get data from a data source: get layers
 
 You can extract layers directly from a `wfs` object using layer names. 
 All layers are downloaded as `sf` objects and output as a list with a named element for each layer requested.
+The argument `reduce_layers = TRUE` stack all the layers in one single tibble. 
+Default is `FALSE` and returns a list of sf objects, one per layer.
 
 ```{r}
 emodnet_get_layers(wfs = wfs_bio, layers = layers)
 ```
 
-You can change the output `crs` through the argument `crs`.
+You can change the output `crs` ("projection") through the argument `crs`.
 
 ```{r}
 emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
