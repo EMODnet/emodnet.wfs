@@ -351,11 +351,11 @@ EMODnet WFS cases (assuming you are using version <code>2.0.0</code>) is
 <code>bbox=a1,b1,a2,b2,[crs]</code> where <code>a1</code>,
 <code>b1</code>, <code>a2</code>, and <code>b2</code> represent the
 coordinate values. The optional <code>crs</code> parameter is used to
-name the CRS for the bbox coordinates (if they are different to the
-featureTypes native CRS.) The order of coordinates passed to the
-<code>bbox</code> parameter depends on the coordinate system used (this
-is why the coordinate syntax isn’t represented with <code>x</code> or
-<code>y</code>).</p>
+name the coordinate reference system (CRS) for the bbox coordinates (if
+they are different to the featureTypes native CRS.) The order of
+coordinates passed to the <code>bbox</code> parameter depends on the
+coordinate system used (this is why the coordinate syntax isn’t
+represented with <code>x</code> or <code>y</code>).</p>
 <p>In the following example, we specify the bounding box by proving
 coordinates in the order <code>xmin,ymin,xmax,ymax</code> and specifying
 that coordinates are given in the <code>EPSG:4326</code> coordinate
