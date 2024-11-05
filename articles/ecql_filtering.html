@@ -260,136 +260,6 @@ filtering rules.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> mediseh_zostera_m_pnt.9      0 Italia </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> mediseh_zostera_m_pnt.10     0 Italia </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 44 more rows</span></span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">skimr</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/skimr/reference/skim.html" class="external-link">skim</a></span><span class="op">(</span><span class="va">attr_tbl</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<caption>Data summary</caption>
-<tbody>
-<tr class="odd">
-<td align="left">Name</td>
-<td align="left">attr_tbl</td>
-</tr>
-<tr class="even">
-<td align="left">Number of rows</td>
-<td align="left">54</td>
-</tr>
-<tr class="odd">
-<td align="left">Number of columns</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="left">_______________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Column type frequency:</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">character</td>
-<td align="left">2</td>
-</tr>
-<tr class="odd">
-<td align="left">numeric</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">________________________</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">Group variables</td>
-<td align="left">None</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: character</strong></p>
-<table class="table">
-<colgroup>
-<col width="19%">
-<col width="13%">
-<col width="19%">
-<col width="5%">
-<col width="5%">
-<col width="8%">
-<col width="12%">
-<col width="15%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">empty</th>
-<th align="right">n_unique</th>
-<th align="right">whitespace</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">gml_id</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">23</td>
-<td align="right">24</td>
-<td align="right">0</td>
-<td align="right">54</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">country</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">8</td>
-<td align="right">0</td>
-<td align="right">7</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Variable type: numeric</strong></p>
-<table class="table">
-<colgroup>
-<col width="19%">
-<col width="13%">
-<col width="19%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
-<col width="6%">
-<col width="8%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">skim_variable</th>
-<th align="right">n_missing</th>
-<th align="right">complete_rate</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">p0</th>
-<th align="right">p25</th>
-<th align="right">p50</th>
-<th align="right">p75</th>
-<th align="right">p100</th>
-<th align="left">hist</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">id</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="left">▁▁▇▁▁</td>
-</tr></tbody>
-</table>
 </div>
 <div class="section level2">
 <h2 id="filtering-by-attributes">Filtering by attributes<a class="anchor" aria-label="anchor" href="#filtering-by-attributes"></a>
@@ -407,7 +277,7 @@ attribute <code>country</code> contains the country.</p>
 <strong>value</strong> we require to <strong>construct our eqcl
 filter</strong> and pass it to our request using the
 <code>cql_filter</code> argument.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
@@ -426,7 +296,7 @@ equality operator <code>=</code>. If we want to match more than one
 value, we can use the operator <code>IN</code> instead and provide a
 list of values to compare to. For example, to request both France and
 Spain, we could use the following filter:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
@@ -449,7 +319,7 @@ Spain, we could use the following filter:</p>
 <span><span class="co">#&gt; 8  mediseh_zostera_m_pnt.8  0 Francia   POINT (4.84864 43.37637)</span></span>
 <span><span class="co">#&gt; 9 mediseh_zostera_m_pnt.54  0  Spagna  POINT (3.291868 42.29132)</span></span></code></pre></div>
 <p>It is the same as using the <code>OR</code> filter:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
@@ -475,7 +345,7 @@ Spain, we could use the following filter:</p>
 <code>LIKE</code>. For example, to request maritime boundaries for
 countries starting with an <code>S</code>, we can use the following
 filter:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
@@ -507,7 +377,7 @@ anywhere, including the first letter. To make the request case
 independent, we can turn <code>country</code> names to lowercase and
 then use a <code>like</code> comparison to a lowercase
 <code>l</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
@@ -551,7 +421,7 @@ functions</strong> can be used for filtering numeric variables.</p>
 <strong>mediseh_posidonia_nodata</strong>.</p>
 <p>We can inspect again, using some of our interrogative functions to
 get information on layer attributes.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span></span>
 <span>  <span class="va">wfs</span>,</span>
 <span>  layer <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span></span>
@@ -569,7 +439,7 @@ get information on layer attributes.</p>
 <code>~473</code> with a mean of <code>~40</code>.</p>
 <p>Let’s say we are interested in values greater than <code>400</code>.
 We can use the operator <code>&gt;</code> to create our filter:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
@@ -588,7 +458,7 @@ We can use the operator <code>&gt;</code> to create our filter:</p>
 <span><span class="co">#&gt; 4 mediseh_posidonia_nodata.229  0 463.8207 MULTICURVE (LINESTRING (27....</span></span></code></pre></div>
 <p>To request a range we can use filter functions <code>between</code>
 and <code>and</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
@@ -623,7 +493,7 @@ match an attribute to. This could also be achieved using an
 <code>OR</code> statement.</p>
 <p>For example, the following query returns features where country is
 either <code>Baltic Sea</code> or <code>Bulgaria</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"geology_seabed_substrate_maps"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
@@ -634,7 +504,7 @@ either <code>Baltic Sea</code> or <code>Bulgaria</code>.</p>
 <p>Let’s say we also want to restrict the features returned those having
 <code>shape_length</code> &gt; 1. We can include an additional condition
 which must be met using an <code>AND</code> statement.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filter_sf1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
@@ -651,13 +521,13 @@ because the <code>AND</code> filter is added only to the
 is also <code>Bulgaria</code>, the filter is not applied to
 <code>shape_length</code> where <code>country</code> is
 <code>Baltic Sea</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf1</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">filter_sf1</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span></span></code></pre></div>
 <p>To add the <code>AND</code> filter to both <code>OR</code> filters,
 we can use a parenthesis:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filter_sf2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
@@ -668,20 +538,20 @@ we can use a parenthesis:</p>
 features where <code>country</code> is <code>'Bulgaria'</code>. That’s
 because the single <code>Baltic Sea</code> feature had a
 <code>shape_length</code> value smaller than 1 so is filtered out.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">filter_sf2</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf2</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span></code></pre></div>
 <p>Finally filtering for <code>shape_length &lt; 1</code> returns
 features with <code>shape_length</code> values smaller than 1 for both
 <code>country</code> values.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filter_sf3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"(country='Baltic Sea' OR country='Bulgaria') AND shape_length&lt;1"</span>,</span>
 <span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">filter_sf3</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">filter_sf3</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span></code></pre></div>
 </div>
