@@ -34,15 +34,16 @@ useful for inspecting
 factor or character variable levels or unique values.
 }
 \description{
-Inspect layer attributes
+Summary of individual variable (attribute) in a dataset (layer) from a
+data source (service).
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 wfs <- emodnet_init_wfs_client(service = "biology")
 layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 layer_attribute_inspect(
   wfs, layer = "mediseh_zostera_m_pnt",
   attribute = "country"
 )
-}
+\dontshow{\}) # examplesIf}
 }

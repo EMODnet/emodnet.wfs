@@ -98,6 +98,9 @@ layer_attributes_get_names <- function(wfs = NULL,
 
 #' Inspect layer attributes
 #'
+#' Summary of individual variable (attribute) in a dataset (layer) from a
+#' data source (service).
+#'
 #' @inheritParams layer_attributes_summarise
 #' @param attribute character string, name of layer attribute (variable). Use
 #' [layer_attributes_get_names()] to get layer attribute names.
@@ -109,15 +112,13 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' factor or character variable levels or unique values.
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' wfs <- emodnet_init_wfs_client(service = "biology")
 #' layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 #' layer_attribute_inspect(
 #'   wfs, layer = "mediseh_zostera_m_pnt",
 #'   attribute = "country"
 #' )
-#' }
 layer_attribute_inspect <- function(wfs = NULL,
                                     service = NULL,
                                     service_version = NULL,
