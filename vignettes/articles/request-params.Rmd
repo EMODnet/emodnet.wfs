@@ -177,7 +177,7 @@ bbox_response %>%
 
 ## Non-standard Vendor Parameters
 
-WFS vendor parameters are additonal, non-standard request parameters defined by an implementation to provide enhanced capabilities. 
+WFS vendor parameters are additional, non-standard request parameters defined by an implementation to provide enhanced capabilities. 
 
 The majority of EMODnet services are GeoServer WFS implementations which support a variety of vendor-specific WFS parameters.
 
