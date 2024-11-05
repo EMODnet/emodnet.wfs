@@ -24,7 +24,8 @@ tibble of layer attribute (variable) values
 with geometry column removed.
 }
 \description{
-Get layer attribute values tibble
+Possible values of variables (attributes) in a dataset (layer)
+from a data source (service).
 }
 \details{
 Request excluding spatial information can be significantly faster.
@@ -34,7 +35,15 @@ for more
 targeted and faster layer download.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Attributes metadata:
+\code{\link{layer_attribute_descriptions}()},
+\code{\link{layer_attribute_inspect}()},
+\code{\link{layer_attributes_get_names}()},
+\code{\link{layer_attributes_summarise}()}
 }
+\concept{attributes}

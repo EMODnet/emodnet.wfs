@@ -7,15 +7,14 @@
 #'
 #' @return output of `summary()` on the attributes (variables) in a given layer
 #' for a given service.
+#' @family attributes
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive
 #' layer_attributes_summarise(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-#' }
 layer_attributes_summarise <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
@@ -42,6 +41,7 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' @inheritParams layer_attributes_summarise
 #'
 #' @return data.frame containing layer attribute descriptions (metadata).
+#' @family attributes
 #' @export
 #'
 #' @examplesIf interactive()
@@ -64,22 +64,23 @@ layer_attribute_descriptions <- function(wfs = NULL,
 }
 
 
-#' Get names of layer attributes
+#' Names of variables (attributes) available from a dataset (layer)
+#' in a data source (service).
 #'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #' @inheritParams layer_attributes_summarise
 #'
+#' @family attributes
+#'
 #' @return character vector of layer attribute (variable) names.
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' layer_attributes_get_names(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-#' }
 layer_attributes_get_names <- function(wfs = NULL,
                                        service = NULL,
                                        service_version = NULL,
@@ -110,6 +111,7 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' @return Detailed summary of individual attribute (variable). Particularly
 #' useful for inspecting
 #' factor or character variable levels or unique values.
+#' @family attributes
 #' @export
 #'
 #' @examplesIf interactive()
@@ -164,6 +166,9 @@ layer_attribute_inspect <- function(wfs = NULL,
 
 #' Get layer attribute values tibble
 #'
+#' Possible values of variables (attributes) in a dataset (layer)
+#' from a data source (service).
+#'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
 #' @inheritParams layer_attributes_summarise
@@ -175,12 +180,11 @@ layer_attribute_inspect <- function(wfs = NULL,
 #' useful for inspecting attribute values and constructing feature filters
 #' for more
 #' targeted and faster layer download.
+#' @family attributes
 #' @export
 #'
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
-#' }
 layer_attributes_tbl <- function(wfs = NULL,
                                  service = NULL,
                                  service_version = NULL, layer) {

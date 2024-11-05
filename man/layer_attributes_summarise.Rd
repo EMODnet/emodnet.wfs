@@ -32,10 +32,18 @@ for a given service.
 Get summaries of layer attributes (variables)
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_summarise(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"
 )
+\dontshow{\}) # examplesIf}
 }
+\seealso{
+Attributes metadata:
+\code{\link{layer_attribute_descriptions}()},
+\code{\link{layer_attribute_inspect}()},
+\code{\link{layer_attributes_get_names}()},
+\code{\link{layer_attributes_tbl}()}
 }
+\concept{attributes}
