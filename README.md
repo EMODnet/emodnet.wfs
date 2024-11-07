@@ -26,6 +26,7 @@ Services](https://emodnet.ec.europa.eu/en/data-0). [Web Feature services
 change in the way geographic information is created, modified and
 exchanged on the Internet and offer direct fine-grained access to
 geographic information at the feature and feature property level.
+Features are *observations* and feature properties are *variables*.
 emodnet.wfs aims at offering an user-friendly interface to this rich
 data.
 
@@ -46,35 +47,62 @@ client created successfully”, set the `"emodnet.wfs.quiet"` option to
 options("emodnet.wfs.quiet" = TRUE)
 ```
 
-## Available services
+## Pre-requisites
 
-All available services are contained in the tibble returned by
-`emodnet_wfs()`.
+The emodnet.wfs is designed to be compatible with the modern R
+geospatial stack, in particular output geospatial objects are
+[`sf`](https://r-spatial.github.io/sf/) objects, that is to say, a
+tibble with a geometry list-column.
 
-    #> [1] "data.frame"
-    #> [1] "service_name" "service_url"
-    #>  [1] "bathymetry"                                                     
-    #>  [2] "biology"                                                        
-    #>  [3] "biology_occurrence_data"                                        
-    #>  [4] "chemistry_cdi_data_discovery_and_access_service"                
-    #>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
-    #>  [6] "chemistry_contaminants"                                         
-    #>  [7] "chemistry_marine_litter"                                        
-    #>  [8] "geology_coastal_behavior"                                       
-    #>  [9] "geology_events_and_probabilities"                               
-    #> [10] "geology_marine_minerals"                                        
-    #> [11] "geology_sea_floor_bedrock"                                      
-    #> [12] "geology_seabed_substrate_maps"                                  
-    #> [13] "geology_submerged_landscapes"                                   
-    #> [14] "human_activities"                                               
-    #> [15] "physics"                                                        
-    #> [16] "seabed_habitats_general_datasets_and_products"                  
-    #> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+For users not familiar yet with geospatial data in R, we recommend the
+following resources:
+
+- [Spatial Data Science With Applications in
+  R](https://r-spatial.org/book/) by Edzer Pebesma and Roger Bivand.
+
+- [Geocomputation with R](https://r.geocompx.org/) by Robin Lovelace,
+  Jakub Nowosad and Jannes Muenchow.
+
+In the documentation we assume a basic familiarity with spatial data:
+knowing about coordinates and about projections / [coordinate reference
+systems (CRS)](https://r.geocompx.org/spatial-class#crs-intro).
+
+## Available data sources (services)
+
+All available data sources, called services, are contained in the
+[tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`.
+
+``` r
+library(emodnet.wfs)
+services <- emodnet_wfs()
+class(services)
+#> [1] "tbl_df"     "tbl"        "data.frame"
+names(services)
+#> [1] "service_name" "service_url"
+services$service_name
+#>  [1] "bathymetry"                                                     
+#>  [2] "biology"                                                        
+#>  [3] "biology_occurrence_data"                                        
+#>  [4] "chemistry_cdi_data_discovery_and_access_service"                
+#>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
+#>  [6] "chemistry_contaminants"                                         
+#>  [7] "chemistry_marine_litter"                                        
+#>  [8] "geology_coastal_behavior"                                       
+#>  [9] "geology_events_and_probabilities"                               
+#> [10] "geology_marine_minerals"                                        
+#> [11] "geology_sea_floor_bedrock"                                      
+#> [12] "geology_seabed_substrate_maps"                                  
+#> [13] "geology_submerged_landscapes"                                   
+#> [14] "human_activities"                                               
+#> [15] "physics"                                                        
+#> [16] "seabed_habitats_general_datasets_and_products"                  
+#> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+```
 
 To explore available services you can use `View()` or your usual way to
 explore `data.frames`.
 
-## Create Service Client
+## Connect to a data source: Create a service client
 
 Specify the service using the `service` argument.
 
@@ -93,9 +121,10 @@ wfs_bio
 #> ....|-- capabilities <WFSCapabilities>
 ```
 
-## Get WFS Layer info
+## List contents of a data source: Get layer information from a service client
 
-You can get metadata about the layers available from a service.
+You can get metadata about the datasets, called layers, available from a
+service.
 
 ``` r
 emodnet_get_wfs_info(service = "biology")
@@ -164,11 +193,17 @@ the server
 emodnet_get_all_wfs_info()
 ```
 
-## Get WFS layers
+## Get data from a data source: get layers
 
 You can extract layers directly from a `wfs` object using layer names.
 All layers are downloaded as `sf` objects and output as a list with a
-named element for each layer requested.
+named element for each layer requested. The argument
+`reduce_layers = TRUE` stack all the layers in one single tibble, if
+possible (for instance if all column names are the same, otherwise it
+fails).
+
+By default, `emodnet_get_layers()` returns a list of sf objects, one per
+layer.
 
 ``` r
 emodnet_get_layers(wfs = wfs_bio, layers = layers)
@@ -211,7 +246,8 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers)
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
-You can change the output `crs` through the argument `crs`.
+You can change the output `crs` (“projection”) through the argument
+`crs`.
 
 ``` r
 emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
