@@ -32,9 +32,9 @@ layer_attributes_summarise <- function(wfs = NULL,
   )
 }
 
-#' Get layer attribute description
+#' @description Get layer attribute description
 #'
-#' Variables available in a dataset (layer) from a data source (service).
+#' @title Variables available in a dataset (layer) from a data source (service).
 #'
 #' @inheritParams emodnet_init_wfs_client
 #' @inheritParams emodnet_get_wfs_info
@@ -97,9 +97,9 @@ layer_attributes_get_names <- function(wfs = NULL,
   )$name
 }
 
-#' Inspect layer attributes
+#' @description Inspect layer attributes
 #'
-#' Summary of individual variable (attribute) in a dataset (layer) from a
+#' @title Summary of individual variable (attribute) in a dataset (layer) from a
 #' data source (service).
 #'
 #' @inheritParams layer_attributes_summarise
@@ -164,9 +164,9 @@ layer_attribute_inspect <- function(wfs = NULL,
   )
 }
 
-#' Get layer attribute values tibble
+#' @description Get layer attribute values tibble
 #'
-#' Possible values of variables (attributes) in a dataset (layer)
+#' @title Possible values of variables (attributes) in a dataset (layer)
 #' from a data source (service).
 #'
 #' @inheritParams emodnet_init_wfs_client

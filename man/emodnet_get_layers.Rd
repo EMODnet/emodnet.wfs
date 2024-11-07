@@ -2,7 +2,7 @@
 % Please edit documentation in R/layers.R
 \name{emodnet_get_layers}
 \alias{emodnet_get_layers}
-\title{Get EMODnet WFS layers}
+\title{Get EMODnet WFS datasets (layers)}
 \usage{
 emodnet_get_layers(
   wfs = NULL,

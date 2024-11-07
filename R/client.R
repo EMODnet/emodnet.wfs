@@ -1,6 +1,6 @@
-#' Initialise an EMODnet WFS client
+#' @description Initialise an EMODnet WFS client
 #'
-#' Connect to a data source (service)
+#' @title Connect to a data source (service)
 #'
 #' @param service the EMODnet OGC WFS service name.
 #' For available services, see [`emodnet_wfs()`].

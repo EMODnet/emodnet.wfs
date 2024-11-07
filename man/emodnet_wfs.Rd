@@ -2,7 +2,7 @@
 % Please edit documentation in R/emodnet_wfs.R
 \name{emodnet_wfs}
 \alias{emodnet_wfs}
-\title{Available EMODnet Web Feature Services}
+\title{Which data sources (services) are available?}
 \usage{
 emodnet_wfs()
 }
@@ -10,7 +10,7 @@ emodnet_wfs()
 Tibble of available EMODnet Web Feature Services
 }
 \description{
-Which data sources (services) are available?
+Available EMODnet Web Feature Services
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

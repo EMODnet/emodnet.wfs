@@ -2,7 +2,8 @@
 % Please edit documentation in R/layer_attributes.R
 \name{layer_attribute_inspect}
 \alias{layer_attribute_inspect}
-\title{Inspect layer attributes}
+\title{Summary of individual variable (attribute) in a dataset (layer) from a
+data source (service).}
 \usage{
 layer_attribute_inspect(
   wfs = NULL,
@@ -34,8 +35,7 @@ useful for inspecting
 factor or character variable levels or unique values.
 }
 \description{
-Summary of individual variable (attribute) in a dataset (layer) from a
-data source (service).
+Inspect layer attributes
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

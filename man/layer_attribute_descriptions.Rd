@@ -2,7 +2,7 @@
 % Please edit documentation in R/layer_attributes.R
 \name{layer_attribute_descriptions}
 \alias{layer_attribute_descriptions}
-\title{Get layer attribute description}
+\title{Variables available in a dataset (layer) from a data source (service).}
 \usage{
 layer_attribute_descriptions(
   wfs = NULL,
@@ -28,7 +28,7 @@ the WFS service version. Now always "2.0.0".}
 data.frame containing layer attribute descriptions (metadata).
 }
 \description{
-Variables available in a dataset (layer) from a data source (service).
+Get layer attribute description
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

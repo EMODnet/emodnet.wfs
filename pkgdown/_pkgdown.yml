@@ -28,13 +28,13 @@ articles:
   - '`articles/request-params`'
 
 reference:
-- title: Download information about web services
+- title: Download information about data sources
   contents:
   - '`emodnet_wfs`'
   - '`emodnet_init_wfs_client`'
   - '`emodnet_get_wfs_info`'
 
-- title: Download layers, or information about layers
+- title: Download data or metadata
   contents:
   - '`emodnet_get_layers`'
   - '`layer_attribute_descriptions`'
