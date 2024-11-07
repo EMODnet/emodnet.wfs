@@ -22,12 +22,12 @@ An \code{\link[ows4R:WFSClient]{ows4R::WFSClient}} R6 object with methods for in
 OGC Web Feature Service.
 }
 \description{
-Initialise an EMODnet WFS client
+Connect to a data source (service)
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 wfs <- emodnet_init_wfs_client(service = "bathymetry")
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{WFSClient} in package \code{ows4R}.
