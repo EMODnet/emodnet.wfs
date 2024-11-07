@@ -4,7 +4,10 @@
 \alias{emodnet_get_layer_info}
 \alias{emodnet_get_wfs_info}
 \alias{emodnet_get_all_wfs_info}
-\title{Get WFS available layer information}
+\title{Metadata about data available from the different services:
+data (layers) from a data source (service),
+metadata on layers from a service,
+metadata on layers from all services.}
 \usage{
 emodnet_get_layer_info(wfs, layers)
 
@@ -31,10 +34,7 @@ a tibble containing metadata on each layer available from the
 service.
 }
 \description{
-Metadata about data available from the different services:
-data (layers) from a data source (service),
-metadata on layers from a service,
-metadata on layers from all services.
+Get WFS available layer information
 }
 \details{
 To minimize the number of requests sent to webservices,

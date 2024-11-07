@@ -76,9 +76,9 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
       layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
     )
 }
-#' Get WFS available layer information
+#' @description Get WFS available layer information
 #'
-#' Metadata about data available from the different services:
+#' @title Metadata about data available from the different services:
 #' data (layers) from a data source (service),
 #' metadata on layers from a service,
 #' metadata on layers from all services.

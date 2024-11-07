@@ -1,4 +1,4 @@
-#' Get EMODnet WFS layers
+#' Get EMODnet WFS datasets (layers)
 #'
 #' Performs an WFS getFeature request for layers from a `wfs` object or
 #' specified EMODnet Service. Filtering

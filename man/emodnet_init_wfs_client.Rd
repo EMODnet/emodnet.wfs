@@ -2,7 +2,7 @@
 % Please edit documentation in R/client.R
 \name{emodnet_init_wfs_client}
 \alias{emodnet_init_wfs_client}
-\title{Initialise an EMODnet WFS client}
+\title{Connect to a data source (service)}
 \usage{
 emodnet_init_wfs_client(service, service_version = NULL, logger = NULL)
 }
@@ -22,7 +22,7 @@ An \code{\link[ows4R:WFSClient]{ows4R::WFSClient}} R6 object with methods for in
 OGC Web Feature Service.
 }
 \description{
-Connect to a data source (service)
+Initialise an EMODnet WFS client
 }
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

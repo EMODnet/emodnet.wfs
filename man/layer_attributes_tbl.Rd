@@ -2,7 +2,8 @@
 % Please edit documentation in R/layer_attributes.R
 \name{layer_attributes_tbl}
 \alias{layer_attributes_tbl}
-\title{Get layer attribute values tibble}
+\title{Possible values of variables (attributes) in a dataset (layer)
+from a data source (service).}
 \usage{
 layer_attributes_tbl(wfs = NULL, service = NULL, service_version = NULL, layer)
 }
@@ -24,8 +25,7 @@ tibble of layer attribute (variable) values
 with geometry column removed.
 }
 \description{
-Possible values of variables (attributes) in a dataset (layer)
-from a data source (service).
+Get layer attribute values tibble
 }
 \details{
 Request excluding spatial information can be significantly faster.

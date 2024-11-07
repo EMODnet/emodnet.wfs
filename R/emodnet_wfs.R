@@ -4,9 +4,9 @@
     stringsAsFactors = FALSE
   )
 }
-#' Available EMODnet Web Feature Services
+#' @description Available EMODnet Web Feature Services
 #'
-#' Which data sources (services) are available?
+#' @title Which data sources (services) are available?
 #'
 #' @return Tibble of available EMODnet Web Feature Services
 #'
