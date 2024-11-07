@@ -5,7 +5,7 @@ articles:
   articles/ecql_filtering: ecql_filtering.html
   emodnet.wfs: emodnet.wfs.html
   articles/request-params: request-params.html
-last_built: 2024-11-05T11:59Z
+last_built: 2024-11-07T13:29Z
 urls:
   reference: https://emodnet.github.io/emodnet.wfs/reference
   article: https://emodnet.github.io/emodnet.wfs/articles
