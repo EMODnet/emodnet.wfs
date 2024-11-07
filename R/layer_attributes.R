@@ -10,7 +10,7 @@
 #' @family attributes
 #' @export
 #'
-#' @examplesIf interactive
+#' @examplesIf interactive()
 #' layer_attributes_summarise(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
