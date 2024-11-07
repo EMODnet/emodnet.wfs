@@ -1,5 +1,7 @@
 #' Initialise an EMODnet WFS client
 #'
+#' Connect to a data source (service)
+#'
 #' @param service the EMODnet OGC WFS service name.
 #' For available services, see [`emodnet_wfs()`].
 #' @param service_version `r lifecycle::badge('deprecated')`
@@ -13,10 +15,8 @@
 #' @export
 #'
 #' @seealso `WFSClient` in package `ows4R`.
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
-#' }
 emodnet_init_wfs_client <- function(service,
                                     service_version = NULL,
                                     logger = NULL) {
