@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @seealso `WFSClient` in package `ows4R`.
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 emodnet_init_wfs_client <- function(service,
                                     service_version = NULL,

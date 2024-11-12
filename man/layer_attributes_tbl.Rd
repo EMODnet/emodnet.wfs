@@ -35,7 +35,7 @@ for more
 targeted and faster layer download.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
 \dontshow{\}) # examplesIf}
 }

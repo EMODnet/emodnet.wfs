@@ -33,7 +33,7 @@ Names of variables (attributes) available from a dataset (layer)
 in a data source (service).
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_get_names(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"

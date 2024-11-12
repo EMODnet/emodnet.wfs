@@ -31,7 +31,7 @@ data.frame containing layer attribute descriptions (metadata).
 Get layer attribute description
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attribute_descriptions(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"

@@ -41,7 +41,7 @@
 #' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' # Layers as character vector
 #' emodnet_get_layers(
 #'   service = "biology",

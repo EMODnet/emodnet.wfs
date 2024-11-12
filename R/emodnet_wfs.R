@@ -10,7 +10,7 @@
 #'
 #' @return Tibble of available EMODnet Web Feature Services
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' emodnet_wfs()
 #' @export
 emodnet_wfs <- memoise::memoise(.emodnet_wfs)

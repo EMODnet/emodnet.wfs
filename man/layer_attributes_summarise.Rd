@@ -32,7 +32,7 @@ for a given service.
 Get summaries of layer attributes (variables)
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 layer_attributes_summarise(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"
