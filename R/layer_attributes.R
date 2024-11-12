@@ -10,7 +10,7 @@
 #' @family attributes
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' layer_attributes_summarise(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -44,7 +44,7 @@ layer_attributes_summarise <- function(wfs = NULL,
 #' @family attributes
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' layer_attribute_descriptions(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -76,7 +76,7 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #' @return character vector of layer attribute (variable) names.
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' layer_attributes_get_names(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -114,7 +114,7 @@ layer_attributes_get_names <- function(wfs = NULL,
 #' @family attributes
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' wfs <- emodnet_init_wfs_client(service = "biology")
 #' layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 #' layer_attribute_inspect(
@@ -183,7 +183,7 @@ layer_attribute_inspect <- function(wfs = NULL,
 #' @family attributes
 #' @export
 #'
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
 layer_attributes_tbl <- function(wfs = NULL,
                                  service = NULL,

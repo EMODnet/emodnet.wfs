@@ -91,7 +91,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from
 #' an EMODnet WFS service.
-#' @examplesIf interactive()
+#' @examplesIf identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()
 #' emodnet_get_wfs_info(service = "bathymetry")
 #' # Query a wfs object
 #' wfs_bio <- emodnet_init_wfs_client("biology")

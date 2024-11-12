@@ -85,7 +85,7 @@ you might consider a combination of these ideas:
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # Layers as character vector
 emodnet_get_layers(
   service = "biology",

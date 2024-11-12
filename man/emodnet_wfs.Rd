@@ -13,7 +13,7 @@ Tibble of available EMODnet Web Feature Services
 Available EMODnet Web Feature Services
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 emodnet_wfs()
 \dontshow{\}) # examplesIf}
 }
