@@ -26,8 +26,11 @@ Services](https://emodnet.ec.europa.eu/en/data-0). [Web Feature services
 change in the way geographic information is created, modified and
 exchanged on the Internet and offer direct fine-grained access to
 geographic information at the feature and feature property level.
-emodnet.wfs aims at offering an user-friendly interface to this rich
-data.
+Features are representation of geographic entities, such as a
+coastlines, marine protected areas, offshore platforms, or fishing
+areas. In WFS, features have geometry (spatial information) and
+attributes (descriptive data). emodnet.wfs aims at offering an
+user-friendly interface to this rich data.
 
 ## Installation and setup
 
@@ -46,35 +49,67 @@ client created successfully”, set the `"emodnet.wfs.quiet"` option to
 options("emodnet.wfs.quiet" = TRUE)
 ```
 
-## Available services
+## Pre-requisites
 
-All available services are contained in the tibble returned by
-`emodnet_wfs()`.
+The emodnet.wfs is designed to be compatible with the modern R
+geospatial stack, in particular output geospatial objects are
+[`sf`](https://r-spatial.github.io/sf/) objects, that is to say, a
+tibble with a geometry list-column.
 
-    #> [1] "data.frame"
-    #> [1] "service_name" "service_url"
-    #>  [1] "bathymetry"                                                     
-    #>  [2] "biology"                                                        
-    #>  [3] "biology_occurrence_data"                                        
-    #>  [4] "chemistry_cdi_data_discovery_and_access_service"                
-    #>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
-    #>  [6] "chemistry_contaminants"                                         
-    #>  [7] "chemistry_marine_litter"                                        
-    #>  [8] "geology_coastal_behavior"                                       
-    #>  [9] "geology_events_and_probabilities"                               
-    #> [10] "geology_marine_minerals"                                        
-    #> [11] "geology_sea_floor_bedrock"                                      
-    #> [12] "geology_seabed_substrate_maps"                                  
-    #> [13] "geology_submerged_landscapes"                                   
-    #> [14] "human_activities"                                               
-    #> [15] "physics"                                                        
-    #> [16] "seabed_habitats_general_datasets_and_products"                  
-    #> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+For users not familiar yet with geospatial data in R, we recommend the
+following resources:
+
+- [Spatial Data Science With Applications in
+  R](https://r-spatial.org/book/) by Edzer Pebesma and Roger Bivand.
+
+- [Geocomputation with R](https://r.geocompx.org/) by Robin Lovelace,
+  Jakub Nowosad and Jannes Muenchow.
+
+In the documentation we assume a basic familiarity with spatial data:
+knowing about coordinates and about projections / [coordinate reference
+systems (CRS)](https://r.geocompx.org/spatial-class#crs-intro).
+
+## Available data sources (services)
+
+All available data sources, called services, are contained in the
+[tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`.
+
+``` r
+library(emodnet.wfs)
+services <- emodnet_wfs()
+class(services)
+#> [1] "data.frame"
+names(services)
+#> [1] "service_name" "service_url"
+services$service_name
+#>  [1] "bathymetry"                                                     
+#>  [2] "biology"                                                        
+#>  [3] "biology_occurrence_data"                                        
+#>  [4] "chemistry_cdi_data_discovery_and_access_service"                
+#>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
+#>  [6] "chemistry_contaminants"                                         
+#>  [7] "chemistry_marine_litter"                                        
+#>  [8] "geology_coastal_behavior"                                       
+#>  [9] "geology_events_and_probabilities"                               
+#> [10] "geology_marine_minerals"                                        
+#> [11] "geology_sea_floor_bedrock"                                      
+#> [12] "geology_seabed_substrate_maps"                                  
+#> [13] "geology_submerged_landscapes"                                   
+#> [14] "human_activities"                                               
+#> [15] "physics"                                                        
+#> [16] "seabed_habitats_general_datasets_and_products"                  
+#> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+```
 
 To explore available services you can use `View()` or your usual way to
 explore `data.frames`.
 
-## Create Service Client
+## Initialise a WFS Service Client
+
+A WFS service client is responsible for sending requests to a WFS server
+and processing the responses to retrieve, display, or analyze geospatial
+features. As such, initialising a client is the first step to
+interacting with an EMODnet Web Feature Services.
 
 Specify the service using the `service` argument.
 
@@ -93,9 +128,16 @@ wfs_bio
 #> ....|-- capabilities <WFSCapabilities>
 ```
 
-## Get WFS Layer info
+## List contents of a WFS: Get layer information from a service client
 
-You can get metadata about the layers available from a service.
+In the context of a Web Feature Service (WFS), a layer refers to a
+logical grouping of geographic features that share the same schema
+(i.e., the same feature type, geometry, and attributes). Layers are the
+units of data that clients can query, retrieve, and manipulate through a
+WFS.
+
+You can access information (metadata) about each layer available from an
+EMODnet WFS with `emodnet_get_wfs_info()`
 
 ``` r
 emodnet_get_wfs_info(service = "biology")
@@ -164,11 +206,17 @@ the server
 emodnet_get_all_wfs_info()
 ```
 
-## Get WFS layers
+## Get data from a data source: get layers
 
 You can extract layers directly from a `wfs` object using layer names.
 All layers are downloaded as `sf` objects and output as a list with a
-named element for each layer requested.
+named element for each layer requested. The argument
+`reduce_layers = TRUE` stack all the layers in one single tibble, if
+possible (for instance if all column names are the same, otherwise it
+fails).
+
+By default, `emodnet_get_layers()` returns a list of sf objects, one per
+layer.
 
 ``` r
 emodnet_get_layers(wfs = wfs_bio, layers = layers)
@@ -211,7 +259,9 @@ emodnet_get_layers(wfs = wfs_bio, layers = layers)
 #> 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....
 ```
 
-You can change the output `crs` through the argument `crs`.
+You can change the output Coordinate Reference System (CRS), which
+defines how geographic data is mapped to the Earth’s surface, through
+the argument `crs`.
 
 ``` r
 emodnet_get_layers(wfs = wfs_bio, layers = layers, crs = 3857)
@@ -362,16 +412,48 @@ If you get an unexpected error,
 - Open an issue in this
   [repository](https://github.com/EMODnet/emodnet.wfs/issues).
 
-## Other web services
+## Unlock the Full Potential of the EMODnet Web Services: Access Raster and Gridded datasets.
 
-There are three ways to access EMODnet data at the moment, that
-complement each other.
+EMODnet hosts a wealth of marine and maritime data distributed through
+three complementary web services: WFS, WCS, and ERDDAP. Web services
+allow users to retrieve data programmatically from remote servers,
+eliminating the need for manual downloads. This is particularly useful
+for handling large datasets or conducting dynamic analyses. These
+services are tailored to different data types and research needs, but
+together, they ensure seamless access to all EMODnet vector, raster, and
+gridded datasets. Vector data, such as shipwrecks or boundaries, are
+accessible through `emodnet.wfs` via Web Feature Services (WFS).
+Complementary, raster and gridded datasets are available through Web
+Coverage Services (WCS) and ERDDAP respectively.
 
-### EMODnet ERDDAP server
+### Access EMODnet raster data through Web Coverage Services with `EMODnetWCS` in R
 
-Some EMODnet data are also published in an [ERDDAP
-server](https://erddap.emodnet.eu). You can access these data in R using
-the [rerddap R package](https://docs.ropensci.org/rerddap/):
+EMODnet raster datasets, such as habitat maps or bathymetry, are
+available through [Web Coverage Services
+(WCS)](https://wikipedia.org/wiki/Web_Coverage_Service). These data are
+continuous, gridded, and often used for spatial visualization or
+environmental modeling. The EMODnetWCS R package provides tools to
+retrieve and process these raser datasets, in a similar fashion as
+`emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS
+website](https://emodnet.github.io/EMODnetWCS/).
+
+### Access EMODnet gridded and tabular datasets through the ERDDAP Server and `rerddap` in R
+
+Both WFS and WCS EMODnet services are based on a federated system: each
+EMODnet thematic lot manages their servers and data, ensuring that their
+data are exposed both via WFS and WCS. The twin R packages `emodnet.wfs`
+and `EMODnetWCS` simplify the access to all the entry points by
+collecting them in single places, which are the packages themselves.
+
+In contrast, the [EMODnet ERDDAP Server](https://erddap.emodnet.eu) is
+centrally managed by the EMODnet Central Portal, offering a single
+access point to all gridded and tabular datasets. ERDDAP simplifies
+access to datasets such as digital terrain models, vessel density or
+environmental data. It is particularly suited for large-scale,
+multidimensional data analysis. In R, the `rerddap` package allows users
+to query and subset ERDDAP data programmatically, enabling efficient
+analysis and integration into workflows. For example, researchers can
+retrieve datasets on vessel density.
 
 ``` r
 # install.packages("rerrdap")
@@ -380,9 +462,11 @@ library(rerddap)
 #>   method           from
 #>   print.cache_info httr
 
+# This is the url where the EMODnet ERDDAP server is located
 erddap_url <- "https://erddap.emodnet.eu/erddap/"
 
-rerddap::ed_datasets(url = erddap_url)
+# Inspect all available datasets
+ed_datasets(url = erddap_url)
 #> # A tibble: 8 × 16
 #>   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115
 #>   <chr>   <chr>  <chr>    <chr>        <chr> <chr> <chr> <chr>   <chr> <chr>    
@@ -397,7 +481,8 @@ rerddap::ed_datasets(url = erddap_url)
 #> # ℹ 6 more variables: Info <chr>, Background.Info <chr>, RSS <chr>,
 #> #   Email <chr>, Institution <chr>, Dataset.ID <chr>
 
-rerddap::ed_search(query = "vessel density", url = erddap_url)
+# Find datasets with the key words "vessel density"
+ed_search(query = "vessel density", url = erddap_url)
 #> # A tibble: 16 × 2
 #>    title                                                     dataset_id         
 #>    <chr>                                                     <chr>              
@@ -418,7 +503,8 @@ rerddap::ed_search(query = "vessel density", url = erddap_url)
 #> 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug 
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
 
-human_activities_data_info <- rerddap::info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
+# Inspect more info about the vessel density dataset, using its identifier
+human_activities_data_info <- info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
 human_activities_data_info
 #> <ERDDAP info> humanactivities_9f8a_3389_f08a 
 #>  Base URL: https://erddap.emodnet.eu/erddap 
@@ -431,6 +517,7 @@ human_activities_data_info
 #>      vd: 
 #>          Units: seconds
 
+# Retrieve the vessel density at a particular time period
 year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
 head(year_2020_gridded_data$data)
@@ -443,15 +530,9 @@ head(year_2020_gridded_data$data)
 #> 6 -617500 7034500 2020-04-01T00:00:00Z NA
 ```
 
-### EMODnetWCS: Access EMODnet Web Coverage Service data
-
-This package emodnet.wfs uses [Web Feature
-Services](https://www.ogc.org/publications/standard/wfs/), hence it is
-limited to getting vector data. EMODnet also hosts raster data that can
-be accessed via [Web Coverage Services
-(WCS)](https://www.ogc.org/publications/standard/wcs/). The R package
-[EMODnetWCS](https://github.com/EMODnet/EMODnetWCS) makes these data
-available in R.
+More functionalities are available through `rerddap`. Feel free to
+explore the [rerddap website](https://docs.ropensci.org/rerddap/) to
+find out what else can you do with the EMODnet datasets in ERDDAP.
 
 ## Citation
 
