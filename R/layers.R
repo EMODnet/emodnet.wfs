@@ -26,6 +26,7 @@
 #'   Layers without corresponding filters are returned whole.
 #'
 #' @param reduce_layers whether to reduce output layers to a single `sf` object.
+#' This only works if the column names are the same.
 # nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
 #' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
@@ -36,7 +37,8 @@
 #' @return If `reduce_layers = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
 #' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
-#' reduced (if possible) to a single `sf` containing data for all layers.
+#' reduced (if possible: if all
+#' column names are the same) to a single `sf` containing data for all layers.
 #' `NULL` layers are ignored. `reduce_layers = TRUE` can also be used to return
 #' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
