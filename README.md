@@ -49,6 +49,9 @@ client created successfully”, set the `"emodnet.wfs.quiet"` option to
 options("emodnet.wfs.quiet" = TRUE)
 ```
 
+The use of the EMODnet Web Feature Services is not subjet to rate
+limiting at the moment.
+
 ## Pre-requisites
 
 The emodnet.wfs is designed to be compatible with the modern R
@@ -78,7 +81,7 @@ All available data sources, called services, are contained in the
 library(emodnet.wfs)
 services <- emodnet_wfs()
 class(services)
-#> [1] "data.frame"
+#> [1] "tbl_df"     "tbl"        "data.frame"
 names(services)
 #> [1] "service_name" "service_url"
 services$service_name
@@ -210,10 +213,9 @@ emodnet_get_all_wfs_info()
 
 You can extract layers directly from a `wfs` object using layer names.
 All layers are downloaded as `sf` objects and output as a list with a
-named element for each layer requested. The argument
-`simplify = TRUE` stack all the layers in one single tibble, if
-possible (for instance if all column names are the same, otherwise it
-fails).
+named element for each layer requested. The argument `simplify = TRUE`
+stack all the layers in one single tibble, if possible (for instance if
+all column names are the same, otherwise it fails).
 
 By default, `emodnet_get_layers()` returns a list of sf objects, one per
 layer.
