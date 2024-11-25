@@ -1,6 +1,6 @@
 ---
 title: "Accessing and mapping EMODnet data"
-output: rmarkdown::html_vignette
+output: github_document
 df_print: "tibble"
 vignette: >
   %\VignetteIndexEntry{API details}
@@ -49,37 +49,42 @@ For that, we can check the services available with the `emodnet_wfs()` function.
 library(emodnet.wfs)
 library(mapview)
 library(sf)
-#> Error in value[[3L]](cond): Package 'sf' version 1.0.18 cannot be unloaded:
-#>  Error in unloadNamespace(package) : namespace 'sf' is imported by 'ows4R', 'mapview', 'leafem', 'leafpop' so cannot be unloaded
 
 services <- emodnet_wfs()
-services$service_name
-#>  [1] "bathymetry"                                                     
-#>  [2] "biology"                                                        
-#>  [3] "biology_occurrence_data"                                        
-#>  [4] "chemistry_cdi_data_discovery_and_access_service"                
-#>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
-#>  [6] "chemistry_contaminants"                                         
-#>  [7] "chemistry_marine_litter"                                        
-#>  [8] "geology_coastal_behavior"                                       
-#>  [9] "geology_events_and_probabilities"                               
-#> [10] "geology_marine_minerals"                                        
-#> [11] "geology_sea_floor_bedrock"                                      
-#> [12] "geology_seabed_substrate_maps"                                  
-#> [13] "geology_submerged_landscapes"                                   
-#> [14] "human_activities"                                               
-#> [15] "physics"                                                        
-#> [16] "seabed_habitats_general_datasets_and_products"                  
-#> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+class(services)
+#> [1] "tbl_df"     "tbl"        "data.frame"
+names(services)
+#> [1] "emodnet_thematic_lot" "service_name"         "service_url"
+services[, c("emodnet_thematic_lot", "service_name")]
+#> # A tibble: 17 × 2
+#>    emodnet_thematic_lot     service_name                                        
+#>    <chr>                    <chr>                                               
+#>  1 EMODnet Bathymetry       bathymetry                                          
+#>  2 EMODnet Biology          biology                                             
+#>  3 EMODnet Biology          biology_occurrence_data                             
+#>  4 EMODnet Chemistry        chemistry_cdi_data_discovery_and_access_service     
+#>  5 EMODnet Chemistry        chemistry_cdi_distribution_observations_per_categor…
+#>  6 EMODnet Chemistry        chemistry_contaminants                              
+#>  7 EMODnet Chemistry        chemistry_marine_litter                             
+#>  8 EMODnet Geology          geology_coastal_behavior                            
+#>  9 EMODnet Geology          geology_events_and_probabilities                    
+#> 10 EMODnet Geology          geology_marine_minerals                             
+#> 11 EMODnet Geology          geology_sea_floor_bedrock                           
+#> 12 EMODnet Geology          geology_seabed_substrate_maps                       
+#> 13 EMODnet Geology          geology_submerged_landscapes                        
+#> 14 EMODnet Human Activities human_activities                                    
+#> 15 EMODnet Physics          physics                                             
+#> 16 EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_products       
+#> 17 EMODnet Seabed Habitats  seabed_habitats_individual_habitat_map_and_model_da…
 ```
 
-
-
-The column `service_name` shows services available, while  `service_url` has the corresponding base url to perform a WFS request. The Seabed portal should have the data we are looking for. A WFS client can be created by passing the corresponding `service_name` to the function `emodnet_init_wfs_client()`. The layers available to this WFS client are consulted with `emodnet_get_wfs_info()`.
+EMODnet data covers several disciplines organized in 7 thematic lots: bathymetry, biology, chemistry, geology, human activities, physics, seabed habitats. Some thematic lots organize their data in more than one data source or service. The column `service_name` shows services available, while  `service_url` has the corresponding base url to perform a WFS request. The Seabed portal should have the data we are looking for. A WFS client can be created by passing the corresponding `service_name` to the function `emodnet_init_wfs_client()`. The layers available to this WFS client are consulted with `emodnet_get_wfs_info()`.
 
 
 ``` r
 seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_datasets_and_products")
+#> Loading ISO 19139 XML schemas...
+#> Loading ISO 19115 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs"
 #> ℹ Version: "2.0.0"
@@ -87,18 +92,18 @@ seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
 #> # A tibble: 72 × 9
 #> # Rowwise: 
-#>    data_source service_name          service_url layer_name title abstract class format
-#>    <chr>       <chr>                 <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  2 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  3 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  4 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  5 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  6 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  7 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  8 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  9 emodnet_wfs seabed_habitats_gene… https://ow… carib_eus… 2023… "Output… WFSF… sf    
-#> 10 emodnet_wfs seabed_habitats_gene… https://ow… biogenic_… Biog… "This l… WFSF… sf    
+#>    data_source service_name   service_url layer_name title abstract class format
+#>    <chr>       <chr>          <chr>       <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  2 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  3 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  4 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  5 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  6 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  7 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  8 emodnet_wfs seabed_habita… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  9 emodnet_wfs seabed_habita… https://ow… carib_eus… 2023… "Output… WFSF… sf    
+#> 10 emodnet_wfs seabed_habita… https://ow… biogenic_… Biog… "This l… WFSF… sf    
 #> # ℹ 62 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
@@ -117,11 +122,11 @@ emodnet_get_layer_info(
 )
 #> # A tibble: 3 × 9
 #> # Rowwise: 
-#>   data_source service_name           service_url layer_name title abstract class format
-#>   <chr>       <chr>                  <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#> 1 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 2 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 3 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#>   data_source service_name    service_url layer_name title abstract class format
+#>   <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
+#> 1 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#> 2 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#> 3 emodnet_wfs https://ows.em… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -137,9 +142,6 @@ habitats_directive_layers <- emodnet_get_layers(
   simplify = TRUE,
   outputFormat = "application/json"
 )
-#> Start tag expected, '<' not found
-#> Start tag expected, '<' not found
-#> Start tag expected, '<' not found
 
 habitats_directive_layers
 #> Simple feature collection with 221 features and 8 fields
@@ -202,12 +204,8 @@ Run the following code to have a quick look at the layers geometries.
 
 ``` r
 mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
+#> Error in loadNamespace(name): there is no package called 'webshot'
 ```
-
-<div class="figure">
-<img src="emodnet.wfs-unnamed-chunk-6-1.png" alt="Interactive map of layers in the habitat directive"  />
-<p class="caption">plot of chunk unnamed-chunk-6</p>
-</div>
 
 EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with:
 
@@ -216,18 +214,18 @@ EMODnet provides also physics, chemistry, biological or bathymetry data. Explore
 emodnet_get_all_wfs_info()
 #> # A tibble: 1,713 × 9
 #> # Rowwise: 
-#>    data_source service_name service_url          layer_name title abstract class format
-#>    <chr>       <chr>        <chr>                <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs bathymetry   https://ows.emodnet… download_… Bath… "Downlo… WFSF… sf    
-#>  2 emodnet_wfs bathymetry   https://ows.emodnet… contours   Dept… "Genera… WFSF… sf    
-#>  3 emodnet_wfs bathymetry   https://ows.emodnet… hr_bathym… High… "Layer … WFSF… sf    
-#>  4 emodnet_wfs bathymetry   https://ows.emodnet… quality_i… Qual… "Repres… WFSF… sf    
-#>  5 emodnet_wfs bathymetry   https://ows.emodnet… sea_names  Sea … "Mainta… WFSF… sf    
-#>  6 emodnet_wfs bathymetry   https://ows.emodnet… source_re… Sour… "Covera… WFSF… sf    
-#>  7 emodnet_wfs bathymetry   https://ows.emodnet… undersea_… unde… ""       WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Coral … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#>    data_source service_name service_url   layer_name title abstract class format
+#>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs bathymetry   https://ows.… download_… Bath… "Downlo… WFSF… sf    
+#>  2 emodnet_wfs bathymetry   https://ows.… contours   Dept… "Genera… WFSF… sf    
+#>  3 emodnet_wfs bathymetry   https://ows.… hr_bathym… High… "Layer … WFSF… sf    
+#>  4 emodnet_wfs bathymetry   https://ows.… quality_i… Qual… "Repres… WFSF… sf    
+#>  5 emodnet_wfs bathymetry   https://ows.… sea_names  Sea … "Mainta… WFSF… sf    
+#>  6 emodnet_wfs bathymetry   https://ows.… source_re… Sour… "Covera… WFSF… sf    
+#>  7 emodnet_wfs bathymetry   https://ows.… undersea_… unde… ""       WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
 #> # ℹ 1,703 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
@@ -257,14 +255,15 @@ To cite emodnet.wfs, please use the output from `citation(package = "emodnet.wfs
 citation(package = "emodnet.wfs")
 #> To cite package 'emodnet.wfs' in publications use:
 #> 
-#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs: Access
-#>   EMODnet Web Feature Service data through R_. doi:10.14284/679
-#>   <https://doi.org/10.14284/679>, R package version 2.0.2.9000. Integrated
-#>   data products created under the European Marine Observation Data Network
-#>   (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded
-#>   by the by the European Union under Regulation (EU) No 508/2014 of the
-#>   European Parliament and of the Council of 15 May 2014 on the European
-#>   Maritime and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
+#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs:
+#>   Access EMODnet Web Feature Service data through R_. doi:10.14284/679
+#>   <https://doi.org/10.14284/679>, R package version 2.0.2.9000.
+#>   Integrated data products created under the European Marine
+#>   Observation Data Network (EMODnet) Biology project
+#>   (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the
+#>   European Union under Regulation (EU) No 508/2014 of the European
+#>   Parliament and of the Council of 15 May 2014 on the European Maritime
+#>   and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
