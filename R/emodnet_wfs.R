@@ -1,8 +1,9 @@
 .emodnet_wfs <- function() {
-  utils::read.csv(
+  data <- utils::read.csv(
     system.file("services.csv", package = "emodnet.wfs"),
     stringsAsFactors = FALSE
   )
+  tibble::as_tibble(data)
 }
 #' @description Available EMODnet Web Feature Services
 #'
