@@ -79,6 +79,7 @@
 <p>If you want to avoid reading messages from emodnet.wfs such as “WFS client created successfully”, set the <code>"emodnet.wfs.quiet"</code> option to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"emodnet.wfs.quiet"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>The use of the EMODnet Web Feature Services is not subjet to rate limiting at the moment.</p>
 </div>
 <div class="section level2">
 <h2 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
@@ -99,7 +100,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emodnet.github.io/emodnet.wfs/">emodnet.wfs</a></span><span class="op">)</span></span>
 <span><span class="va">services</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_wfs.html">emodnet_wfs</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "data.frame"</span></span>
+<span><span class="co">#&gt; [1] "tbl_df"     "tbl"        "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "service_name" "service_url"</span></span>
 <span><span class="va">services</span><span class="op">$</span><span class="va">service_name</span></span>
