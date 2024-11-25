@@ -1,6 +1,7 @@
 ---
 title: "Accessing and mapping EMODnet data"
 output: rmarkdown::html_vignette
+df_print: "tibble"
 vignette: >
   %\VignetteIndexEntry{API details}
   %\VignetteEngine{knitr::rmarkdown}
@@ -31,27 +32,30 @@ pak::pak("EMODnet/emodnet.wfs")
 
 ## Explore the EMODnet WFS services with R
 
-For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magrittr`'s pipe operator `%>%` (you could also use the [base pipe](https://r4ds.hadley.nz/workflow-style.html#sec-pipes)), which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
+For this tutorial we will make use of the [`sf`](https://r-spatial.github.io/sf/) and [`mapview`](https://r-spatial.github.io/mapview/) packages.
+The simple features `sf` package is a well known standard for dealing with geospatial vector data.
+To visualize geometries, `mapview` will create quick interactive maps.
 
 Run this line to install these packages:
 
 ```{r install.packages, eval = FALSE}
-install.packages(c("sf", "dplyr", "mapview"))
+install.packages(c("sf", "mapview"))
 ```
 
+EMODnet is organized into [seven thematic lots](https://emodnet.ec.europa.eu/en/emodnet-themes): Bathymetry, Geology, Seabed Habitats, Chemistry, Biology, Physics, and Human Activities, each focusing on a specific aspect of marine data.
+With the emodnet.wfs package, we can explore and combine the data served by the EMODnet thematic lots through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
+Imagine we are interested in seabed substrates.
+The first step is to choose what EMODnet thematic lot can provide with these data.
+For that, we can check the services available with the `emodnet_wfs()` function.
 
-With the emodnet.wfs package, we can explore and combine the data served by the [EMODnet lots ](https://emodnet.ec.europa.eu/en/emodnet-themes) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
-
-Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
-
-```{r error = FALSE, warning = FALSE, message = FALSE}
+```{r, warning=FALSE, message=FALSE}
 library(emodnet.wfs)
 library(mapview)
-library(dplyr)
 library(sf)
 
-emodnet_wfs()
+services <- emodnet_wfs()
+services$service_name
 ```
 
 
@@ -85,34 +89,25 @@ We are now ready to read the layers into R with `emodnet_get_layers()`. emodnet.
 habitats_directive_layers <- emodnet_get_layers(
   wfs = seabed_wfs_client,
   layers = habitats_directive_layer_names,
-  reduce_layers = TRUE
+  reduce_layers = TRUE,
+  outputFormat = "application/json"
 )
 
-class(habitats_directive_layers)
-
-glimpse(habitats_directive_layers)
+habitats_directive_layers
 ```
 
+Note the use of the `outputFormat` argument in this example. This specifies the file type to request from the service, which can influence how the data is loaded into R. By default, the data is provided in the `GML` format with a geometry type of "MULTISURFACE." However, this geometry type is not widely supported by many software tools, including the `mapview` package. To address this, you can request a different file type, such as GeoJSON, which delivers the geometry as "MULTIPOLYGON"—a format that is more universally compatible. This has been raised before in the [sf community](https://github.com/r-spatial/sf/issues/748).
 
 
-Run the following code to have a quick look at the layers geometries
+Run the following code to have a quick look at the layers geometries.
+
+```{r, fig.alt="Interactive map of layers in the habitat directive"}
+mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
+```
+
+EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with:
+
 ```{r, eval = TRUE}
-# Transform to Polygon geometry type from Multisurface
-if (unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE") {
-  habitats_directive_layers <- habitats_directive_layers %>%
-    st_cast(to = "GEOMETRYCOLLECTION") %>%
-    st_collection_extract(type = "POLYGON")
-}
-
-# Visualize
-map <- mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
-
-map
-```
-
-EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
-
-```{r, eval = FALSE}
 emodnet_get_all_wfs_info()
 ```
 
@@ -134,6 +129,8 @@ Tim Appelhans, Florian Detsch, Christoph Reudenbach and Stefan Woellauer (2020).
 
 ### Code
 
-Please cite this package as:
+To cite emodnet.wfs, please use the output from `citation(package = "emodnet.wfs")`.
 
-Anna Krystalli (2020). emodnet.wfs: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/emodnet.wfs. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
+```{r}
+citation(package = "emodnet.wfs")
+```
