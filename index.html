@@ -205,7 +205,7 @@
 <div class="section level2">
 <h2 id="get-data-from-a-data-source-get-layers">Get data from a data source: get layers<a class="anchor" aria-label="anchor" href="#get-data-from-a-data-source-get-layers"></a>
 </h2>
-<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested. The argument <code>reduce_layers = TRUE</code> stack all the layers in one single tibble, if possible (for instance if all column names are the same, otherwise it fails).</p>
+<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested. The argument <code>simplify = TRUE</code> stack all the layers in one single tibble, if possible (for instance if all column names are the same, otherwise it fails).</p>
 <p>By default, <code><a href="reference/emodnet_get_layers.html">emodnet_get_layers()</a></code> returns a list of sf objects, one per layer.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span>
@@ -334,24 +334,24 @@
 <span><span class="co">#&gt; 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....</span></span>
 <span><span class="co">#&gt; 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....</span></span>
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....</span></span></code></pre></div>
-<p>Layers can also be returned to a single <code>sf</code> object through argument <code>reduce_layers</code>.<br>
+<p>Layers can also be returned to a single <code>sf</code> object through argument <code>simplify</code>.<br>
 If <code>TRUE</code> the function will try to reduce all layers into a single <code>sf</code>.</p>
 <p>If attempting to reduce fails, it will error:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">wfs_bio</span>,</span>
 <span>  layers <span class="op">=</span> <span class="va">layers</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in `value[[3L]]()`:</span></span>
 <span><span class="co">#&gt; ! Cannot reduce layers.</span></span>
-<span><span class="co">#&gt; ℹ Try again with `reduce_layers = FALSE`</span></span></code></pre></div>
-<p>Using <code>reduce_layers = TRUE</code> is also useful for returning an <code>sf</code> object rather than a list in single layer request.</p>
+<span><span class="co">#&gt; ℹ Try again with `simplify = FALSE`</span></span></code></pre></div>
+<p>Using <code>simplify = TRUE</code> is also useful for returning an <code>sf</code> object rather than a list in single layer request.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  service <span class="op">=</span> <span class="st">"biology"</span>,</span>
 <span>  layers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mediseh_posidonia_nodata"</span><span class="op">)</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>

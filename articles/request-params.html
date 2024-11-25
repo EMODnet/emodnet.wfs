@@ -116,7 +116,7 @@ the <code>human_activities</code> WFS service.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  featureID <span class="op">=</span> <span class="st">"pipelines.1"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 1 feature and 13 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
@@ -141,7 +141,7 @@ restrict the query to the first feature.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  count <span class="op">=</span> <span class="fl">1L</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 1 feature and 13 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
@@ -173,7 +173,7 @@ their lengths recorded, we will skip them with a CQL Filter.</p>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  sortBy <span class="op">=</span> <span class="st">"length_m+D"</span>,</span>
 <span>  count <span class="op">=</span> <span class="fl">5L</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"length_m IS NOT NULL"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 5 features and 13 fields</span></span>
@@ -230,7 +230,7 @@ features.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  startIndex <span class="op">=</span> <span class="va">startIndex</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 4 features and 13 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
@@ -260,7 +260,7 @@ in order to start at the 5th feature.</p>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  startIndex <span class="op">=</span> <span class="fl">4L</span>,</span>
 <span>  count <span class="op">=</span> <span class="fl">6L</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 6 features and 13 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
@@ -302,7 +302,7 @@ case <code>the_geom</code>, column).</p>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  propertyName <span class="op">=</span> <span class="st">"country"</span>,</span>
 <span>  count <span class="op">=</span> <span class="fl">3L</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 3 features and 13 fields (with 3 geometries empty)</span></span>
 <span><span class="co">#&gt; Geometry type: GEOMETRYCOLLECTION</span></span>
@@ -325,7 +325,7 @@ character string supplied to <code>propertyName</code> by a comma.</p>
 <span>  layers <span class="op">=</span> <span class="st">"pipelines"</span>,</span>
 <span>  propertyName <span class="op">=</span> <span class="st">"country,the_geom"</span>,</span>
 <span>  count <span class="op">=</span> <span class="fl">3L</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 3 features and 13 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
@@ -365,7 +365,7 @@ reference system.</p>
 <span>  service <span class="op">=</span> <span class="st">"biology"</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
 <span>  bbox <span class="op">=</span> <span class="st">"22.9,34.4,26.8,35.8,EPSG:4326"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> WFS client created successfully</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span></span>

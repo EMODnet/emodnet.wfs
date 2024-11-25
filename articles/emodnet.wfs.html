@@ -195,14 +195,13 @@ simple features (See <code>sf</code> package) transformed to <a href="https://ep
 projection is possible by passing a EPGS code or projection string with
 <code>emodnet_get_layers(crs = "your projection")</code> where crs is a
 coordinate reference system (CRS). The argument
-<code>reduce_layers = TRUE</code> stack all the layers in one single
-tibble. Default is FALSE and returns a list of sf objects, one per
-layer.</p>
+<code>simplify = TRUE</code> stack all the layers in one single tibble.
+Default is FALSE and returns a list of sf objects, one per layer.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">habitats_directive_layers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span></span>
 <span>  wfs <span class="op">=</span> <span class="va">seabed_wfs_client</span>,</span>
 <span>  layers <span class="op">=</span> <span class="va">habitats_directive_layer_names</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  outputFormat <span class="op">=</span> <span class="st">"application/json"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Start tag expected, '&lt;' not found</span></span>

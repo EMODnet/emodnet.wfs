@@ -350,7 +350,7 @@ filter:</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"country LIKE 'S%'"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 16 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
@@ -382,7 +382,7 @@ then use a <code>like</code> comparison to a lowercase
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"strToLowerCase(country) LIKE '%l%'"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 40 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: POINT</span></span>
@@ -444,7 +444,7 @@ We can use the operator <code>&gt;</code> to create our filter:</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"km &gt; 400"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 4 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTICURVE</span></span>
@@ -463,7 +463,7 @@ and <code>and</code>.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"mediseh_posidonia_nodata"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"km between 40 and 400"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Simple feature collection with 120 features and 3 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTICURVE</span></span>
@@ -499,7 +499,7 @@ either <code>Baltic Sea</code> or <code>Bulgaria</code>.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"country='Baltic Sea' OR country='Bulgaria'"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Let’s say we also want to restrict the features returned those having
 <code>shape_length</code> &gt; 1. We can include an additional condition
@@ -509,7 +509,7 @@ which must be met using an <code>AND</code> statement.</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"country='Baltic Sea' OR country='Bulgaria' AND shape_length&gt;1"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">filter_sf1</span></span></code></pre></div>
 <p>The query returns features where <code>country</code> is
@@ -532,7 +532,7 @@ we can use a parenthesis:</p>
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"(country='Baltic Sea' OR country='Bulgaria') AND shape_length&gt;1"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Now the minimum value is indeed above 1. However, we only get
 features where <code>country</code> is <code>'Bulgaria'</code>. That’s
@@ -549,7 +549,7 @@ features with <code>shape_length</code> values smaller than 1 for both
 <span>  wfs <span class="op">=</span> <span class="va">wfs</span>,</span>
 <span>  layers <span class="op">=</span> <span class="st">"seabed_substrate_1m"</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"(country='Baltic Sea' OR country='Bulgaria') AND shape_length&lt;1"</span>,</span>
-<span>  reduce_layers <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">filter_sf3</span><span class="op">$</span><span class="va">shape_length</span><span class="op">)</span></span>
