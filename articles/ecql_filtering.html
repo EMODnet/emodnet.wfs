@@ -559,20 +559,24 @@ features with <code>shape_length</code> values smaller than 1 for both
 <h3 id="advanced-use">Advanced use<a class="anchor" aria-label="anchor" href="#advanced-use"></a>
 </h3>
 <p>There is more that can be accomplished by using the EMODnet WFS
-services than downloading data. The emodnet.wfs package is built on top
-of the <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> library,
-meaning that all the functionalities of this package are available for
-emodnet.wfs. The ows4R returns a special type of R object called R6. You
-can learn more in Hadley Wickham’s chapter on R6 Objects of the <a href="https://adv-r.hadley.nz/r6.html" class="external-link">Advance R book</a>.</p>
+services than downloading data. The <code>emodnet.wfs</code> package is
+built on top of the <a href="https://github.com/eblondel/ows4R" class="external-link">ows4R</a> library, meaning that
+all the functionalities of this package are available for emodnet.wfs.
+The ows4R returns a special type of R object called R6. You can learn
+more in Hadley Wickham’s chapter on R6 Objects of the <a href="https://adv-r.hadley.nz/r6.html" class="external-link">Advance R book</a>.</p>
 <p>For instance: it is not efficient to read a large dataset into R just
 and later subset part of it. This requires longer waiting times and more
 bandwidth usage, and in very large datasets it would simply not be
 possible. For instance, all the occurrences data available through the
 EMODnet Biology portal are stored in <a href="https://www.emodnet-biology.eu/emodnet-data-format" class="external-link">one table</a>:
 These are approximately 30 millions rows! In this case, we suggest you
-access the EMODnet Biology occurrence data through the <a href="https://www.emodnet-biology.eu/toolbox/" class="external-link">download toolbox</a> or
-the <a href="https://github.com/lifewatch/eurobis/" class="external-link">eurobis R
-package</a> instead.</p>
+access the EMODnet Biology occurrence data through the <a href="https://emodnet.ec.europa.eu/geoviewer/?layers=6d617269-6e65-696e-666f-000000001510:1:1&amp;basemap=ebwbl&amp;active=12639&amp;bounds=-177.7018404006958,-87.83122047893704,204.7018404006958,100.83122047893704&amp;filters=&amp;projection=EPSG:3857" class="external-link">EMODnet
+geoviewer</a> or the <a href="https://github.com/lifewatch/eurobis/" class="external-link">eurobis R package</a>. This
+package retrieves occurrences in batches, allowing for large datasets,
+and uses <code>viewParams</code>, a <a href="https://docs.geoserver.org/main/en/user/data/database/sqlview.html" class="external-link">geoserver-specific
+filtering feature</a> for faster requests compared to standard OGC or
+CQL filters. In addition, one of these specific filters allow to query
+on species traits such as functional groups.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -68,7 +68,7 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of emodnet.wfs is to allow interrogation of and access to <a href="https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3" class="external-link">EMODnet’s, European Marine Observation and Data Network, geographic vector data</a> in R through the <a href="https://emodnet.ec.europa.eu/en/data-0" class="external-link">EMODnet Web Feature Services</a>. <a href="https://www.ogc.org/publications/standard/wfs/" class="external-link">Web Feature services (WFS)</a> represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. emodnet.wfs aims at offering an user-friendly interface to this rich data.</p>
+<p>The goal of emodnet.wfs is to allow interrogation of and access to <a href="https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3" class="external-link">EMODnet’s, European Marine Observation and Data Network, geographic vector data</a> in R through the <a href="https://emodnet.ec.europa.eu/en/data-0" class="external-link">EMODnet Web Feature Services</a>. <a href="https://www.ogc.org/publications/standard/wfs/" class="external-link">Web Feature services (WFS)</a> represent a change in the way geographic information is created, modified and exchanged on the Internet and offer direct fine-grained access to geographic information at the feature and feature property level. Features are representation of geographic entities, such as a coastlines, marine protected areas, offshore platforms, or fishing areas. In WFS, features have geometry (spatial information) and attributes (descriptive data). emodnet.wfs aims at offering an user-friendly interface to this rich data.</p>
 <div class="section level2">
 <h2 id="installation-and-setup">Installation and setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
 </h2>
@@ -81,33 +81,51 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="st">"emodnet.wfs.quiet"</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="available-services">Available services<a class="anchor" aria-label="anchor" href="#available-services"></a>
+<h2 id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a>
 </h2>
-<p>All available services are contained in the tibble returned by <code><a href="reference/emodnet_wfs.html">emodnet_wfs()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#&gt; [1] "data.frame"</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; [1] "service_name" "service_url"</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt;  [1] "bathymetry"                                                     </span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt;  [2] "biology"                                                        </span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;  [3] "biology_occurrence_data"                                        </span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt;  [4] "chemistry_cdi_data_discovery_and_access_service"                </span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt;  [5] "chemistry_cdi_distribution_observations_per_category_and_region"</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt;  [6] "chemistry_contaminants"                                         </span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt;  [7] "chemistry_marine_litter"                                        </span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt;  [8] "geology_coastal_behavior"                                       </span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt;  [9] "geology_events_and_probabilities"                               </span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; [10] "geology_marine_minerals"                                        </span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt; [11] "geology_sea_floor_bedrock"                                      </span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; [12] "geology_seabed_substrate_maps"                                  </span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; [13] "geology_submerged_landscapes"                                   </span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; [14] "human_activities"                                               </span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; [15] "physics"                                                        </span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt; [16] "seabed_habitats_general_datasets_and_products"                  </span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt; [17] "seabed_habitats_individual_habitat_map_and_model_datasets"</span></span></code></pre></div>
+<p>The emodnet.wfs is designed to be compatible with the modern R geospatial stack, in particular output geospatial objects are <a href="https://r-spatial.github.io/sf/" class="external-link"><code>sf</code></a> objects, that is to say, a tibble with a geometry list-column.</p>
+<p>For users not familiar yet with geospatial data in R, we recommend the following resources:</p>
+<ul>
+<li><p><a href="https://r-spatial.org/book/" class="external-link">Spatial Data Science With Applications in R</a> by Edzer Pebesma and Roger Bivand.</p></li>
+<li><p><a href="https://r.geocompx.org/" class="external-link">Geocomputation with R</a> by Robin Lovelace, Jakub Nowosad and Jannes Muenchow.</p></li>
+</ul>
+<p>In the documentation we assume a basic familiarity with spatial data: knowing about coordinates and about projections / <a href="https://r.geocompx.org/spatial-class#crs-intro" class="external-link">coordinate reference systems (CRS)</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="available-data-sources-services">Available data sources (services)<a class="anchor" aria-label="anchor" href="#available-data-sources-services"></a>
+</h2>
+<p>All available data sources, called services, are contained in the <a href="https://tibble.tidyverse.org/" class="external-link">tibble</a> returned by <code><a href="reference/emodnet_wfs.html">emodnet_wfs()</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emodnet.github.io/emodnet.wfs/">emodnet.wfs</a></span><span class="op">)</span></span>
+<span><span class="va">services</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_wfs.html">emodnet_wfs</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "service_name" "service_url"</span></span>
+<span><span class="va">services</span><span class="op">$</span><span class="va">service_name</span></span>
+<span><span class="co">#&gt;  [1] "bathymetry"                                                     </span></span>
+<span><span class="co">#&gt;  [2] "biology"                                                        </span></span>
+<span><span class="co">#&gt;  [3] "biology_occurrence_data"                                        </span></span>
+<span><span class="co">#&gt;  [4] "chemistry_cdi_data_discovery_and_access_service"                </span></span>
+<span><span class="co">#&gt;  [5] "chemistry_cdi_distribution_observations_per_category_and_region"</span></span>
+<span><span class="co">#&gt;  [6] "chemistry_contaminants"                                         </span></span>
+<span><span class="co">#&gt;  [7] "chemistry_marine_litter"                                        </span></span>
+<span><span class="co">#&gt;  [8] "geology_coastal_behavior"                                       </span></span>
+<span><span class="co">#&gt;  [9] "geology_events_and_probabilities"                               </span></span>
+<span><span class="co">#&gt; [10] "geology_marine_minerals"                                        </span></span>
+<span><span class="co">#&gt; [11] "geology_sea_floor_bedrock"                                      </span></span>
+<span><span class="co">#&gt; [12] "geology_seabed_substrate_maps"                                  </span></span>
+<span><span class="co">#&gt; [13] "geology_submerged_landscapes"                                   </span></span>
+<span><span class="co">#&gt; [14] "human_activities"                                               </span></span>
+<span><span class="co">#&gt; [15] "physics"                                                        </span></span>
+<span><span class="co">#&gt; [16] "seabed_habitats_general_datasets_and_products"                  </span></span>
+<span><span class="co">#&gt; [17] "seabed_habitats_individual_habitat_map_and_model_datasets"</span></span></code></pre></div>
 <p>To explore available services you can use <code><a href="https://rdrr.io/r/utils/View.html" class="external-link">View()</a></code> or your usual way to explore <code>data.frames</code>.</p>
 </div>
 <div class="section level2">
-<h2 id="create-service-client">Create Service Client<a class="anchor" aria-label="anchor" href="#create-service-client"></a>
+<h2 id="initialise-a-wfs-service-client">Initialise a WFS Service Client<a class="anchor" aria-label="anchor" href="#initialise-a-wfs-service-client"></a>
 </h2>
+<p>A WFS service client is responsible for sending requests to a WFS server and processing the responses to retrieve, display, or analyze geospatial features. As such, initialising a client is the first step to interacting with an EMODnet Web Feature Services.</p>
 <p>Specify the service using the <code>service</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wfs_bio</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
@@ -124,9 +142,10 @@
 <span><span class="co">#&gt; ....|-- capabilities &lt;WFSCapabilities&gt;</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="get-wfs-layer-info">Get WFS Layer info<a class="anchor" aria-label="anchor" href="#get-wfs-layer-info"></a>
+<h2 id="list-contents-of-a-wfs-get-layer-information-from-a-service-client">List contents of a WFS: Get layer information from a service client<a class="anchor" aria-label="anchor" href="#list-contents-of-a-wfs-get-layer-information-from-a-service-client"></a>
 </h2>
-<p>You can get metadata about the layers available from a service.</p>
+<p>In the context of a Web Feature Service (WFS), a layer refers to a logical grouping of geographic features that share the same schema (i.e., the same feature type, geometry, and attributes). Layers are the units of data that clients can query, retrieve, and manipulate through a WFS.</p>
+<p>You can access information (metadata) about each layer available from an EMODnet WFS with <code><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info()</a></code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
@@ -184,9 +203,10 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_all_wfs_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="get-wfs-layers">Get WFS layers<a class="anchor" aria-label="anchor" href="#get-wfs-layers"></a>
+<h2 id="get-data-from-a-data-source-get-layers">Get data from a data source: get layers<a class="anchor" aria-label="anchor" href="#get-data-from-a-data-source-get-layers"></a>
 </h2>
-<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested.</p>
+<p>You can extract layers directly from a <code>wfs</code> object using layer names. All layers are downloaded as <code>sf</code> objects and output as a list with a named element for each layer requested. The argument <code>reduce_layers = TRUE</code> stack all the layers in one single tibble, if possible (for instance if all column names are the same, otherwise it fails).</p>
+<p>By default, <code><a href="reference/emodnet_get_layers.html">emodnet_get_layers()</a></code> returns a list of sf objects, one per layer.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $mediseh_zostera_m_pnt</span></span>
@@ -226,7 +246,7 @@
 <span><span class="co">#&gt; 8  mediseh_posidonia_nodata.16  0   1.913773 MULTICURVE (LINESTRING (10....</span></span>
 <span><span class="co">#&gt; 9  mediseh_posidonia_nodata.83  0   2.173447 MULTICURVE (LINESTRING (15....</span></span>
 <span><span class="co">#&gt; 10 mediseh_posidonia_nodata.84  0   2.817453 MULTICURVE (LINESTRING (15....</span></span></code></pre></div>
-<p>You can change the output <code>crs</code> through the argument <code>crs</code>.</p>
+<p>You can change the output Coordinate Reference System (CRS), which defines how geographic data is mapped to the Earth’s surface, through the argument <code>crs</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_layers.html">emodnet_get_layers</a></span><span class="op">(</span>wfs <span class="op">=</span> <span class="va">wfs_bio</span>, layers <span class="op">=</span> <span class="va">layers</span>, crs <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ crs transformed to 3857.</span></span>
@@ -364,13 +384,19 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 </ul>
 </div>
 <div class="section level2">
-<h2 id="other-web-services">Other web services<a class="anchor" aria-label="anchor" href="#other-web-services"></a>
+<h2 id="unlock-the-full-potential-of-the-emodnet-web-services-access-raster-and-gridded-datasets">Unlock the Full Potential of the EMODnet Web Services: Access Raster and Gridded datasets.<a class="anchor" aria-label="anchor" href="#unlock-the-full-potential-of-the-emodnet-web-services-access-raster-and-gridded-datasets"></a>
 </h2>
-<p>There are three ways to access EMODnet data at the moment, that complement each other.</p>
+<p>EMODnet hosts a wealth of marine and maritime data distributed through three complementary web services: WFS, WCS, and ERDDAP. Web services allow users to retrieve data programmatically from remote servers, eliminating the need for manual downloads. This is particularly useful for handling large datasets or conducting dynamic analyses. These services are tailored to different data types and research needs, but together, they ensure seamless access to all EMODnet vector, raster, and gridded datasets. Vector data, such as shipwrecks or boundaries, are accessible through <code>emodnet.wfs</code> via Web Feature Services (WFS). Complementary, raster and gridded datasets are available through Web Coverage Services (WCS) and ERDDAP respectively.</p>
 <div class="section level3">
-<h3 id="emodnet-erddap-server">EMODnet ERDDAP server<a class="anchor" aria-label="anchor" href="#emodnet-erddap-server"></a>
+<h3 id="access-emodnet-raster-data-through-web-coverage-services-with-emodnetwcs-in-r">Access EMODnet raster data through Web Coverage Services with <code>EMODnetWCS</code> in R<a class="anchor" aria-label="anchor" href="#access-emodnet-raster-data-through-web-coverage-services-with-emodnetwcs-in-r"></a>
 </h3>
-<p>Some EMODnet data are also published in an <a href="https://erddap.emodnet.eu" class="external-link">ERDDAP server</a>. You can access these data in R using the <a href="https://docs.ropensci.org/rerddap/" class="external-link">rerddap R package</a>:</p>
+<p>EMODnet raster datasets, such as habitat maps or bathymetry, are available through <a href="https://wikipedia.org/wiki/Web_Coverage_Service" class="external-link">Web Coverage Services (WCS)</a>. These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as <code>emodnet.wfs</code>. Extensive documentation is available at the <a href="https://emodnet.github.io/EMODnetWCS/" class="external-link">EMODnetWCS website</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="access-emodnet-gridded-and-tabular-datasets-through-the-erddap-server-and-rerddap-in-r">Access EMODnet gridded and tabular datasets through the ERDDAP Server and <code>rerddap</code> in R<a class="anchor" aria-label="anchor" href="#access-emodnet-gridded-and-tabular-datasets-through-the-erddap-server-and-rerddap-in-r"></a>
+</h3>
+<p>Both WFS and WCS EMODnet services are based on a federated system: each EMODnet thematic lot manages their servers and data, ensuring that their data are exposed both via WFS and WCS. The twin R packages <code>emodnet.wfs</code> and <code>EMODnetWCS</code> simplify the access to all the entry points by collecting them in single places, which are the packages themselves.</p>
+<p>In contrast, the <a href="https://erddap.emodnet.eu" class="external-link">EMODnet ERDDAP Server</a> is centrally managed by the EMODnet Central Portal, offering a single access point to all gridded and tabular datasets. ERDDAP simplifies access to datasets such as digital terrain models, vessel density or environmental data. It is particularly suited for large-scale, multidimensional data analysis. In R, the <code>rerddap</code> package allows users to query and subset ERDDAP data programmatically, enabling efficient analysis and integration into workflows. For example, researchers can retrieve datasets on vessel density.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("rerrdap")</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rerddap/" class="external-link">rerddap</a></span><span class="op">)</span></span>
@@ -378,9 +404,11 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt;   method           from</span></span>
 <span><span class="co">#&gt;   print.cache_info httr</span></span>
 <span></span>
+<span><span class="co"># This is the url where the EMODnet ERDDAP server is located</span></span>
 <span><span class="va">erddap_url</span> <span class="op">&lt;-</span> <span class="st">"https://erddap.emodnet.eu/erddap/"</span></span>
 <span></span>
-<span><span class="fu">rerddap</span><span class="fu">::</span><span class="fu">ed_datasets</span><span class="op">(</span>url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="co"># Inspect all available datasets</span></span>
+<span><span class="fu">ed_datasets</span><span class="op">(</span>url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 8 × 16</span></span>
 <span><span class="co">#&gt;   griddap Subset tabledap Make.A.Graph wms   files Title Summary FGDC  ISO.19115</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    </span></span>
@@ -395,7 +423,8 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt; # ℹ 6 more variables: Info &lt;chr&gt;, Background.Info &lt;chr&gt;, RSS &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   Email &lt;chr&gt;, Institution &lt;chr&gt;, Dataset.ID &lt;chr&gt;</span></span>
 <span></span>
-<span><span class="fu">rerddap</span><span class="fu">::</span><span class="fu">ed_search</span><span class="op">(</span>query <span class="op">=</span> <span class="st">"vessel density"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="co"># Find datasets with the key words "vessel density"</span></span>
+<span><span class="fu">ed_search</span><span class="op">(</span>query <span class="op">=</span> <span class="st">"vessel density"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 16 × 2</span></span>
 <span><span class="co">#&gt;    title                                                     dataset_id         </span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;                                                     &lt;chr&gt;              </span></span>
@@ -416,7 +445,8 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt; 15 Vessel traffic density, 2019, Tug and Towing              EMODPACE_VD_07_Tug </span></span>
 <span><span class="co">#&gt; 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…</span></span>
 <span></span>
-<span><span class="va">human_activities_data_info</span> <span class="op">&lt;-</span> <span class="fu">rerddap</span><span class="fu">::</span><span class="fu">info</span><span class="op">(</span>datasetid <span class="op">=</span> <span class="st">"humanactivities_9f8a_3389_f08a"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
+<span><span class="co"># Inspect more info about the vessel density dataset, using its identifier</span></span>
+<span><span class="va">human_activities_data_info</span> <span class="op">&lt;-</span> <span class="fu">info</span><span class="op">(</span>datasetid <span class="op">=</span> <span class="st">"humanactivities_9f8a_3389_f08a"</span>, url <span class="op">=</span> <span class="va">erddap_url</span><span class="op">)</span></span>
 <span><span class="va">human_activities_data_info</span></span>
 <span><span class="co">#&gt; &lt;ERDDAP info&gt; humanactivities_9f8a_3389_f08a </span></span>
 <span><span class="co">#&gt;  Base URL: https://erddap.emodnet.eu/erddap </span></span>
@@ -429,6 +459,7 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt;      vd: </span></span>
 <span><span class="co">#&gt;          Units: seconds</span></span>
 <span></span>
+<span><span class="co"># Retrieve the vessel density at a particular time period</span></span>
 <span><span class="va">year_2020_gridded_data</span> <span class="op">&lt;-</span> <span class="fu">griddap</span><span class="op">(</span>datasetx <span class="op">=</span> <span class="va">human_activities_data_info</span>, time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2020-03-18"</span>, <span class="st">"2020-03-19"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">year_2020_gridded_data</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
@@ -439,11 +470,7 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <span><span class="co">#&gt; 4 -619500 7034500 2020-04-01T00:00:00Z NA</span></span>
 <span><span class="co">#&gt; 5 -618500 7034500 2020-04-01T00:00:00Z NA</span></span>
 <span><span class="co">#&gt; 6 -617500 7034500 2020-04-01T00:00:00Z NA</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="emodnetwcs-access-emodnet-web-coverage-service-data">EMODnetWCS: Access EMODnet Web Coverage Service data<a class="anchor" aria-label="anchor" href="#emodnetwcs-access-emodnet-web-coverage-service-data"></a>
-</h3>
-<p>This package emodnet.wfs uses <a href="https://www.ogc.org/publications/standard/wfs/" class="external-link">Web Feature Services</a>, hence it is limited to getting vector data. EMODnet also hosts raster data that can be accessed via <a href="https://www.ogc.org/publications/standard/wcs/" class="external-link">Web Coverage Services (WCS)</a>. The R package <a href="https://github.com/EMODnet/EMODnetWCS" class="external-link">EMODnetWCS</a> makes these data available in R.</p>
+<p>More functionalities are available through <code>rerddap</code>. Feel free to explore the <a href="https://docs.ropensci.org/rerddap/" class="external-link">rerddap website</a> to find out what else can you do with the EMODnet datasets in ERDDAP.</p>
 </div>
 </div>
 <div class="section level2">
