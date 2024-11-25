@@ -1,5 +1,17 @@
 # emodnet.wfs (development version)
 
+* Improved documentation following rOpenSci reviews: manual pages, README, vignettes.
+
+* Renamed `reduce_layers` argument to `simplify`.
+
+* `emodnet_wfs()` now really returns a tibble, not a data.frame.
+
+* Listed reviewers in DESCRIPTION.
+
+* Set up a better escape mechanism for examples that could fail when services are 
+down, but ensure they are rendered in the pkgdown website.
+
+
 # emodnet.wfs 2.0.2
 
 * Added ability to pass vendor parameter to `emodnet.wfs::emodnet_get_layers()` queries (#88).
