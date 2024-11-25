@@ -175,7 +175,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "mediseh_zostera_m_pnt",
   cql_filter = "country LIKE 'S%'",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -189,7 +189,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "mediseh_zostera_m_pnt",
   cql_filter = "strToLowerCase(country) LIKE '%l%'",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -229,7 +229,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "mediseh_posidonia_nodata",
   cql_filter = "km > 400",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -239,7 +239,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "mediseh_posidonia_nodata",
   cql_filter = "km between 40 and 400",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -257,7 +257,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "seabed_substrate_1m",
   cql_filter = "country='Baltic Sea' OR country='Bulgaria'",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -269,7 +269,7 @@ filter_sf1 <- emodnet_get_layers(
   wfs = wfs,
   layers = "seabed_substrate_1m",
   cql_filter = "country='Baltic Sea' OR country='Bulgaria' AND shape_length>1",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 filter_sf1
 ```
@@ -290,7 +290,7 @@ filter_sf2 <- emodnet_get_layers(
   wfs = wfs,
   layers = "seabed_substrate_1m",
   cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length>1",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -310,7 +310,7 @@ filter_sf3 <- emodnet_get_layers(
   wfs = wfs,
   layers = "seabed_substrate_1m",
   cql_filter = "(country='Baltic Sea' OR country='Bulgaria') AND shape_length<1",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 

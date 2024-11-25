@@ -79,7 +79,7 @@ test_that("reduce layers on single layer returns sf", {
     wfs = wfs,
     layers = "mediseh_zostera_m_pnt",
     cql_filter = "country='Grecia'",
-    reduce_layers = TRUE
+    simplify = TRUE
   )
   expect_s3_class(sf_data, c("sf", "data.frame"))
 })
@@ -103,7 +103,7 @@ test_that("reduce works", {
   sf_data <- emodnet_get_layers(
     service = "seabed_habitats_individual_habitat_map_and_model_datasets",
     layers = c("dk003069", "dk003070"),
-    reduce_layers = TRUE
+    simplify = TRUE
   )
 
   expect_s3_class(sf_data, class = c("sf", "data.frame"))
@@ -117,7 +117,7 @@ test_that("works when data.frame layer", {
     emodnet_get_layers(
       wfs,
       layers = c("OOPS_summaries", "OOPS_metadata"),
-      reduce_layers = TRUE
+      simplify = TRUE
     )
   )
   result_list <- emodnet_get_layers(

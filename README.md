@@ -211,7 +211,7 @@ emodnet_get_all_wfs_info()
 You can extract layers directly from a `wfs` object using layer names.
 All layers are downloaded as `sf` objects and output as a list with a
 named element for each layer requested. The argument
-`reduce_layers = TRUE` stack all the layers in one single tibble, if
+`simplify = TRUE` stack all the layers in one single tibble, if
 possible (for instance if all column names are the same, otherwise it
 fails).
 
@@ -356,7 +356,7 @@ emodnet_get_layers(
 ```
 
 Layers can also be returned to a single `sf` object through argument
-`reduce_layers`.  
+`simplify`.  
 If `TRUE` the function will try to reduce all layers into a single `sf`.
 
 If attempting to reduce fails, it will error:
@@ -365,21 +365,21 @@ If attempting to reduce fails, it will error:
 emodnet_get_layers(
   wfs = wfs_bio,
   layers = layers,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 #> Error in `value[[3L]]()`:
 #> ! Cannot reduce layers.
-#> ℹ Try again with `reduce_layers = FALSE`
+#> ℹ Try again with `simplify = FALSE`
 ```
 
-Using `reduce_layers = TRUE` is also useful for returning an `sf` object
+Using `simplify = TRUE` is also useful for returning an `sf` object
 rather than a list in single layer request.
 
 ``` r
 emodnet_get_layers(
   service = "biology",
   layers = c("mediseh_posidonia_nodata"),
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"

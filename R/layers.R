@@ -25,8 +25,10 @@
 #'   Filters with names that do not correspond to any layers are ignored.
 #'   Layers without corresponding filters are returned whole.
 #'
-#' @param reduce_layers whether to reduce output layers to a single `sf` object.
+#' @param simplify whether to reduce output layers to a single `sf` object.
 #' This only works if the column names are the same.
+#' @param reduce_layers `r lifecycle::badge("deprecated")` use `simplify`.
+# nolint start: line_length_linter
 # nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
 #' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
@@ -34,12 +36,12 @@
 #' Or `outputFormat = "CSV"` (or `outputFormat = "JSON"`) might help downloading
 #' bigger datasets.
 # nolint end
-#' @return If `reduce_layers = FALSE` (default), a list of `sf`
+#' @return If `simplify = FALSE` (default), a list of `sf`
 #' objects, one element for each layer. Any layers for which download was
-#' unsuccessful will be NULL. If `reduce_layers = TRUE`, all layers are
+#' unsuccessful will be NULL. If `simplify = TRUE`, all layers are
 #' reduced (if possible: if all
 #' column names are the same) to a single `sf` containing data for all layers.
-#' `NULL` layers are ignored. `reduce_layers = TRUE` can also be used to return
+#' `NULL` layers are ignored. `simplify = TRUE` can also be used to return
 #' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
 #'
@@ -90,9 +92,19 @@ emodnet_get_layers <- function(wfs = NULL,
                                layers,
                                crs = NULL,
                                cql_filter = NULL,
-                               reduce_layers = FALSE,
+                               simplify = FALSE,
+                               reduce_layers = deprecated(),
                                ...) {
   deprecate_msg_service_version(service_version, "emodnet_get_layers")
+
+    if (lifecycle::is_present(reduce_layers)) {
+        lifecycle::deprecate_soft(
+            "2.0.3",
+            "emodnet_get_layers(reduce_layers = )",
+            "emodnet_get_layers(simplify = )"
+        )
+        simplify <- reduce_layers
+    }
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
@@ -116,7 +128,7 @@ emodnet_get_layers <- function(wfs = NULL,
   )
 
   formats <- purrr::map_chr(layers, get_layer_format, wfs)
-  if (any(formats != "sf") && reduce_layers) {
+  if (any(formats != "sf") && simplify) {
     cli::cli_abort(
       c(
         "Can't reduce layers when one is a data.frame",
@@ -159,15 +171,15 @@ emodnet_get_layers <- function(wfs = NULL,
   ) %>%
     stats::setNames(layers)
 
-  # if reduce_layers = T, reduce to single sf --------------------------------
-  if (reduce_layers) {
+  # if simplify = TRUE, reduce to single sf --------------------------------
+  if (simplify) {
     tryCatch(
       out <- purrr::reduce(out, rbind),
       error = function(e) {
         cli::cli_abort(
           c(
             "Cannot reduce layers.",
-            i = "Try again with {.code reduce_layers = FALSE}"
+            i = "Try again with {.code simplify = FALSE}"
           )
         )
       }

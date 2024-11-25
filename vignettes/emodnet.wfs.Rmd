@@ -127,14 +127,14 @@ emodnet_get_layer_info(
 
 
 
-We are now ready to read the layers into R with `emodnet_get_layers()`. emodnet.wfs reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")` where crs is a coordinate reference system (CRS). The argument `reduce_layers = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
+We are now ready to read the layers into R with `emodnet_get_layers()`. emodnet.wfs reads the geometries as simple features (See `sf` package) transformed to [4326](https://epsg.io/4326) by default. Specifying another map projection is possible by passing a EPGS code or projection string with `emodnet_get_layers(crs = "your projection")` where crs is a coordinate reference system (CRS). The argument `simplify = TRUE` stack all the layers in one single tibble. Default is FALSE and returns a list of sf objects, one per layer.
 
 
 ``` r
 habitats_directive_layers <- emodnet_get_layers(
   wfs = seabed_wfs_client,
   layers = habitats_directive_layer_names,
-  reduce_layers = TRUE,
+  simplify = TRUE,
   outputFormat = "application/json"
 )
 #> Start tag expected, '<' not found

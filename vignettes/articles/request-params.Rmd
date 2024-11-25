@@ -36,7 +36,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
   featureID = "pipelines.1",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -49,7 +49,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
   count = 1L,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -65,7 +65,7 @@ emodnet_get_layers(
   layers = "pipelines",
   sortBy = "length_m+D",
   count = 5L,
-  reduce_layers = TRUE,
+  simplify = TRUE,
   cql_filter = "length_m IS NOT NULL"
 )
 ```
@@ -102,7 +102,7 @@ emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
   startIndex = startIndex,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -117,7 +117,7 @@ emodnet_get_layers(
   layers = "pipelines",
   startIndex = 4L,
   count = 6L,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -138,7 +138,7 @@ emodnet_get_layers(
   layers = "pipelines",
   propertyName = "country",
   count = 3L,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -150,7 +150,7 @@ emodnet_get_layers(
   layers = "pipelines",
   propertyName = "country,the_geom",
   count = 3L,
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 ```
 
@@ -166,7 +166,7 @@ bbox_response <- emodnet_get_layers(
   service = "biology",
   layers = "mediseh_posidonia_nodata",
   bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
-  reduce_layers = TRUE
+  simplify = TRUE
 )
 
 bbox_response %>%

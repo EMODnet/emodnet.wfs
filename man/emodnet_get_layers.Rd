@@ -11,7 +11,8 @@ emodnet_get_layers(
   layers,
   crs = NULL,
   cql_filter = NULL,
-  reduce_layers = FALSE,
+  simplify = FALSE,
+  reduce_layers = deprecated(),
   ...
 )
 }
@@ -48,8 +49,10 @@ Filters with names that do not correspond to any layers are ignored.
 Layers without corresponding filters are returned whole.
 }}
 
-\item{reduce_layers}{whether to reduce output layers to a single \code{sf} object.
+\item{simplify}{whether to reduce output layers to a single \code{sf} object.
 This only works if the column names are the same.}
+
+\item{reduce_layers}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} use \code{simplify}.}
 
 \item{...}{additional vendor parameter arguments passed to
 \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{ows4R::GetFeature()}}.
@@ -58,12 +61,12 @@ Or \code{outputFormat = "CSV"} (or \code{outputFormat = "JSON"}) might help down
 bigger datasets.}
 }
 \value{
-If \code{reduce_layers = FALSE} (default), a list of \code{sf}
+If \code{simplify = FALSE} (default), a list of \code{sf}
 objects, one element for each layer. Any layers for which download was
-unsuccessful will be NULL. If \code{reduce_layers = TRUE}, all layers are
+unsuccessful will be NULL. If \code{simplify = TRUE}, all layers are
 reduced (if possible: if all
 column names are the same) to a single \code{sf} containing data for all layers.
-\code{NULL} layers are ignored. \code{reduce_layers = TRUE} can also be used to return
+\code{NULL} layers are ignored. \code{simplify = TRUE} can also be used to return
 an \code{sf} out of a single layer request instead of a list of length 1.
 }
 \description{
