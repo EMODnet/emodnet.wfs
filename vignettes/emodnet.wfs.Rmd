@@ -1,6 +1,7 @@
 ---
 title: "Accessing and mapping EMODnet data"
 output: rmarkdown::html_vignette
+df_print: "tibble"
 vignette: >
   %\VignetteIndexEntry{API details}
   %\VignetteEngine{knitr::rmarkdown}
@@ -25,65 +26,51 @@ pak::pak("EMODnet/emodnet.wfs")
 
 ## Explore the EMODnet WFS services with R
 
-For this tutorial we will make use of the `sf`,  `dplyr`  and `mapview` packages. The simple features `sf` package is a well known standard for dealing with geospatial vector data. The package `dplyr` is a strong library for data manipulation. This package also loads `magrittr`'s pipe operator `%>%` (you could also use the [base pipe](https://r4ds.hadley.nz/workflow-style.html#sec-pipes)), which allows to write pipelines in R. To visualize geometries,  `mapview` will create quick interactive maps.
+For this tutorial we will make use of the [`sf`](https://r-spatial.github.io/sf/) and [`mapview`](https://r-spatial.github.io/mapview/) packages.
+The simple features `sf` package is a well known standard for dealing with geospatial vector data.
+To visualize geometries, `mapview` will create quick interactive maps.
 
 Run this line to install these packages:
 
 
 ``` r
-install.packages(c("sf", "dplyr", "mapview"))
+install.packages(c("sf", "mapview"))
 ```
 
+EMODnet is organized into [seven thematic lots](https://emodnet.ec.europa.eu/en/emodnet-themes): Bathymetry, Geology, Seabed Habitats, Chemistry, Biology, Physics, and Human Activities, each focusing on a specific aspect of marine data.
+With the emodnet.wfs package, we can explore and combine the data served by the EMODnet thematic lots through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
 
-
-With the emodnet.wfs package, we can explore and combine the data served by the [EMODnet lots ](https://emodnet.ec.europa.eu/en/emodnet-themes) through [OGC Web Feature Services](https://en.wikipedia.org/wiki/Web_Feature_Service) or WFS.
-
-Imagine we are interested in seabed substrates. The first step is to choose what EMODnet lot can provide with these data. For that, we can check the services available with the `emodnet_wfs()` function.
+Imagine we are interested in seabed substrates.
+The first step is to choose what EMODnet thematic lot can provide with these data.
+For that, we can check the services available with the `emodnet_wfs()` function.
 
 
 ``` r
 library(emodnet.wfs)
 library(mapview)
-library(dplyr)
 library(sf)
+#> Error in value[[3L]](cond): Package 'sf' version 1.0.18 cannot be unloaded:
+#>  Error in unloadNamespace(package) : namespace 'sf' is imported by 'ows4R', 'mapview', 'leafem', 'leafpop' so cannot be unloaded
 
-emodnet_wfs()
-#>                                                       service_name
-#> 1                                                       bathymetry
-#> 2                                                          biology
-#> 3                                          biology_occurrence_data
-#> 4                  chemistry_cdi_data_discovery_and_access_service
-#> 5  chemistry_cdi_distribution_observations_per_category_and_region
-#> 6                                           chemistry_contaminants
-#> 7                                          chemistry_marine_litter
-#> 8                                         geology_coastal_behavior
-#> 9                                 geology_events_and_probabilities
-#> 10                                         geology_marine_minerals
-#> 11                                       geology_sea_floor_bedrock
-#> 12                                   geology_seabed_substrate_maps
-#> 13                                    geology_submerged_landscapes
-#> 14                                                human_activities
-#> 15                                                         physics
-#> 16                   seabed_habitats_general_datasets_and_products
-#> 17       seabed_habitats_individual_habitat_map_and_model_datasets
-#>                                                                    service_url
-#> 1                                        https://ows.emodnet-bathymetry.eu/wfs
-#> 2                                 https://geo.vliz.be/geoserver/Emodnetbio/wfs
-#> 3                                 https://geo.vliz.be/geoserver/Dataportal/wfs
-#> 4                           https://geo-service.maris.nl/emodnet_chemistry/wfs
-#> 5                       https://geo-service.maris.nl/emodnet_chemistry_p36/wfs
-#> 6                       https://geoserver.hcmr.gr/geoserver/EMODNET_SHARED/wfs
-#> 7                       https://www.ifremer.fr/services/wfs/emodnet_chemistry2
-#> 8                           https://drive.emodnet-geology.eu/geoserver/tno/wfs
-#> 9                         https://drive.emodnet-geology.eu/geoserver/ispra/wfs
-#> 10                          https://drive.emodnet-geology.eu/geoserver/gsi/wfs
-#> 11                          https://drive.emodnet-geology.eu/geoserver/bgr/wfs
-#> 12                          https://drive.emodnet-geology.eu/geoserver/gtk/wfs
-#> 13                          https://drive.emodnet-geology.eu/geoserver/bgs/wfs
-#> 14                                  https://ows.emodnet-humanactivities.eu/wfs
-#> 15                     https://prod-geoserver.emodnet-physics.eu/geoserver/ows
-#> 16            https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs
-#> 17 https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open_maplibrary/wfs
+services <- emodnet_wfs()
+services$service_name
+#>  [1] "bathymetry"                                                     
+#>  [2] "biology"                                                        
+#>  [3] "biology_occurrence_data"                                        
+#>  [4] "chemistry_cdi_data_discovery_and_access_service"                
+#>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
+#>  [6] "chemistry_contaminants"                                         
+#>  [7] "chemistry_marine_litter"                                        
+#>  [8] "geology_coastal_behavior"                                       
+#>  [9] "geology_events_and_probabilities"                               
+#> [10] "geology_marine_minerals"                                        
+#> [11] "geology_sea_floor_bedrock"                                      
+#> [12] "geology_seabed_substrate_maps"                                  
+#> [13] "geology_submerged_landscapes"                                   
+#> [14] "human_activities"                                               
+#> [15] "physics"                                                        
+#> [16] "seabed_habitats_general_datasets_and_products"                  
+#> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
 ```
 
 
@@ -100,18 +87,18 @@ seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
 #> # A tibble: 72 × 9
 #> # Rowwise: 
-#>    data_source service_name    service_url layer_name title abstract class format
-#>    <chr>       <chr>           <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  2 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  3 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  4 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  5 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  6 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  7 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  8 emodnet_wfs seabed_habitat… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  9 emodnet_wfs seabed_habitat… https://ow… carib_eus… 2023… "Output… WFSF… sf    
-#> 10 emodnet_wfs seabed_habitat… https://ow… biogenic_… Biog… "This l… WFSF… sf    
+#>    data_source service_name          service_url layer_name title abstract class format
+#>    <chr>       <chr>                 <chr>       <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  2 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  3 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  4 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  5 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  6 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  7 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  8 emodnet_wfs seabed_habitats_gene… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
+#>  9 emodnet_wfs seabed_habitats_gene… https://ow… carib_eus… 2023… "Output… WFSF… sf    
+#> 10 emodnet_wfs seabed_habitats_gene… https://ow… biogenic_… Biog… "This l… WFSF… sf    
 #> # ℹ 62 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
@@ -130,11 +117,11 @@ emodnet_get_layer_info(
 )
 #> # A tibble: 3 × 9
 #> # Rowwise: 
-#>   data_source service_name     service_url layer_name title abstract class format
-#>   <chr>       <chr>            <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#> 1 emodnet_wfs https://ows.emo… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 2 emodnet_wfs https://ows.emo… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 3 emodnet_wfs https://ows.emo… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#>   data_source service_name           service_url layer_name title abstract class format
+#>   <chr>       <chr>                  <chr>       <chr>      <chr> <chr>    <chr> <chr> 
+#> 1 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#> 2 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
+#> 3 emodnet_wfs https://ows.emodnet-s… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -147,51 +134,102 @@ We are now ready to read the layers into R with `emodnet_get_layers()`. emodnet.
 habitats_directive_layers <- emodnet_get_layers(
   wfs = seabed_wfs_client,
   layers = habitats_directive_layer_names,
-  reduce_layers = TRUE
+  reduce_layers = TRUE,
+  outputFormat = "application/json"
 )
+#> Start tag expected, '<' not found
+#> Start tag expected, '<' not found
+#> Start tag expected, '<' not found
 
-class(habitats_directive_layers)
-#> [1] "sf"         "data.frame"
-
-glimpse(habitats_directive_layers)
-#> Rows: 221
-#> Columns: 9
-#> $ gml_id              <chr> "art17_hab_1110.13", "art17_hab_1110.22", "art17_ha…
-#> $ habitat_code        <chr> "1110", "1110", "1110", "1110", "1110", "1110", "11…
-#> $ ms                  <chr> "DK", "ES", "ES", "PT", "PT", "PL", "DK", "FR", "UK…
-#> $ region              <chr> "ATL", "MAC", "MMAC", "MMAC", "MATL", "MBAL", "MBAL…
-#> $ cs_ms               <chr> "U2+", "U1+", "U1+", "XX", "U1-", "U1-", "U1-", "U1…
-#> $ country_code        <chr> "Denmark", "Spain", "Spain", "Portugal", "Portugal"…
-#> $ habitat_code_uri    <chr> "http://dd.eionet.europa.eu/vocabulary/art17_2018/h…
-#> $ habitat_description <chr> "Sandbanks which are slightly covered by sea water …
-#> $ geom                <MULTISURFACE [m]> MULTISURFACE (POLYGON ((420..., MULTIS…
+habitats_directive_layers
+#> Simple feature collection with 221 features and 8 fields
+#> Geometry type: MULTIPOLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: 950000 ymin: 940000 xmax: 6510000 ymax: 4820000
+#> Projected CRS: ETRS89-extended / LAEA Europe
+#> First 10 features:
+#>                   id habitat_code ms region cs_ms   country_code
+#> 1  art17_hab_1110.13         1110 DK    ATL   U2+        Denmark
+#> 2  art17_hab_1110.22         1110 ES    MAC   U1+          Spain
+#> 3  art17_hab_1110.25         1110 ES   MMAC   U1+          Spain
+#> 4  art17_hab_1110.59         1110 PT   MMAC    XX       Portugal
+#> 5  art17_hab_1110.56         1110 PT   MATL   U1-       Portugal
+#> 6  art17_hab_1110.53         1110 PL   MBAL   U1-         Poland
+#> 7  art17_hab_1110.17         1110 DK   MBAL   U1-        Denmark
+#> 8  art17_hab_1110.31         1110 FR   MATL   U1x         France
+#> 9  art17_hab_1110.75         1110 UK   MATL   U1x United Kingdom
+#> 10  art17_hab_1110.1         1110 BE    ATL   U1x        Belgium
+#>                                                  habitat_code_uri
+#> 1  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 2  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 3  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 4  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 5  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 6  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 7  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 8  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 9  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#> 10 http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
+#>                                               habitat_description
+#> 1  Sandbanks which are slightly covered by sea water all the time
+#> 2  Sandbanks which are slightly covered by sea water all the time
+#> 3  Sandbanks which are slightly covered by sea water all the time
+#> 4  Sandbanks which are slightly covered by sea water all the time
+#> 5  Sandbanks which are slightly covered by sea water all the time
+#> 6  Sandbanks which are slightly covered by sea water all the time
+#> 7  Sandbanks which are slightly covered by sea water all the time
+#> 8  Sandbanks which are slightly covered by sea water all the time
+#> 9  Sandbanks which are slightly covered by sea water all the time
+#> 10 Sandbanks which are slightly covered by sea water all the time
+#>                          geometry
+#> 1  MULTIPOLYGON (((4200000 360...
+#> 2  MULTIPOLYGON (((1950000 950...
+#> 3  MULTIPOLYGON (((1960000 950...
+#> 4  MULTIPOLYGON (((1810000 120...
+#> 5  MULTIPOLYGON (((2730000 173...
+#> 6  MULTIPOLYGON (((4610000 346...
+#> 7  MULTIPOLYGON (((4310000 352...
+#> 8  MULTIPOLYGON (((3790000 314...
+#> 9  MULTIPOLYGON (((3780000 319...
+#> 10 MULTIPOLYGON (((3800000 313...
 ```
 
+Note the use of the `outputFormat` argument in this example. This specifies the file type to request from the service, which can influence how the data is loaded into R. By default, the data is provided in the `GML` format with a geometry type of "MULTISURFACE." However, this geometry type is not widely supported by many software tools, including the `mapview` package. To address this, you can request a different file type, such as GeoJSON, which delivers the geometry as "MULTIPOLYGON"—a format that is more universally compatible. This has been raised before in the [sf community](https://github.com/r-spatial/sf/issues/748).
 
 
-Run the following code to have a quick look at the layers geometries
+Run the following code to have a quick look at the layers geometries.
+
 
 ``` r
-# Transform to Polygon geometry type from Multisurface
-if (unique(st_geometry_type(habitats_directive_layers)) == "MULTISURFACE") {
-  habitats_directive_layers <- habitats_directive_layers %>%
-    st_cast(to = "GEOMETRYCOLLECTION") %>%
-    st_collection_extract(type = "POLYGON")
-}
-
-# Visualize
-map <- mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
-
-map
+mapview(habitats_directive_layers, zcol = "habitat_description", burst = TRUE)
 ```
 
-![plot of chunk unnamed-chunk-6](emodnet.wfs-unnamed-chunk-6-1.png)
+<div class="figure">
+<img src="emodnet.wfs-unnamed-chunk-6-1.png" alt="Interactive map of layers in the habitat directive"  />
+<p class="caption">plot of chunk unnamed-chunk-6</p>
+</div>
 
-EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with.
+EMODnet provides also physics, chemistry, biological or bathymetry data. Explore all the layers available with:
 
 
 ``` r
 emodnet_get_all_wfs_info()
+#> # A tibble: 1,713 × 9
+#> # Rowwise: 
+#>    data_source service_name service_url          layer_name title abstract class format
+#>    <chr>       <chr>        <chr>                <chr>      <chr> <chr>    <chr> <chr> 
+#>  1 emodnet_wfs bathymetry   https://ows.emodnet… download_… Bath… "Downlo… WFSF… sf    
+#>  2 emodnet_wfs bathymetry   https://ows.emodnet… contours   Dept… "Genera… WFSF… sf    
+#>  3 emodnet_wfs bathymetry   https://ows.emodnet… hr_bathym… High… "Layer … WFSF… sf    
+#>  4 emodnet_wfs bathymetry   https://ows.emodnet… quality_i… Qual… "Repres… WFSF… sf    
+#>  5 emodnet_wfs bathymetry   https://ows.emodnet… sea_names  Sea … "Mainta… WFSF… sf    
+#>  6 emodnet_wfs bathymetry   https://ows.emodnet… source_re… Sour… "Covera… WFSF… sf    
+#>  7 emodnet_wfs bathymetry   https://ows.emodnet… undersea_… unde… ""       WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Coral … WFSF… sf    
+#> 10 emodnet_wfs biology      https://geo.vliz.be… mediseh_c… EMOD… "Cymodo… WFSF… sf    
+#> # ℹ 1,703 more rows
+#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 ## More information
@@ -212,6 +250,29 @@ Tim Appelhans, Florian Detsch, Christoph Reudenbach and Stefan Woellauer (2020).
 
 ### Code
 
-Please cite this package as:
+To cite emodnet.wfs, please use the output from `citation(package = "emodnet.wfs")`.
 
-Anna Krystalli (2020). emodnet.wfs: Access EMODnet Web Feature Service data through R. R package version 0.0.2. https://github.com/EMODnet/emodnet.wfs. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund.
+
+``` r
+citation(package = "emodnet.wfs")
+#> To cite package 'emodnet.wfs' in publications use:
+#> 
+#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs: Access
+#>   EMODnet Web Feature Service data through R_. doi:10.14284/679
+#>   <https://doi.org/10.14284/679>, R package version 2.0.2.9000. Integrated
+#>   data products created under the European Marine Observation Data Network
+#>   (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded
+#>   by the by the European Union under Regulation (EU) No 508/2014 of the
+#>   European Parliament and of the Council of 15 May 2014 on the European
+#>   Maritime and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {{emodnet.wfs}: Access EMODnet Web Feature Service data through R},
+#>     author = {Anna Krystalli and Salvador Fernández-Bejarano and Maëlle Salmon},
+#>     note = {R package version 2.0.2.9000. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
+#>     url = {https://github.com/EMODnet/emodnet.wfs},
+#>     doi = {10.14284/679},
+#>   }
+```
