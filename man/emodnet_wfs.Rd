@@ -7,9 +7,13 @@
 \subsection{\code{emodnet_wfs}}{
 
 \describe{
-\item{emodnet_thematic_lot}{EMODnet disciplinary themes - bathymetry, biology, chemistry, geology, human activities, physics and seabed habitats}
-\item{service_name}{Name of the specific service. Use in \link{emodnet_init_wfs_client}.}
-\item{service_url}{\href{https://www.ogc.org/publications/standard/wfs/}{Web Feature Service (WFS)} URL endpoint for accessing the service.}
+\item{emodnet_thematic_lot}{EMODnet disciplinary themes - bathymetry,
+biology, chemistry, geology, human activities, physics and seabed habitats}
+\item{service_name}{Name of the specific service.
+Use in \link{emodnet_init_wfs_client}.}
+\item{service_url}{
+\href{https://www.ogc.org/publications/standard/wfs/}{Web Feature Service (WFS)}
+URL endpoint for accessing the service.}
 }
 }
 }
