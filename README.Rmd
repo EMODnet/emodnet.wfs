@@ -61,15 +61,16 @@ In the documentation we assume a basic familiarity with spatial data: knowing ab
 
 ## Available data sources (services)
 
-All available data sources, called services, are contained in the [tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`.
-
+All available data sources, called services, are contained in the [tibble](https://tibble.tidyverse.org/) returned by `emodnet_wfs()`. 
 ```{r, echo=TRUE}
 library(emodnet.wfs)
 services <- emodnet_wfs()
 class(services)
 names(services)
-services$service_name
+services[, c("emodnet_thematic_lot", "service_name")]
 ```
+
+EMODnet data covers several disciplines organized in 7 thematic lots: bathymetry, biology, chemistry, geology, human activities, physics, seabed habitats. Some thematic lots organize their data in more than one data source or service.
 
 To explore available services you can use `View()` or your usual way to explore `data.frames`.
 

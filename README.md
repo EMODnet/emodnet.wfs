@@ -83,26 +83,34 @@ services <- emodnet_wfs()
 class(services)
 #> [1] "tbl_df"     "tbl"        "data.frame"
 names(services)
-#> [1] "service_name" "service_url"
-services$service_name
-#>  [1] "bathymetry"                                                     
-#>  [2] "biology"                                                        
-#>  [3] "biology_occurrence_data"                                        
-#>  [4] "chemistry_cdi_data_discovery_and_access_service"                
-#>  [5] "chemistry_cdi_distribution_observations_per_category_and_region"
-#>  [6] "chemistry_contaminants"                                         
-#>  [7] "chemistry_marine_litter"                                        
-#>  [8] "geology_coastal_behavior"                                       
-#>  [9] "geology_events_and_probabilities"                               
-#> [10] "geology_marine_minerals"                                        
-#> [11] "geology_sea_floor_bedrock"                                      
-#> [12] "geology_seabed_substrate_maps"                                  
-#> [13] "geology_submerged_landscapes"                                   
-#> [14] "human_activities"                                               
-#> [15] "physics"                                                        
-#> [16] "seabed_habitats_general_datasets_and_products"                  
-#> [17] "seabed_habitats_individual_habitat_map_and_model_datasets"
+#> [1] "emodnet_thematic_lot" "service_name"         "service_url"
+services[, c("emodnet_thematic_lot", "service_name")]
+#> # A tibble: 17 × 2
+#>    emodnet_thematic_lot     service_name                                        
+#>    <chr>                    <chr>                                               
+#>  1 EMODnet Bathymetry       bathymetry                                          
+#>  2 EMODnet Biology          biology                                             
+#>  3 EMODnet Biology          biology_occurrence_data                             
+#>  4 EMODnet Chemistry        chemistry_cdi_data_discovery_and_access_service     
+#>  5 EMODnet Chemistry        chemistry_cdi_distribution_observations_per_categor…
+#>  6 EMODnet Chemistry        chemistry_contaminants                              
+#>  7 EMODnet Chemistry        chemistry_marine_litter                             
+#>  8 EMODnet Geology          geology_coastal_behavior                            
+#>  9 EMODnet Geology          geology_events_and_probabilities                    
+#> 10 EMODnet Geology          geology_marine_minerals                             
+#> 11 EMODnet Geology          geology_sea_floor_bedrock                           
+#> 12 EMODnet Geology          geology_seabed_substrate_maps                       
+#> 13 EMODnet Geology          geology_submerged_landscapes                        
+#> 14 EMODnet Human Activities human_activities                                    
+#> 15 EMODnet Physics          physics                                             
+#> 16 EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_products       
+#> 17 EMODnet Seabed Habitats  seabed_habitats_individual_habitat_map_and_model_da…
 ```
+
+EMODnet data covers several disciplines organized in 7 thematic lots:
+bathymetry, biology, chemistry, geology, human activities, physics,
+seabed habitats. Some thematic lots organize their data in more than one
+data source or service.
 
 To explore available services you can use `View()` or your usual way to
 explore `data.frames`.
