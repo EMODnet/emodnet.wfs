@@ -1,6 +1,6 @@
 ---
 title: "Accessing and mapping EMODnet data"
-output: github_document
+output: rmarkdown::html_vignette
 df_print: "tibble"
 vignette: >
   %\VignetteIndexEntry{API details}
