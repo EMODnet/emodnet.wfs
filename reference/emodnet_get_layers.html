@@ -260,42 +260,42 @@ you might consider a combination of these ideas:</p><ul><li><p>using <a href="ht
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="st">"abiotic_observations"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> spc_tbl_ [1,000,000 × 37] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ FID                : chr [1:1000000] "abiotic_observations.fid-6c0eccf5_1936280e682_3fa9" "abiotic_observations.fid-6c0eccf5_1936280e682_3faa" "abiotic_observations.fid-6c0eccf5_1936280e682_3fab" "abiotic_observations.fid-6c0eccf5_1936280e682_3fac" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id                 : num [1:1000000] 4.59e+08 4.59e+08 4.59e+08 4.59e+08 4.59e+08 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ FID                : chr [1:1000000] "abiotic_observations.fid-6c0eccf5_1936900f033_2bca" "abiotic_observations.fid-6c0eccf5_1936900f033_2bcb" "abiotic_observations.fid-6c0eccf5_1936900f033_2bcc" "abiotic_observations.fid-6c0eccf5_1936900f033_2bcd" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ id                 : num [1:1000000] 9.13e+08 9.13e+08 9.13e+08 9.13e+08 9.13e+08 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ aphiaid            : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ latitude           : num [1:1000000] 51.3 51.3 51.3 51.3 51.3 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ longitude          : num [1:1000000] 4.26 4.26 4.26 4.26 4.26 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ depth              : num [1:1000000] NA NA NA NA NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datetime           : POSIXct[1:1000000], format: "2009-03-01 00:50:00" "2009-03-01 01:00:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ longitude          : num [1:1000000] 4.3 4.3 4.3 4.3 4.3 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ depth              : num [1:1000000] -8 -8 -8 -8 -8 -8 -8 -8 -8 -8 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datetime           : POSIXct[1:1000000], format: "2008-02-05 07:10:00" "2008-02-05 07:20:00" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ value              : chr [1:1000000] "-" "-" "-" "-" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ lod                : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ loq                : logi [1:1000000] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standardparameterid: num [1:1000000] 272 272 272 272 272 272 272 272 272 272 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standardparameterid: num [1:1000000] 2477 2477 2477 2477 2477 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataproviderid     : num [1:1000000] 6 6 6 6 6 6 6 6 6 6 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ imisdatasetid      : num [1:1000000] 5242 5242 5242 5242 5242 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataficheid        : num [1:1000000] 61 61 61 61 61 61 61 61 61 61 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataficheid        : num [1:1000000] 67 67 67 67 67 67 67 67 67 67 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ seriesid           : num [1:1000000] 2032 2032 2032 2032 2032 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ datatype           : chr [1:1000000] "NC" "NC" "NC" "NC" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ class              : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ classunit          : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ classcode          : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ season             : chr [1:1000000] "winter" "winter" "winter" "winter" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parametername      : chr [1:1000000] "Geleidendheid (Conductiviteit) in mS/cm in de waterkolom" "Geleidendheid (Conductiviteit) in mS/cm in de waterkolom" "Geleidendheid (Conductiviteit) in mS/cm in de waterkolom" "Geleidendheid (Conductiviteit) in mS/cm in de waterkolom" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parameterunit      : chr [1:1000000] "mS/cm" "mS/cm" "mS/cm" "mS/cm" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parametername      : chr [1:1000000] "Turbiditeit in de waterkolom in NTU" "Turbiditeit in de waterkolom in NTU" "Turbiditeit in de waterkolom in NTU" "Turbiditeit in de waterkolom in NTU" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parameterunit      : chr [1:1000000] "NTU" "NTU" "NTU" "NTU" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataprovider       : chr [1:1000000] "MOW MT - Maritieme Toegang" "MOW MT - Maritieme Toegang" "MOW MT - Maritieme Toegang" "MOW MT - Maritieme Toegang" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ datasettitle       : chr [1:1000000] "Continuous measurements in Deurganckdok" "Continuous measurements in Deurganckdok" "Continuous measurements in Deurganckdok" "Continuous measurements in Deurganckdok" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafichetitle     : chr [1:1000000] "P-FC-V-001 - Geleidbaarheid - Continu" "P-FC-V-001 - Geleidbaarheid - Continu" "P-FC-V-001 - Geleidbaarheid - Continu" "P-FC-V-001 - Geleidbaarheid - Continu" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ stationname        : chr [1:1000000] "DGD S-Middle Top" "DGD S-Middle Top" "DGD S-Middle Top" "DGD S-Middle Top" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafichetitle     : chr [1:1000000] "P-FC-V-005 - Turbiditeit - Continu" "P-FC-V-005 - Turbiditeit - Continu" "P-FC-V-005 - Turbiditeit - Continu" "P-FC-V-005 - Turbiditeit - Continu" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ stationname        : chr [1:1000000] "Boei 97 - Bottom" "Boei 97 - Bottom" "Boei 97 - Bottom" "Boei 97 - Bottom" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ gid                : num [1:1000000] 7 7 7 7 7 7 7 7 7 7 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ seasonid           : num [1:1000000] 1 1 1 1 1 1 1 1 1 1 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ unit               : chr [1:1000000] "mS/cm" "mS/cm" "mS/cm" "mS/cm" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ category           : chr [1:1000000] "saliniteit, chloriniteit  en geleidendheid" "saliniteit, chloriniteit  en geleidendheid" "saliniteit, chloriniteit  en geleidendheid" "saliniteit, chloriniteit  en geleidendheid" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ the_geom           : chr [1:1000000] "POINT (51.29098351 4.263097996)" "POINT (51.29098351 4.263097996)" "POINT (51.29098351 4.263097996)" "POINT (51.29098351 4.263097996)" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ unit               : chr [1:1000000] "NTU" "NTU" "NTU" "NTU" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ category           : chr [1:1000000] "lichtklimaat" "lichtklimaat" "lichtklimaat" "lichtklimaat" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ the_geom           : chr [1:1000000] "POINT (51.2925 4.30241)" "POINT (51.2925 4.30241)" "POINT (51.2925 4.30241)" "POINT (51.2925 4.30241)" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ valuesign          : chr [1:1000000] "=" "=" "=" "=" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dateprecision      : logi [1:1000000] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standard_name      : chr [1:1000000] "BODC" "BODC" "BODC" "BODC" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ externalid         : chr [1:1000000] "CNDCST01" "CNDCST01" "CNDCST01" "CNDCST01" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ external_name      : chr [1:1000000] "Electrical conductivity of the water body by CTD" "Electrical conductivity of the water body by CTD" "Electrical conductivity of the water body by CTD" "Electrical conductivity of the water body by CTD" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standard_name      : chr [1:1000000] NA NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ externalid         : chr [1:1000000] NA NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ external_name      : chr [1:1000000] NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ scientificname     : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "spec")=</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. cols(</span>

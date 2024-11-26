@@ -48,6 +48,29 @@
     </div>
 
     <div class="section level2">
+    <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
+
+<div class="section">
+<h3 id="emodnet-wfs"><code>emodnet_wfs</code><a class="anchor" aria-label="anchor" href="#emodnet-wfs"></a></h3>
+
+
+<dl><dt>emodnet_thematic_lot</dt>
+<dd><p>EMODnet disciplinary themes - bathymetry,
+biology, chemistry, geology, human activities, physics and seabed habitats</p></dd>
+
+<dt>service_name</dt>
+<dd><p>Name of the specific service.
+Use in <a href="emodnet_init_wfs_client.html">emodnet_init_wfs_client</a>.</p></dd>
+
+<dt>service_url</dt>
+<dd><p><a href="https://www.ogc.org/publications/standard/wfs/" class="external-link">Web Feature Service (WFS)</a>
+URL endpoint for accessing the service.</p></dd>
+
+
+</dl></div>
+
+    </div>
+    <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Tibble of available EMODnet Web Feature Services</p>
     </div>
@@ -55,26 +78,26 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">emodnet_wfs</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    service_name                                                    service_url  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> bathymetry                                                      https://ows.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> biology                                                         https://geo.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> biology_occurrence_data                                         https://geo.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> chemistry_cdi_data_discovery_and_access_service                 https://geo-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> chemistry_cdi_distribution_observations_per_category_and_region https://geo-…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> chemistry_contaminants                                          https://geos…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> chemistry_marine_litter                                         https://www.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> geology_coastal_behavior                                        https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> geology_events_and_probabilities                                https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> geology_marine_minerals                                         https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> geology_sea_floor_bedrock                                       https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> geology_seabed_substrate_maps                                   https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> geology_submerged_landscapes                                    https://driv…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> human_activities                                                https://ows.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> physics                                                         https://prod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> seabed_habitats_general_datasets_and_products                   https://ows.…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> seabed_habitats_individual_habitat_map_and_model_datasets       https://ows.…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    emodnet_thematic_lot     service_name                             service_url</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> EMODnet Bathymetry       bathymetry                               https://ow…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> EMODnet Biology          biology                                  https://ge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> EMODnet Biology          biology_occurrence_data                  https://ge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> EMODnet Chemistry        chemistry_cdi_data_discovery_and_access… https://ge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> EMODnet Chemistry        chemistry_cdi_distribution_observations… https://ge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> EMODnet Chemistry        chemistry_contaminants                   https://ge…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> EMODnet Chemistry        chemistry_marine_litter                  https://ww…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> EMODnet Geology          geology_coastal_behavior                 https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> EMODnet Geology          geology_events_and_probabilities         https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> EMODnet Geology          geology_marine_minerals                  https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> EMODnet Geology          geology_sea_floor_bedrock                https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> EMODnet Geology          geology_seabed_substrate_maps            https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> EMODnet Geology          geology_submerged_landscapes             https://dr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> EMODnet Human Activities human_activities                         https://ow…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> EMODnet Physics          physics                                  https://pr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_pr… https://ow…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> EMODnet Seabed Habitats  seabed_habitats_individual_habitat_map_… https://ow…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

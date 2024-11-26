@@ -102,25 +102,29 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "tbl_df"     "tbl"        "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">services</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "service_name" "service_url"</span></span>
-<span><span class="va">services</span><span class="op">$</span><span class="va">service_name</span></span>
-<span><span class="co">#&gt;  [1] "bathymetry"                                                     </span></span>
-<span><span class="co">#&gt;  [2] "biology"                                                        </span></span>
-<span><span class="co">#&gt;  [3] "biology_occurrence_data"                                        </span></span>
-<span><span class="co">#&gt;  [4] "chemistry_cdi_data_discovery_and_access_service"                </span></span>
-<span><span class="co">#&gt;  [5] "chemistry_cdi_distribution_observations_per_category_and_region"</span></span>
-<span><span class="co">#&gt;  [6] "chemistry_contaminants"                                         </span></span>
-<span><span class="co">#&gt;  [7] "chemistry_marine_litter"                                        </span></span>
-<span><span class="co">#&gt;  [8] "geology_coastal_behavior"                                       </span></span>
-<span><span class="co">#&gt;  [9] "geology_events_and_probabilities"                               </span></span>
-<span><span class="co">#&gt; [10] "geology_marine_minerals"                                        </span></span>
-<span><span class="co">#&gt; [11] "geology_sea_floor_bedrock"                                      </span></span>
-<span><span class="co">#&gt; [12] "geology_seabed_substrate_maps"                                  </span></span>
-<span><span class="co">#&gt; [13] "geology_submerged_landscapes"                                   </span></span>
-<span><span class="co">#&gt; [14] "human_activities"                                               </span></span>
-<span><span class="co">#&gt; [15] "physics"                                                        </span></span>
-<span><span class="co">#&gt; [16] "seabed_habitats_general_datasets_and_products"                  </span></span>
-<span><span class="co">#&gt; [17] "seabed_habitats_individual_habitat_map_and_model_datasets"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "emodnet_thematic_lot" "service_name"         "service_url"</span></span>
+<span><span class="va">services</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"emodnet_thematic_lot"</span>, <span class="st">"service_name"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">#&gt; # A tibble: 17 × 2</span></span>
+<span><span class="co">#&gt;    emodnet_thematic_lot     service_name                                        </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                    &lt;chr&gt;                                               </span></span>
+<span><span class="co">#&gt;  1 EMODnet Bathymetry       bathymetry                                          </span></span>
+<span><span class="co">#&gt;  2 EMODnet Biology          biology                                             </span></span>
+<span><span class="co">#&gt;  3 EMODnet Biology          biology_occurrence_data                             </span></span>
+<span><span class="co">#&gt;  4 EMODnet Chemistry        chemistry_cdi_data_discovery_and_access_service     </span></span>
+<span><span class="co">#&gt;  5 EMODnet Chemistry        chemistry_cdi_distribution_observations_per_categor…</span></span>
+<span><span class="co">#&gt;  6 EMODnet Chemistry        chemistry_contaminants                              </span></span>
+<span><span class="co">#&gt;  7 EMODnet Chemistry        chemistry_marine_litter                             </span></span>
+<span><span class="co">#&gt;  8 EMODnet Geology          geology_coastal_behavior                            </span></span>
+<span><span class="co">#&gt;  9 EMODnet Geology          geology_events_and_probabilities                    </span></span>
+<span><span class="co">#&gt; 10 EMODnet Geology          geology_marine_minerals                             </span></span>
+<span><span class="co">#&gt; 11 EMODnet Geology          geology_sea_floor_bedrock                           </span></span>
+<span><span class="co">#&gt; 12 EMODnet Geology          geology_seabed_substrate_maps                       </span></span>
+<span><span class="co">#&gt; 13 EMODnet Geology          geology_submerged_landscapes                        </span></span>
+<span><span class="co">#&gt; 14 EMODnet Human Activities human_activities                                    </span></span>
+<span><span class="co">#&gt; 15 EMODnet Physics          physics                                             </span></span>
+<span><span class="co">#&gt; 16 EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_products       </span></span>
+<span><span class="co">#&gt; 17 EMODnet Seabed Habitats  seabed_habitats_individual_habitat_map_and_model_da…</span></span></code></pre></div>
+<p>EMODnet data covers several disciplines organized in 7 thematic lots: bathymetry, biology, chemistry, geology, human activities, physics, seabed habitats. Some thematic lots organize their data in more than one data source or service.</p>
 <p>To explore available services you can use <code><a href="https://rdrr.io/r/utils/View.html" class="external-link">View()</a></code> or your usual way to explore <code>data.frames</code>.</p>
 </div>
 <div class="section level2">
