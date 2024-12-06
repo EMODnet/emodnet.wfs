@@ -156,7 +156,7 @@
 <span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
 <span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
 <span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
-<span><span class="co">#&gt; # A tibble: 35 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 36 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
 <span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
@@ -166,16 +166,16 @@
 <span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>or you can pass a wfs client object.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs_bio</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 35 × 9</span></span>
+<span><span class="co">#&gt; # A tibble: 36 × 9</span></span>
 <span><span class="co">#&gt; # Rowwise: </span></span>
 <span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
@@ -185,11 +185,11 @@
 <span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
-<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
 <span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; # ℹ 25 more rows</span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span>
 <span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <p>You can also get info for specific layers from wfs object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -395,7 +395,7 @@ If <code>TRUE</code> the function will try to reduce all layers into a single <c
 <div class="section level3">
 <h3 id="access-emodnet-raster-data-through-web-coverage-services-with-emodnetwcs-in-r">Access EMODnet raster data through Web Coverage Services with <code>EMODnetWCS</code> in R<a class="anchor" aria-label="anchor" href="#access-emodnet-raster-data-through-web-coverage-services-with-emodnetwcs-in-r"></a>
 </h3>
-<p>EMODnet raster datasets, such as habitat maps or bathymetry, are available through <a href="https://wikipedia.org/wiki/Web_Coverage_Service" class="external-link">Web Coverage Services (WCS)</a>. These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as <code>emodnet.wfs</code>. Extensive documentation is available at the <a href="https://emodnet.github.io/EMODnetWCS/" class="external-link">EMODnetWCS website</a>.</p>
+<p>EMODnet raster datasets, such as habitat maps or bathymetry, are available through <a href="https://en.wikipedia.org/wiki/Web_Coverage_Service" class="external-link">Web Coverage Services (WCS)</a>. These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as <code>emodnet.wfs</code>. Extensive documentation is available at the <a href="https://emodnet.github.io/EMODnetWCS/" class="external-link">EMODnetWCS website</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="access-emodnet-gridded-and-tabular-datasets-through-the-erddap-server-and-rerddap-in-r">Access EMODnet gridded and tabular datasets through the ERDDAP Server and <code>rerddap</code> in R<a class="anchor" aria-label="anchor" href="#access-emodnet-gridded-and-tabular-datasets-through-the-erddap-server-and-rerddap-in-r"></a>

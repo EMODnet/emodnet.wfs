@@ -118,15 +118,15 @@ the <code>human_activities</code> WFS service.</p>
 <span>  featureID <span class="op">=</span> <span class="st">"pipelines.1"</span>,</span>
 <span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Simple feature collection with 1 feature and 13 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 1 feature and 14 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
 <span><span class="co">#&gt; Bounding box:  xmin: -5.87186 ymin: 35.99551 xmax: -5.836784 ymax: 36.12588</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt;        gml_id   id status medium operator size_in length_m year from_loc to_loc</span></span>
-<span><span class="co">#&gt; 1 pipelines.1 &lt;NA&gt; Active   &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt; 15467.17 &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   country_co country notes                       the_geom</span></span>
-<span><span class="co">#&gt; 1         ES   Spain  &lt;NA&gt; MULTILINESTRING ((-5.87186 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;        gml_id             name   id status medium operator size_in length_m</span></span>
+<span><span class="co">#&gt; 1 pipelines.1 Gasoducto Magreb &lt;NA&gt; Active   &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt; 15467.17</span></span>
+<span><span class="co">#&gt;   year from_loc to_loc country_co country notes                       the_geom</span></span>
+<span><span class="co">#&gt; 1 &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         ES   Spain  &lt;NA&gt; MULTILINESTRING ((-5.87186 ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="return-specific-number-of-features">Return specific number of features<a class="anchor" aria-label="anchor" href="#return-specific-number-of-features"></a>
@@ -176,29 +176,29 @@ their lengths recorded, we will skip them with a CQL Filter.</p>
 <span>  simplify <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  cql_filter <span class="op">=</span> <span class="st">"length_m IS NOT NULL"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Simple feature collection with 5 features and 13 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 5 features and 14 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
 <span><span class="co">#&gt; Bounding box:  xmin: 2.249597 ymin: 51.04064 xmax: 28.14228 ymax: 60.52758</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt;           gml_id        id  status medium         operator size_in  length_m</span></span>
-<span><span class="co">#&gt; 1 pipelines.3423      &lt;NA&gt;  Active    Gas   Nord Stream AG      48 2443360.2</span></span>
-<span><span class="co">#&gt; 2 pipelines.3424      &lt;NA&gt; Planned    Gas Nord Stream 2 AG      48 1210867.9</span></span>
-<span><span class="co">#&gt; 3   pipelines.52 PL0187_PR  Active    Gas      Statoil ASA      42  836155.4</span></span>
-<span><span class="co">#&gt; 4  pipelines.517    326374  Active    Gas        GASSCO AS      42  832197.9</span></span>
-<span><span class="co">#&gt; 5   pipelines.53 PL0186_PR  Active    Gas      Statoil ASA      40  807749.5</span></span>
-<span><span class="co">#&gt;   year      from_loc         to_loc country_co         country           notes</span></span>
-<span><span class="co">#&gt; 1 2011    Vyborg, RU     Lubmin, GE     DE, RU Germany, Russia Schematic Route</span></span>
-<span><span class="co">#&gt; 2 2021 Kurgalsky, RU     Lubmin, GE     DE, RU Germany, Russia Schematic Route</span></span>
-<span><span class="co">#&gt; 3 &lt;NA&gt;  Draupner (N) Duinkerken (F)         NL     Netherlands            &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4 &lt;NA&gt;    DRAUPNER E      DUNKERQUE         NO          Norway            &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5 &lt;NA&gt;  Sleipner (N)  Zeebrugge (B)         NL     Netherlands            &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                         the_geom</span></span>
-<span><span class="co">#&gt; 1 MULTILINESTRING ((18.00045 ...</span></span>
-<span><span class="co">#&gt; 2 MULTILINESTRING ((28.14228 ...</span></span>
-<span><span class="co">#&gt; 3 MULTILINESTRING ((2.249597 ...</span></span>
-<span><span class="co">#&gt; 4 MULTILINESTRING ((2.458616 ...</span></span>
-<span><span class="co">#&gt; 5 MULTILINESTRING ((3.298373 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;           gml_id          name        id  status medium         operator</span></span>
+<span><span class="co">#&gt; 1 pipelines.3423 NORD STREAM 1      &lt;NA&gt;  Active    Gas   Nord Stream AG</span></span>
+<span><span class="co">#&gt; 2 pipelines.3424 NORD STREAM 2      &lt;NA&gt; Planned    Gas Nord Stream 2 AG</span></span>
+<span><span class="co">#&gt; 3   pipelines.52          &lt;NA&gt; PL0187_PR  Active    Gas      Statoil ASA</span></span>
+<span><span class="co">#&gt; 4  pipelines.517      Franpipe    326374  Active    Gas        GASSCO AS</span></span>
+<span><span class="co">#&gt; 5   pipelines.53          &lt;NA&gt; PL0186_PR  Active    Gas      Statoil ASA</span></span>
+<span><span class="co">#&gt;   size_in  length_m year      from_loc         to_loc country_co</span></span>
+<span><span class="co">#&gt; 1      48 2443360.2 2011    Vyborg, RU     Lubmin, GE     DE, RU</span></span>
+<span><span class="co">#&gt; 2      48 1210867.9 2021 Kurgalsky, RU     Lubmin, GE     DE, RU</span></span>
+<span><span class="co">#&gt; 3      42  836155.4 &lt;NA&gt;  Draupner (N) Duinkerken (F)         NL</span></span>
+<span><span class="co">#&gt; 4      42  832197.9 &lt;NA&gt;    DRAUPNER E      DUNKERQUE         NO</span></span>
+<span><span class="co">#&gt; 5      40  807749.5 &lt;NA&gt;  Sleipner (N)  Zeebrugge (B)         NL</span></span>
+<span><span class="co">#&gt;           country           notes                       the_geom</span></span>
+<span><span class="co">#&gt; 1 Germany, Russia Schematic Route MULTILINESTRING ((18.00045 ...</span></span>
+<span><span class="co">#&gt; 2 Germany, Russia Schematic Route MULTILINESTRING ((28.14228 ...</span></span>
+<span><span class="co">#&gt; 3     Netherlands            &lt;NA&gt; MULTILINESTRING ((2.249597 ...</span></span>
+<span><span class="co">#&gt; 4          Norway            &lt;NA&gt; MULTILINESTRING ((2.458616 ...</span></span>
+<span><span class="co">#&gt; 5     Netherlands            &lt;NA&gt; MULTILINESTRING ((3.298373 ...</span></span></code></pre></div>
 <p>The default sort operation is to sort in ascending order. Some WFS
 servers require the sort order to be specified. In this case, append a
 <code>+A</code> to the attribute character string passed to
@@ -232,21 +232,26 @@ features.</p>
 <span>  startIndex <span class="op">=</span> <span class="va">startIndex</span>,</span>
 <span>  simplify <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Simple feature collection with 4 features and 13 fields</span></span>
+<span><span class="co">#&gt; Simple feature collection with 4 features and 14 fields</span></span>
 <span><span class="co">#&gt; Geometry type: MULTILINESTRING</span></span>
 <span><span class="co">#&gt; Dimension:     XY</span></span>
 <span><span class="co">#&gt; Bounding box:  xmin: 3.990801 ymin: 53.53329 xmax: 14.4857 ymax: 55.81712</span></span>
 <span><span class="co">#&gt; Geodetic CRS:  WGS 84</span></span>
-<span><span class="co">#&gt;           gml_id     id     status medium operator size_in length_m year</span></span>
-<span><span class="co">#&gt; 1 pipelines.3948 154802 Not in use    Gas     &lt;NA&gt;    &lt;NA&gt;       NA &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2 pipelines.3949 154812 Not in use    Gas     &lt;NA&gt;    &lt;NA&gt;       NA &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3 pipelines.3950 154982     Active    Gas     &lt;NA&gt;    &lt;NA&gt;       NA &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4 pipelines.3951 155942     Active    Gas     &lt;NA&gt;    &lt;NA&gt;       NA &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   from_loc to_loc country_co country notes                       the_geom</span></span>
-<span><span class="co">#&gt; 1     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt; MULTILINESTRING ((14.48506 ...</span></span>
-<span><span class="co">#&gt; 2     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt; MULTILINESTRING ((14.4857 5...</span></span>
-<span><span class="co">#&gt; 3     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt; MULTILINESTRING ((4.058202 ...</span></span>
-<span><span class="co">#&gt; 4     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt; MULTILINESTRING ((4.019116 ...</span></span></code></pre></div>
+<span><span class="co">#&gt;           gml_id          name     id     status medium operator size_in</span></span>
+<span><span class="co">#&gt; 1 pipelines.3948 Nord Stream 2 154802 Not in use    Gas     &lt;NA&gt;    &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2 pipelines.3949 Nord Stream 2 154812 Not in use    Gas     &lt;NA&gt;    &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3 pipelines.3950   Wintershall 154982     Active    Gas     &lt;NA&gt;    &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4 pipelines.3951       Norpipe 155942     Active    Gas     &lt;NA&gt;    &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   length_m year from_loc to_loc country_co country notes</span></span>
+<span><span class="co">#&gt; 1       NA &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2       NA &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3       NA &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4       NA &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;         DE Germany  &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;                         the_geom</span></span>
+<span><span class="co">#&gt; 1 MULTILINESTRING ((14.48506 ...</span></span>
+<span><span class="co">#&gt; 2 MULTILINESTRING ((14.4857 5...</span></span>
+<span><span class="co">#&gt; 3 MULTILINESTRING ((4.058202 ...</span></span>
+<span><span class="co">#&gt; 4 MULTILINESTRING ((4.019116 ...</span></span></code></pre></div>
 <p>We can also combine <code>startIndex</code> and <code>count</code> to
 return specific blocks of features. For example, in the following query
 we request features 5-9 by supplying a <code>startIndex</code> of 4 and
