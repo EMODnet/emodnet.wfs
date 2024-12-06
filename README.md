@@ -155,7 +155,7 @@ emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-#> # A tibble: 35 × 9
+#> # A tibble: 36 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -165,11 +165,11 @@ emodnet_get_wfs_info(service = "biology")
 #>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    
-#> # ℹ 25 more rows
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> # ℹ 26 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -177,7 +177,7 @@ or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 35 × 9
+#> # A tibble: 36 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
@@ -187,11 +187,11 @@ emodnet_get_wfs_info(wfs_bio)
 #>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.… mediseh_p… EMOD… "This d… WFSF… sf    
-#> # ℹ 25 more rows
+#> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#> # ℹ 26 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -440,8 +440,8 @@ Coverage Services (WCS) and ERDDAP respectively.
 
 EMODnet raster datasets, such as habitat maps or bathymetry, are
 available through [Web Coverage Services
-(WCS)](https://wikipedia.org/wiki/Web_Coverage_Service). These data are
-continuous, gridded, and often used for spatial visualization or
+(WCS)](https://en.wikipedia.org/wiki/Web_Coverage_Service). These data
+are continuous, gridded, and often used for spatial visualization or
 environmental modeling. The EMODnetWCS R package provides tools to
 retrieve and process these raser datasets, in a similar fashion as
 `emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS

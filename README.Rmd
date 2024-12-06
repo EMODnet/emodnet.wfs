@@ -183,7 +183,7 @@ EMODnet hosts a wealth of marine and maritime data distributed through three com
 
 ### Access EMODnet raster data through Web Coverage Services with `EMODnetWCS` in R
 
-EMODnet raster datasets, such as habitat maps or bathymetry, are available through [Web Coverage Services (WCS)](https://wikipedia.org/wiki/Web_Coverage_Service). These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as `emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS website](https://emodnet.github.io/EMODnetWCS/).
+EMODnet raster datasets, such as habitat maps or bathymetry, are available through [Web Coverage Services (WCS)](https://en.wikipedia.org/wiki/Web_Coverage_Service). These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as `emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS website](https://emodnet.github.io/EMODnetWCS/).
 
 
 ### Access EMODnet gridded and tabular datasets through the ERDDAP Server and `rerddap` in R
