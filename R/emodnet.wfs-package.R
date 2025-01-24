@@ -13,33 +13,40 @@ emodnetwfs_collaborators <- function() {
 }
 
 emodnetwfs_user_agent <- function() {
-  version <- as.character(utils::packageVersion("emodnet.wfs"))
+    version <- as.character(utils::packageVersion("emodnet.wfs"))
 
-  if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
-    return(
-      sprintf(
-        "emodnet.wfs R package %s CI https://github.com/EMODnet/emodnet.wfs",
-        version
-      )
+    if (nzchar(Sys.getenv("EMODNETWFS_CI"))) {
+        return(
+            utils::URLencode(
+                sprintf(
+                    "emodnet.wfs R package %s CI https://github.com/EMODnet/emodnet.wfs",
+                    version
+                )
+            )
+        )
+    }
+
+    gh_username <- try(whoami::gh_username(), silent = TRUE)
+    if (!inherits(gh_username, "try-error") &&
+        gh_username %in% emodnetwfs_collaborators()) {
+        return(
+            utils::URLencode(
+                sprintf(
+                    "emodnet.wfs R package %s DEV https://github.com/EMODnet/emodnet.wfs",
+                    version
+                )
+            )
+        )
+    }
+
+    utils::URLencode(
+        sprintf(
+            "emodnet.wfs R package %s https://github.com/EMODnet/emodnet.wfs",
+            version
+        )
     )
-  }
-
-  gh_username <- try(whoami::gh_username(), silent = TRUE)
-  if (!inherits(gh_username, "try-error") &&
-    gh_username %in% emodnetwfs_collaborators()) {
-    return(
-      sprintf(
-        "emodnet.wfs R package %s DEV https://github.com/EMODnet/emodnet.wfs",
-        version
-      )
-    )
-  }
-
-  sprintf(
-    "emodnet.wfs R package %s https://github.com/EMODnet/emodnet.wfs",
-    version
-  )
 }
+
 
 utils::globalVariables(c("layer_name", "n"))
 
