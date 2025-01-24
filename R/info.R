@@ -117,6 +117,7 @@ get_abstract_null <- function(x) {
 }
 
 guess_layer_format <- function(layer) {
+  layer$getDescription()
   if (!is.null(layer$getGeometryType())) {
     "sf"
   } else {
