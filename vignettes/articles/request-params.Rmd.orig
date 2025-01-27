@@ -9,20 +9,21 @@ Some basic ability to limit the output of any query is possible by providing add
 
 For details on all available parameters consult the [`GetFeature` Geoserver documentation](https://docs.geoserver.org/master/en/user/services/wfs/reference.html#getfeature).  Also note that there are [differences in available parameters between different version of WFS specifications](https://docs.geoserver.org/stable/en/user/services/wfs/basics.html#differences-between-wfs-versions). We recommend and mainly document using the default and latest version (`"2.0.0"`) which is supported by all EMODnet WFS services.
 
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 ## Initialise a WFS client
 
 Let's start by loading emodnet.wfs and initialising a WFS client to the `human_activities` WFS service.
 
-
-``` r
+```{r setup}
 library(emodnet.wfs)
 
 wfs <- emodnet_init_wfs_client("human_activities")
-#> ✔ WFS client created successfully
-#> ℹ Service: "https://ows.emodnet-humanactivities.eu/wfs"
-#> ℹ Version: "2.0.0"
 ```
 
 
@@ -30,46 +31,26 @@ wfs <- emodnet_init_wfs_client("human_activities")
 
 We can restrict the query to a single feature using `featureID` and providing the ID of a specific feature.
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
   featureID = "pipelines.1",
   simplify = TRUE
 )
-#> Simple feature collection with 1 feature and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: -5.87186 ymin: 35.99551 xmax: -5.836784 ymax: 36.12588
-#> Geodetic CRS:  WGS 84
-#>        gml_id   id status medium operator size_in length_m year from_loc to_loc country_co
-#> 1 pipelines.1 <NA> Active   <NA>     <NA>    <NA> 15467.17 <NA>     <NA>   <NA>         ES
-#>   country notes                       the_geom
-#> 1   Spain  <NA> MULTILINESTRING ((-5.87186 ...
 ```
 
 ## Return specific number of features 
 
 If the ID of the feature is unknown but we still want to limit the number of features returned, we use the `count` parameter for WFS 2.0.0 or the `maxFeatures` parameter for earlier WFS versions to restrict the number of features returned. In this example we restrict the query to the first feature.
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
   count = 1L,
   simplify = TRUE
 )
-#> Simple feature collection with 1 feature and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: 24.98448 ymin: 60.19078 xmax: 25.01292 ymax: 60.19293
-#> Geodetic CRS:  WGS 84
-#>           gml_id   id status medium operator size_in length_m year from_loc to_loc
-#> 1 pipelines.3463 <NA>    n/a   <NA>     <NA>    <NA>  1628.03 <NA>     <NA>   <NA>
-#>   country_co country                    notes                       the_geom
-#> 1         FI Finland Finnish Transport Agency MULTILINESTRING ((25.01292 ...
 ```
 
 ## Order features
@@ -78,8 +59,7 @@ Exactly which features will be returned depends in the internal structure of the
 
 Say we wanted to return 5 of the longest marine pipelines. In the following example, we sort by the `"length_m"` attribute and combine it with the `count` parameter to restrict the number of features returned. This returns the first 5 features after the data has been ordered by `"length_m"`. Some pipelines do not have their lengths recorded, we will skip them with a CQL Filter.
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
@@ -88,29 +68,6 @@ emodnet_get_layers(
   simplify = TRUE,
   cql_filter = "length_m IS NOT NULL"
 )
-#> Simple feature collection with 5 features and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: 2.249597 ymin: 51.04064 xmax: 28.14228 ymax: 60.52758
-#> Geodetic CRS:  WGS 84
-#>           gml_id        id  status medium         operator size_in  length_m year
-#> 1 pipelines.3423      <NA>  Active    Gas   Nord Stream AG      48 2443360.2 2011
-#> 2 pipelines.3424      <NA> Planned    Gas Nord Stream 2 AG      48 1210867.9 2021
-#> 3   pipelines.52 PL0187_PR  Active    Gas      Statoil ASA      42  836155.4 <NA>
-#> 4  pipelines.517    326374  Active    Gas        GASSCO AS      42  832197.9 <NA>
-#> 5   pipelines.53 PL0186_PR  Active    Gas      Statoil ASA      40  807749.5 <NA>
-#>        from_loc         to_loc country_co         country           notes
-#> 1    Vyborg, RU     Lubmin, GE     DE, RU Germany, Russia Schematic Route
-#> 2 Kurgalsky, RU     Lubmin, GE     DE, RU Germany, Russia Schematic Route
-#> 3  Draupner (N) Duinkerken (F)         NL     Netherlands            <NA>
-#> 4    DRAUPNER E      DUNKERQUE         NO          Norway            <NA>
-#> 5  Sleipner (N)  Zeebrugge (B)         NL     Netherlands            <NA>
-#>                         the_geom
-#> 1 MULTILINESTRING ((18.00045 ...
-#> 2 MULTILINESTRING ((28.14228 ...
-#> 3 MULTILINESTRING ((2.249597 ...
-#> 4 MULTILINESTRING ((2.458616 ...
-#> 5 MULTILINESTRING ((3.298373 ...
 ```
 
 
@@ -120,28 +77,26 @@ The default sort operation is to sort in ascending order. Some WFS servers requi
 
 Finally in WFS version 2.0.0 (and also available in earlier versions on GeoServer) a `startIndex` parameter was introduced, allowing users to specify the starting index of features to be returned.
 
+```{r, echo=FALSE}
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
 
+n_features
 ```
-#> [1] 3951
-```
 
-For example, the full `"pipelines"` layer contains 3951 features. 
+For example, the full `"pipelines"` layer contains `r n_features` features. 
 
-
-``` r
+```{r, eval=FALSE}
 n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
 
 n_features
 ```
 
 
-Setting the `startIndex` to `n_features - 4` (3947) returns the last 4 features.
+Setting the `startIndex` to `n_features - 4` (`r n_features - 4`) returns the last 4 features.
 
-
-``` r
+```{r}
 startIndex <- n_features - 4L
 startIndex
-#> [1] 3947
 
 emodnet_get_layers(
   wfs = wfs,
@@ -149,21 +104,6 @@ emodnet_get_layers(
   startIndex = startIndex,
   simplify = TRUE
 )
-#> Simple feature collection with 4 features and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: 3.990801 ymin: 53.53329 xmax: 14.4857 ymax: 55.81712
-#> Geodetic CRS:  WGS 84
-#>           gml_id     id     status medium operator size_in length_m year from_loc to_loc
-#> 1 pipelines.3948 154802 Not in use    Gas     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 2 pipelines.3949 154812 Not in use    Gas     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 3 pipelines.3950 154982     Active    Gas     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 4 pipelines.3951 155942     Active    Gas     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#>   country_co country notes                       the_geom
-#> 1         DE Germany  <NA> MULTILINESTRING ((14.48506 ...
-#> 2         DE Germany  <NA> MULTILINESTRING ((14.4857 5...
-#> 3         DE Germany  <NA> MULTILINESTRING ((4.058202 ...
-#> 4         DE Germany  <NA> MULTILINESTRING ((4.019116 ...
 ```
 
 
@@ -171,8 +111,7 @@ We can also combine `startIndex` and `count` to return specific blocks of featur
 
 Note that `startIndex` uses `0` as a starting index (0 indicates the first feature), hence we set it to `4` in order to start at the 5th feature.
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
@@ -180,25 +119,6 @@ emodnet_get_layers(
   count = 6L,
   simplify = TRUE
 )
-#> Simple feature collection with 6 features and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: -8.336029 ymin: 51.19448 xmax: -7.947595 ymax: 51.8236
-#> Geodetic CRS:  WGS 84
-#>         gml_id     id status medium operator size_in  length_m year    from_loc to_loc
-#> 1  pipelines.5 F43__3    n/a   <NA>     <NA>    <NA> 10038.745 <NA>     Kinsale   <NA>
-#> 2  pipelines.6 F43__4    n/a   <NA>     <NA>    <NA> 20011.185 <NA> Ballycotton   <NA>
-#> 3  pipelines.7 F43__5    n/a   <NA>     <NA>    <NA> 10853.853 <NA>     Kinsale   <NA>
-#> 4  pipelines.8 F43__6    n/a   <NA>     <NA>    <NA>  5397.224 <NA>     Kinsale   <NA>
-#> 5  pipelines.9 F43__7    n/a   <NA>     <NA>    <NA> 73853.753 <NA>     Kinsale   <NA>
-#> 6 pipelines.10 F43__8    n/a   <NA>     <NA>    <NA> 56242.374 <NA> Seven Heads   <NA>
-#>   country_co country notes                       the_geom
-#> 1         IE Ireland  <NA> MULTILINESTRING ((-8.186204...
-#> 2         IE Ireland  <NA> MULTILINESTRING ((-8.017066...
-#> 3         IE Ireland  <NA> MULTILINESTRING ((-8.017356...
-#> 4         IE Ireland  <NA> MULTILINESTRING ((-8.179044...
-#> 5         IE Ireland  <NA> MULTILINESTRING ((-7.947595...
-#> 6         IE Ireland  <NA> MULTILINESTRING ((-8.217298...
 ```
 
 This in combination with, for example, a `for` loop, can be used to download and process large layer which might not be able to be handled in R in smaller, more manageable blocks of features.
@@ -212,8 +132,7 @@ To limit data returned to the single attribute `"country"` from just 3 features,
 
 Note that when limiting data to specific attributes, all other columns are returned as `NA` (including any spatial, in this case `the_geom`, column).
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
@@ -221,25 +140,11 @@ emodnet_get_layers(
   count = 3L,
   simplify = TRUE
 )
-#> Simple feature collection with 3 features and 13 fields (with 3 geometries empty)
-#> Geometry type: GEOMETRYCOLLECTION
-#> Dimension:     XY
-#> Bounding box:  xmin: NA ymin: NA xmax: NA ymax: NA
-#> Geodetic CRS:  WGS 84
-#>           gml_id   id status medium operator size_in length_m year from_loc to_loc
-#> 1 pipelines.3463 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 2 pipelines.3702 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 3 pipelines.3707 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#>   country_co country notes                 the_geom
-#> 1       <NA> Finland  <NA> GEOMETRYCOLLECTION EMPTY
-#> 2       <NA> Finland  <NA> GEOMETRYCOLLECTION EMPTY
-#> 3       <NA> Finland  <NA> GEOMETRYCOLLECTION EMPTY
 ```
 
 To limit to multiple attributes, separate each attribute name in the character string supplied to `propertyName` by a comma.
 
-
-``` r
+```{r}
 emodnet_get_layers(
   wfs = wfs,
   layers = "pipelines",
@@ -247,19 +152,6 @@ emodnet_get_layers(
   count = 3L,
   simplify = TRUE
 )
-#> Simple feature collection with 3 features and 13 fields
-#> Geometry type: MULTILINESTRING
-#> Dimension:     XY
-#> Bounding box:  xmin: 24.90736 ymin: 60.1819 xmax: 27.11348 ymax: 60.5359
-#> Geodetic CRS:  WGS 84
-#>           gml_id   id status medium operator size_in length_m year from_loc to_loc
-#> 1 pipelines.3463 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 2 pipelines.3702 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#> 3 pipelines.3707 <NA>   <NA>   <NA>     <NA>    <NA>       NA <NA>     <NA>   <NA>
-#>   country_co country notes                       the_geom
-#> 1       <NA> Finland  <NA> MULTILINESTRING ((25.01292 ...
-#> 2       <NA> Finland  <NA> MULTILINESTRING ((27.11348 ...
-#> 3       <NA> Finland  <NA> MULTILINESTRING ((24.90967 ...
 ```
 
 
@@ -269,24 +161,18 @@ The `bbox` parameter allows us to search for features that are contained (or par
 
 In the following example, we specify the bounding box by proving coordinates in the order `xmin,ymin,xmax,ymax` and specifying that coordinates are given in the `EPSG:4326` coordinate reference system.
 
-
-``` r
+```{r}
 bbox_response <- emodnet_get_layers(
   service = "biology",
   layers = "mediseh_posidonia_nodata",
   bbox = "22.9,34.4,26.8,35.8,EPSG:4326",
   simplify = TRUE
 )
-#> ✔ WFS client created successfully
-#> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
-#> ℹ Version: "2.0.0"
 
 bbox_response %>%
   sf::st_cast(to = "MULTILINESTRING") %>%
   mapview::mapview(burst = TRUE, legend = FALSE)
 ```
-
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 
 ## Non-standard Vendor Parameters
