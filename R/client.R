@@ -33,7 +33,8 @@ emodnet_init_wfs_client <- function(service,
     ows4R::WFSClient$new(
       service_url,
       serviceVersion = "2.0.0",
-      headers = c("User-Agent" = utils::URLencode(emodnetwfs_user_agent())),
+      # TODO add when https://github.com/eblondel/ows4R/issues/137 fixed
+        #headers = c("User-Agent" = emodnetwfs_user_agent()),
       logger = logger
     )
   )

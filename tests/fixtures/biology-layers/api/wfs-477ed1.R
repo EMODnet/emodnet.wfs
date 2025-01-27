@@ -3,14 +3,14 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
         `x-frame-options` = "SAMEORIGIN", `access-control-allow-origin` = "*", 
         `content-disposition` = "inline; filename=Emodnetbio-Species_gridded_abundances_10year.xsd", 
         `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-        `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 07:29:54 GMT", 
+        `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 08:14:52 GMT", 
         connection = "close"), class = c("insensitive", "list"
     )), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(`x-content-type-options` = "nosniff", 
             `x-frame-options` = "SAMEORIGIN", `access-control-allow-origin` = "*", 
             `content-disposition` = "inline; filename=Emodnetbio-Species_gridded_abundances_10year.xsd", 
             `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-            `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 07:29:54 GMT", 
+            `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 08:14:52 GMT", 
             connection = "close"), class = c("insensitive", "list"
         )))), cookies = structure(list(domain = logical(0), flag = logical(0), 
         path = logical(0), secure = logical(0), expiration = structure(numeric(0), class = c("POSIXct", 
@@ -216,7 +216,7 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     0x63, 0x65, 0x73, 0x5f, 0x31, 0x30, 0x79, 0x65, 0x61, 0x72, 
     0x54, 0x79, 0x70, 0x65, 0x22, 0x2f, 0x3e, 0x0a, 0x3c, 0x2f, 
     0x78, 0x73, 0x64, 0x3a, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 
-    0x3e, 0x0a)), date = structure(1737962994, class = c("POSIXct", 
-    "POSIXt"), tzone = "GMT"), times = c(redirect = 0, namelookup = 3e-05, 
-    connect = 3.1e-05, pretransfer = 9.8e-05, starttransfer = 0.028886, 
-    total = 0.028942)), class = "response")
+    0x3e, 0x0a)), date = structure(1737965692, class = c("POSIXct", 
+    "POSIXt"), tzone = "GMT"), times = c(redirect = 0, namelookup = 5e-05, 
+    connect = 5.2e-05, pretransfer = 0.000154, starttransfer = 0.025414, 
+    total = 0.025523)), class = "response")
