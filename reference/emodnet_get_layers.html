@@ -248,55 +248,56 @@ you might consider a combination of these ideas:</p><ul><li><p>using <a href="ht
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> WFS client created successfully</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://geo.vliz.be/geoserver/Dataportal/wfs"</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">1000000</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">37</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">1000000</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">38</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Delimiter:</span> ","</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">chr</span>  (13): FID, datatype, season, parametername, parameterunit, dataprovider...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">dbl</span>  (11): id, latitude, longitude, value, standardparameterid, dataprovider...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">lgl</span>  (12): aphiaid, depth, lod, loq, class, classunit, classcode, dateprecis...</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">lgl</span>  (13): aphiaid, depth, lod, loq, class, classunit, classcode, dateprecis...</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">dttm</span>  (1): datetime</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">data</span><span class="op">[[</span><span class="st">"abiotic_observations"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> spc_tbl_ [1,000,000 × 37] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ FID                : chr [1:1000000] "abiotic_observations.fid-2128d3d3_1939af064a7_-55ee" "abiotic_observations.fid-2128d3d3_1939af064a7_-55ed" "abiotic_observations.fid-2128d3d3_1939af064a7_-55ec" "abiotic_observations.fid-2128d3d3_1939af064a7_-55eb" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> spc_tbl_ [1,000,000 × 38] (S3: spec_tbl_df/tbl_df/tbl/data.frame)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ FID                : chr [1:1000000] "abiotic_observations.fid-2ad80db_194a71f22ba_-359a" "abiotic_observations.fid-2ad80db_194a71f22ba_-3599" "abiotic_observations.fid-2ad80db_194a71f22ba_-3598" "abiotic_observations.fid-2ad80db_194a71f22ba_-3597" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ id                 : num [1:1000000] 1.56e+11 1.56e+11 1.56e+11 1.56e+11 1.56e+11 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ aphiaid            : logi [1:1000000] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ latitude           : num [1:1000000] 51.4 51.4 51.4 51.4 51.4 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ longitude          : num [1:1000000] 4.24 4.24 4.24 4.24 4.24 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ latitude           : num [1:1000000] 51.3 51.3 51.3 51.3 51.3 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ longitude          : num [1:1000000] 4.32 4.32 4.32 4.32 4.32 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ depth              : logi [1:1000000] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datetime           : POSIXct[1:1000000], format: "2021-03-04 23:00:00" "2021-03-09 23:00:00" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ value              : num [1:1000000] 122 132 170 158 107 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datetime           : POSIXct[1:1000000], format: "2006-03-11 16:20:00" "2006-03-11 16:30:00" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ value              : num [1:1000000] 0.5 0.54 0.47 0.37 0.3 0.37 0.41 0.33 0.41 0.47 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ lod                : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ loq                : logi [1:1000000] NA NA NA NA NA NA ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standardparameterid: num [1:1000000] 13567 13567 13567 13567 13567 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ standardparameterid: num [1:1000000] 5389 5389 5389 5389 5389 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataproviderid     : num [1:1000000] 7 7 7 7 7 7 7 7 7 7 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ imisdatasetid      : num [1:1000000] 1269 1269 1269 1269 1269 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataficheid        : num [1:1000000] 36 36 36 36 36 36 36 36 36 36 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ seriesid           : num [1:1000000] 17266 17266 17266 17266 17266 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ imisdatasetid      : num [1:1000000] 6611 6611 6611 6611 6611 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataficheid        : num [1:1000000] 39 39 39 39 39 39 39 39 39 39 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ seriesid           : num [1:1000000] 17189 17189 17189 17189 17189 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ datatype           : chr [1:1000000] "NC" "NC" "NC" "NC" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ class              : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ classunit          : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ classcode          : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ season             : chr [1:1000000] "winter" "winter" "winter" "winter" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parametername      : chr [1:1000000] "Pentade gemiddeld debiet in m³/s" "Pentade gemiddeld debiet in m³/s" "Pentade gemiddeld debiet in m³/s" "Pentade gemiddeld debiet in m³/s" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parameterunit      : chr [1:1000000] "m³/s" "m³/s" "m³/s" "m³/s" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parametername      : chr [1:1000000] "Snelheid in m/s" "Snelheid in m/s" "Snelheid in m/s" "Snelheid in m/s" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ parameterunit      : chr [1:1000000] "m/s" "m/s" "m/s" "m/s" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dataprovider       : chr [1:1000000] "MOW WL - Waterbouwkundig Laboratorium" "MOW WL - Waterbouwkundig Laboratorium" "MOW WL - Waterbouwkundig Laboratorium" "MOW WL - Waterbouwkundig Laboratorium" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datasettitle       : chr [1:1000000] "Flanders Hydraulics Research: Continuous monitoring of discharges in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of discharges in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of discharges in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of discharges in the Scheldt estuary" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafichetitle     : chr [1:1000000] "S-HD-V-003 - Debiet - Bovenafvoer" "S-HD-V-003 - Debiet - Bovenafvoer" "S-HD-V-003 - Debiet - Bovenafvoer" "S-HD-V-003 - Debiet - Bovenafvoer" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ stationname        : chr [1:1000000] "Grens België-Nederland calc/Zeeschelde" "Grens België-Nederland calc/Zeeschelde" "Grens België-Nederland calc/Zeeschelde" "Grens België-Nederland calc/Zeeschelde" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datasettitle       : chr [1:1000000] "Flanders Hydraulics Research: Continuous monitoring of water velocity and flow direction in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of water velocity and flow direction in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of water velocity and flow direction in the Scheldt estuary" "Flanders Hydraulics Research: Continuous monitoring of water velocity and flow direction in the Scheldt estuary" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ datafichetitle     : chr [1:1000000] "S-HD-V-005 - Snelheid - Puntmeting" "S-HD-V-005 - Snelheid - Puntmeting" "S-HD-V-005 - Snelheid - Puntmeting" "S-HD-V-005 - Snelheid - Puntmeting" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ stationname        : chr [1:1000000] "Boei97-Boven SF/Zeeschelde" "Boei97-Boven SF/Zeeschelde" "Boei97-Boven SF/Zeeschelde" "Boei97-Boven SF/Zeeschelde" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ gid                : num [1:1000000] 7 7 7 7 7 7 7 7 7 7 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ seasonid           : num [1:1000000] 1 1 1 1 2 2 2 2 2 2 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ unit               : chr [1:1000000] "m³/s" "m³/s" "m³/s" "m³/s" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ seasonid           : num [1:1000000] 1 1 1 1 1 1 1 1 1 1 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ unit               : chr [1:1000000] "m/s" "m/s" "m/s" "m/s" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ category           : chr [1:1000000] "waterstand, golven en stroming" "waterstand, golven en stroming" "waterstand, golven en stroming" "waterstand, golven en stroming" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ the_geom           : chr [1:1000000] "POINT (51.3519925511295 4.24042383925658)" "POINT (51.3519925511295 4.24042383925658)" "POINT (51.3519925511295 4.24042383925658)" "POINT (51.3519925511295 4.24042383925658)" ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ the_geom           : chr [1:1000000] "POINT (51.2879032789208 4.31833220471672)" "POINT (51.2879032789208 4.31833220471672)" "POINT (51.2879032789208 4.31833220471672)" "POINT (51.2879032789208 4.31833220471672)" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ valuesign          : chr [1:1000000] "=" "=" "=" "=" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ dateprecision      : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ standard_name      : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ externalid         : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ external_name      : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ scientificname     : logi [1:1000000] NA NA NA NA NA NA ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ abmpbm             : logi [1:1000000] NA NA NA NA NA NA ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "spec")=</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. cols(</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..   FID = <span style="color: #BB0000;">col_character()</span>,</span>
@@ -335,7 +336,8 @@ you might consider a combination of these ideas:</p><ul><li><p>using <a href="ht
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..   standard_name = <span style="color: #BBBB00;">col_logical()</span>,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..   externalid = <span style="color: #BBBB00;">col_logical()</span>,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..   external_name = <span style="color: #BBBB00;">col_logical()</span>,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..   scientificname = <span style="color: #BBBB00;">col_logical()</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..   scientificname = <span style="color: #BBBB00;">col_logical()</span>,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..   abmpbm = <span style="color: #BBBB00;">col_logical()</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. )</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "problems")=&lt;externalptr&gt; </span>
 </code></pre></div>
