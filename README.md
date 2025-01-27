@@ -34,7 +34,14 @@ user-friendly interface to this rich data.
 
 ## Installation and setup
 
-You can install the development version of emodnet.wfs from GitHub with:
+You can install the development version of emodnet.wfs from the rOpenSci
+R-universe with:
+
+``` r
+install.packages("emodnet.wfs", repos = c("https://ropensci.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+Or from GitHub with:
 
 ``` r
 # install.packages("pak")
