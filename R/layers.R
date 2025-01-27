@@ -81,8 +81,8 @@
 #' `"biology_occurrence_data"` service),
 #' you might consider a combination of these ideas:
 #' - using [`outputFormat = "CSV"`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature);
-#' - filtering using [`cql_filters`](https://emodnet.github.io/emodnet.wfs/articles/ecql_filtering.html) or
-#' [bounding boxes](https://emodnet.github.io/emodnet.wfs/articles/request-params.html#limit-spatial-extent-using-a-boundary-box)
+#' - filtering using [`cql_filters`](https://docs.ropensci.org/emodnet.wfs/articles/ecql_filtering.html) or
+#' [bounding boxes](https://docs.ropensci.org/emodnet.wfs/articles/request-params.html#limit-spatial-extent-using-a-boundary-box)
 #' (possibly splitting the area of interests into several requests);
 #' - Using [EMODnet's download toolbox](https://emodnet.ec.europa.eu/geoviewer/).
 # nolint end

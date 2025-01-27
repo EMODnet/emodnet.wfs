@@ -2,7 +2,7 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "emodnet.wfs" in publications use:'
 type: software
@@ -49,7 +49,7 @@ preferred-citation:
   url: https://github.com/EMODnet/emodnet.wfs
   doi: 10.14284/679
 repository-code: https://github.com/EMODnet/emodnet.wfs
-url: https://emodnet.github.io/emodnet.wfs/
+url: https://docs.ropensci.org/emodnet.wfs/
 contact:
 - family-names: Fernández-Bejarano
   given-names: Salvador

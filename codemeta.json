@@ -4,7 +4,7 @@
   "identifier": "emodnet.wfs",
   "description": "Access and interrogate EMODnet (European Marine Observation and Data Network) Web Feature Service data through R.",
   "name": "emodnet.wfs: Access EMODnet Web Feature Service data through R",
-  "relatedLink": ["https://emodnet.github.io/emodnet.wfs/", "https://github.com/EMODnet/emodnet.wfs"],
+  "relatedLink": ["https://docs.ropensci.org/emodnet.wfs/", "https://github.com/EMODnet/emodnet.wfs"],
   "codeRepository": "https://github.com/EMODnet/emodnet.wfs",
   "issueTracker": "https://github.com/EMODnet/emodnet.wfs/issues",
   "license": "https://spdx.org/licenses/MIT",

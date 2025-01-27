@@ -21,7 +21,7 @@ Authors@R: c(
 Description: Access and interrogate EMODnet (European Marine Observation
     and Data Network) Web Feature Service data through R.
 License: MIT + file LICENSE
-URL: https://emodnet.github.io/emodnet.wfs/,
+URL: https://docs.ropensci.org/emodnet.wfs/,
     https://github.com/EMODnet/emodnet.wfs
 BugReports: https://github.com/EMODnet/emodnet.wfs/issues
 Depends: 
