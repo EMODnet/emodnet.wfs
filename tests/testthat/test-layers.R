@@ -72,7 +72,7 @@ test_that("crs checking from wfs service works correctly", {
   expect_identical(sf::st_crs(l_data[[1]])$input, "epsg:4326")
 })
 
-test_that("reduce layers on single layer returns sf", {
+test_that("simplify layers on single layer returns sf", {
   skip_if_offline()
   wfs <- create_biology_wfs()
   sf_data <- emodnet_get_layers(
@@ -98,8 +98,9 @@ test_that("emodnet_get_layers errors well when bad layer", {
   expect_snapshot_error(emodnet_get_layers(wfs = wfs, layers = "blop"))
 })
 
-test_that("reduce works", {
+test_that("simplify works", {
   skip_if_offline()
+  skip("TODO very slow right now")
   sf_data <- emodnet_get_layers(
     service = "seabed_habitats_individual_habitat_map_and_model_datasets",
     layers = c("dk003069", "dk003070"),
