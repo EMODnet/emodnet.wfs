@@ -131,11 +131,9 @@ and ECQL Tutorial</a> shows examples of defining filters.</p></li>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emodnet.github.io/emodnet.wfs/">emodnet.wfs</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/emodnet_init_wfs_client.html">emodnet_init_wfs_client</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading ISO 19139 XML schemas...</span></span>
-<span><span class="co">#&gt; Loading ISO 19115 codelists...</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> WFS client created successfully</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span></span></code></pre></div>
+<span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="inspecting-attributes">Inspecting attributes<a class="anchor" aria-label="anchor" href="#inspecting-attributes"></a>
@@ -146,22 +144,22 @@ range or distribution of values of each attributes of a given layer.</p>
 <p>Let’s look at existing layers.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/emodnet_get_wfs_info.html">emodnet_get_wfs_info</a></span><span class="op">(</span><span class="va">wfs</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 36 × 9</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># Rowwise: </span></span></span>
-<span><span class="co">#&gt;    data_source service_name service_url   layer_name title abstract class format</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Coral … WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Coral … WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> emodnet_wfs biology      https://geo.… mediseh_c… EMOD… <span style="color: #949494;">"</span>Cymodo… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> emodnet_wfs biology      https://geo.… Species_g… EMOD… <span style="color: #949494;">"</span>This d… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> emodnet_wfs biology      https://geo.… mediseh_h… EMOD… <span style="color: #949494;">"</span>Haloph… WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> emodnet_wfs biology      https://geo.… mediseh_m… EMOD… <span style="color: #949494;">"</span>Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> emodnet_wfs biology      https://geo.… mediseh_m… EMOD… <span style="color: #949494;">"</span>Maërl … WFSF… sf    </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 26 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; # A tibble: 36 × 9</span></span>
+<span><span class="co">#&gt; # Rowwise: </span></span>
+<span><span class="co">#&gt;    data_source service_name service_url                layer_name title abstract class format</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;                      &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; </span></span>
+<span><span class="co">#&gt;  1 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  2 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Coral … WFSF… sf    </span></span>
+<span><span class="co">#&gt;  3 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Cymodo… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  4 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  5 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  6 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  7 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  8 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_h… EMOD… "Haloph… WFSF… sf    </span></span>
+<span><span class="co">#&gt;  9 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; 10 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_m… EMOD… "Maërl … WFSF… sf    </span></span>
+<span><span class="co">#&gt; # ℹ 26 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 1 more variable: layer_namespace &lt;chr&gt;</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="layer-attribute-names">Layer attribute names<a class="anchor" aria-label="anchor" href="#layer-attribute-names"></a>
 </h4>
@@ -174,9 +172,9 @@ attributes.</p>
 a <code>wfs</code> object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/layer_attributes_get_names.html">layer_attributes_get_names</a></span><span class="op">(</span>service <span class="op">=</span> <span class="st">"biology"</span>, layer <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> WFS client created successfully</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Service: <span style="color: #0000BB;">"https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Version: <span style="color: #0000BB;">"2.0.0"</span></span></span>
+<span><span class="co">#&gt; ✔ WFS client created successfully</span></span>
+<span><span class="co">#&gt; ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"</span></span>
+<span><span class="co">#&gt; ℹ Version: "2.0.0"</span></span>
 <span><span class="co">#&gt; [1] "id"       "country"  "the_geom"</span></span></code></pre></div>
 </div>
 <div class="section level4">
@@ -221,16 +219,16 @@ and distribution of categories.</p>
 <span>  layer <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span>,</span>
 <span>  attribute <span class="op">=</span> <span class="st">"country"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 3</span></span></span>
+<span><span class="co">#&gt; # A tibble: 7 × 3</span></span>
 <span><span class="co">#&gt;   .            n percent</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Croazia      4  0.074<span style="text-decoration: underline;">1</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Francia      1  0.018<span style="text-decoration: underline;">5</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Italia      30  0.556 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Libia        2  0.037<span style="text-decoration: underline;">0</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Slovenia     8  0.148 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Spagna       8  0.148 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Tunisia      1  0.018<span style="text-decoration: underline;">5</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   &lt;chr&gt;    &lt;int&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Croazia      4  0.0741</span></span>
+<span><span class="co">#&gt; 2 Francia      1  0.0185</span></span>
+<span><span class="co">#&gt; 3 Italia      30  0.556 </span></span>
+<span><span class="co">#&gt; 4 Libia        2  0.0370</span></span>
+<span><span class="co">#&gt; 5 Slovenia     8  0.148 </span></span>
+<span><span class="co">#&gt; 6 Spagna       8  0.148 </span></span>
+<span><span class="co">#&gt; 7 Tunisia      1  0.0185</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -246,20 +244,20 @@ filtering rules.</p>
 <code class="sourceCode R"><span><span class="va">attr_tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/layer_attributes_tbl.html">layer_attributes_tbl</a></span><span class="op">(</span><span class="va">wfs</span>, layer <span class="op">=</span> <span class="st">"mediseh_zostera_m_pnt"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">attr_tbl</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 54 × 3</span></span></span>
+<span><span class="co">#&gt; # A tibble: 54 × 3</span></span>
 <span><span class="co">#&gt;    gml_id                      id country</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> mediseh_zostera_m_pnt.1      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> mediseh_zostera_m_pnt.2      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> mediseh_zostera_m_pnt.3      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> mediseh_zostera_m_pnt.4      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> mediseh_zostera_m_pnt.5      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> mediseh_zostera_m_pnt.6      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> mediseh_zostera_m_pnt.7      0 Spagna </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> mediseh_zostera_m_pnt.8      0 Francia</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> mediseh_zostera_m_pnt.9      0 Italia </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> mediseh_zostera_m_pnt.10     0 Italia </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 44 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt;    &lt;chr&gt;                    &lt;int&gt; &lt;chr&gt;  </span></span>
+<span><span class="co">#&gt;  1 mediseh_zostera_m_pnt.1      0 Spagna </span></span>
+<span><span class="co">#&gt;  2 mediseh_zostera_m_pnt.2      0 Spagna </span></span>
+<span><span class="co">#&gt;  3 mediseh_zostera_m_pnt.3      0 Spagna </span></span>
+<span><span class="co">#&gt;  4 mediseh_zostera_m_pnt.4      0 Spagna </span></span>
+<span><span class="co">#&gt;  5 mediseh_zostera_m_pnt.5      0 Spagna </span></span>
+<span><span class="co">#&gt;  6 mediseh_zostera_m_pnt.6      0 Spagna </span></span>
+<span><span class="co">#&gt;  7 mediseh_zostera_m_pnt.7      0 Spagna </span></span>
+<span><span class="co">#&gt;  8 mediseh_zostera_m_pnt.8      0 Francia</span></span>
+<span><span class="co">#&gt;  9 mediseh_zostera_m_pnt.9      0 Italia </span></span>
+<span><span class="co">#&gt; 10 mediseh_zostera_m_pnt.10     0 Italia </span></span>
+<span><span class="co">#&gt; # ℹ 44 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="filtering-by-attributes">Filtering by attributes<a class="anchor" aria-label="anchor" href="#filtering-by-attributes"></a>
