@@ -124,7 +124,7 @@ emodnet_get_layers <- function(wfs = NULL,
   layers <- match.arg(
     layers,
     several.ok = TRUE,
-    choices = emodnet_get_wfs_info(wfs)$layer_name
+    choices = sort(emodnet_get_wfs_info(wfs)$layer_name)
   )
 
   formats <- purrr::map_chr(layers, get_layer_format, wfs)
