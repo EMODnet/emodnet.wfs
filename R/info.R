@@ -117,7 +117,8 @@ get_abstract_null <- function(x) {
 }
 
 guess_layer_format <- function(layer) {
-  layer$getDescription()
+  # no longer needed: https://github.com/eblondel/ows4R/discussions/139#discussioncomment-11965999 # nolint: line_length_linter
+  # layer$getDescription()
   if (!is.null(layer$getGeometryType())) {
     "sf"
   } else {
