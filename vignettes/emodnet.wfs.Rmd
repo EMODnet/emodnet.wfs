@@ -13,7 +13,7 @@ vignette: >
 
 ## Introduction
 
-The package was designed to make EMODnet vector data layers easily accessible in R. The package allows users to query information on and download data from all available [EMODnet Web Feature Service (WFS) endpoints](https://emodnet.ec.europa.eu/geonetwork/emodnet/eng/catalog.search#/home) directly into their R working environment. Data are managed as [`sf` objects](https://r-spatial.github.io/sf/) which are currently the state-of-the-art in handling of vector spatial data in R. The package also allows user to specify the coordinate reference system of imported data.
+The package was designed to make EMODnet vector data layers easily accessible in R. The package allows users to query information on and download data from all available [EMODnet Web Feature Service (WFS) endpoints](https://emodnet.ec.europa.eu/geonetwork/srv/eng/catalog.search) directly into their R working environment. Data are managed as [`sf` objects](https://r-spatial.github.io/sf/) which are currently the state-of-the-art in handling of vector spatial data in R. The package also allows user to specify the coordinate reference system of imported data.
 
 ## Installation
 
@@ -57,24 +57,24 @@ names(services)
 #> [1] "emodnet_thematic_lot" "service_name"         "service_url"
 services[, c("emodnet_thematic_lot", "service_name")]
 #> # A tibble: 17 × 2
-#>    emodnet_thematic_lot     service_name                                                
-#>    <chr>                    <chr>                                                       
-#>  1 EMODnet Bathymetry       bathymetry                                                  
-#>  2 EMODnet Biology          biology                                                     
-#>  3 EMODnet Biology          biology_occurrence_data                                     
-#>  4 EMODnet Chemistry        chemistry_cdi_data_discovery_and_access_service             
-#>  5 EMODnet Chemistry        chemistry_cdi_distribution_observations_per_category_and_re…
-#>  6 EMODnet Chemistry        chemistry_contaminants                                      
-#>  7 EMODnet Chemistry        chemistry_marine_litter                                     
-#>  8 EMODnet Geology          geology_coastal_behavior                                    
-#>  9 EMODnet Geology          geology_events_and_probabilities                            
-#> 10 EMODnet Geology          geology_marine_minerals                                     
-#> 11 EMODnet Geology          geology_sea_floor_bedrock                                   
-#> 12 EMODnet Geology          geology_seabed_substrate_maps                               
-#> 13 EMODnet Geology          geology_submerged_landscapes                                
-#> 14 EMODnet Human Activities human_activities                                            
-#> 15 EMODnet Physics          physics                                                     
-#> 16 EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_products               
+#>    emodnet_thematic_lot     service_name                                                   
+#>    <chr>                    <chr>                                                          
+#>  1 EMODnet Bathymetry       bathymetry                                                     
+#>  2 EMODnet Biology          biology                                                        
+#>  3 EMODnet Biology          biology_occurrence_data                                        
+#>  4 EMODnet Chemistry        chemistry_cdi_data_discovery_and_access_service                
+#>  5 EMODnet Chemistry        chemistry_cdi_distribution_observations_per_category_and_region
+#>  6 EMODnet Chemistry        chemistry_contaminants                                         
+#>  7 EMODnet Chemistry        chemistry_marine_litter                                        
+#>  8 EMODnet Geology          geology_coastal_behavior                                       
+#>  9 EMODnet Geology          geology_events_and_probabilities                               
+#> 10 EMODnet Geology          geology_marine_minerals                                        
+#> 11 EMODnet Geology          geology_sea_floor_bedrock                                      
+#> 12 EMODnet Geology          geology_seabed_substrate_maps                                  
+#> 13 EMODnet Geology          geology_submerged_landscapes                                   
+#> 14 EMODnet Human Activities human_activities                                               
+#> 15 EMODnet Physics          physics                                                        
+#> 16 EMODnet Seabed Habitats  seabed_habitats_general_datasets_and_products                  
 #> 17 EMODnet Seabed Habitats  seabed_habitats_individual_habitat_map_and_model_datasets
 ```
 
@@ -90,20 +90,19 @@ seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
 #> # A tibble: 72 × 9
 #> # Rowwise: 
-#>    data_source service_name           service_url layer_name title abstract class format
-#>    <chr>       <chr>                  <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  2 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  3 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  4 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  5 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  6 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  7 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  8 emodnet_wfs seabed_habitats_gener… https://ow… art17_hab… 2013… "Gridde… WFSF… sf    
-#>  9 emodnet_wfs seabed_habitats_gener… https://ow… carib_eus… 2023… "Output… WFSF… sf    
-#> 10 emodnet_wfs seabed_habitats_gener… https://ow… biogenic_… Biog… "This l… WFSF… sf    
+#>    data_source service_name         service_url layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>                <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  2 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  3 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  4 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  5 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  6 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  7 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  8 emodnet_wfs seabed_habitats_gen… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  9 emodnet_wfs seabed_habitats_gen… https://ow… carib_eus… 2023… "Output… WFSF… sf     emodnet_open   
+#> 10 emodnet_wfs seabed_habitats_gen… https://ow… biogenic_… Biog… "This l… WFSF… sf     emodnet_open   
 #> # ℹ 62 more rows
-#> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
 
@@ -120,12 +119,11 @@ emodnet_get_layer_info(
 )
 #> # A tibble: 3 × 9
 #> # Rowwise: 
-#>   data_source service_name            service_url layer_name title abstract class format
-#>   <chr>       <chr>                   <chr>       <chr>      <chr> <chr>    <chr> <chr> 
-#> 1 emodnet_wfs https://ows.emodnet-se… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 2 emodnet_wfs https://ows.emodnet-se… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> 3 emodnet_wfs https://ows.emodnet-se… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf    
-#> # ℹ 1 more variable: layer_namespace <chr>
+#>   data_source service_name          service_url layer_name title abstract class format layer_namespace
+#>   <chr>       <chr>                 <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#> 1 emodnet_wfs https://ows.emodnet-… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#> 2 emodnet_wfs https://ows.emodnet-… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#> 3 emodnet_wfs https://ows.emodnet-… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open
 ```
 
 
@@ -140,9 +138,6 @@ habitats_directive_layers <- emodnet_get_layers(
   simplify = TRUE,
   outputFormat = "application/json"
 )
-#> Start tag expected, '<' not found
-#> Start tag expected, '<' not found
-#> Start tag expected, '<' not found
 
 habitats_directive_layers
 #> Simple feature collection with 221 features and 8 fields
@@ -173,28 +168,17 @@ habitats_directive_layers
 #> 8  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
 #> 9  http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
 #> 10 http://dd.eionet.europa.eu/vocabulary/art17_2018/habitats/1110
-#>                                               habitat_description
-#> 1  Sandbanks which are slightly covered by sea water all the time
-#> 2  Sandbanks which are slightly covered by sea water all the time
-#> 3  Sandbanks which are slightly covered by sea water all the time
-#> 4  Sandbanks which are slightly covered by sea water all the time
-#> 5  Sandbanks which are slightly covered by sea water all the time
-#> 6  Sandbanks which are slightly covered by sea water all the time
-#> 7  Sandbanks which are slightly covered by sea water all the time
-#> 8  Sandbanks which are slightly covered by sea water all the time
-#> 9  Sandbanks which are slightly covered by sea water all the time
-#> 10 Sandbanks which are slightly covered by sea water all the time
-#>                          geometry
-#> 1  MULTIPOLYGON (((4200000 360...
-#> 2  MULTIPOLYGON (((1950000 950...
-#> 3  MULTIPOLYGON (((1960000 950...
-#> 4  MULTIPOLYGON (((1810000 120...
-#> 5  MULTIPOLYGON (((2730000 173...
-#> 6  MULTIPOLYGON (((4610000 346...
-#> 7  MULTIPOLYGON (((4310000 352...
-#> 8  MULTIPOLYGON (((3790000 314...
-#> 9  MULTIPOLYGON (((3780000 319...
-#> 10 MULTIPOLYGON (((3800000 313...
+#>                                               habitat_description                       geometry
+#> 1  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((4200000 360...
+#> 2  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((1950000 950...
+#> 3  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((1960000 950...
+#> 4  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((1810000 120...
+#> 5  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((2730000 173...
+#> 6  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((4610000 346...
+#> 7  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((4310000 352...
+#> 8  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((3790000 314...
+#> 9  Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((3780000 319...
+#> 10 Sandbanks which are slightly covered by sea water all the time MULTIPOLYGON (((3800000 313...
 ```
 
 Note the use of the `outputFormat` argument in this example. This specifies the file type to request from the service, which can influence how the data is loaded into R. By default, the data is provided in the `GML` format with a geometry type of "MULTISURFACE." However, this geometry type is not widely supported by many software tools, including the `mapview` package. To address this, you can request a different file type, such as GeoJSON, which delivers the geometry as "MULTIPOLYGON"—a format that is more universally compatible. This has been raised before in the [sf community](https://github.com/r-spatial/sf/issues/748).
@@ -217,22 +201,21 @@ EMODnet provides also physics, chemistry, biological or bathymetry data. Explore
 
 ``` r
 emodnet_get_all_wfs_info()
-#> # A tibble: 1,713 × 9
+#> # A tibble: 1,734 × 9
 #> # Rowwise: 
-#>    data_source service_name service_url           layer_name title abstract class format
-#>    <chr>       <chr>        <chr>                 <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs bathymetry   https://ows.emodnet-… download_… Bath… "Downlo… WFSF… sf    
-#>  2 emodnet_wfs bathymetry   https://ows.emodnet-… contours   Dept… "Genera… WFSF… sf    
-#>  3 emodnet_wfs bathymetry   https://ows.emodnet-… hr_bathym… High… "Layer … WFSF… sf    
-#>  4 emodnet_wfs bathymetry   https://ows.emodnet-… quality_i… Qual… "Repres… WFSF… sf    
-#>  5 emodnet_wfs bathymetry   https://ows.emodnet-… sea_names  Sea … "Mainta… WFSF… sf    
-#>  6 emodnet_wfs bathymetry   https://ows.emodnet-… source_re… Sour… "Covera… WFSF… sf    
-#>  7 emodnet_wfs bathymetry   https://ows.emodnet-… undersea_… unde… ""       WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.vliz.be/… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.vliz.be/… mediseh_c… EMOD… "Coral … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.vliz.be/… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#> # ℹ 1,703 more rows
-#> # ℹ 1 more variable: layer_namespace <chr>
+#>    data_source service_name service_url         layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>        <chr>               <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs bathymetry   https://ows.emodne… download_… Bath… "Downlo… WFSF… sf     emodnet        
+#>  2 emodnet_wfs bathymetry   https://ows.emodne… contours   Dept… "Genera… WFSF… sf     emodnet        
+#>  3 emodnet_wfs bathymetry   https://ows.emodne… hr_bathym… High… "Layer … WFSF… sf     emodnet        
+#>  4 emodnet_wfs bathymetry   https://ows.emodne… quality_i… Qual… "Repres… WFSF… sf     emodnet        
+#>  5 emodnet_wfs bathymetry   https://ows.emodne… sea_names  Sea … "Mainta… WFSF… sf     world          
+#>  6 emodnet_wfs bathymetry   https://ows.emodne… source_re… Sour… "Covera… WFSF… sf     emodnet        
+#>  7 emodnet_wfs bathymetry   https://ows.emodne… undersea_… unde… ""       WFSF… sf     gebco          
+#>  8 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#>  9 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#> 10 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Cymodo… WFSF… sf     Emodnetbio     
+#> # ℹ 1,724 more rows
 ```
 
 ## More information
@@ -260,14 +243,13 @@ To cite emodnet.wfs, please use the output from `citation(package = "emodnet.wfs
 citation(package = "emodnet.wfs")
 #> To cite package 'emodnet.wfs' in publications use:
 #> 
-#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs: Access
-#>   EMODnet Web Feature Service data through R_. doi:10.14284/679
-#>   <https://doi.org/10.14284/679>, R package version 2.0.2.9000. Integrated
-#>   data products created under the European Marine Observation Data Network
-#>   (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by
-#>   the by the European Union under Regulation (EU) No 508/2014 of the European
-#>   Parliament and of the Council of 15 May 2014 on the European Maritime and
-#>   Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
+#>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs: Access EMODnet Web
+#>   Feature Service data through R_. doi:10.14284/679 <https://doi.org/10.14284/679>, R
+#>   package version 2.0.2.9000. Integrated data products created under the European Marine
+#>   Observation Data Network (EMODnet) Biology project
+#>   (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under
+#>   Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014
+#>   on the European Maritime and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
