@@ -25,7 +25,7 @@ OGC Web Feature Service.
 Initialise an EMODnet WFS client
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
 wfs <- emodnet_init_wfs_client(service = "bathymetry")
 \dontshow{\}) # examplesIf}
 }

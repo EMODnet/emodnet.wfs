@@ -4,14 +4,14 @@
 \name{emodnet.wfs-package}
 \alias{emodnet.wfs}
 \alias{emodnet.wfs-package}
-\title{emodnet.wfs: Access EMODnet Web Feature Service data through R}
+\title{emodnet.wfs: Access 'EMODnet' Web Feature Service data through R}
 \description{
-Access and interrogate EMODnet (European Marine Observation and Data Network) Web Feature Service data through R.
+Access and interrogate 'EMODnet' (European Marine Observation and Data Network) Web Feature Service data through R.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://emodnet.github.io/emodnet.wfs/}
+  \item \url{https://docs.ropensci.org/emodnet.wfs/}
   \item \url{https://github.com/EMODnet/emodnet.wfs}
   \item Report bugs at \url{https://github.com/EMODnet/emodnet.wfs/issues}
 }
@@ -30,7 +30,7 @@ Other contributors:
 \itemize{
   \item Thomas J Webb \email{t.j.webb@sheffield.ac.uk} [contributor]
   \item European Marine Observation Data Network (EMODnet) Biology project European Commission's Directorate - General for Maritime Affairs and Fisheries (DG MARE) \email{bio@emodnet.eu} [copyright holder]
-  \item VLIZ (VLAAMS INSTITUUT VOOR DE ZEE) \email{info@vliz.be} [funder]
+  \item VLIZ (VLAAMS INSTITUUT VOOR DE ZEE) \email{info@vliz.be} (0496vr396) [funder]
   \item Alec L. Robitaille (\href{https://orcid.org/0000-0002-4706-1762}{ORCID}) (Reviewed the package (v2.0.2.9000) for rOpenSci, see <https://github.com/ropensci/software-review/issues/653>.) [reviewer]
   \item Liz Hare (\href{https://orcid.org/0000-0002-3978-2543}{ORCID}) (Reviewed the package (v2.0.2.9000) for rOpenSci, see <https://github.com/ropensci/software-review/issues/653>.) [reviewer]
   \item François Michonneau \email{francois.michonneau@gmail.com} (\href{https://orcid.org/0000-0002-9092-966X}{ORCID}) (Reviewed the package (v2.0.2.9000) for rOpenSci, see <https://github.com/ropensci/software-review/issues/653>.) [reviewer]

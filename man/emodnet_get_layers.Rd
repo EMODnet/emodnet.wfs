@@ -82,15 +82,15 @@ If a layer is really big (like \code{"abiotic_observations"} of the
 you might consider a combination of these ideas:
 \itemize{
 \item using \href{https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature}{\code{outputFormat = "CSV"}};
-\item filtering using \href{https://emodnet.github.io/emodnet.wfs/articles/ecql_filtering.html}{\code{cql_filters}} or
-\href{https://emodnet.github.io/emodnet.wfs/articles/request-params.html#limit-spatial-extent-using-a-boundary-box}{bounding boxes}
+\item filtering using \href{https://docs.ropensci.org/emodnet.wfs/articles/ecql_filtering.html}{\code{cql_filters}} or
+\href{https://docs.ropensci.org/emodnet.wfs/articles/request-params.html#limit-spatial-extent-using-a-boundary-box}{bounding boxes}
 (possibly splitting the area of interests into several requests);
 \item Using \href{https://emodnet.ec.europa.eu/geoviewer/}{EMODnet's download toolbox}.
 }
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("IN_PKGDOWN"), "true") || interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
 # Layers as character vector
 emodnet_get_layers(
   service = "biology",
