@@ -9,7 +9,7 @@ name: test-without-fixtures
 
 jobs:
   test-without-fixtures:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       EMODNETWFS_CI: yes
