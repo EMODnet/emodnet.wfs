@@ -29,7 +29,6 @@
 #' This only works if the column names are the same.
 #' @param reduce_layers `r lifecycle::badge("deprecated")` use `simplify`.
 # nolint start: line_length_linter
-# nolint start: line_length_linter
 #' @param ... additional vendor parameter arguments passed to
 #' [`ows4R::GetFeature()`](https://docs.geoserver.org/stable/en/user/services/wfs/reference.html#getfeature).
 #' For example, including `count = 1` returns the first available feature.
@@ -86,25 +85,27 @@
 #' (possibly splitting the area of interests into several requests);
 #' - Using [EMODnet's download toolbox](https://emodnet.ec.europa.eu/geoviewer/).
 # nolint end
-emodnet_get_layers <- function(wfs = NULL,
-                               service = NULL,
-                               service_version = NULL,
-                               layers,
-                               crs = NULL,
-                               cql_filter = NULL,
-                               simplify = FALSE,
-                               reduce_layers = deprecated(),
-                               ...) {
+emodnet_get_layers <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layers,
+  crs = NULL,
+  cql_filter = NULL,
+  simplify = FALSE,
+  reduce_layers = deprecated(),
+  ...
+) {
   deprecate_msg_service_version(service_version, "emodnet_get_layers")
 
-    if (lifecycle::is_present(reduce_layers)) {
-        lifecycle::deprecate_soft(
-            "2.0.3",
-            "emodnet_get_layers(reduce_layers = )",
-            "emodnet_get_layers(simplify = )"
-        )
-        simplify <- reduce_layers
-    }
+  if (lifecycle::is_present(reduce_layers)) {
+    lifecycle::deprecate_soft(
+      "2.0.3",
+      "emodnet_get_layers(reduce_layers = )",
+      "emodnet_get_layers(simplify = )"
+    )
+    simplify <- reduce_layers
+  }
   # check wfs ----------------------------------------------------------------
 
   if (is.null(wfs) && is.null(service)) {
@@ -153,21 +154,24 @@ emodnet_get_layers <- function(wfs = NULL,
   }
   checkmate::assert_character(cql_filter, len = length(layers))
 
-
   # get features -------------------------------------------------------------
   # unnamed function and explicit passing of ellipses used
   # because of idiosyncratic use of ...
   # within purrr::map2 function.
   # See: https://stackoverflow.com/questions/48215325/passing-ellipsis-arguments-to-map-function-purrr-package-r # nolint
   out <- purrr::map2(
-    .x = layers, .y = cql_filter,
+    .x = layers,
+    .y = cql_filter,
     .f = function(x, y, wfs, ...) {
       ews_get_layer(
         x,
-        wfs = wfs, cql_filter = y, ...
+        wfs = wfs,
+        cql_filter = y,
+        ...
       )
     },
-    wfs, ...
+    wfs,
+    ...
   ) %>%
     stats::setNames(layers)
 
