@@ -178,7 +178,7 @@ emodnet_get_layers <- function(
   # if simplify = TRUE, reduce to single sf --------------------------------
   if (simplify) {
     tryCatch(
-      out <- purrr::reduce(out, rbind),
+      out <- purrr::reduce(out, rbind), # nolint: implicit_assignment_linter
       error = function(e) {
         cli::cli_abort(
           c(
@@ -216,7 +216,7 @@ check_layer_crs <- function(layer_sf, layer, wfs) {
     sf::st_crs(layer_sf) <- wfs_crs
   }
 
-  return(layer_sf)
+  layer_sf
 }
 
 
@@ -237,13 +237,12 @@ checkmate_crs <- function(sf, crs = NULL) {
       sf::st_crs(sf) <- crs
       cli_alert_info("{.field crs} set to user specified CRS: {.val {crs}}.")
     }
-  } else {
-    if (!is.null(crs)) {
-      sf <- sf::st_transform(sf, crs)
-      cli_alert_info("{.field crs} transformed to {.val {crs}}.")
-    }
+  } else if (!is.null(crs)) {
+    sf <- sf::st_transform(sf, crs)
+    cli_alert_info("{.field crs} transformed to {.val {crs}}.")
   }
-  return(sf)
+
+  sf
 }
 
 standardise_crs <- function(out, crs = NULL) {
@@ -295,7 +294,7 @@ ews_get_layer <- function(x, wfs, cql_filter = NULL, ...) {
       }
     )
   }
-  return(layer)
+  layer
 }
 
 namespace_layer_names <- function(wfs, layers) {

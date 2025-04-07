@@ -8,7 +8,7 @@ test_that("categorical filters work -- biology", {
       cql_filter = "country='Israele'",
       simplify = TRUE
     )
-  expect_identical(unique(simple_filter_sf$country), "Israele")
+    expect_identical(unique(simple_filter_sf$country), "Israele")
 
     or_filter_sf <- emodnet_get_layers(
       wfs = wfs,
@@ -26,7 +26,8 @@ test_that("numeric filters work -- biology", {
   wfs <- create_biology_wfs()
   with_mock_dir("nodata", {
     num_filter_sf <- emodnet_get_layers(
-      wfs = wfs, layers = "mediseh_posidonia_nodata",
+      wfs = wfs,
+      layers = "mediseh_posidonia_nodata",
       cql_filter = "km>400",
       simplify = TRUE
     )

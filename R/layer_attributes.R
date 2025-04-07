@@ -15,10 +15,12 @@
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-layer_attributes_summarise <- function(wfs = NULL,
-                                       service = NULL,
-                                       service_version = NULL,
-                                       layer) {
+layer_attributes_summarise <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+) {
   deprecate_msg_service_version(
     service_version,
     "layer_attributes_summarise"
@@ -49,9 +51,12 @@ layer_attributes_summarise <- function(wfs = NULL,
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-layer_attribute_descriptions <- function(wfs = NULL,
-                                         service = NULL,
-                                         service_version = NULL, layer) {
+layer_attribute_descriptions <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+) {
   deprecate_msg_service_version(
     service_version,
     "layer_attribute_descriptions"
@@ -81,10 +86,12 @@ layer_attribute_descriptions <- function(wfs = NULL,
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
 #' )
-layer_attributes_get_names <- function(wfs = NULL,
-                                       service = NULL,
-                                       service_version = NULL,
-                                       layer) {
+layer_attributes_get_names <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+) {
   deprecate_msg_service_version(
     service_version,
     "layer_attributes_get_names"
@@ -121,16 +128,20 @@ layer_attributes_get_names <- function(wfs = NULL,
 #'   wfs, layer = "mediseh_zostera_m_pnt",
 #'   attribute = "country"
 #' )
-layer_attribute_inspect <- function(wfs = NULL,
-                                    service = NULL,
-                                    service_version = NULL,
-                                    layer, attribute) {
+layer_attribute_inspect <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer,
+  attribute
+) {
   deprecate_msg_service_version(service_version, "layer_attribute_inspect")
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
-  layer <- match.arg(layer,
+  layer <- match.arg(
+    layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
@@ -153,9 +164,10 @@ layer_attribute_inspect <- function(wfs = NULL,
     attribute_type <- class(attribute_vector)
   }
 
-  switch(attribute_type,
-    character = attribute_vector %>% tabyl(),
-    factor = attribute_vector %>% tabyl(),
+  switch(
+    attribute_type,
+    character = tabyl(attribute_vector),
+    factor = tabyl(attribute_vector),
     numeric = summary(attribute_vector),
     integer = summary(attribute_vector),
     double = summary(attribute_vector),
@@ -185,26 +197,32 @@ layer_attribute_inspect <- function(wfs = NULL,
 #'
 #' @examplesIf emodnet.wfs:::should_run_example()
 #' layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
-layer_attributes_tbl <- function(wfs = NULL,
-                                 service = NULL,
-                                 service_version = NULL, layer) {
+layer_attributes_tbl <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL,
+  layer
+) {
   deprecate_msg_service_version(service_version, "layer_attributes_tbl")
 
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
-  layer <- match.arg(layer,
+  layer <- match.arg(
+    layer,
     several.ok = FALSE,
     choices = emodnet_get_wfs_info(wfs)$layer_name
   )
   namespaced_layer <- namespace_layer_names(wfs, layer)
 
-  attributes <- layer_attributes_get_names(wfs, layer = layer)
-  attributes <- attributes[attributes != get_layer_geom_name(layer, wfs)]
+  layer_attributes <- layer_attributes_get_names(wfs, layer = layer)
+  layer_attributes <- layer_attributes[
+    layer_attributes != get_layer_geom_name(layer, wfs)
+  ]
 
   wfs$getFeatures(
     namespaced_layer,
-    PROPERTYNAME = paste(attributes, collapse = ",")
+    PROPERTYNAME = paste(layer_attributes, collapse = ",")
   ) %>%
     sf::st_drop_geometry() %>%
     tibble::as_tibble()
@@ -233,9 +251,11 @@ get_layer_geom_name <- function(layer, wfs) {
   desc$name[desc$type == "geometry"]
 }
 
-get_layer_default_crs <- function(layer,
-                                  wfs,
-                                  output = c("crs", "epsg.text", "epsg.num")) {
+get_layer_default_crs <- function(
+  layer,
+  wfs,
+  output = c("crs", "epsg.text", "epsg.num")
+) {
   check_wfs(wfs)
   output <- match.arg(output, several.ok = FALSE)
 
@@ -250,20 +270,19 @@ get_layer_default_crs <- function(layer,
     return(crs)
   }
 
-  epsg.text <- regmatches( # nolint: object_name_linter
+  epsg_text <- regmatches(
+    # nolint: object_name_linter
     crs$input,
     regexpr("epsg\\:[[:digit:]]{4}", crs$input)
   )
   if (output == "epsg.text") {
-    return(epsg.text)
+    return(epsg_text)
   }
   if (output == "epsg.num") {
-    return(
-      as.numeric(
-        regmatches(
-          epsg.text,
-          regexpr("[[:digit:]]{4}", epsg.text)
-        )
+    as.numeric(
+      regmatches(
+        epsg_text,
+        regexpr("[[:digit:]]{4}", epsg_text)
       )
     )
   }
