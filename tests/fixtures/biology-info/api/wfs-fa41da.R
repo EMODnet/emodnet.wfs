@@ -2,12 +2,12 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     status_code = 200L, headers = structure(list(`x-content-type-options` = "nosniff", 
         `x-frame-options` = "SAMEORIGIN", `content-disposition` = "inline; filename=Emodnetbio-Species_gridded_abundance_all.xsd", 
         `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-        `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 08:16:52 GMT"), class = c("insensitive", 
+        `transfer-encoding` = "chunked", date = "Mon, 07 Apr 2025 13:14:00 GMT"), class = c("insensitive", 
     "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(`x-content-type-options` = "nosniff", 
             `x-frame-options` = "SAMEORIGIN", `content-disposition` = "inline; filename=Emodnetbio-Species_gridded_abundance_all.xsd", 
             `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-            `transfer-encoding` = "chunked", date = "Mon, 27 Jan 2025 08:16:52 GMT"), class = c("insensitive", 
+            `transfer-encoding` = "chunked", date = "Mon, 07 Apr 2025 13:14:00 GMT"), class = c("insensitive", 
         "list")))), cookies = structure(list(domain = logical(0), 
         flag = logical(0), path = logical(0), secure = logical(0), 
         expiration = structure(numeric(0), class = c("POSIXct", 
@@ -222,7 +222,7 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     0x61, 0x6e, 0x63, 0x65, 0x5f, 0x61, 0x6c, 0x6c, 0x54, 0x79, 
     0x70, 0x65, 0x22, 0x2f, 0x3e, 0x0a, 0x3c, 0x2f, 0x78, 0x73, 
     0x64, 0x3a, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x3e, 0x0a
-    )), date = structure(1737965812, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 4.6e-05, 
-    connect = 4.8e-05, pretransfer = 0.000144, starttransfer = 0.028758, 
-    total = 0.0289)), class = "response")
+    )), date = structure(1744031640, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 3.8e-05, 
+    connect = 0, pretransfer = 0.000123, starttransfer = 0.026997, 
+    total = 0.0271)), class = "response")
