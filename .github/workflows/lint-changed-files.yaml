@@ -2,9 +2,10 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   pull_request:
-    branches: [main, master]
 
-name: lint-changed-files
+name: lint-changed-files.yaml
+
+permissions: read-all
 
 jobs:
   lint-changed-files:
@@ -37,9 +38,8 @@ jobs:
           files <- gh::gh("GET https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files")
           changed_files <- purrr::map_chr(files, "filename")
           all_files <- list.files(recursive = TRUE)
-          exclusions_list <- setdiff(all_files, changed_files)
-          exclusions_list <- c(exclusions_list, unname(as.list(fs::dir_ls("vignettes"))), unname(as.list(fs::dir_ls("tests/fixtures"))))
-          lintr::lint_package(exclusions = as.list(unique(exclusions_list)))
+          exclusions_list <- as.list(setdiff(all_files, changed_files))
+          lintr::lint_package(exclusions = exclusions_list)
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
