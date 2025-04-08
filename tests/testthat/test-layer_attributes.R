@@ -6,7 +6,7 @@ test_that("layer attributes stuff works", {
     layer_attr <- layer_attributes_get_names(
       wfs,
       layer = "mediseh_zostera_m_pnt"
-    ) # nolint: line_length_linter
+    )
     expect_identical(layer_attr, c("id", "country", "the_geom"))
 
     layer_attr_desc <- layer_attribute_descriptions(
