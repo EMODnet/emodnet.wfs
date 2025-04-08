@@ -49,8 +49,8 @@ release_bullets <- function() {
   # nocov start
   # nolint start: line_length_linter
   c(
-    'update vignette with knitr::knit("vignettes/emodnet.wfs.Rmd.orig", output = "vignettes/emodnet.wfs.Rmd")', # nolint: line_length_linter
-    'update article 1 with knitr::knit("vignettes/articles/request-params.Rmd.orig", output = "vignettes/articles/request-params.Rmd")', # nolint: line_length_linter
+    'update vignette with knitr::knit("vignettes/emodnet.wfs.Rmd.orig", output = "vignettes/emodnet.wfs.Rmd")',
+    'update article 1 with knitr::knit("vignettes/articles/request-params.Rmd.orig", output = "vignettes/articles/request-params.Rmd")',
     'update article 2 with knitr::knit("vignettes/articles/ecql_filtering.Rmd.orig", output = "vignettes/articles/ecql_filtering.Rmd")'
   )
   # nolint end
