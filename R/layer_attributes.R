@@ -215,14 +215,14 @@ layer_attributes_tbl <- function(
   )
   namespaced_layer <- namespace_layer_names(wfs, layer)
 
-  layer_attributes <- layer_attributes_get_names(wfs, layer = layer)
-  layer_attributes <- layer_attributes[
-    layer_attributes != get_layer_geom_name(layer, wfs)
+  layer_attr <- layer_attributes_get_names(wfs, layer = layer)
+  layer_attr <- layer_attr[
+    layer_attr != get_layer_geom_name(layer, wfs)
   ]
 
   wfs$getFeatures(
     namespaced_layer,
-    PROPERTYNAME = paste(layer_attributes, collapse = ",")
+    PROPERTYNAME = paste(layer_attr, collapse = ",")
   ) %>%
     sf::st_drop_geometry() %>%
     tibble::as_tibble()
