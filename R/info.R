@@ -3,7 +3,7 @@
 
   layers <- namespace_layer_names(wfs, layers)
 
-  capabilities <- wfs$getCapabilities()
+  capabilities <- wfs$getCapabilities() # nolint: object_overwrite_linter
 
   wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
     unlist(recursive = FALSE)
@@ -14,7 +14,7 @@
     service_url = get_service_name(wfs$getUrl()),
     layer_name = purrr::map_chr(wfs_layers, ~ .x$getName()),
     title = purrr::map_chr(wfs_layers, ~ .x$getTitle()),
-    abstract = purrr::map_chr(wfs_layers, ~ get_abstract_null(.x)),
+    abstract = purrr::map_chr(wfs_layers, get_abstract_null),
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
   ) %>%
@@ -38,9 +38,11 @@
 #' @export
 emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 
-.emodnet_get_wfs_info <- function(wfs = NULL,
-                                  service = NULL,
-                                  service_version = NULL) {
+.emodnet_get_wfs_info <- function(
+  wfs = NULL,
+  service = NULL,
+  service_version = NULL
+) {
   deprecate_msg_service_version(service_version, "emodnet_get_wfs_info")
 
   if (is.null(wfs) && is.null(service)) {
@@ -55,7 +57,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
   wfs <- wfs %||% emodnet_init_wfs_client(service)
   check_wfs(wfs)
 
-  capabilities <- wfs$getCapabilities()
+  capabilities <- wfs$getCapabilities() # nolint: object_overwrite_linter
 
   tibble::tibble(
     data_source = "emodnet_wfs",
@@ -65,7 +67,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     title = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getTitle()),
     abstract = purrr::map_chr(
       capabilities$getFeatureTypes(),
-      ~ get_abstract_null(.x)
+      get_abstract_null
     ),
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
@@ -118,7 +120,6 @@ get_abstract_null <- function(x) {
 
 guess_layer_format <- function(layer) {
   # no longer needed: https://github.com/eblondel/ows4R/discussions/139#discussioncomment-11965999 # nolint: line_length_linter
-  # layer$getDescription()
   if (!is.null(layer$getGeometryType())) {
     "sf"
   } else {

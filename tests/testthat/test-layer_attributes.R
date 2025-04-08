@@ -3,7 +3,10 @@ test_that("layer attributes stuff works", {
   wfs <- create_biology_wfs()
 
   with_mock_dir("biology-layers", {
-    layer_attr <- layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt") # nolint: line_length_linter
+    layer_attr <- layer_attributes_get_names(
+      wfs,
+      layer = "mediseh_zostera_m_pnt"
+    )
     expect_identical(layer_attr, c("id", "country", "the_geom"))
 
     layer_attr_desc <- layer_attribute_descriptions(
@@ -45,14 +48,19 @@ test_that("layer attributes stuff works", {
     expect_s3_class(attr_summary, "table")
     expect_identical(
       attr_summary[, "  country"][2:3],
-      structure(c("Class :character  ", "Mode  :character  "), .Names = c(
-        "",
-        ""
-      ))
+      # nolint start: undesirable_function_linter
+      structure(
+        # nolint end
+        c("Class :character  ", "Mode  :character  "),
+        .Names = c(
+          "",
+          ""
+        )
+      )
     )
     expect_identical(
       attr_summary[, 2][1],
-      structure("Min.   :0  ", .Names = "")
+      structure("Min.   :0  ", .Names = "") # nolint: undesirable_function_linter
     )
 
     crs1 <- get_layer_default_crs(
