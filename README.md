@@ -14,6 +14,8 @@ coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/branch/main/graph/badge.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.14284/679.svg)](https://doi.org/10.14284/679)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/653_status.svg)](https://github.com/ropensci/software-review/issues/653)
+[![Codecov test
+coverage](https://codecov.io/gh/EMODnet/emodnet.wfs/graph/badge.svg)](https://app.codecov.io/gh/EMODnet/emodnet.wfs)
 <!-- badges: end -->
 
 The goal of emodnet.wfs is to allow interrogation of and access to
@@ -134,7 +136,8 @@ Specify the service using the `service` argument.
 ``` r
 wfs_bio <- emodnet_init_wfs_client(service = "biology")
 #> Loading ISO 19139 XML schemas...
-#> Loading ISO 19115 codelists...
+#> Loading ISO 19115-3 XML schemas...
+#> Loading ISO 19139 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
@@ -162,21 +165,21 @@ emodnet_get_wfs_info(service = "biology")
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
-#> # A tibble: 36 × 9
+#> # A tibble: 39 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  1 emodnet_wfs biology      https://geo.… cti_macro… Comm… "Ocean … WFSF… sf    
 #>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 26 more rows
+#> # ℹ 29 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -184,21 +187,21 @@ or you can pass a wfs client object.
 
 ``` r
 emodnet_get_wfs_info(wfs_bio)
-#> # A tibble: 36 × 9
+#> # A tibble: 39 × 9
 #> # Rowwise: 
 #>    data_source service_name service_url   layer_name title abstract class format
 #>    <chr>       <chr>        <chr>         <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  1 emodnet_wfs biology      https://geo.… cti_macro… Comm… "Ocean … WFSF… sf    
 #>  2 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#>  4 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  3 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Coral … WFSF… sf    
+#>  4 emodnet_wfs biology      https://geo.… mediseh_c… EMOD… "Cymodo… WFSF… sf    
 #>  5 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  6 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
 #>  7 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
+#>  8 emodnet_wfs biology      https://geo.… Species_g… EMOD… "This d… WFSF… sf    
+#>  9 emodnet_wfs biology      https://geo.… mediseh_h… EMOD… "Haloph… WFSF… sf    
 #> 10 emodnet_wfs biology      https://geo.… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 26 more rows
+#> # ℹ 29 more rows
 #> # ℹ 1 more variable: layer_namespace <chr>
 ```
 
@@ -443,23 +446,23 @@ accessible through `emodnet.wfs` via Web Feature Services (WFS).
 Complementary, raster and gridded datasets are available through Web
 Coverage Services (WCS) and ERDDAP respectively.
 
-### Access EMODnet raster data through Web Coverage Services with `EMODnetWCS` in R
+### Access EMODnet raster data through Web Coverage Services with `emodnet.wcs` in R
 
 EMODnet raster datasets, such as habitat maps or bathymetry, are
 available through [Web Coverage Services
 (WCS)](https://en.wikipedia.org/wiki/Web_Coverage_Service). These data
 are continuous, gridded, and often used for spatial visualization or
-environmental modeling. The EMODnetWCS R package provides tools to
+environmental modeling. The emodnet.wcs R package provides tools to
 retrieve and process these raser datasets, in a similar fashion as
-`emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS
-website](https://emodnet.github.io/EMODnetWCS/).
+`emodnet.wfs`. Extensive documentation is available at the [emodnet.wcs
+website](https://emodnet.github.io/emodnet.wcs/).
 
 ### Access EMODnet gridded and tabular datasets through the ERDDAP Server and `rerddap` in R
 
 Both WFS and WCS EMODnet services are based on a federated system: each
 EMODnet thematic lot manages their servers and data, ensuring that their
 data are exposed both via WFS and WCS. The twin R packages `emodnet.wfs`
-and `EMODnetWCS` simplify the access to all the entry points by
+and `emodnet.wcs` simplify the access to all the entry points by
 collecting them in single places, which are the packages themselves.
 
 In contrast, the [EMODnet ERDDAP Server](https://erddap.emodnet.eu) is
@@ -521,7 +524,10 @@ ed_search(query = "vessel density", url = erddap_url)
 #> 16 Vessel traffic density, 2019, Unknown                     EMODPACE_VD_12_Unk…
 
 # Inspect more info about the vessel density dataset, using its identifier
-human_activities_data_info <- info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
+human_activities_data_info <- info(
+  datasetid = "humanactivities_9f8a_3389_f08a",
+  url = erddap_url
+)
 human_activities_data_info
 #> <ERDDAP info> humanactivities_9f8a_3389_f08a 
 #>  Base URL: https://erddap.emodnet.eu/erddap 
@@ -535,7 +541,10 @@ human_activities_data_info
 #>          Units: seconds
 
 # Retrieve the vessel density at a particular time period
-year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
+year_2020_gridded_data <- griddap(
+  datasetx = human_activities_data_info,
+  time = c("2020-03-18", "2020-03-19")
+)
 #> info() output passed to x; setting base url to: https://erddap.emodnet.eu/erddap
 head(year_2020_gridded_data$data)
 #>         x       y                 time vd

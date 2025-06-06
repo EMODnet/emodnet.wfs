@@ -188,14 +188,14 @@ If you get an unexpected error,
 
 EMODnet hosts a wealth of marine and maritime data distributed through three complementary web services: WFS, WCS, and ERDDAP. Web services allow users to retrieve data programmatically from remote servers, eliminating the need for manual downloads. This is particularly useful for handling large datasets or conducting dynamic analyses. These services are tailored to different data types and research needs, but together, they ensure seamless access to all EMODnet vector, raster, and gridded datasets. Vector data, such as shipwrecks or boundaries, are accessible through `emodnet.wfs` via Web Feature Services (WFS). Complementary, raster and gridded datasets are available through Web Coverage Services (WCS) and ERDDAP respectively.
 
-### Access EMODnet raster data through Web Coverage Services with `EMODnetWCS` in R
+### Access EMODnet raster data through Web Coverage Services with `emodnet.wcs` in R
 
-EMODnet raster datasets, such as habitat maps or bathymetry, are available through [Web Coverage Services (WCS)](https://en.wikipedia.org/wiki/Web_Coverage_Service). These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The EMODnetWCS R package provides tools to retrieve and process these raser datasets, in a similar fashion as `emodnet.wfs`. Extensive documentation is available at the [EMODnetWCS website](https://emodnet.github.io/EMODnetWCS/).
+EMODnet raster datasets, such as habitat maps or bathymetry, are available through [Web Coverage Services (WCS)](https://en.wikipedia.org/wiki/Web_Coverage_Service). These data are continuous, gridded, and often used for spatial visualization or environmental modeling. The emodnet.wcs R package provides tools to retrieve and process these raser datasets, in a similar fashion as `emodnet.wfs`. Extensive documentation is available at the [emodnet.wcs website](https://emodnet.github.io/emodnet.wcs/).
 
 
 ### Access EMODnet gridded and tabular datasets through the ERDDAP Server and `rerddap` in R
 
-Both WFS and WCS EMODnet services are based on a federated system: each EMODnet thematic lot manages their servers and data, ensuring that their data are exposed both via WFS and WCS. The twin R packages `emodnet.wfs` and `EMODnetWCS` simplify the access to all the entry points by collecting them in single places, which are the packages themselves. 
+Both WFS and WCS EMODnet services are based on a federated system: each EMODnet thematic lot manages their servers and data, ensuring that their data are exposed both via WFS and WCS. The twin R packages `emodnet.wfs` and `emodnet.wcs` simplify the access to all the entry points by collecting them in single places, which are the packages themselves. 
 
 In contrast, the [EMODnet ERDDAP Server](https://erddap.emodnet.eu) is centrally managed by the EMODnet Central Portal, offering a single access point to all gridded and tabular datasets. ERDDAP simplifies access to datasets such as digital terrain models, vessel density or environmental data. It is particularly suited for large-scale, multidimensional data analysis. In R, the `rerddap` package allows users to query and subset ERDDAP data programmatically, enabling efficient analysis and integration into workflows. For example, researchers can retrieve datasets on vessel density. 
 
@@ -213,11 +213,17 @@ ed_datasets(url = erddap_url)
 ed_search(query = "vessel density", url = erddap_url)
 
 # Inspect more info about the vessel density dataset, using its identifier
-human_activities_data_info <- info(datasetid = "humanactivities_9f8a_3389_f08a", url = erddap_url)
+human_activities_data_info <- info(
+  datasetid = "humanactivities_9f8a_3389_f08a",
+  url = erddap_url
+)
 human_activities_data_info
 
 # Retrieve the vessel density at a particular time period
-year_2020_gridded_data <- griddap(datasetx = human_activities_data_info, time = c("2020-03-18", "2020-03-19"))
+year_2020_gridded_data <- griddap(
+  datasetx = human_activities_data_info,
+  time = c("2020-03-18", "2020-03-19")
+)
 head(year_2020_gridded_data$data)
 ```
 
