@@ -1,15 +1,15 @@
 structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&version=2.0.0&typeName=Emodnetbio:kuenm_models&request=DescribeFeatureType", 
     status_code = 200L, headers = structure(list(`x-content-type-options` = "nosniff", 
         `x-frame-options` = "SAMEORIGIN", `content-security-policy` = "base-uri 'self'; form-action 'self'; default-src 'none'; child-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';, frame-ancestors 'self';", 
-        `content-disposition` = "inline; filename=Emodnetbio-kuenm_models.xsd", 
+        `access-control-allow-origin` = "*", `content-disposition` = "inline; filename=Emodnetbio-kuenm_models.xsd", 
         `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-        `transfer-encoding` = "chunked", date = "Mon, 02 Jun 2025 08:11:44 GMT"), class = c("insensitive", 
+        `transfer-encoding` = "chunked", date = "Fri, 06 Jun 2025 08:38:52 GMT"), class = c("insensitive", 
     "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(`x-content-type-options` = "nosniff", 
             `x-frame-options` = "SAMEORIGIN", `content-security-policy` = "base-uri 'self'; form-action 'self'; default-src 'none'; child-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';, frame-ancestors 'self';", 
-            `content-disposition` = "inline; filename=Emodnetbio-kuenm_models.xsd", 
+            `access-control-allow-origin` = "*", `content-disposition` = "inline; filename=Emodnetbio-kuenm_models.xsd", 
             `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-            `transfer-encoding` = "chunked", date = "Mon, 02 Jun 2025 08:11:44 GMT"), class = c("insensitive", 
+            `transfer-encoding` = "chunked", date = "Fri, 06 Jun 2025 08:38:52 GMT"), class = c("insensitive", 
         "list")))), cookies = structure(list(domain = logical(0), 
         flag = logical(0), path = logical(0), secure = logical(0), 
         expiration = structure(numeric(0), class = c("POSIXct", 
@@ -157,7 +157,7 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     0x6d, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x54, 0x79, 
     0x70, 0x65, 0x22, 0x2f, 0x3e, 0x0a, 0x3c, 0x2f, 0x78, 0x73, 
     0x64, 0x3a, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x3e, 0x0a
-    )), date = structure(1748851904, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.9e-05, 
-    connect = 0, pretransfer = 0.000122, starttransfer = 0.026616, 
-    total = 0.026731)), class = "response")
+    )), date = structure(1749199132, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 2.4e-05, 
+    connect = 0, pretransfer = 9.9e-05, starttransfer = 0.026366, 
+    total = 0.026456)), class = "response")

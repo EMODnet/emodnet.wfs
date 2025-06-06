@@ -3,13 +3,13 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
         `x-frame-options` = "SAMEORIGIN", `content-security-policy` = "base-uri 'self'; form-action 'self'; default-src 'none'; child-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';, frame-ancestors 'self';", 
         `access-control-allow-origin` = "*", `content-disposition` = "inline; filename=Emodnetbio-mediseh_coral_model.xsd", 
         `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-        `transfer-encoding` = "chunked", date = "Mon, 02 Jun 2025 08:11:43 GMT"), class = c("insensitive", 
+        `transfer-encoding` = "chunked", date = "Fri, 06 Jun 2025 08:38:51 GMT"), class = c("insensitive", 
     "list")), all_headers = list(list(status = 200L, version = "HTTP/1.1", 
         headers = structure(list(`x-content-type-options` = "nosniff", 
             `x-frame-options` = "SAMEORIGIN", `content-security-policy` = "base-uri 'self'; form-action 'self'; default-src 'none'; child-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self';, frame-ancestors 'self';", 
             `access-control-allow-origin` = "*", `content-disposition` = "inline; filename=Emodnetbio-mediseh_coral_model.xsd", 
             `content-encoding` = "gzip", `content-type` = "application/gml+xml; version=3.2", 
-            `transfer-encoding` = "chunked", date = "Mon, 02 Jun 2025 08:11:43 GMT"), class = c("insensitive", 
+            `transfer-encoding` = "chunked", date = "Fri, 06 Jun 2025 08:38:51 GMT"), class = c("insensitive", 
         "list")))), cookies = structure(list(domain = logical(0), 
         flag = logical(0), path = logical(0), secure = logical(0), 
         expiration = structure(numeric(0), class = c("POSIXct", 
@@ -128,7 +128,7 @@ structure(list(url = "https://geo.vliz.be/geoserver/Emodnetbio/wfs?service=WFS&v
     0x61, 0x6c, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x54, 0x79, 
     0x70, 0x65, 0x22, 0x2f, 0x3e, 0x0a, 0x3c, 0x2f, 0x78, 0x73, 
     0x64, 0x3a, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x3e, 0x0a
-    )), date = structure(1748851903, class = c("POSIXct", "POSIXt"
-    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 5.2e-05, 
-    connect = 0, pretransfer = 0.000236, starttransfer = 0.026865, 
-    total = 0.026961)), class = "response")
+    )), date = structure(1749199131, class = c("POSIXct", "POSIXt"
+    ), tzone = "GMT"), times = c(redirect = 0, namelookup = 9.2e-05, 
+    connect = 0, pretransfer = 0.000193, starttransfer = 0.038251, 
+    total = 0.038326)), class = "response")
