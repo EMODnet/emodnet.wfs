@@ -1,4 +1,4 @@
-# emodnet.wfs (development version)
+# emodnet.wfs 2.1.0
 
 * Improved documentation following rOpenSci reviews: manual pages, README, vignettes.
 
