@@ -24,7 +24,7 @@ vector
 data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
 in R through the [EMODnet Web Feature
 Services](https://emodnet.ec.europa.eu/en/data-0). [Web Feature services
-(WFS)](https://www.ogc.org/publications/standard/wfs/) represent a
+(WFS)](https://www.ogc.org/standards/wfs/) represent a
 change in the way geographic information is created, modified and
 exchanged on the Internet and offer direct fine-grained access to
 geographic information at the feature and feature property level.

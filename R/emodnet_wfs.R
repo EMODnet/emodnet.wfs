@@ -16,7 +16,7 @@
 #'   \item{service_name}{Name of the specific service.
 #'   Use in [emodnet_init_wfs_client].}
 #'   \item{service_url}{
-#'   [Web Feature Service (WFS)](https://www.ogc.org/publications/standard/wfs/)
+#'   [Web Feature Service (WFS)](https://www.ogc.org/standards/wfs/)
 #'    URL endpoint for accessing the service.}
 #' }
 #'

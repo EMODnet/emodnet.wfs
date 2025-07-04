@@ -12,7 +12,7 @@ biology, chemistry, geology, human activities, physics and seabed habitats}
 \item{service_name}{Name of the specific service.
 Use in \link{emodnet_init_wfs_client}.}
 \item{service_url}{
-\href{https://www.ogc.org/publications/standard/wfs/}{Web Feature Service (WFS)}
+\href{https://www.ogc.org/standards/wfs/}{Web Feature Service (WFS)}
 URL endpoint for accessing the service.}
 }
 }
