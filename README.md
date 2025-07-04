@@ -24,15 +24,14 @@ vector
 data](https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#inline-nav-3)
 in R through the [EMODnet Web Feature
 Services](https://emodnet.ec.europa.eu/en/data-0). [Web Feature services
-(WFS)](https://www.ogc.org/standards/wfs/) represent a
-change in the way geographic information is created, modified and
-exchanged on the Internet and offer direct fine-grained access to
-geographic information at the feature and feature property level.
-Features are representation of geographic entities, such as a
-coastlines, marine protected areas, offshore platforms, or fishing
-areas. In WFS, features have geometry (spatial information) and
-attributes (descriptive data). emodnet.wfs aims at offering an
-user-friendly interface to this rich data.
+(WFS)](https://www.ogc.org/standards/wfs/) represent a change in the way
+geographic information is created, modified and exchanged on the
+Internet and offer direct fine-grained access to geographic information
+at the feature and feature property level. Features are representation
+of geographic entities, such as a coastlines, marine protected areas,
+offshore platforms, or fishing areas. In WFS, features have geometry
+(spatial information) and attributes (descriptive data). emodnet.wfs
+aims at offering an user-friendly interface to this rich data.
 
 ## Installation and setup
 
