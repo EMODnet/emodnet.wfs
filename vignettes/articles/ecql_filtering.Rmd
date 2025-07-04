@@ -68,22 +68,21 @@ Let's look at existing layers.
 
 ``` r
 emodnet_get_wfs_info(wfs)
-#> # A tibble: 36 × 9
+#> # A tibble: 39 × 9
 #> # Rowwise: 
-#>    data_source service_name service_url                layer_name title abstract class format
-#>    <chr>       <chr>        <chr>                      <chr>      <chr> <chr>    <chr> <chr> 
-#>  1 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  2 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Coral … WFSF… sf    
-#>  3 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_c… EMOD… "Cymodo… WFSF… sf    
-#>  4 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    
-#>  5 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    
-#>  6 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    
-#>  7 emodnet_wfs biology      https://geo.vliz.be/geose… Species_g… EMOD… "This d… WFSF… sf    
-#>  8 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_h… EMOD… "Haloph… WFSF… sf    
-#>  9 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> 10 emodnet_wfs biology      https://geo.vliz.be/geose… mediseh_m… EMOD… "Maërl … WFSF… sf    
-#> # ℹ 26 more rows
-#> # ℹ 1 more variable: layer_namespace <chr>
+#>    data_source service_name service_url                       layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>        <chr>                             <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… cti_macro… Comm… "Ocean … WFSF… sf     Emodnetbio     
+#>  2 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#>  3 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#>  4 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Cymodo… WFSF… sf     Emodnetbio     
+#>  5 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  6 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  7 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  8 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  9 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_h… EMOD… "Haloph… WFSF… sf     Emodnetbio     
+#> 10 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_m… EMOD… "Maërl … WFSF… sf     Emodnetbio     
+#> # ℹ 29 more rows
 ```
 
 #### Layer attribute names
@@ -363,7 +362,7 @@ layer_attribute_inspect(
   attribute = "km"
 )
 #>     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-#>   0.2371   6.0306  16.6190  40.1771  42.8958 472.9613
+#>   0.2371   6.0305  16.6190  40.1771  42.8958 472.9613
 ```
 
 We can see that values range between `0.23` and `~473` with a mean of `~40`. 
