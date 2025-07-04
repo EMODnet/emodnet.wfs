@@ -33,7 +33,7 @@ Imports:
     lifecycle,
     magrittr,
     memoise,
-    ows4R (>= 0.4.1),
+    ows4R (>= 0.5),
     purrr,
     rlang,
     sf,
@@ -52,8 +52,6 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
-Remotes: 
-    eblondel/ows4R
 Config/Needs/readme: rerddap
 Config/Needs/website: webshot
 Config/testthat/edition: 3
