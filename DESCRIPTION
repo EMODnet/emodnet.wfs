@@ -1,5 +1,5 @@
 Package: emodnet.wfs
-Title: Access 'EMODnet' Web Feature Service data through R
+Title: Access 'EMODnet' Web Feature Service Data Through R
 Version: 2.0.2.9000
 Authors@R: c(
     person("Joana", "Beja", , "joana.beja@vliz.be", role = c("aut", "cre"),
