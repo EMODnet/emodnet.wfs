@@ -20,9 +20,6 @@ Let's start by loading emodnet.wfs and initialising a WFS client to the `human_a
 library(emodnet.wfs)
 
 wfs <- emodnet_init_wfs_client("human_activities")
-#> Loading ISO 19139 XML schemas...
-#> Loading ISO 19115-3 XML schemas...
-#> Loading ISO 19139 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://ows.emodnet-humanactivities.eu/wfs"
 #> ℹ Version: "2.0.0"
@@ -46,10 +43,10 @@ emodnet_get_layers(
 #> Dimension:     XY
 #> Bounding box:  xmin: -5.87186 ymin: 35.99551 xmax: -5.836784 ymax: 36.12588
 #> Geodetic CRS:  WGS 84
-#>        gml_id             name   id status medium operator size_in length_m year from_loc to_loc country_co country
-#> 1 pipelines.1 Gasoducto Magreb <NA> Active   <NA>     <NA>    <NA> 15467.17 <NA>     <NA>   <NA>         ES   Spain
-#>   notes                       the_geom
-#> 1  <NA> MULTILINESTRING ((-5.87186 ...
+#>        gml_id             name   id status medium operator size_in length_m year from_loc to_loc country_co
+#> 1 pipelines.1 Gasoducto Magreb <NA> Active   <NA>     <NA>    <NA> 15467.17 <NA>     <NA>   <NA>         ES
+#>   country notes                       the_geom
+#> 1   Spain  <NA> MULTILINESTRING ((-5.87186 ...
 ```
 
 ## Return specific number of features 

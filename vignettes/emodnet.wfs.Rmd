@@ -83,6 +83,9 @@ EMODnet data covers several disciplines organized in 7 thematic lots: bathymetry
 
 ``` r
 seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_datasets_and_products")
+#> Loading ISO 19139 XML schemas...
+#> Loading ISO 19115-3 XML schemas...
+#> Loading ISO 19139 codelists...
 #> ✔ WFS client created successfully
 #> ℹ Service: "https://ows.emodnet-seabedhabitats.eu/geoserver/emodnet_open/wfs"
 #> ℹ Version: "2.0.0"
@@ -90,18 +93,18 @@ seabed_wfs_client <- emodnet_init_wfs_client(service = "seabed_habitats_general_
 emodnet_get_wfs_info(wfs = seabed_wfs_client)
 #> # A tibble: 57 × 9
 #> # Rowwise: 
-#>    data_source service_name                       service_url layer_name title abstract class format layer_namespace
-#>    <chr>       <chr>                              <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
-#>  1 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  2 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  3 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  4 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  5 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  6 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  7 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  8 emodnet_wfs seabed_habitats_general_datasets_… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#>  9 emodnet_wfs seabed_habitats_general_datasets_… https://ow… carib_eus… 2023… "Output… WFSF… sf     emodnet_open   
-#> 10 emodnet_wfs seabed_habitats_general_datasets_… https://ow… biogenic_… Biog… "This l… WFSF… sf     emodnet_open   
+#>    data_source service_name                      service_url layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>                             <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  2 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  3 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  4 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  5 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  6 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  7 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  8 emodnet_wfs seabed_habitats_general_datasets… https://ow… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#>  9 emodnet_wfs seabed_habitats_general_datasets… https://ow… carib_eus… 2023… "Output… WFSF… sf     emodnet_open   
+#> 10 emodnet_wfs seabed_habitats_general_datasets… https://ow… biogenic_… Biog… "This l… WFSF… sf     emodnet_open   
 #> # ℹ 47 more rows
 ```
 
@@ -119,11 +122,11 @@ emodnet_get_layer_info(
 )
 #> # A tibble: 3 × 9
 #> # Rowwise: 
-#>   data_source service_name                        service_url layer_name title abstract class format layer_namespace
-#>   <chr>       <chr>                               <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
-#> 1 emodnet_wfs https://ows.emodnet-seabedhabitats… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#> 2 emodnet_wfs https://ows.emodnet-seabedhabitats… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
-#> 3 emodnet_wfs https://ows.emodnet-seabedhabitats… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open
+#>   data_source service_name                       service_url layer_name title abstract class format layer_namespace
+#>   <chr>       <chr>                              <chr>       <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#> 1 emodnet_wfs https://ows.emodnet-seabedhabitat… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#> 2 emodnet_wfs https://ows.emodnet-seabedhabitat… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open   
+#> 3 emodnet_wfs https://ows.emodnet-seabedhabitat… seabed_hab… art17_hab… 2013… "Gridde… WFSF… sf     emodnet_open
 ```
 
 
@@ -201,21 +204,21 @@ EMODnet provides also physics, chemistry, biological or bathymetry data. Explore
 
 ``` r
 emodnet_get_all_wfs_info()
-#> # A tibble: 1,734 × 9
+#> # A tibble: 1,782 × 9
 #> # Rowwise: 
-#>    data_source service_name service_url         layer_name title abstract class format layer_namespace
-#>    <chr>       <chr>        <chr>               <chr>      <chr> <chr>    <chr> <chr>  <chr>          
-#>  1 emodnet_wfs bathymetry   https://ows.emodne… download_… Bath… "Downlo… WFSF… sf     emodnet        
-#>  2 emodnet_wfs bathymetry   https://ows.emodne… contours   Dept… "Genera… WFSF… sf     emodnet        
-#>  3 emodnet_wfs bathymetry   https://ows.emodne… hr_bathym… High… "Layer … WFSF… sf     emodnet        
-#>  4 emodnet_wfs bathymetry   https://ows.emodne… quality_i… Qual… "Repres… WFSF… sf     emodnet        
-#>  5 emodnet_wfs bathymetry   https://ows.emodne… sea_names  Sea … "Mainta… WFSF… sf     world          
-#>  6 emodnet_wfs bathymetry   https://ows.emodne… source_re… Sour… "Covera… WFSF… sf     emodnet        
-#>  7 emodnet_wfs bathymetry   https://ows.emodne… undersea_… unde… ""       WFSF… sf     gebco          
-#>  8 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
-#>  9 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
-#> 10 emodnet_wfs biology      https://geo.vliz.b… mediseh_c… EMOD… "Cymodo… WFSF… sf     Emodnetbio     
-#> # ℹ 1,724 more rows
+#>    data_source service_name service_url                      layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>        <chr>                            <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… download_… Bath… "Downlo… WFSF… sf     emodnet        
+#>  2 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… contours   Dept… "Genera… WFSF… sf     emodnet        
+#>  3 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… hr_bathym… High… "Layer … WFSF… sf     emodnet        
+#>  4 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… quality_i… Qual… "Repres… WFSF… sf     emodnet        
+#>  5 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… sea_names  Sea … "Mainta… WFSF… sf     world          
+#>  6 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… source_re… Sour… "Covera… WFSF… sf     emodnet        
+#>  7 emodnet_wfs bathymetry   https://ows.emodnet-bathymetry.… undersea_… unde… ""       WFSF… sf     gebco          
+#>  8 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… cti_macro… Comm… "Ocean … WFSF… sf     Emodnetbio     
+#>  9 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#> 10 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#> # ℹ 1,772 more rows
 ```
 
 ## More information
@@ -244,18 +247,18 @@ citation(package = "emodnet.wfs")
 #> To cite package 'emodnet.wfs' in publications use:
 #> 
 #>   Krystalli A, Fernández-Bejarano S, Salmon M (????). _emodnet.wfs: Access EMODnet Web Feature Service
-#>   data through R_. doi:10.14284/679 <https://doi.org/10.14284/679>, R package version 2.0.2.9000.
-#>   Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology
-#>   project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation
-#>   (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European
-#>   Maritime and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
+#>   data through R_. doi:10.14284/679 <https://doi.org/10.14284/679>, R package version 2.1.0.
+#>   Integrated data products created under the European Marine Observation Data Network (EMODnet)
+#>   Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under
+#>   Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the
+#>   European Maritime and Fisheries Fund, <https://github.com/EMODnet/emodnet.wfs>.
 #> 
 #> A BibTeX entry for LaTeX users is
 #> 
 #>   @Manual{,
 #>     title = {{emodnet.wfs}: Access EMODnet Web Feature Service data through R},
 #>     author = {Anna Krystalli and Salvador Fernández-Bejarano and Maëlle Salmon},
-#>     note = {R package version 2.0.2.9000. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
+#>     note = {R package version 2.1.0. Integrated data products created under the European Marine Observation Data Network (EMODnet) Biology project (EASME/EMFF/2017/1.3.1.2/02/SI2.789013), funded by the by the European Union under Regulation (EU) No 508/2014 of the European Parliament and of the Council of 15 May 2014 on the European Maritime and Fisheries Fund},
 #>     url = {https://github.com/EMODnet/emodnet.wfs},
 #>     doi = {10.14284/679},
 #>   }

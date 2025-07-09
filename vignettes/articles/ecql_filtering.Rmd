@@ -70,18 +70,18 @@ Let's look at existing layers.
 emodnet_get_wfs_info(wfs)
 #> # A tibble: 39 × 9
 #> # Rowwise: 
-#>    data_source service_name service_url                       layer_name title abstract class format layer_namespace
-#>    <chr>       <chr>        <chr>                             <chr>      <chr> <chr>    <chr> <chr>  <chr>          
-#>  1 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… cti_macro… Comm… "Ocean … WFSF… sf     Emodnetbio     
-#>  2 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
-#>  3 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
-#>  4 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_c… EMOD… "Cymodo… WFSF… sf     Emodnetbio     
-#>  5 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
-#>  6 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
-#>  7 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
-#>  8 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
-#>  9 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_h… EMOD… "Haloph… WFSF… sf     Emodnetbio     
-#> 10 emodnet_wfs biology      https://geo.vliz.be/geoserver/Em… mediseh_m… EMOD… "Maërl … WFSF… sf     Emodnetbio     
+#>    data_source service_name service_url                      layer_name title abstract class format layer_namespace
+#>    <chr>       <chr>        <chr>                            <chr>      <chr> <chr>    <chr> <chr>  <chr>          
+#>  1 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… cti_macro… Comm… "Ocean … WFSF… sf     Emodnetbio     
+#>  2 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#>  3 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_c… EMOD… "Coral … WFSF… sf     Emodnetbio     
+#>  4 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_c… EMOD… "Cymodo… WFSF… sf     Emodnetbio     
+#>  5 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  6 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  7 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  8 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… Species_g… EMOD… "This d… WFSF… sf     Emodnetbio     
+#>  9 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_h… EMOD… "Haloph… WFSF… sf     Emodnetbio     
+#> 10 emodnet_wfs biology      https://geo.vliz.be/geoserver/E… mediseh_m… EMOD… "Maërl … WFSF… sf     Emodnetbio     
 #> # ℹ 29 more rows
 ```
 
