@@ -6,7 +6,7 @@
 \alias{emodnet.wfs-package}
 \title{emodnet.wfs: Access 'EMODnet' Web Feature Service Data}
 \description{
-Access and interrogate 'EMODnet' (European Marine Observation and Data Network) Web Feature Service data. This includes listing existing data sources, and getting data from each of them. \url{https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#data-download-services}
+Access and interrogate 'EMODnet' (European Marine Observation and Data Network) Web Feature Service data \url{https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#data-download-services}. This includes listing existing data sources, and getting data from each of them.
 }
 \seealso{
 Useful links:

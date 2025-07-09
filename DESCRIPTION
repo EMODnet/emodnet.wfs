@@ -21,9 +21,8 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9092-966X", "Reviewed the package (v2.0.2.9000) for rOpenSci, see <https://github.com/ropensci/software-review/issues/653>."))
   )
 Description: Access and interrogate 'EMODnet' (European Marine Observation
-    and Data Network) Web Feature Service data. This includes listing existing data sources,
-    and getting data from each of them.
-    <https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#data-download-services>
+    and Data Network) Web Feature Service data <https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#data-download-services>. 
+    This includes listing existing data sources, and getting data from each of them.
 License: MIT + file LICENSE
 URL: https://docs.ropensci.org/emodnet.wfs/,
     https://github.com/EMODnet/emodnet.wfs
