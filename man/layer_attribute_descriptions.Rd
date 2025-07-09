@@ -31,7 +31,7 @@ data.frame containing layer attribute descriptions (metadata).
 Get layer attribute description
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 layer_attribute_descriptions(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"

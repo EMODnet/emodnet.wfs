@@ -90,7 +90,7 @@ you might consider a combination of these ideas:
 }
 
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 # Layers as character vector
 emodnet_get_layers(
   service = "biology",

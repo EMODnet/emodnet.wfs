@@ -126,7 +126,7 @@ For example, the full `"pipelines"` layer contains 3951 features.
 
 
 ``` r
-n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") |> nrow()
 
 n_features
 ```
@@ -278,8 +278,8 @@ bbox_response <- emodnet_get_layers(
 #> ℹ Service: "https://geo.vliz.be/geoserver/Emodnetbio/wfs"
 #> ℹ Version: "2.0.0"
 
-bbox_response %>%
-  sf::st_cast(to = "MULTILINESTRING") %>%
+bbox_response |>
+  sf::st_cast(to = "MULTILINESTRING") |>
   mapview::mapview(burst = TRUE, legend = FALSE)
 ```
 

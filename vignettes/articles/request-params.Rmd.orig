@@ -78,7 +78,7 @@ The default sort operation is to sort in ascending order. Some WFS servers requi
 Finally in WFS version 2.0.0 (and also available in earlier versions on GeoServer) a `startIndex` parameter was introduced, allowing users to specify the starting index of features to be returned.
 
 ```{r, echo=FALSE}
-n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") |> nrow()
 
 n_features
 ```
@@ -86,7 +86,7 @@ n_features
 For example, the full `"pipelines"` layer contains `r n_features` features. 
 
 ```{r, eval=FALSE}
-n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") %>% nrow()
+n_features <- layer_attributes_tbl(wfs = wfs, layer = "pipelines") |> nrow()
 
 n_features
 ```
@@ -169,8 +169,8 @@ bbox_response <- emodnet_get_layers(
   simplify = TRUE
 )
 
-bbox_response %>%
-  sf::st_cast(to = "MULTILINESTRING") %>%
+bbox_response |>
+  sf::st_cast(to = "MULTILINESTRING") |>
   mapview::mapview(burst = TRUE, legend = FALSE)
 ```
 

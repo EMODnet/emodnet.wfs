@@ -12,7 +12,7 @@ test_that("get layers works on server", {
   expect_gt(nrow(l_data[[1]]), 0L)
   expect_gt(nrow(l_data[[2]]), 0L)
 
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) |> unique()
   expect_length(l_crs, 1L)
   expect_identical(l_crs, 4326L)
 })
@@ -25,7 +25,7 @@ test_that("crs transform works from server", {
     layers = "mediseh_zostera_m_pnt",
     crs = 4326
   )
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) |> unique()
 
   expect_length(l_crs, 1L)
   expect_identical(l_crs, 4326L)
@@ -43,7 +43,7 @@ test_that("get layers works on wfs object", {
   expect_gt(nrow(l_data[[1]]), 0L)
   expect_gt(nrow(l_data[[2]]), 0L)
 
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) |> unique()
 
   expect_length(l_crs, 1L)
   expect_identical(l_crs, 4326L)
@@ -54,7 +54,7 @@ test_that("crs transform works from wfs object", {
   wfs <- create_biology_wfs()
   layers <- c("mediseh_zostera_m_pnt", "mediseh_posidonia_nodata")
   l_data <- emodnet_get_layers(wfs = wfs, layers = layers, crs = 3857)
-  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) %>% unique()
+  l_crs <- purrr::map_int(l_data, ~ sf::st_crs(.x)$epsg) |> unique()
 
   expect_length(l_crs, 1L)
   expect_identical(l_crs, 3857L)

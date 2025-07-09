@@ -22,7 +22,7 @@
 #'
 #' @return Tibble of available EMODnet Web Feature Services
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' emodnet_wfs()
 #' @export
 emodnet_wfs <- memoise::memoise(.emodnet_wfs)

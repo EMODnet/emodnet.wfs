@@ -27,7 +27,7 @@ Tibble of available EMODnet Web Feature Services
 Available EMODnet Web Feature Services
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 emodnet_wfs()
 \dontshow{\}) # examplesIf}
 }

@@ -15,11 +15,13 @@
 #' @export
 #'
 #' @seealso `WFSClient` in package `ows4R`.
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
-emodnet_init_wfs_client <- function(service,
-                                    service_version = NULL,
-                                    logger = NULL) {
+emodnet_init_wfs_client <- function(
+  service,
+  service_version = NULL,
+  logger = NULL
+) {
   deprecate_msg_service_version(
     service_version,
     "emodnet_init_wfs_client"

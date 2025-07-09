@@ -32,7 +32,7 @@ for a given service.
 Get summaries of layer attributes (variables)
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 layer_attributes_summarise(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"

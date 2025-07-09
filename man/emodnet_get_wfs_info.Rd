@@ -56,7 +56,7 @@ services from server.
 
 }}
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 emodnet_get_wfs_info(service = "bathymetry")
 # Query a wfs object
 wfs_bio <- emodnet_init_wfs_client("biology")

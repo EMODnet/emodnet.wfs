@@ -10,7 +10,7 @@
 #' @family attributes
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' layer_attributes_summarise(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -46,7 +46,7 @@ layer_attributes_summarise <- function(
 #' @family attributes
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' layer_attribute_descriptions(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -81,7 +81,7 @@ layer_attribute_descriptions <- function(
 #' @return character vector of layer attribute (variable) names.
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' layer_attributes_get_names(
 #'   service = "biology",
 #'   layer = "mediseh_zostera_m_pnt"
@@ -121,7 +121,7 @@ layer_attributes_get_names <- function(
 #' @family attributes
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' wfs <- emodnet_init_wfs_client(service = "biology")
 #' layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 #' layer_attribute_inspect(
@@ -195,7 +195,7 @@ layer_attribute_inspect <- function(
 #' @family attributes
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
 layer_attributes_tbl <- function(
   wfs = NULL,
@@ -223,8 +223,8 @@ layer_attributes_tbl <- function(
   wfs$getFeatures(
     namespaced_layer,
     PROPERTYNAME = paste(layer_attr, collapse = ",")
-  ) %>%
-    sf::st_drop_geometry() %>%
+  ) |>
+    sf::st_drop_geometry() |>
     tibble::as_tibble()
 }
 

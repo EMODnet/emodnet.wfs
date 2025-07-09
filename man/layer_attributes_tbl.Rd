@@ -35,7 +35,7 @@ for more
 targeted and faster layer download.
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 layer_attributes_tbl(service = "biology", layer = "mediseh_zostera_m_pnt")
 \dontshow{\}) # examplesIf}
 }

@@ -1,5 +1,5 @@
 Package: emodnet.wfs
-Title: Access 'EMODnet' Web Feature Service Data Through R
+Title: Access 'EMODnet' Web Feature Service Data
 Version: 2.1.0
 Authors@R: c(
     person("Joana", "Beja", , "joana.beja@vliz.be", role = c("aut", "cre"),
@@ -21,19 +21,20 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-9092-966X", "Reviewed the package (v2.0.2.9000) for rOpenSci, see <https://github.com/ropensci/software-review/issues/653>."))
   )
 Description: Access and interrogate 'EMODnet' (European Marine Observation
-    and Data Network) Web Feature Service data through R.
+    and Data Network) Web Feature Service data. This includes listing existing data sources,
+    and getting data from each of them.
+    <https://emodnet.ec.europa.eu/en/emodnet-web-service-documentation#data-download-services>
 License: MIT + file LICENSE
 URL: https://docs.ropensci.org/emodnet.wfs/,
     https://github.com/EMODnet/emodnet.wfs
 BugReports: https://github.com/EMODnet/emodnet.wfs/issues
-Depends: 
-    R (>= 3.6.0)
+Depends:
+    R (>= 4.1)
 Imports: 
     checkmate,
     cli,
     dplyr,
     lifecycle,
-    magrittr,
     memoise,
     ows4R (>= 0.5),
     purrr,

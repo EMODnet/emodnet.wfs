@@ -38,7 +38,7 @@ factor or character variable levels or unique values.
 Inspect layer attributes
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 wfs <- emodnet_init_wfs_client(service = "biology")
 layer_attributes_get_names(wfs, layer = "mediseh_zostera_m_pnt")
 layer_attribute_inspect(

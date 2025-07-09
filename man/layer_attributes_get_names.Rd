@@ -33,7 +33,7 @@ Names of variables (attributes) available from a dataset (layer)
 in a data source (service).
 }
 \examples{
-\dontshow{if (emodnet.wfs:::should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
 layer_attributes_get_names(
   service = "biology",
   layer = "mediseh_zostera_m_pnt"

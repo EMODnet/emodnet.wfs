@@ -44,7 +44,7 @@
 #' an `sf` out of a single layer request instead of a list of length 1.
 #' @export
 #'
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' # Layers as character vector
 #' emodnet_get_layers(
 #'   service = "biology",
@@ -172,7 +172,7 @@ emodnet_get_layers <- function(
     },
     wfs,
     ...
-  ) %>%
+  ) |>
     stats::setNames(layers)
 
   # if simplify = TRUE, reduce to single sf --------------------------------
@@ -306,7 +306,7 @@ namespace_layer_names <- function(wfs, layers) {
   info[
     info$layer_name %in% layers,
     c("layer_namespace", "layer_name")
-  ] %>%
+  ] |>
     apply(1L, FUN = paste0, collapse = ":")
 }
 

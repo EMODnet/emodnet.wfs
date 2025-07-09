@@ -5,7 +5,7 @@
 
   capabilities <- wfs$getCapabilities() # nolint: object_overwrite_linter
 
-  wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) %>%
+  wfs_layers <- purrr::map(layers, capabilities$findFeatureTypeByName) |>
     unlist(recursive = FALSE)
 
   tibble::tibble(
@@ -17,12 +17,12 @@
     abstract = purrr::map_chr(wfs_layers, get_abstract_null),
     class = purrr::map_chr(wfs_layers, ~ .x$getClassName()),
     format = purrr::map_chr(wfs_layers, guess_layer_format)
-  ) %>%
-    dplyr::rowwise() %>%
+  ) |>
+    dplyr::rowwise() |>
     dplyr::mutate(
       layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
       layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
-    ) %>%
+    ) |>
     unique()
 }
 
@@ -71,8 +71,8 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
     ),
     class = purrr::map_chr(capabilities$getFeatureTypes(), ~ .x$getClassName()),
     format = purrr::map_chr(capabilities$getFeatureTypes(), guess_layer_format)
-  ) %>%
-    dplyr::rowwise() %>%
+  ) |>
+    dplyr::rowwise() |>
     dplyr::mutate(
       layer_namespace = strsplit(layer_name, ":", fixed = TRUE)[[1]][1],
       layer_name = strsplit(layer_name, ":", fixed = TRUE)[[1]][2]
@@ -93,7 +93,7 @@ emodnet_get_layer_info <- memoise::memoise(.emodnet_get_layer_info)
 #' @export
 #' @describeIn emodnet_get_wfs_info Get info on all layers from
 #' an EMODnet WFS service.
-#' @examplesIf emodnet.wfs:::should_run_example()
+#' @examplesIf should_run_example()
 #' emodnet_get_wfs_info(service = "bathymetry")
 #' # Query a wfs object
 #' wfs_bio <- emodnet_init_wfs_client("biology")
