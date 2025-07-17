@@ -5,6 +5,7 @@
 #'
 #' @return A Boolean indicating whether to run the example.
 #'
+#' @keywords internal
 #' @export
 #' @examples
 #' should_run_example()

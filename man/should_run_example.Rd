@@ -16,3 +16,4 @@ Do not use it in your own package!
 \examples{
 should_run_example()
 }
+\keyword{internal}
