@@ -1,6 +1,6 @@
 Package: emodnet.wfs
 Title: Access 'EMODnet' Web Feature Service Data
-Version: 2.1.1
+Version: 2.1.1.9000
 Authors@R: c(
     person("Joana", "Beja", , "joana.beja@vliz.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5196-8447")),
