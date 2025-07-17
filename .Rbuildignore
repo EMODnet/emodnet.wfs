@@ -20,3 +20,4 @@
 ^inst/submission\.md$
 ^CITATION\.cff$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
