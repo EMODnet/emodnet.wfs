@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @seealso `WFSClient` in package `ows4R`.
-#' @examplesIf should_run_example()
+#' @examplesVCR bathymetry
 #' wfs <- emodnet_init_wfs_client(service = "bathymetry")
 emodnet_init_wfs_client <- function(
   service,

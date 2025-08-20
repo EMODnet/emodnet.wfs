@@ -25,9 +25,9 @@ OGC Web Feature Service.
 Initialise an EMODnet WFS client
 }
 \examples{
-\dontshow{if (should_run_example()) withAutoprint(\{ # examplesIf}
+\dontshow{vcr::insert_example_cassette('bathymetry', package = 'emodnet.wfs')}
 wfs <- emodnet_init_wfs_client(service = "bathymetry")
-\dontshow{\}) # examplesIf}
+\dontshow{vcr::eject_cassette()}
 }
 \seealso{
 \code{WFSClient} in package \code{ows4R}.
