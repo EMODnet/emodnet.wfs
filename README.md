@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# emodnet.wfs: Access EMODnet Web Feature Service data through R
+# emodnet.wfs: Access EMODnet Web Feature Service data through R <a href="https://docs.ropensci.org/emodnet.wfs/"><img src="man/figures/logo.png" align="right" height="139" alt="emodnet.wfs website" /></a>
 
 <!-- badges: start -->
 
