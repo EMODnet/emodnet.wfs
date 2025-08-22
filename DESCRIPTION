@@ -60,7 +60,8 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, roclets = c("collate", "rd", "namespace", "vcr::examplesVCR_roclet"), packages = "vcr")
 RoxygenNote: 7.3.2.9000
 SystemRequirements: C++11, GDAL (>= 2.0.1), GEOS (>= 3.4.0), PROJ (>=
     4.8.0)
+Config/Needs/build: ropensci/vcr
